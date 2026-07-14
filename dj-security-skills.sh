@@ -1,0 +1,1 @@
+AG_BASE_DIR=/home/steve/.claude-secure/ ./scripts/activate-skills.sh --clear "DJ Security Engineer"

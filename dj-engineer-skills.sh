@@ -1,0 +1,1 @@
+AG_BASE_DIR=/home/steve/.claude/ ./scripts/activate-skills.sh --clear dj-senior-engineer
