@@ -1,278 +1,296 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost/</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://localhost/plugins</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/workbench/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/topics/antigravity-cli-skills</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/plugins/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/topics/github-ai-skills-repository</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/topics/antigravity-cli-skills/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/topics/antigravity-plugins</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/topics/github-ai-skills-repository/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/topics/skills-para-antigravity</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/topics/antigravity-plugins/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/browser-testing-with-devtools</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/topics/skills-para-antigravity/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/drizzle-migration-conflict</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/lore/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/frontend-lighthouse</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/quit-sponsor/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/pre-release-review</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/uizze-ui-research/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/weaviate</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/idea-autopsy/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/weaviate-cookbooks</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/product-decision-agent/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/ai-loop</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/apple-container/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/re-create</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/auto-research/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/cron-doctor</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/gemini-deep-research/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/sql-sentinel</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/grok-build/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/web-project-brainstorming</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/postgres-readonly-queries/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/arrowspace</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/telegram-bot-messaging/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/emil-design-eng</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/ask-copilot/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/gh-image</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/codex-profiles/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/github-actions-debugger</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/tree-ring-memory/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/premium-3d-website</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/agent-self-scheduling/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/review-animations</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/anti-sleep/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/the-honoured-one</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/brain-to-docs/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/infinity</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/browser-harness/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/ax-extract-workflow</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/cmux/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/agent-creator</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/codex-subagent/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/remote-gpu-trainer</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/cyber-audit/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/ask-matt</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/deepapi/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/bugs-are-annoying</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/delegating-to-agents/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/codebase-design</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/distribute-skill-to-all-agents/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/competitor-analysis</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/effective-agent-skills/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/diagnosing-bugs</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/fable-safe-prompt/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/domain-modeling</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/folder-specific-claude-and-agents-md/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/grill-me</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/go-in-depth/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/grill-with-docs</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/goal-loop/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/grilling</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/interview-style-doc-building/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/handoff</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/markdown-rendering/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/image-generator</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/pi-custom-model/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/improve-codebase-architecture</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/pi-web-search/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/learn</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/pilot-protocol/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/lesson-generator</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/pre-ship-gate/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/llm-council</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/push-skill-to-github/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/loop-library</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/read-all-adrs/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/mailtrap-managing-contacts</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/research-prompt/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost/skill/mailtrap-sending-emails</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/routerbase-model-gateway/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/run-deep-swe/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/setup-help/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sickn33.github.io/agentic-awesome-skills/skill/short/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

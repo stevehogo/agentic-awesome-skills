@@ -14,20 +14,20 @@
           "summary": "Always start with a plan."
         },
         {
+          "id": "test-driven-development",
+          "summary": "Build features and fixes through a red-green-refactor loop."
+        },
+        {
           "id": "lint-and-validate",
           "summary": "Keep your code clean automatically."
         },
         {
+          "id": "systematic-debugging",
+          "summary": "Debug from evidence instead of guesses."
+        },
+        {
           "id": "git-pushing",
           "summary": "Save your work safely."
-        },
-        {
-          "id": "kaizen",
-          "summary": "Continuous improvement mindset."
-        },
-        {
-          "id": "systematic-debugging",
-          "summary": "Debug like a pro."
         }
       ]
     },
@@ -42,31 +42,35 @@
       "skills": [
         {
           "id": "ethical-hacking-methodology",
-          "summary": "The Bible of ethical hacking."
+          "summary": "Plan authorized security assessments with clear boundaries."
         },
         {
-          "id": "burp-suite-testing",
-          "summary": "Web vulnerability scanning."
+          "id": "threat-modeling-expert",
+          "summary": "Model threats with STRIDE, PASTA, and attack trees."
         },
         {
           "id": "top-web-vulnerabilities",
           "summary": "OWASP-aligned vulnerability taxonomy."
         },
         {
-          "id": "linux-privilege-escalation",
-          "summary": "Advanced Linux security assessment."
+          "id": "burp-suite-testing",
+          "summary": "Web vulnerability scanning."
         },
         {
           "id": "cloud-penetration-testing",
           "summary": "AWS/Azure/GCP security."
         },
         {
-          "id": "security-auditor",
-          "summary": "Comprehensive security audits."
+          "id": "linux-privilege-escalation",
+          "summary": "Advanced Linux security assessment."
         },
         {
           "id": "vulnerability-scanner",
           "summary": "Advanced vulnerability analysis."
+        },
+        {
+          "id": "security-auditor",
+          "summary": "Comprehensive security audits."
         }
       ]
     },
@@ -96,6 +100,10 @@
           "summary": "XSS prevention and client-side security."
         },
         {
+          "id": "dependency-management-deps-audit",
+          "summary": "Audit dependency vulnerabilities, licenses, and supply-chain risk."
+        },
+        {
           "id": "cc-skill-security-review",
           "summary": "Security checklist for features."
         },
@@ -119,24 +127,28 @@
           "summary": "UI guidelines and aesthetics."
         },
         {
-          "id": "react-best-practices",
-          "summary": "React & Next.js performance optimization."
+          "id": "tailwind-patterns",
+          "summary": "Tailwind CSS v4 styling patterns."
         },
         {
           "id": "react-patterns",
           "summary": "Modern React patterns and principles."
         },
         {
+          "id": "react-best-practices",
+          "summary": "React & Next.js performance optimization."
+        },
+        {
           "id": "nextjs-best-practices",
           "summary": "Next.js App Router patterns."
         },
         {
-          "id": "tailwind-patterns",
-          "summary": "Tailwind CSS v4 styling superpowers."
-        },
-        {
           "id": "form-cro",
           "summary": "Optimize your forms for conversion."
+        },
+        {
+          "id": "accessibility-compliance-accessibility-audit",
+          "summary": "Audit WCAG issues and plan concrete remediation."
         },
         {
           "id": "seo-audit",
@@ -162,16 +174,20 @@
           "summary": "The base layer of aesthetics."
         },
         {
-          "id": "3d-web-experience",
-          "summary": "Three.js & React Three Fiber magic."
+          "id": "mobile-design",
+          "summary": "Mobile-first design principles."
+        },
+        {
+          "id": "accessibility-compliance-accessibility-audit",
+          "summary": "Audit WCAG issues and plan concrete remediation."
         },
         {
           "id": "canvas-design",
           "summary": "Static visuals and posters."
         },
         {
-          "id": "mobile-design",
-          "summary": "Mobile-first design principles."
+          "id": "3d-web-experience",
+          "summary": "Build immersive Three.js and React Three Fiber experiences."
         },
         {
           "id": "scroll-experience",
@@ -209,8 +225,16 @@
           "summary": "Schema design and ORM selection."
         },
         {
+          "id": "auth-implementation-patterns",
+          "summary": "Design secure sessions, JWT, OAuth2, and authorization."
+        },
+        {
           "id": "stripe-integration",
           "summary": "Payments and subscriptions."
+        },
+        {
+          "id": "e2e-testing-patterns",
+          "summary": "Verify critical user journeys with reliable E2E tests."
         }
       ]
     },
@@ -224,28 +248,32 @@
       "description": "For building AI systems and autonomous agents.",
       "skills": [
         {
-          "id": "agent-evaluation",
-          "summary": "Test and benchmark your agents."
-        },
-        {
-          "id": "langgraph",
-          "summary": "Build stateful agent workflows."
-        },
-        {
-          "id": "mcp-builder",
-          "summary": "Create your own MCP tools."
-        },
-        {
           "id": "prompt-engineering",
-          "summary": "Master the art of talking to LLMs."
+          "summary": "Design reliable instructions and prompt workflows."
         },
         {
           "id": "ai-agents-architect",
           "summary": "Design autonomous AI agents."
         },
         {
+          "id": "mcp-builder",
+          "summary": "Create your own MCP tools."
+        },
+        {
+          "id": "langgraph",
+          "summary": "Build stateful agent workflows."
+        },
+        {
           "id": "rag-engineer",
           "summary": "Build RAG systems with vector search."
+        },
+        {
+          "id": "agent-memory-systems",
+          "summary": "Design durable short- and long-term memory for agents."
+        },
+        {
+          "id": "agent-evaluation",
+          "summary": "Test and benchmark your agents."
         }
       ]
     },
@@ -277,6 +305,10 @@
         {
           "id": "langfuse",
           "summary": "LLM observability and tracing."
+        },
+        {
+          "id": "llm-evaluation",
+          "summary": "Measure LLM quality with automated and human evaluation."
         }
       ]
     },
@@ -308,6 +340,10 @@
         {
           "id": "godot-gdscript-patterns",
           "summary": "Godot 4 GDScript patterns."
+        },
+        {
+          "id": "game-development/game-audio",
+          "summary": "Design sound effects, music systems, and adaptive game audio."
         },
         {
           "id": "algorithmic-art",
@@ -434,6 +470,10 @@
           "summary": "Competitor analysis."
         },
         {
+          "id": "pricing-strategy",
+          "summary": "Design pricing, packaging, and value metrics."
+        },
+        {
           "id": "competitor-alternatives",
           "summary": "Create comparison pages."
         },
@@ -492,6 +532,10 @@
       "description": "For driving user acquisition and retention.",
       "skills": [
         {
+          "id": "content-strategy",
+          "summary": "Plan content pillars, topic clusters, and an editorial roadmap."
+        },
+        {
           "id": "content-creator",
           "summary": "SEO-optimized marketing content."
         },
@@ -527,32 +571,36 @@
       "description": "For infrastructure and scaling.",
       "skills": [
         {
+          "id": "environment-setup-guide",
+          "summary": "Standardize development environments for teams."
+        },
+        {
+          "id": "bash-linux",
+          "summary": "Automate operational work safely from the shell."
+        },
+        {
           "id": "docker-expert",
           "summary": "Master containers and multi-stage builds."
-        },
-        {
-          "id": "aws-serverless",
-          "summary": "Serverless on AWS (Lambda, DynamoDB)."
-        },
-        {
-          "id": "kubernetes-architect",
-          "summary": "K8s architecture and GitOps."
         },
         {
           "id": "terraform-specialist",
           "summary": "Infrastructure as Code mastery."
         },
         {
-          "id": "environment-setup-guide",
-          "summary": "Standardization for teams."
+          "id": "kubernetes-architect",
+          "summary": "K8s architecture and GitOps."
+        },
+        {
+          "id": "aws-serverless",
+          "summary": "Serverless on AWS (Lambda, DynamoDB)."
+        },
+        {
+          "id": "ci-cd-and-automation",
+          "summary": "Build CI/CD pipelines with automated quality gates."
         },
         {
           "id": "deployment-procedures",
-          "summary": "Safe rollout strategies."
-        },
-        {
-          "id": "bash-linux",
-          "summary": "Terminal wizardry."
+          "summary": "Apply safe rollout and rollback strategies."
         }
       ]
     },
@@ -605,8 +653,8 @@
           "summary": "Set up GA4/PostHog correctly."
         },
         {
-          "id": "claude-d3js-skill",
-          "summary": "Beautiful custom visualizations with D3.js."
+          "id": "data-quality-frameworks",
+          "summary": "Validate data with contracts, dbt tests, and quality monitoring."
         },
         {
           "id": "sql-pro",
@@ -623,6 +671,10 @@
         {
           "id": "database-architect",
           "summary": "Database design from scratch."
+        },
+        {
+          "id": "data-storytelling",
+          "summary": "Turn analysis into clear narratives and decisions."
         }
       ]
     },
@@ -648,12 +700,12 @@
           "summary": "Analytics engineering."
         },
         {
-          "id": "vector-database-engineer",
-          "summary": "Vector databases for RAG."
+          "id": "data-quality-frameworks",
+          "summary": "Validate pipelines with contracts, dbt tests, and quality monitoring."
         },
         {
-          "id": "embedding-strategies",
-          "summary": "Embedding model selection."
+          "id": "vector-database-engineer",
+          "summary": "Vector databases for RAG."
         }
       ]
     },
@@ -706,28 +758,28 @@
           "summary": "Red, Green, Refactor."
         },
         {
-          "id": "systematic-debugging",
-          "summary": "Debug like Sherlock Holmes."
+          "id": "e2e-testing-patterns",
+          "summary": "Reliable E2E test suites."
         },
         {
           "id": "browser-automation",
           "summary": "End-to-end testing with Playwright."
         },
         {
-          "id": "e2e-testing-patterns",
-          "summary": "Reliable E2E test suites."
+          "id": "test-fixing",
+          "summary": "Fix failing tests systematically."
         },
         {
-          "id": "ab-test-setup",
-          "summary": "Validated experiments."
+          "id": "systematic-debugging",
+          "summary": "Diagnose failures from evidence instead of guesses."
         },
         {
           "id": "code-review-checklist",
           "summary": "Catch bugs in PRs."
         },
         {
-          "id": "test-fixing",
-          "summary": "Fix failing tests systematically."
+          "id": "ci-cd-and-automation",
+          "summary": "Run automated test gates consistently in CI/CD."
         }
       ]
     },
@@ -970,12 +1022,12 @@
           "summary": "Configure static application security testing."
         },
         {
-          "id": "sql-injection-testing",
-          "summary": "Find and validate SQL injection risks."
+          "id": "security-and-hardening",
+          "summary": "Harden applications against untrusted input, auth, data, and integration risks."
         },
         {
-          "id": "broken-authentication",
-          "summary": "Find and prevent authentication implementation flaws."
+          "id": "secrets-management",
+          "summary": "Manage application and CI/CD secrets with least privilege and rotation."
         },
         {
           "id": "django-access-review",
@@ -1194,73 +1246,6 @@
         "Use this plugin to design an MCP server for this workflow, including tools, schemas, and test cases.",
         "Use this plugin to create an eval plan for this agent and define reliability metrics.",
         "Use this plugin to review this RAG or LangGraph architecture for tool, memory, prompt, and observability gaps."
-      ]
-    },
-    {
-      "id": "aas-oss-maintainer",
-      "name": "AAS OSS Maintainer",
-      "group": "⭐ Specialized Product Plugins",
-      "emoji": "🧰",
-      "tagline": "The \"AAS OSS Maintainer\" Plugin",
-      "audience": "Open-source maintainers managing PRs, releases, reviews, and contributor handoffs.",
-      "description": "This is one of the strongest maintainer-focused plugin opportunities: it packages repeatable repo work around review, release, changelog, and GitHub workflows.",
-      "skills": [
-        {
-          "id": "agents-md",
-          "summary": "Create concise durable agent instructions."
-        },
-        {
-          "id": "commit",
-          "summary": "Write high-quality conventional commits."
-        },
-        {
-          "id": "create-pr",
-          "summary": "Create review-ready pull requests."
-        },
-        {
-          "id": "requesting-code-review",
-          "summary": "Ask for targeted code reviews."
-        },
-        {
-          "id": "receiving-code-review",
-          "summary": "Apply review feedback rigorously."
-        },
-        {
-          "id": "changelog-automation",
-          "summary": "Keep changelogs and release notes consistent."
-        },
-        {
-          "id": "git-advanced-workflows",
-          "summary": "Handle advanced Git recovery and history workflows."
-        },
-        {
-          "id": "github-actions-advanced",
-          "summary": "Build and debug advanced GitHub Actions."
-        },
-        {
-          "id": "address-github-comments",
-          "summary": "Address GitHub review comments systematically."
-        },
-        {
-          "id": "lint-and-validate",
-          "summary": "Run validation and quality checks."
-        }
-      ],
-      "why": "This is one of the strongest maintainer-focused plugin opportunities: it packages repeatable repo work around review, release, changelog, and GitHub workflows.",
-      "positioning": "Triage issues, review PRs, manage changelogs, address comments, and run release workflows.",
-      "recommendedFor": [
-        "Open-source maintainers",
-        "Repo owners",
-        "Release managers"
-      ],
-      "notFor": [
-        "Greenfield product design",
-        "Unauthorized security testing"
-      ],
-      "defaultPrompts": [
-        "Use this plugin to triage these open issues and propose maintainer actions with links and labels.",
-        "Use this plugin to review this PR, check validation, and draft a concise maintainer response.",
-        "Use this plugin to prepare release notes from merged changes and identify missing checks."
       ]
     },
     {
@@ -1510,8 +1495,8 @@
           "summary": "Automate GitHub issues and repository work."
         },
         {
-          "id": "n8n-expression-syntax",
-          "summary": "Use n8n expressions safely in automations."
+          "id": "n8n-workflow-patterns",
+          "summary": "Choose proven architectures for webhook, sync, scheduled, and AI-agent workflows."
         }
       ],
       "why": "Works best as a plugin because app connectors and MCP configuration can turn instructions into live workflows.",
@@ -1545,6 +1530,10 @@
           "summary": "Design monitoring and observability systems."
         },
         {
+          "id": "observability-and-instrumentation",
+          "summary": "Instrument production code with useful logs, metrics, traces, and alerts."
+        },
+        {
           "id": "distributed-tracing",
           "summary": "Trace requests across services."
         },
@@ -1553,32 +1542,28 @@
           "summary": "Define and operate service level objectives."
         },
         {
-          "id": "incident-responder",
-          "summary": "Respond to incidents with clear procedure."
-        },
-        {
-          "id": "postmortem-writing",
-          "summary": "Write clear blameless postmortems."
+          "id": "grafana-dashboards",
+          "summary": "Create useful Grafana dashboards."
         },
         {
           "id": "performance-engineer",
           "summary": "Diagnose and improve application performance."
         },
         {
-          "id": "grafana-dashboards",
-          "summary": "Create useful Grafana dashboards."
-        },
-        {
-          "id": "langfuse",
-          "summary": "Trace, evaluate, and monitor LLM apps."
+          "id": "incident-responder",
+          "summary": "Respond to incidents with clear procedure."
         },
         {
           "id": "devops-troubleshooter",
           "summary": "Diagnose infrastructure and deployment issues."
         },
         {
-          "id": "claude-monitor",
-          "summary": "Monitor Claude usage and operational behavior."
+          "id": "postmortem-writing",
+          "summary": "Write clear blameless postmortems."
+        },
+        {
+          "id": "langfuse",
+          "summary": "Trace, evaluate, and monitor LLM apps."
         }
       ],
       "why": "Operational work needs consistent procedure and proof gates, making it more plugin-worthy than isolated observability prompts.",
@@ -1773,6 +1758,10 @@
       "description": "For connecting services and building integrations.",
       "skills": [
         {
+          "id": "api-integration",
+          "summary": "Design service contracts, webhooks, and integration pipelines."
+        },
+        {
           "id": "stripe-integration",
           "summary": "Payments and subscriptions."
         },
@@ -1884,6 +1873,10 @@
         {
           "id": "mcp-builder",
           "summary": "Create tool interfaces agents can use reliably."
+        },
+        {
+          "id": "browser-automation",
+          "summary": "Automate workflows when a service has no suitable API."
         },
         {
           "id": "make-automation",
@@ -2233,6 +2226,10 @@
           "summary": "Extract, generate, and manipulate PDFs programmatically."
         },
         {
+          "id": "google-docs-automation",
+          "summary": "Automate document creation and updates in Google Docs."
+        },
+        {
           "id": "google-slides-automation",
           "summary": "Automate presentation updates in Google Slides."
         },
@@ -2278,6 +2275,10 @@
         {
           "id": "documentation-templates",
           "summary": "Standardize docs and handoffs."
+        },
+        {
+          "id": "finishing-a-development-branch",
+          "summary": "Close a branch with verified integration, merge, and cleanup options."
         }
       ]
     },
@@ -2295,8 +2296,8 @@
           "summary": "Design effective new skills."
         },
         {
-          "id": "skill-developer",
-          "summary": "Implement triggers, hooks, and skill lifecycle."
+          "id": "effective-agent-skills",
+          "summary": "Design portable triggers, progressive disclosure, and safe skill workflows."
         },
         {
           "id": "writing-skills",
@@ -2622,8 +2623,8 @@
           "summary": "Query and model data with modern SQL."
         },
         {
-          "id": "fp-data-transforms",
-          "summary": "Build reliable data transformation flows."
+          "id": "data-quality-frameworks",
+          "summary": "Implement data contracts, validation, dbt tests, and quality monitoring."
         }
       ],
       "why": "Connects data pipelines, dbt, Postgres, vector databases, embeddings, RAG, SQL, and transformation practice into a modern data platform plugin.",
@@ -2650,7 +2651,7 @@
       "emoji": "🧾",
       "tagline": "The \"AAS Privacy & Compliance Engineering\" Plugin",
       "audience": "Teams building privacy-aware and compliance-sensitive SaaS, AI, finance, and cloud systems.",
-      "description": "Uses existing privacy, GDPR, PCI, compliance, cloud, spec, and security review skills to create a practical engineering compliance workflow.",
+      "description": "Uses privacy, GDPR, PCI, compliance checks, control evidence, and security review skills to create a practical engineering compliance workflow.",
       "skills": [
         {
           "id": "privacy-by-design",
@@ -2669,10 +2670,6 @@
           "summary": "Check financial-services compliance requirements."
         },
         {
-          "id": "spec-to-code-compliance",
-          "summary": "Verify implementation against written specs."
-        },
-        {
           "id": "security-audit",
           "summary": "Audit security posture and controls."
         },
@@ -2681,8 +2678,8 @@
           "summary": "Review features with a security checklist."
         }
       ],
-      "why": "Uses existing privacy, GDPR, PCI, compliance, cloud, spec, and security review skills to create a practical engineering compliance workflow.",
-      "positioning": "Engineer privacy and compliance controls with GDPR, PCI, compliance checks, cloud posture, specs, and security review.",
+      "why": "Uses privacy, GDPR, PCI, compliance checks, control evidence, and security review skills to create a practical engineering compliance workflow.",
+      "positioning": "Engineer privacy and compliance controls with GDPR, PCI, control checks, evidence gaps, and security review.",
       "recommendedFor": [
         "SaaS teams",
         "AI app teams",
@@ -2695,7 +2692,7 @@
       "defaultPrompts": [
         "Use this plugin to review this feature for privacy-by-design, GDPR handling, PCI exposure, and security controls.",
         "Use this plugin to map compliance-sensitive data flows and identify engineering changes before launch.",
-        "Use this plugin to check whether this implementation matches the spec and expected compliance controls."
+        "Use this plugin to check whether this implementation satisfies the expected privacy and compliance controls."
       ]
     },
     {

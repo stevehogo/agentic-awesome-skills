@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source_catalog": "data/skills_index.json",
-  "evaluated_skill_count": 1678,
+  "evaluated_skill_count": 1948,
   "selection_rules": [
     "Prefer focused plugins with a clear user job over broad library replicas.",
     "Include only skill IDs present in data/skills_index.json.",
@@ -85,8 +85,8 @@
         "cc-skill-security-review",
         "pci-compliance",
         "sast-configuration",
-        "sql-injection-testing",
-        "broken-authentication",
+        "security-and-hardening",
+        "secrets-management",
         "django-access-review"
       ]
     },
@@ -144,25 +144,6 @@
         "langfuse",
         "context-window-management",
         "prompt-engineering"
-      ]
-    },
-    {
-      "id": "aas-oss-maintainer",
-      "name": "AAS OSS Maintainer",
-      "priority": "tier-1",
-      "audience": "Open-source maintainers managing PRs, releases, reviews, and contributor handoffs.",
-      "why": "This is one of the strongest maintainer-focused plugin opportunities: it packages repeatable repo work around review, release, changelog, and GitHub workflows.",
-      "skills": [
-        "agents-md",
-        "commit",
-        "create-pr",
-        "requesting-code-review",
-        "receiving-code-review",
-        "changelog-automation",
-        "git-advanced-workflows",
-        "github-actions-advanced",
-        "address-github-comments",
-        "lint-and-validate"
       ]
     },
     {
@@ -238,7 +219,7 @@
         "slack-automation",
         "googlesheets-automation",
         "github-automation",
-        "n8n-expression-syntax"
+        "n8n-workflow-patterns"
       ]
     },
     {
@@ -249,15 +230,15 @@
       "why": "Operational work needs consistent procedure and proof gates, making it more plugin-worthy than isolated observability prompts.",
       "skills": [
         "observability-engineer",
+        "observability-and-instrumentation",
         "distributed-tracing",
         "slo-implementation",
-        "incident-responder",
-        "postmortem-writing",
-        "performance-engineer",
         "grafana-dashboards",
-        "langfuse",
+        "performance-engineer",
+        "incident-responder",
         "devops-troubleshooter",
-        "claude-monitor"
+        "postmortem-writing",
+        "langfuse"
       ]
     },
     {
@@ -388,7 +369,7 @@
         "embedding-strategies",
         "rag-engineer",
         "sql-pro",
-        "fp-data-transforms"
+        "data-quality-frameworks"
       ]
     },
     {
@@ -396,13 +377,12 @@
       "name": "AAS Privacy & Compliance Engineering",
       "priority": "tier-2",
       "audience": "Teams building privacy-aware and compliance-sensitive SaaS, AI, finance, and cloud systems.",
-      "why": "Uses existing privacy, GDPR, PCI, compliance, cloud, spec, and security review skills to create a practical engineering compliance workflow.",
+      "why": "Uses privacy, GDPR, PCI, compliance checks, control evidence, and security review skills to create a practical engineering compliance workflow.",
       "skills": [
         "privacy-by-design",
         "gdpr-data-handling",
         "pci-compliance",
         "fsi-compliance-checker",
-        "spec-to-code-compliance",
         "security-audit",
         "cc-skill-security-review"
       ]

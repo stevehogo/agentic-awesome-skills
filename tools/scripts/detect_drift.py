@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Drift Detector — Antigravity Awesome Skills
+Drift Detector — Agentic Awesome Skills
 Detects when skill content changes significantly compared to a stored baseline.
 
 Drift is computed via a normalized SHA-256 content hash. The baseline is stored
@@ -306,8 +306,8 @@ def main(argv: list[str] | None = None) -> int:
     baseline = load_baseline(baseline_path)
 
     if not baseline:
-        print("⚠️  No baseline found. Run with --update-baseline to create one.")
-        return 0
+        print("❌ No baseline found; drift was not evaluated. Run with --update-baseline to create one.")
+        return 2
 
     current = build_current_entries(skills_dir)
     if args.skill:

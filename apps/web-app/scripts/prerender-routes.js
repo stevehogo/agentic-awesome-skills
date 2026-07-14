@@ -10,26 +10,26 @@ const TEMPLATE_PATH = path.join(DIST_DIR, 'index.html');
 const SKILLS_PATH = path.join(PUBLIC_DIR, 'skills.json');
 const SEO_LANDING_PAGES_PATH = path.join(ROOT_DIR, 'src', 'data', 'seoLandingPages.json');
 
-const HOME_CATALOG_COUNT_FALLBACK = 1689;
-const PRERENDER_SOCIAL_IMAGE = 'social-card.svg';
-const SITE_NAME = 'Antigravity Awesome Skills';
-const REPOSITORY_URL = 'https://github.com/sickn33/antigravity-awesome-skills';
-const HOSTED_CATALOG_URL = 'https://sickn33.github.io/antigravity-awesome-skills/';
+const HOME_CATALOG_COUNT_FALLBACK = 1935;
+const PRERENDER_SOCIAL_IMAGE = 'social-card.png';
+const SITE_NAME = 'Agentic Awesome Skills';
+const REPOSITORY_URL = 'https://github.com/sickn33/agentic-awesome-skills';
+const HOSTED_CATALOG_URL = 'https://sickn33.github.io/agentic-awesome-skills/';
 const FAQ_ITEMS = [
   {
-    question: 'What is Antigravity Awesome Skills?',
-    answer:
-      'Antigravity Awesome Skills is an installable GitHub library of 1,700+ reusable SKILL.md playbooks for AI coding assistants. It supports Claude Code, Cursor, Codex CLI, Gemini CLI, Antigravity, and related hosts through direct skill installs, specialized plugins, bundles, workflows, and a searchable catalog.',
+    question: 'What is Agentic Awesome Skills?',
+    answer: (countLabel) =>
+      `Agentic Awesome Skills is an installable GitHub library of ${countLabel} reusable SKILL.md playbooks for AI coding assistants. It supports Claude Code, Cursor, Codex CLI, Autohand Code, Gemini CLI, Antigravity, and related hosts through direct skill installs, specialized plugins, bundles, workflows, and a searchable catalog.`,
   },
   {
-    question: 'How do I install Antigravity Awesome Skills?',
+    question: 'How do I install Agentic Awesome Skills?',
     answer:
-      'Install the library with npx antigravity-awesome-skills. Use tool-specific flags such as --codex, --cursor, --gemini, --claude, or --antigravity when you want the installer to target a specific skills directory already used by your assistant runtime.',
+      'Install the library with npx agentic-awesome-skills. Use tool-specific flags such as --codex, --cursor, --gemini, --claude, or --antigravity when you want the installer to target a specific skills directory already used by your assistant runtime.',
   },
   {
-    question: 'Is Antigravity Awesome Skills a GitHub repository?',
+    question: 'Is Agentic Awesome Skills a GitHub repository?',
     answer:
-      'Yes. The GitHub repository at https://github.com/sickn33/antigravity-awesome-skills is the canonical source for the skill library, installer, specialized plugins, bundles, workflows, and documentation. The hosted catalog is the searchable browsing surface for that repository.',
+      'Yes. The GitHub repository at https://github.com/sickn33/agentic-awesome-skills is the canonical source for the skill library, installer, specialized plugins, bundles, workflows, and documentation. The hosted catalog is the searchable browsing surface for that repository.',
   },
   {
     question: 'What are AAS specialized plugins?',
@@ -43,6 +43,13 @@ const FAQ_ITEMS = [
   },
 ];
 
+function buildFaqItems(countLabel) {
+  return FAQ_ITEMS.map((item) => ({
+    question: item.question,
+    answer: typeof item.answer === 'function' ? item.answer(countLabel) : item.answer,
+  }));
+}
+
 function parseCount(value, fallback) {
   const parsed = Number.parseInt(value, 10);
   return Number.isFinite(parsed) ? Math.max(parsed, 0) : fallback;
@@ -54,12 +61,7 @@ function getSiteBaseUrl() {
     return seoSiteUrl;
   }
 
-  const basePath = (process.env.VITE_BASE_PATH || '/').trim().replace(/\/+$/, '');
-  const normalizedBase = basePath || '/';
-  const withLeadingSlash = normalizedBase.startsWith('/') ? normalizedBase : `/${normalizedBase}`;
-  const withoutTrailing = withLeadingSlash.length > 1 ? withLeadingSlash : '';
-
-  return `http://localhost${withoutTrailing}`;
+  return HOSTED_CATALOG_URL.replace(/\/+$/, '');
 }
 
 function ensureDirectory(targetPath) {
@@ -74,7 +76,10 @@ function normalizeRoute(routePath) {
 function routeToUrl(routePath, siteBaseUrl) {
   const normalizedRoute = normalizeRoute(routePath);
   const normalizedBase = siteBaseUrl.replace(/\/+$/, '');
-  return `${normalizedBase}${normalizedRoute}`;
+  const indexableRoute = normalizedRoute === '/' || normalizedRoute.endsWith('/')
+    ? normalizedRoute
+    : `${normalizedRoute}/`;
+  return `${normalizedBase}${indexableRoute}`;
 }
 
 function routeToFilePath(routePath) {
@@ -318,7 +323,7 @@ function buildSkillFallback({ skill, landingPages, siteBaseUrl }) {
 
   return buildPrerenderFallback({
     heading: `@${safeText(skill.name) || safeText(skill.id) || 'Skill'}`,
-    description: safeText(skill.description) || 'Installable skill from Antigravity Awesome Skills.',
+    description: safeText(skill.description) || 'Installable skill from Agentic Awesome Skills.',
     links: relatedLinks,
   });
 }
@@ -336,8 +341,8 @@ function setRootFallback(html, fallbackHtml) {
 function buildHomeMeta({ catalogCount, imageUrl, canonicalUrl }) {
   const visibleCount = Math.max(catalogCount, HOME_CATALOG_COUNT_FALLBACK);
   const formattedCount = visibleCount.toLocaleString('en-US');
-  const title = `Antigravity Awesome Skills GitHub | ${formattedCount}+ AI coding skills`;
-  const description = `Explore the GitHub library of ${formattedCount}+ installable agentic skills, specialized plugins, bundles, and workflows for Claude Code, Cursor, Codex CLI, Gemini CLI, Antigravity, and other AI coding assistants.`;
+  const title = `Agentic Awesome Skills GitHub | ${formattedCount}+ AI coding skills`;
+  const description = `Explore the GitHub library of ${formattedCount}+ installable agentic skills, specialized plugins, bundles, and workflows for Claude Code, Cursor, Codex CLI, Autohand Code, Gemini CLI, Antigravity, and other AI coding assistants.`;
   const catalogBaseUrl = canonicalUrl.replace(/\/$/, '');
   const sourceCodeEntity = {
     '@context': 'https://schema.org',
@@ -345,11 +350,11 @@ function buildHomeMeta({ catalogCount, imageUrl, canonicalUrl }) {
     name: SITE_NAME,
     description: `Installable GitHub library of ${formattedCount}+ agentic skills, specialized plugins, bundles, and workflows for AI coding assistants.`,
     url: REPOSITORY_URL,
-    sameAs: [
+    sameAs: [...new Set([
       canonicalUrl,
       HOSTED_CATALOG_URL,
-      'https://www.npmjs.com/package/antigravity-awesome-skills',
-    ],
+      'https://www.npmjs.com/package/agentic-awesome-skills',
+    ])],
     mainEntityOfPage: canonicalUrl,
     codeRepository: REPOSITORY_URL,
     applicationCategory: 'DeveloperApplication',
@@ -410,7 +415,7 @@ function buildHomeMeta({ catalogCount, imageUrl, canonicalUrl }) {
         url: REPOSITORY_URL,
         sameAs: [
           'https://x.com/AASkills_',
-          'https://www.npmjs.com/package/antigravity-awesome-skills',
+          'https://www.npmjs.com/package/agentic-awesome-skills',
           HOSTED_CATALOG_URL,
         ],
       },
@@ -432,7 +437,7 @@ function buildHomeMeta({ catalogCount, imageUrl, canonicalUrl }) {
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
         url: canonicalUrl,
-        mainEntity: FAQ_ITEMS.map((item) => ({
+        mainEntity: buildFaqItems(`${formattedCount}+`).map((item) => ({
           '@type': 'Question',
           name: item.question,
           acceptedAnswer: {
@@ -535,6 +540,88 @@ function buildPluginsMeta({ pluginCount, imageUrl, canonicalUrl }) {
   };
 }
 
+function buildWorkbenchMeta({ imageUrl, canonicalUrl }) {
+  const title = 'Skill Workbench | Agentic Awesome Skills';
+  const description = 'Filter canonical skill evidence, compose an exact host-aware set, and preview a version-pinned install without filesystem writes.';
+  const catalogBaseUrl = canonicalUrl.replace(/\/workbench\/?$/, '');
+  const catalogRootUrl = `${catalogBaseUrl}/`;
+  const sourceCodeEntity = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareSourceCode',
+    name: SITE_NAME,
+    description: 'Canonical repository of installable agent skills and machine-readable registry evidence.',
+    url: REPOSITORY_URL,
+    sameAs: [canonicalUrl, catalogRootUrl, 'https://www.npmjs.com/package/agentic-awesome-skills'],
+    mainEntityOfPage: canonicalUrl,
+    codeRepository: REPOSITORY_URL,
+    applicationCategory: 'DeveloperApplication',
+    isAccessibleForFree: true,
+    license: `${REPOSITORY_URL}/blob/main/LICENSE`,
+  };
+
+  return {
+    title,
+    description,
+    canonicalUrl,
+    ogTitle: title,
+    ogDescription: description,
+    ogImage: imageUrl,
+    twitterCard: 'summary_large_image',
+    jsonLd: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: 'Agentic Awesome Skills Workbench',
+        headline: 'Build a precise, inspectable skill set',
+        description,
+        url: canonicalUrl,
+        mainEntityOfPage: canonicalUrl,
+        isPartOf: {
+          '@type': 'WebSite',
+          name: SITE_NAME,
+          url: catalogBaseUrl,
+          sameAs: REPOSITORY_URL,
+        },
+        about: sourceCodeEntity,
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: SITE_NAME, item: catalogRootUrl },
+          { '@type': 'ListItem', position: 2, name: 'Skill Workbench', item: canonicalUrl },
+        ],
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        '@id': `${REPOSITORY_URL}#organization`,
+        name: SITE_NAME,
+        url: REPOSITORY_URL,
+        sameAs: [
+          'https://x.com/AASkills_',
+          'https://www.npmjs.com/package/agentic-awesome-skills',
+          catalogRootUrl,
+        ],
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: SITE_NAME,
+        url: catalogBaseUrl,
+        sameAs: REPOSITORY_URL,
+        inLanguage: 'en',
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: `${catalogBaseUrl}/?q={search_term_string}`,
+          'query-input': 'required name=search_term_string',
+        },
+      },
+      sourceCodeEntity,
+    ],
+  };
+}
+
 function buildTopicLandingMeta({ page, imageUrl, canonicalUrl }) {
   const catalogBaseUrl = canonicalUrl.replace(/\/topics\/[^/]+\/?$/, '');
   const keywords = Array.isArray(page.keywords) ? page.keywords.join(', ') : '';
@@ -544,11 +631,11 @@ function buildTopicLandingMeta({ page, imageUrl, canonicalUrl }) {
     name: SITE_NAME,
     description: 'Installable GitHub library of agentic skills, specialized plugins, bundles, and workflows for AI coding assistants.',
     url: REPOSITORY_URL,
-    sameAs: [
+    sameAs: [...new Set([
       canonicalUrl,
       HOSTED_CATALOG_URL,
-      'https://www.npmjs.com/package/antigravity-awesome-skills',
-    ],
+      'https://www.npmjs.com/package/agentic-awesome-skills',
+    ])],
     mainEntityOfPage: canonicalUrl,
     codeRepository: REPOSITORY_URL,
     applicationCategory: 'DeveloperApplication',
@@ -629,7 +716,7 @@ function buildTopicLandingMeta({ page, imageUrl, canonicalUrl }) {
         url: REPOSITORY_URL,
         sameAs: [
           'https://x.com/AASkills_',
-          'https://www.npmjs.com/package/antigravity-awesome-skills',
+          'https://www.npmjs.com/package/agentic-awesome-skills',
           HOSTED_CATALOG_URL,
         ],
       },
@@ -747,6 +834,13 @@ function main() {
   });
   writePrerenderedRoute('/plugins', template, pluginsMeta);
 
+  const workbenchCanonical = routeToUrl('/workbench', siteBaseUrl);
+  const workbenchMeta = buildWorkbenchMeta({
+    imageUrl: socialImage,
+    canonicalUrl: workbenchCanonical,
+  });
+  writePrerenderedRoute('/workbench', template, workbenchMeta);
+
   for (const page of landingPages) {
     if (!page?.slug) {
       continue;
@@ -767,7 +861,12 @@ function main() {
     );
   }
 
-  for (const skillRoute of topSkillPaths) {
+  const allSkillPaths = skills
+    .filter((skill) => skill && skill.id)
+    .map((skill) => `/skill/${encodeURIComponent(skill.id)}`)
+    .sort();
+
+  for (const skillRoute of allSkillPaths) {
     const decodedId = decodeURIComponent(skillRoute.replace(/^\/skill\//, ''));
     const skill = skillMap.get(decodedId);
     if (!skill) {

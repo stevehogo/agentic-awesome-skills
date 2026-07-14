@@ -40,9 +40,9 @@ class SyncRepoMetadataTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             (root / "README.md").write_text(
-                """# 🌌 Antigravity Awesome Skills: 1,304+ Agentic Skills for Claude Code, Gemini CLI, Cursor, Copilot & More
+                """# 🌌 Agentic Awesome Skills: 1,304+ Agentic Skills for Claude Code, Gemini CLI, Cursor, Autohand Code, Copilot & More
 
-> **Installable GitHub library of 1,273+ agentic skills for Claude Code, Cursor, Codex CLI, Gemini CLI, Antigravity, and other AI coding assistants.**
+> **Installable GitHub library of 1,273+ agentic skills for Claude Code, Cursor, Codex CLI, Autohand Code, Gemini CLI, Antigravity, and other AI coding assistants.**
 
 **Current release: V8.3.0.** Trusted by 25k+ GitHub stargazers, this repository combines official and community skill collections with bundles, workflows, installation paths, and docs that help you go from first install to daily use quickly.
 
@@ -52,16 +52,30 @@ class SyncRepoMetadataTests(unittest.TestCase):
 
 - [Browse 1,273+ Skills](#browse-1273-skills)
 
-**Antigravity Awesome Skills** (Release 8.3.0) is a large, installable skill library for AI coding assistants. It packages 1,273+ reusable `SKILL.md` playbooks, specialized plugins, bundles, workflows, generated catalogs, and a CLI installer so Claude Code, Codex CLI, Cursor, Gemini CLI, Antigravity, and similar tools can reuse proven operating instructions instead of one-off prompts.
+**Agentic Awesome Skills** (Release 8.3.0) is a large, installable skill library for AI coding assistants. It packages 1,273+ reusable `SKILL.md` playbooks, specialized plugins, bundles, workflows, generated catalogs, and a CLI installer so Claude Code, Codex CLI, Autohand Code, Cursor, Gemini CLI, Antigravity, and similar tools can reuse proven operating instructions instead of one-off prompts.
 """,
                 encoding="utf-8",
             )
             (root / "docs" / "users").mkdir(parents=True)
             (root / "docs" / "maintainers").mkdir(parents=True)
             (root / "docs" / "integrations" / "jetski-gemini-loader").mkdir(parents=True)
+            (root / "apps" / "web-app" / "public").mkdir(parents=True)
+
+            (root / "apps" / "web-app" / "index.html").write_text(
+                '<meta name="description" content="Explore 1,273+ installable agentic skills">\n'
+                '<title>Agentic Awesome Skills GitHub | 1,273+ AI coding skills</title>\n',
+                encoding="utf-8",
+            )
+            (root / "apps" / "web-app" / "public" / "llms.txt").write_text(
+                "> Installable GitHub library of 1,273+ agentic SKILL.md playbooks.\n"
+                "- Current release: V8.3.0.\n"
+                "- Skill count: 1,273+.\n"
+                "Agentic Awesome Skills is an installable library of 1,273+ reusable SKILL.md playbooks.\n",
+                encoding="utf-8",
+            )
 
             (root / "docs" / "users" / "getting-started.md").write_text(
-                "# Getting Started with Antigravity Awesome Skills (V8.3.0)\n",
+                "# Getting Started with Agentic Awesome Skills (V8.3.0)\n",
                 encoding="utf-8",
             )
             (root / "docs" / "users" / "claude-code-skills.md").write_text(
@@ -107,7 +121,7 @@ class SyncRepoMetadataTests(unittest.TestCase):
 
             updated_files = sync_repo_metadata.sync_curated_docs(str(root), metadata, dry_run=False)
 
-            self.assertGreaterEqual(updated_files, 10)
+            self.assertGreaterEqual(updated_files, 12)
             readme = (root / "README.md").read_text(encoding="utf-8")
             self.assertIn("1,304+ agentic skills", readme)
             self.assertIn("[📚 Browse 1,304+ Skills](#browse-1304-skills)", readme)
@@ -117,6 +131,13 @@ class SyncRepoMetadataTests(unittest.TestCase):
             self.assertIn("1,304+ files", (root / "docs" / "users" / "gemini-cli-skills.md").read_text(encoding="utf-8"))
             self.assertIn("1,304+ specialized areas", (root / "docs" / "users" / "kiro-integration.md").read_text(encoding="utf-8"))
             self.assertIn("Total Bundles: 2", (root / "docs" / "users" / "bundles.md").read_text(encoding="utf-8"))
+            web_index = (root / "apps" / "web-app" / "index.html").read_text(encoding="utf-8")
+            self.assertIn("1,304+ installable agentic skills", web_index)
+            self.assertIn("1,304+ AI coding skills", web_index)
+            llms_text = (root / "apps" / "web-app" / "public" / "llms.txt").read_text(encoding="utf-8")
+            self.assertIn("Current release: V8.4.0.", llms_text)
+            self.assertIn("Skill count: 1,304+.", llms_text)
+            self.assertIn("1,304+ reusable SKILL.md playbooks", llms_text)
             jetski_cortex = (root / "docs" / "integrations" / "jetski-cortex.md").read_text(encoding="utf-8")
             self.assertIn("1,304+ skill", jetski_cortex)
             self.assertNotIn("1,1", jetski_cortex)
@@ -138,7 +159,7 @@ class SyncRepoMetadataTests(unittest.TestCase):
 
         sync_repo_metadata.sync_github_about(
             {
-                "repo": "sickn33/antigravity-awesome-skills",
+                "repo": "sickn33/agentic-awesome-skills",
                 "total_skills_label": "1,304+",
             },
             dry_run=True,
@@ -151,12 +172,12 @@ class SyncRepoMetadataTests(unittest.TestCase):
 
         self.assertTrue(repo_edit_dry_run)
         self.assertTrue(topics_dry_run)
-        self.assertEqual(repo_edit_args[:4], ["gh", "repo", "edit", "sickn33/antigravity-awesome-skills"])
+        self.assertEqual(repo_edit_args[:4], ["gh", "repo", "edit", "sickn33/agentic-awesome-skills"])
         self.assertIn("--description", repo_edit_args)
         self.assertIn("--homepage", repo_edit_args)
-        self.assertIn("https://sickn33.github.io/antigravity-awesome-skills/", repo_edit_args)
+        self.assertIn("https://sickn33.github.io/agentic-awesome-skills/", repo_edit_args)
 
-        self.assertEqual(topics_args[:4], ["gh", "api", "repos/sickn33/antigravity-awesome-skills/topics", "--method"])
+        self.assertEqual(topics_args[:4], ["gh", "api", "repos/sickn33/agentic-awesome-skills/topics", "--method"])
         self.assertIn("PUT", topics_args)
         self.assertIn("names[]=claude-code", topics_args)
         self.assertIn("names[]=skill-library", topics_args)

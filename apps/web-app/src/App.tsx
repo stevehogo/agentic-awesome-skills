@@ -4,11 +4,13 @@ import { Icon } from './components/ui/Icon';
 
 const Home = lazy(() => import('./pages/Home'));
 const SkillDetail = lazy(() => import('./pages/SkillDetail'));
+const Workbench = lazy(() => import('./pages/Workbench'));
 const Plugins = lazy(() => import('./pages/Plugins'));
 const TopicLanding = lazy(() => import('./pages/TopicLanding'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App(): React.ReactElement {
-  const logoSrc = `${import.meta.env.BASE_URL}Antigravity-Skills-logo.png`;
+  const logoSrc = `${import.meta.env.BASE_URL}agentic-skills-logo.png`;
 
   return (
     <Router basename={import.meta.env.BASE_URL.replace(/\/$/, '') || '/'}>
@@ -18,15 +20,21 @@ function App(): React.ReactElement {
             <Link to="/" className="group inline-flex items-center gap-3 rounded-[var(--radius-sm)] px-1 py-1">
               <img
                 src={logoSrc}
-                alt="Antigravity Skills logo"
+                alt="Agentic Skills logo"
                 className="h-9 w-auto object-contain transition-transform duration-[var(--motion-fast)] ease-[var(--motion-ease)] group-hover:scale-[1.015]"
               />
               <span className="hidden text-sm font-semibold tracking-[0.01em] text-[var(--text-primary)] sm:inline-block">
-                Antigravity Skills
+                Agentic Skills
               </span>
             </Link>
 
             <nav className="flex items-center gap-2">
+              <Link
+                to="/workbench"
+                className="rounded-[var(--radius-sm)] px-3 py-2 text-sm font-semibold text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+              >
+                Workbench
+              </Link>
               <Link
                 to="/plugins"
                 className="hidden rounded-[var(--radius-sm)] px-3 py-2 text-sm font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)] sm:inline-flex"
@@ -34,7 +42,7 @@ function App(): React.ReactElement {
                 Plugins
               </Link>
               <a
-                href="https://github.com/sickn33/antigravity-awesome-skills"
+                href="https://github.com/sickn33/agentic-awesome-skills"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-[var(--radius-sm)] border border-[var(--stroke-subtle)] bg-[var(--surface-elevated)] px-3 py-2 text-sm font-medium text-[var(--text-secondary)] shadow-[var(--shadow-soft)] transition-all duration-[var(--motion-fast)] ease-[var(--motion-ease)] hover:border-[var(--accent-border)] hover:text-[var(--text-primary)] hover:shadow-[var(--shadow-medium)]"
@@ -58,8 +66,10 @@ function App(): React.ReactElement {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/plugins" element={<Plugins />} />
+                <Route path="/workbench" element={<Workbench />} />
                 <Route path="/topics/:slug" element={<TopicLanding />} />
                 <Route path="/skill/:id" element={<SkillDetail />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
           </div>
