@@ -2771,6 +2771,9 @@
       "audience": "Security engineers who want core workflow skills plus offensive/defensive security testing.",
       "description": "Inherits the Essentials starter pack and the AAS Security Engineer toolkit for end-to-end secure development and testing.",
       "skills": [
+        {"id": "subagent-driven-development", "summary": "Use subagents to delegate security tasks." },
+        {"id": "dispatching-parallel-agents", "summary": "Dispatch multiple agents in parallel for complex security tasks." },
+        {"id": "verification-before-completion", "summary": "Verify your work before marking it complete." },
         { "id": "concise-planning", "summary": "Always start with a plan." },
         { "id": "lint-and-validate", "summary": "Keep your code clean automatically." },
         { "id": "git-pushing", "summary": "Save your work safely." },
@@ -2797,6 +2800,10 @@
       "audience": "Senior engineers building secure, well-architected full-stack TypeScript/Next.js apps.",
       "description": "Inherits Essentials, AAS Web App Builder, TypeScript & JavaScript, AAS Secure App Builder, and Architecture & Design, plus database and planning/TDD skills.",
       "skills": [
+        {"id": "writing-wave-plans", "summary": "Write detailed wave plans for complex projects."},
+        {"id": "subagent-driven-development", "summary": "Use subagents to delegate security tasks." },
+        {"id": "dispatching-parallel-agents", "summary": "Dispatch multiple agents in parallel for complex security tasks." },
+        {"id": "verification-before-completion", "summary": "Verify your work before marking it complete." },
         {"id": "frontend-dev-guidelines", "summary": "Follow best practices for frontend development."},
         {"id": "backend-dev-guidelines", "summary": "Follow best practices for backend development."},
         {"id": "backend-architect", "summary": "Design robust backend architectures."},
