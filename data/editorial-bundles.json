@@ -2800,6 +2800,7 @@
       "audience": "Senior engineers building secure, well-architected full-stack TypeScript/Next.js apps.",
       "description": "Inherits Essentials, AAS Web App Builder, TypeScript & JavaScript, AAS Secure App Builder, and Architecture & Design, plus database and planning/TDD skills.",
       "skills": [
+        {"id":"test-cases", "summary":"Generates comprehensive, requirement-driven test cases from PRD documents or user requirements"},
         {"id": "writing-wave-plans", "summary": "Write detailed wave plans for complex projects."},
         {"id": "subagent-driven-development", "summary": "Use subagents to delegate security tasks." },
         {"id": "dispatching-parallel-agents", "summary": "Dispatch multiple agents in parallel for complex security tasks." },
