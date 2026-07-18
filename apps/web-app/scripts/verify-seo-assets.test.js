@@ -6,6 +6,7 @@ import {
   assertManifest,
   assertIndexDiscoveryMeta,
   assertStaticIndexShell,
+  assertWebmasterVerificationMeta,
   assertPluginsDiscoveryMeta,
   analyzeSitemap,
   assertPrerenderedPluginRoutes,
@@ -23,6 +24,17 @@ import {
 
 const FIXTURE_ROOT_URL = 'https://owner.github.io/repo/';
 const FIXTURE_SOCIAL_IMAGE_URL = 'https://owner.github.io/repo/social-card.png';
+const PACKAGE_URL = 'https://www.npmjs.com/package/agentic-awesome-skills';
+
+describe('Bing Webmaster Tools verification metadata', () => {
+  it('requires the current verification token', () => {
+    const html = '<meta name="msvalidate.01" content="CAC904EB0D2DD1B22B5F2BC540CAD654" />';
+
+    expect(() => assertWebmasterVerificationMeta(html)).not.toThrow();
+    expect(() => assertWebmasterVerificationMeta('<meta name="msvalidate.01" content="stale" />'))
+      .toThrow('current Bing Webmaster Tools verification token');
+  });
+});
 
 function buildRouteIdentityHtml({
   routeUrl,
@@ -369,7 +381,7 @@ describe('seo assets verification helpers', () => {
 
     const missingPackage = currentIdentityJsonLd(routeUrl).map((entry) => {
       if (!['Organization', 'SoftwareSourceCode'].includes(entry['@type'])) return entry;
-      return { ...entry, sameAs: (entry.sameAs || []).filter((value) => !value.includes('npmjs.com')) };
+      return { ...entry, sameAs: (entry.sameAs || []).filter((value) => value !== PACKAGE_URL) };
     });
     writeRouteIdentityFixture(distDir, routeUrl, buildRouteIdentityHtml({ routeUrl, jsonLd: missingPackage }));
     expect(() => assertPrerenderedRouteIdentities([routeUrl], distDir, '/repo', FIXTURE_ROOT_URL)).toThrow(
@@ -844,14 +856,14 @@ describe('seo assets verification helpers', () => {
     expect(() => assertPrerenderedPluginRoutes(report.pluginUrls, distDir, report.normalizedRootPath)).not.toThrow();
   });
 
-  it('validates the prerendered workbench route and its exact-composition promise', () => {
+  it('validates the prerendered workbench route and its in-memory review promise', () => {
     const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'seo-assets-'));
     const distDir = path.join(tmpDir, 'dist');
     const routeFile = path.join(distDir, 'workbench', 'index.html');
     fs.mkdirSync(path.dirname(routeFile), { recursive: true });
     fs.writeFileSync(
       routeFile,
-      '<html><head><title>Skill Workbench | Compose an exact agent stack</title><meta name="description" content="Filter, inspect, and install an exact host-aware set of skills." /></head></html>',
+      '<html><head><title>Stack Review Workbench | Agentic Awesome Skills</title><meta name="description" content="Review an AAS stack and plan. Imports stay in memory and cannot install or apply changes." /></head></html>',
     );
 
     const xml = `

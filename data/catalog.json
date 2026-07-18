@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-13T08:55:06.000Z",
-  "total": 1948,
+  "generatedAt": "2026-07-16T14:29:29.000Z",
+  "total": 1965,
   "skills": [
     {
       "id": "00-andruia-consultant",
@@ -539,6 +539,41 @@
         "subscriptions"
       ],
       "path": "skills/activecampaign-automation/SKILL.md"
+    },
+    {
+      "id": "ad-campaign-analyzer",
+      "canonical_id": "ad-campaign-analyzer",
+      "name": "ad-campaign-analyzer",
+      "description": "Analyze cross-channel campaign data, quantify uncertainty, and propose evidence-labeled budget tests without overstating causality.",
+      "category": "marketing",
+      "risk": "critical",
+      "source": "community",
+      "source_type": "community",
+      "source_repo": "gooseworks-ai/goose-skills",
+      "license": "MIT",
+      "license_source": "https://github.com/gooseworks-ai/goose-skills/blob/main/LICENSE",
+      "tags": [
+        "ads",
+        "analytics",
+        "budget-optimization",
+        "roas",
+        "marketing"
+      ],
+      "triggers": [
+        "ads",
+        "analytics",
+        "budget-optimization",
+        "roas",
+        "marketing",
+        "ad",
+        "campaign",
+        "analyzer",
+        "analyze",
+        "cross",
+        "channel",
+        "data"
+      ],
+      "path": "skills/ad-campaign-analyzer/SKILL.md"
     },
     {
       "id": "ad-creative",
@@ -2933,6 +2968,43 @@
         "ai"
       ],
       "path": "skills/antigravity-workflows/SKILL.md"
+    },
+    {
+      "id": "anywrite",
+      "canonical_id": "anywrite",
+      "name": "anywrite",
+      "description": "Compiled CLI covering all 52 endpoints of the Anytype local API — objects, properties, tags, search, chat, files — one binary, no MCP server needed.",
+      "category": "productivity",
+      "risk": "critical",
+      "source": "community",
+      "source_type": "community",
+      "source_repo": "Antheurus/anywrite",
+      "license": "MIT",
+      "license_source": "https://github.com/Antheurus/anywrite/blob/main/LICENSE",
+      "tags": [
+        "anytype",
+        "cli",
+        "pkm",
+        "notes",
+        "api-integration",
+        "productivity",
+        "knowledge-management"
+      ],
+      "triggers": [
+        "anytype",
+        "cli",
+        "pkm",
+        "notes",
+        "api-integration",
+        "productivity",
+        "knowledge-management",
+        "anywrite",
+        "compiled",
+        "covering",
+        "all",
+        "52"
+      ],
+      "path": "skills/anywrite/SKILL.md"
     },
     {
       "id": "aomi-transact",
@@ -12099,6 +12171,37 @@
       "path": "skills/clean-code/SKILL.md"
     },
     {
+      "id": "clean-code-guard",
+      "canonical_id": "clean-code-guard",
+      "name": "clean-code-guard",
+      "description": "Review generated or changed production code with Clean Code, SOLID, DRY, KISS, YAGNI, and LLM-specific failure-mode checks.",
+      "category": "uncategorized",
+      "risk": "critical",
+      "source": "community",
+      "source_type": "community",
+      "source_repo": "amElnagdy/guard-skills",
+      "tags": [
+        "clean",
+        "code",
+        "guard"
+      ],
+      "triggers": [
+        "clean",
+        "code",
+        "guard",
+        "review",
+        "generated",
+        "changed",
+        "solid",
+        "dry",
+        "kiss",
+        "yagni",
+        "llm",
+        "specific"
+      ],
+      "path": "skills/clean-code-guard/SKILL.md"
+    },
+    {
       "id": "clerk-auth",
       "canonical_id": "clerk-auth",
       "name": "clerk-auth",
@@ -12286,6 +12389,37 @@
         "aws"
       ],
       "path": "skills/cloud-penetration-testing/SKILL.md"
+    },
+    {
+      "id": "cloudflare-security-audit",
+      "canonical_id": "cloudflare-security-audit",
+      "name": "cloudflare-security-audit",
+      "description": "Audit authorized codebases for exploitable vulnerabilities using scoped reconnaissance, adversarial review, validation, and structured reporting.",
+      "category": "uncategorized",
+      "risk": "offensive",
+      "source": "community",
+      "source_type": "community",
+      "source_repo": "cloudflare/security-audit-skill",
+      "tags": [
+        "cloudflare",
+        "security",
+        "audit"
+      ],
+      "triggers": [
+        "cloudflare",
+        "security",
+        "audit",
+        "authorized",
+        "codebases",
+        "exploitable",
+        "vulnerabilities",
+        "scoped",
+        "reconnaissance",
+        "adversarial",
+        "review",
+        "validation"
+      ],
+      "path": "skills/cloudflare-security-audit/SKILL.md"
     },
     {
       "id": "cloudflare-workers-expert",
@@ -13392,6 +13526,41 @@
         "positioning"
       ],
       "path": "skills/competitive-landscape/SKILL.md"
+    },
+    {
+      "id": "competitor-ad-intelligence",
+      "canonical_id": "competitor-ad-intelligence",
+      "name": "competitor-ad-intelligence",
+      "description": "Research public competitor ads, analyze creative patterns and landing pages, and produce an evidence-labeled strategic teardown.",
+      "category": "marketing",
+      "risk": "critical",
+      "source": "community",
+      "source_type": "community",
+      "source_repo": "gooseworks-ai/goose-skills",
+      "license": "MIT",
+      "license_source": "https://github.com/gooseworks-ai/goose-skills/blob/main/LICENSE",
+      "tags": [
+        "ads",
+        "competitive-intelligence",
+        "meta-ads",
+        "google-ads",
+        "marketing"
+      ],
+      "triggers": [
+        "ads",
+        "competitive-intelligence",
+        "meta-ads",
+        "google-ads",
+        "marketing",
+        "competitor",
+        "ad",
+        "intelligence",
+        "research",
+        "public",
+        "analyze",
+        "creative"
+      ],
+      "path": "skills/competitor-ad-intelligence/SKILL.md"
     },
     {
       "id": "competitor-alternatives",
@@ -19128,6 +19297,39 @@
       "path": "skills/devrel-content/SKILL.md"
     },
     {
+      "id": "diagnose-android-overheating",
+      "canonical_id": "diagnose-android-overheating",
+      "name": "diagnose-android-overheating",
+      "description": "Use when diagnosing Android overheating, idle heat, thermal throttling, charging or radio heat, or abnormal battery drain with read-only ADB evidence and approval gates.",
+      "category": "debugging",
+      "risk": "critical",
+      "source": "self",
+      "source_type": "self",
+      "tags": [
+        "android",
+        "adb",
+        "overheating",
+        "thermal",
+        "battery",
+        "diagnostics"
+      ],
+      "triggers": [
+        "android",
+        "adb",
+        "overheating",
+        "thermal",
+        "battery",
+        "diagnostics",
+        "diagnose",
+        "diagnosing",
+        "idle",
+        "heat",
+        "throttling",
+        "charging"
+      ],
+      "path": "skills/diagnose-android-overheating/SKILL.md"
+    },
+    {
       "id": "diagnosing-bugs",
       "canonical_id": "diagnosing-bugs",
       "name": "diagnosing-bugs",
@@ -19414,6 +19616,40 @@
       "path": "skills/distributed-tracing/SKILL.md"
     },
     {
+      "id": "ditto",
+      "canonical_id": "ditto",
+      "name": "ditto",
+      "description": "Use when a user asks to mine or update a private, evidence-backed work profile from local Claude Code, Codex, Copilot CLI, or OpenCode sessions.",
+      "category": "agent-behavior",
+      "risk": "critical",
+      "source": "community",
+      "source_type": "community",
+      "source_repo": "ohad6k/ditto",
+      "license": "MIT",
+      "license_source": "https://github.com/ohad6k/ditto/blob/v0.3.6/LICENSE",
+      "tags": [
+        "personalization",
+        "context-engineering",
+        "session-mining",
+        "agent-memory"
+      ],
+      "triggers": [
+        "personalization",
+        "context-engineering",
+        "session-mining",
+        "agent-memory",
+        "ditto",
+        "user",
+        "asks",
+        "mine",
+        "update",
+        "private",
+        "evidence",
+        "backed"
+      ],
+      "path": "skills/ditto/SKILL.md"
+    },
+    {
       "id": "django-access-review",
       "canonical_id": "django-access-review",
       "name": "django-access-review",
@@ -19629,6 +19865,36 @@
         "skill"
       ],
       "path": "skills/docs-as-marketing/SKILL.md"
+    },
+    {
+      "id": "docs-guard",
+      "canonical_id": "docs-guard",
+      "name": "docs-guard",
+      "description": "Review generated or changed documentation before it ships, including READMEs, API references, docstrings, changelogs, tutorials, and documentation sites.",
+      "category": "uncategorized",
+      "risk": "critical",
+      "source": "community",
+      "source_type": "community",
+      "source_repo": "amElnagdy/guard-skills",
+      "tags": [
+        "docs",
+        "guard"
+      ],
+      "triggers": [
+        "docs",
+        "guard",
+        "review",
+        "generated",
+        "changed",
+        "documentation",
+        "before",
+        "ships",
+        "including",
+        "readmes",
+        "api",
+        "references"
+      ],
+      "path": "skills/docs-guard/SKILL.md"
     },
     {
       "id": "documentation",
@@ -22147,6 +22413,41 @@
         "cfr"
       ],
       "path": "skills/fda-medtech-compliance-auditor/SKILL.md"
+    },
+    {
+      "id": "feature-tracking",
+      "canonical_id": "feature-tracking",
+      "name": "feature-tracking",
+      "description": "Maintain durable feature-level memory across AI coding sessions with lightweight Markdown tracks for status, source-of-truth docs, decisions, risks, and changes.",
+      "category": "project-management",
+      "risk": "critical",
+      "source": "community",
+      "source_type": "community",
+      "source_repo": "JunsW/feature-track",
+      "license": "MIT",
+      "license_source": "https://github.com/JunsW/feature-track/blob/main/LICENSE",
+      "tags": [
+        "feature-tracking",
+        "project-memory",
+        "documentation",
+        "ai-agents",
+        "session-handoff"
+      ],
+      "triggers": [
+        "feature-tracking",
+        "project-memory",
+        "documentation",
+        "ai-agents",
+        "session-handoff",
+        "feature",
+        "tracking",
+        "maintain",
+        "durable",
+        "level",
+        "memory",
+        "ai"
+      ],
+      "path": "skills/feature-tracking/SKILL.md"
     },
     {
       "id": "ffuf-claude-skill",
@@ -24926,7 +25227,7 @@
       "id": "git-pr-workflows-git-workflow",
       "canonical_id": "git-pr-workflows-git-workflow",
       "name": "git-pr-workflows-git-workflow",
-      "description": "Orchestrate a comprehensive git workflow from code review through PR creation, leveraging specialized agents for quality assurance, testing, and deployment readiness. This workflow implements modern g",
+      "description": "Orchestrate review, tests, commits, branch pushes, and pull-request creation with parallel agents. Use when completed changes must move through validation into a PR or guarded merge.",
       "category": "workflow",
       "risk": "critical",
       "source": "community",
@@ -24938,15 +25239,15 @@
         "git",
         "pr",
         "orchestrate",
-        "code",
         "review",
-        "through",
+        "tests",
+        "commits",
+        "branch",
+        "pushes",
+        "pull",
+        "request",
         "creation",
-        "leveraging",
-        "specialized",
-        "agents",
-        "quality",
-        "assurance"
+        "parallel"
       ],
       "path": "skills/git-pr-workflows-git-workflow/SKILL.md"
     },
@@ -25181,7 +25482,7 @@
       "id": "github-automation",
       "canonical_id": "github-automation",
       "name": "github-automation",
-      "description": "Automate GitHub repositories, issues, pull requests, branches, CI/CD, and permissions via Rube MCP (Composio). Manage code workflows, review PRs, search code, and handle deployments programmatically.",
+      "description": "Operate GitHub issues, pull requests, branches, checks, workflows, and permissions through Rube MCP. Use when GitHub work must be queried or changed programmatically with repository-policy safeguards.",
       "category": "workflow",
       "risk": "critical",
       "source": "community",
@@ -25191,16 +25492,16 @@
       "triggers": [
         "github",
         "automation",
-        "automate",
-        "repositories",
+        "operate",
         "issues",
         "pull",
         "requests",
         "branches",
-        "ci",
-        "cd",
+        "checks",
         "permissions",
-        "via"
+        "through",
+        "rube",
+        "mcp"
       ],
       "path": "skills/github-automation/SKILL.md"
     },
@@ -37396,6 +37697,42 @@
       "path": "skills/one-drive-automation/SKILL.md"
     },
     {
+      "id": "ontoly-software-graph",
+      "canonical_id": "ontoly-software-graph",
+      "name": "ontoly-software-graph",
+      "description": "Use Ontoly's deterministic Software Graph, MCP server, and agent skills for architecture review, request tracing, impact analysis, and dependency analysis.",
+      "category": "development",
+      "risk": "critical",
+      "source": "community",
+      "source_type": "community",
+      "source_repo": "0xsarwagya/ontoly",
+      "license": "MIT",
+      "license_source": "https://github.com/0xsarwagya/ontoly/blob/main/LICENSE",
+      "tags": [
+        "software-graph",
+        "codebase-analysis",
+        "mcp",
+        "typescript",
+        "architecture",
+        "impact-analysis"
+      ],
+      "triggers": [
+        "software-graph",
+        "codebase-analysis",
+        "mcp",
+        "typescript",
+        "architecture",
+        "impact-analysis",
+        "ontoly",
+        "software",
+        "graph",
+        "deterministic",
+        "server",
+        "agent"
+      ],
+      "path": "skills/ontoly-software-graph/SKILL.md"
+    },
+    {
       "id": "open-dynamic-workflows",
       "canonical_id": "open-dynamic-workflows",
       "name": "open-dynamic-workflows",
@@ -37560,6 +37897,40 @@
         "repo"
       ],
       "path": "skills/openclaw-github-repo-commander/SKILL.md"
+    },
+    {
+      "id": "optim-agent",
+      "canonical_id": "optim-agent",
+      "name": "optim-agent",
+      "description": "Guide agent-driven parameter optimization for configurable systems with measurable objectives. Use for HPO, inference tuning, simulations, or RL/control experiments.",
+      "category": "data",
+      "risk": "safe",
+      "source": "community",
+      "source_type": "community",
+      "source_repo": "Optim-Agent/optim-agent",
+      "license": "MIT",
+      "license_source": "https://github.com/Optim-Agent/optim-agent/blob/main/LICENSE",
+      "tags": [
+        "optimization",
+        "hyperparameter-optimization",
+        "experiments",
+        "tuning"
+      ],
+      "triggers": [
+        "optimization",
+        "hyperparameter-optimization",
+        "experiments",
+        "tuning",
+        "optim",
+        "agent",
+        "driven",
+        "parameter",
+        "configurable",
+        "measurable",
+        "objectives",
+        "hpo"
+      ],
+      "path": "skills/optim-agent/SKILL.md"
     },
     {
       "id": "options-flow-analyzer",
@@ -39465,6 +39836,41 @@
         "handling"
       ],
       "path": "skills/powershell-windows/SKILL.md"
+    },
+    {
+      "id": "pptx-deck-creation",
+      "canonical_id": "pptx-deck-creation",
+      "name": "pptx-deck-creation",
+      "description": "Create editable, production-ready PPTX decks with narrative planning, explicit layout specs, asset guidance, and quality checks.",
+      "category": "office-productivity",
+      "risk": "critical",
+      "source": "community",
+      "source_type": "community",
+      "source_repo": "kimtth/agent-pptify-kit",
+      "license": "MIT",
+      "license_source": "https://github.com/kimtth/agent-pptify-kit/blob/main/LICENSE",
+      "tags": [
+        "powerpoint",
+        "pptx",
+        "presentation",
+        "slide-design",
+        "document-generation"
+      ],
+      "triggers": [
+        "powerpoint",
+        "pptx",
+        "presentation",
+        "slide-design",
+        "document-generation",
+        "deck",
+        "creation",
+        "editable",
+        "decks",
+        "narrative",
+        "planning",
+        "explicit"
+      ],
+      "path": "skills/pptx-deck-creation/SKILL.md"
     },
     {
       "id": "pptx-official",
@@ -42269,9 +42675,9 @@
       "id": "repo-maintainer",
       "canonical_id": "repo-maintainer",
       "name": "repo-maintainer",
-      "description": "Championship-grade repository maintenance. Audits for test artifacts, dependency issues, CI/CD health, documentation sync, and FAF alignment. Generates prioritized cleanup plans. Use when repos need deep cleaning or ongoing maintenance.",
+      "description": "Audit and repair repository hygiene across artifacts, dependencies, CI, docs, Git state, and code-quality signals. Use for repository maintenance, cleanup, health checks, or pre-release hardening.",
       "category": "uncategorized",
-      "risk": "unknown",
+      "risk": "critical",
       "source": "https://github.com/Wolfe-Jam/faf-skills/tree/main/skills/repo-maintainer",
       "source_type": "community",
       "source_repo": "Wolfe-Jam/faf-skills",
@@ -42284,16 +42690,16 @@
       "triggers": [
         "repo",
         "maintainer",
-        "championship",
-        "grade",
+        "audit",
+        "repair",
         "repository",
-        "maintenance",
-        "audits",
-        "test",
+        "hygiene",
         "artifacts",
-        "dependency",
-        "issues",
-        "ci"
+        "dependencies",
+        "ci",
+        "docs",
+        "git",
+        "state"
       ],
       "path": "skills/repo-maintainer/SKILL.md"
     },
@@ -47806,6 +48212,43 @@
       "path": "skills/ssh-penetration-testing/SKILL.md"
     },
     {
+      "id": "sshepherd",
+      "canonical_id": "sshepherd",
+      "name": "sshepherd",
+      "description": "Zero-knowledge SSH ops CLI — server health checks, docker/systemd control, log tailing, Postgres introspection, and declarative deploys, without ever exposing credentials to the agent.",
+      "category": "devops",
+      "risk": "critical",
+      "source": "community",
+      "source_type": "community",
+      "source_repo": "Antheurus/sshepherd",
+      "license": "MIT",
+      "license_source": "https://github.com/Antheurus/sshepherd/blob/main/LICENSE",
+      "tags": [
+        "ssh",
+        "devops",
+        "cli",
+        "server-ops",
+        "postgres",
+        "deploy",
+        "zero-knowledge"
+      ],
+      "triggers": [
+        "ssh",
+        "devops",
+        "cli",
+        "server-ops",
+        "postgres",
+        "deploy",
+        "zero-knowledge",
+        "sshepherd",
+        "zero",
+        "knowledge",
+        "ops",
+        "server"
+      ],
+      "path": "skills/sshepherd/SKILL.md"
+    },
+    {
       "id": "stability-ai",
       "canonical_id": "stability-ai",
       "name": "stability-ai",
@@ -50232,6 +50675,35 @@
         "puppeteer"
       ],
       "path": "skills/test-framework-migration-skill/SKILL.md"
+    },
+    {
+      "id": "test-guard",
+      "canonical_id": "test-guard",
+      "name": "test-guard",
+      "description": "Review generated or changed test code against universal testing rules before it ships or is presented for approval.",
+      "category": "testing",
+      "risk": "critical",
+      "source": "community",
+      "source_type": "community",
+      "source_repo": "amElnagdy/guard-skills",
+      "tags": [
+        "guard"
+      ],
+      "triggers": [
+        "guard",
+        "test",
+        "review",
+        "generated",
+        "changed",
+        "code",
+        "against",
+        "universal",
+        "testing",
+        "rules",
+        "before",
+        "ships"
+      ],
+      "path": "skills/test-guard/SKILL.md"
     },
     {
       "id": "testing-patterns",
@@ -53968,6 +54440,37 @@
       "path": "skills/vulnerability-scanner/SKILL.md"
     },
     {
+      "id": "warehouse",
+      "canonical_id": "warehouse",
+      "name": "warehouse",
+      "description": "Plan and review read-only data warehouse analysis with explicit scope, privacy, provenance, and validation checks.",
+      "category": "data",
+      "risk": "critical",
+      "source": "self",
+      "source_type": "self",
+      "tags": [
+        "analytics",
+        "data-warehouse",
+        "sql",
+        "data-quality"
+      ],
+      "triggers": [
+        "analytics",
+        "data-warehouse",
+        "sql",
+        "data-quality",
+        "warehouse",
+        "plan",
+        "review",
+        "read",
+        "data",
+        "analysis",
+        "explicit",
+        "scope"
+      ],
+      "path": "skills/warehouse/SKILL.md"
+    },
+    {
       "id": "warren-buffett",
       "canonical_id": "warren-buffett",
       "name": "warren-buffett",
@@ -54950,6 +55453,36 @@
       "path": "skills/wjttc-tester/SKILL.md"
     },
     {
+      "id": "woo-guard",
+      "canonical_id": "woo-guard",
+      "name": "woo-guard",
+      "description": "Review generated or changed WooCommerce extensions, payment and shipping integrations, checkout customizations, and order or product logic.",
+      "category": "uncategorized",
+      "risk": "critical",
+      "source": "community",
+      "source_type": "community",
+      "source_repo": "amElnagdy/guard-skills",
+      "tags": [
+        "woo",
+        "guard"
+      ],
+      "triggers": [
+        "woo",
+        "guard",
+        "review",
+        "generated",
+        "changed",
+        "woocommerce",
+        "extensions",
+        "payment",
+        "shipping",
+        "integrations",
+        "checkout",
+        "customizations"
+      ],
+      "path": "skills/woo-guard/SKILL.md"
+    },
+    {
       "id": "wordpress",
       "canonical_id": "wordpress",
       "name": "wordpress",
@@ -55224,6 +55757,36 @@
         "jobs"
       ],
       "path": "skills/workorai/SKILL.md"
+    },
+    {
+      "id": "wp-guard",
+      "canonical_id": "wp-guard",
+      "name": "wp-guard",
+      "description": "Review generated or changed WordPress plugins, themes, and blocks for security, internationalization, performance, and API correctness.",
+      "category": "uncategorized",
+      "risk": "offensive",
+      "source": "community",
+      "source_type": "community",
+      "source_repo": "amElnagdy/guard-skills",
+      "tags": [
+        "wp",
+        "guard"
+      ],
+      "triggers": [
+        "wp",
+        "guard",
+        "review",
+        "generated",
+        "changed",
+        "wordpress",
+        "plugins",
+        "themes",
+        "blocks",
+        "security",
+        "internationalization",
+        "performance"
+      ],
+      "path": "skills/wp-guard/SKILL.md"
     },
     {
       "id": "wp-site-health-auditor",

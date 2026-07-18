@@ -1,15 +1,16 @@
 # Skill Catalog
 
-Generated at: 2026-07-13T08:55:06.000Z
+Generated at: 2026-07-16T14:29:29.000Z
 
-Total skills: 1948
+Total skills: 1965
 
-## agent-behavior (4)
+## agent-behavior (5)
 
 | Skill | Description | Risk | Source | Tags | Triggers |
 | --- | --- | --- | --- | --- | --- |
 | `codex-fable5` | Apply Fable-inspired discipline to Codex work: inspect first, track goals and findings, ground conclusions in evidence, verify before completion, and adapt C... | critical | baskduf/FableCodex | codex, fable-style, agent-workflow, verification, prompt-adaptation | codex, fable-style, agent-workflow, verification, prompt-adaptation, fable5, apply, fable, inspired, discipline, work, inspect |
 | `dispatch` | Delegate tasks to OpenAI Codex CLI and Google Antigravity CLI from Claude Code with topic-aware sessions | critical | sparklingneuronics/sparkling-skills | delegation, codex, antigravity, gemini, multi-model, second-opinion, agent-workflow | delegation, codex, antigravity, gemini, multi-model, second-opinion, agent-workflow, dispatch, delegate, tasks, openai, cli |
+| `ditto` | Use when a user asks to mine or update a private, evidence-backed work profile from local Claude Code, Codex, Copilot CLI, or OpenCode sessions. | critical | ohad6k/ditto | personalization, context-engineering, session-mining, agent-memory | personalization, context-engineering, session-mining, agent-memory, ditto, user, asks, mine, update, private, evidence, backed |
 | `fable-safe-prompt` | Rewrite allowed prompts to reduce false-positive safety triggers without bypassing policy or changing intent. | safe | davidondrej/skills | prompting, safety, guardrails | prompting, safety, guardrails, fable, safe, prompt, rewrite, allowed, prompts, reduce, false, positive |
 | `zipai-optimizer` | Ultra-dense token optimizer skill for prompt caching, log pruning, AST-based inspection, and minified JSON payloads. | safe | community | zipai, optimizer | zipai, optimizer, ultra, dense, token, skill, prompt, caching, log, pruning, ast, inspection |
 
@@ -802,7 +803,7 @@ Total skills: 1948
 | --- | --- | --- | --- | --- | --- |
 | `article-illustrations` | Generate hand-drawn 16:9 article illustrations with the Grav character IP, sparse annotations, and absurd but clear visual metaphors. | safe | vipin-si/article-illustrations | illustration, article-graphics, visual-metaphors, image-generation, whiteboard-sketch | illustration, article-graphics, visual-metaphors, image-generation, whiteboard-sketch, article, illustrations, generate, hand, drawn, 16, grav |
 
-## data (22)
+## data (24)
 
 | Skill | Description | Risk | Source | Tags | Triggers |
 | --- | --- | --- | --- | --- | --- |
@@ -819,6 +820,7 @@ Total skills: 1948
 | `monte-carlo-prevent` | Surfaces Monte Carlo data observability context (table health, alerts, lineage, blast radius) before SQL/dbt edits. | safe | monte-carlo-data/mc-agent-toolkit | data-observability, dbt, schema, monte-carlo, lineage | data-observability, dbt, schema, monte-carlo, lineage, monte, carlo, prevent, surfaces, data, observability, context |
 | `monte-carlo-push-ingestion` | Expert guide for pushing metadata, lineage, and query logs to Monte Carlo from any data warehouse. | safe | monte-carlo-data/mc-agent-toolkit | data-observability, ingestion, monte-carlo, pycarlo, metadata | data-observability, ingestion, monte-carlo, pycarlo, metadata, monte, carlo, push, pushing, lineage, query, logs |
 | `monte-carlo-validation-notebook` | Generates SQL validation notebooks for dbt PR changes with before/after comparison queries. | safe | monte-carlo-data/mc-agent-toolkit | data-observability, validation, dbt, monte-carlo, sql-notebook | data-observability, validation, dbt, monte-carlo, sql-notebook, monte, carlo, notebook, generates, sql, notebooks, pr |
+| `optim-agent` | Guide agent-driven parameter optimization for configurable systems with measurable objectives. Use for HPO, inference tuning, simulations, or RL/control expe... | safe | Optim-Agent/optim-agent | optimization, hyperparameter-optimization, experiments, tuning | optimization, hyperparameter-optimization, experiments, tuning, optim, agent, driven, parameter, configurable, measurable, objectives, hpo |
 | `postgres-readonly-queries` | Execute safe read-only SQL queries against PostgreSQL databases with multi-connection support and defense-in-depth write protection. | safe | sanjay3290/ai-skills | postgres, sql, database, read-only | postgres, sql, database, read-only, readonly, queries, execute, safe, read, against, postgresql, databases |
 | `posthog-automation` | Automate PostHog tasks via Rube MCP (Composio): events, feature flags, projects, user profiles, annotations. Always search tools first for current schemas. | critical | community | posthog | posthog, automation, automate, tasks, via, rube, mcp, composio, events, feature, flags, user |
 | `segment-automation` | Automate Segment tasks via Rube MCP (Composio): track events, identify users, manage groups, page views, aliases, batch operations. Always search tools first... | critical | community | segment | segment, automation, automate, tasks, via, rube, mcp, composio, track, events, identify, users |
@@ -826,6 +828,7 @@ Total skills: 1948
 | `spark-optimization` | Optimize Apache Spark jobs with partitioning, caching, shuffle optimization, and memory tuning. Use when improving Spark performance, debugging slow jobs, or... | unknown | community | spark, optimization | spark, optimization, optimize, apache, jobs, partitioning, caching, shuffle, memory, tuning, improving, performance |
 | `sql-pro` | Master modern SQL with cloud-native databases, OLTP/OLAP optimization, and advanced query techniques. Expert in performance tuning, data modeling, and hybrid... | unknown | community | sql | sql, pro, cloud, native, databases, oltp, olap, optimization, query, techniques, performance, tuning |
 | `sql-sentinel` | Audit SQL for the cost & performance anti-patterns that burn warehouse credits. Scores warehouse health 0-100 and outputs a prioritized cost-reduction plan f... | critical | takeaseatventure/sql-sentinel | sql, bigquery, snowflake, redshift, postgres, data-warehouse, cost-optimization, performance, audit, finops | sql, bigquery, snowflake, redshift, postgres, data-warehouse, cost-optimization, performance, audit, finops, sentinel, cost |
+| `warehouse` | Plan and review read-only data warehouse analysis with explicit scope, privacy, provenance, and validation checks. | critical | self | analytics, data-warehouse, sql, data-quality | analytics, data-warehouse, sql, data-quality, warehouse, plan, review, read, data, analysis, explicit, scope |
 | `web-scraper` | Web scraping inteligente multi-estrategia. Extrai dados estruturados de paginas web (tabelas, listas, precos). Paginacao, monitoramento e export CSV/JSON. | safe | community | scraping, data-extraction, automation, csv | scraping, data-extraction, automation, csv, web, scraper, inteligente, multi, estrategia, extrai, dados, estruturados |
 | `x-twitter-scraper` | Use Xquik for X data workflows: tweet search, user lookup, follower export, media downloads, monitors, webhooks, REST API, MCP, SDK setup, and approval-gated... | critical | Xquik-dev/x-twitter-scraper | twitter, x, social-media, x-api, tweet-search, follower-export, automation, mcp, sdk, webhooks | twitter, x, social-media, x-api, tweet-search, follower-export, automation, mcp, sdk, webhooks, scraper, xquik |
 
@@ -905,6 +908,12 @@ Total skills: 1948
 | --- | --- | --- | --- | --- | --- |
 | `drizzle-migration-conflict` | Diagnose, repair, and prevent Drizzle Kit migration conflicts involving generated SQL, snapshots, journals, merge queues, and team workflows. | critical | chaunsin/agent-skills | drizzle, migrations, database, ci, merge-conflicts | drizzle, migrations, database, ci, merge-conflicts, migration, conflict, diagnose, repair, prevent, kit, conflicts |
 | `weaviate` | Search, query, inspect, create, and import data into Weaviate vector database collections using official scripts and references. | critical | weaviate/agent-skills | weaviate, vector-database, semantic-search, hybrid-search, data-import | weaviate, vector-database, semantic-search, hybrid-search, data-import, search, query, inspect, import, data, vector, database |
+
+## debugging (1)
+
+| Skill | Description | Risk | Source | Tags | Triggers |
+| --- | --- | --- | --- | --- | --- |
+| `diagnose-android-overheating` | Use when diagnosing Android overheating, idle heat, thermal throttling, charging or radio heat, or abnormal battery drain with read-only ADB evidence and app... | critical | self | android, adb, overheating, thermal, battery, diagnostics | android, adb, overheating, thermal, battery, diagnostics, diagnose, diagnosing, idle, heat, throttling, charging |
 
 ## design (18)
 
@@ -990,7 +999,7 @@ Total skills: 1948
 | `mcp-tool-developer` | Build Model Context Protocol (MCP) servers and tools from scratch. Full-stack MCP development with TypeScript/Python, testing, deployment, and registry publi... | safe | demo112/yunqu-ai-skills | mcp, ai-agent, tool-development, typescript, python, llm, model-context-protocol | mcp, ai-agent, tool-development, typescript, python, llm, model-context-protocol, developer, model, context, protocol, servers |
 | `tokenwise` | Measurement-driven model router for Claude Code. Routes Haiku/Sonnet/Opus per task class, logs every routed task with real $ numbers, and A/B tests cheaper t... | critical | CodeShuX/tokenwise | model-routing, token-optimization, cost-reduction, anthropic, haiku, sonnet, opus, claude-code, ab-testing, measurement | model-routing, token-optimization, cost-reduction, anthropic, haiku, sonnet, opus, claude-code, ab-testing, measurement, tokenwise, driven |
 
-## development (172)
+## development (173)
 
 | Skill | Description | Risk | Source | Tags | Triggers |
 | --- | --- | --- | --- | --- | --- |
@@ -1124,6 +1133,7 @@ Total skills: 1948
 | `multi-platform-apps-multi-platform` | Build and deploy the same feature consistently across web, mobile, and desktop platforms using API-first architecture and parallel implementation strategies. | unknown | community | multi, platform, apps | multi, platform, apps, deploy, same, feature, consistently, web, mobile, desktop, platforms, api |
 | `native-data-fetching` | Use when implementing or debugging ANY network request, API call, or data fetching. Covers fetch API, React Query, SWR, error handling, caching, offline supp... | unknown | expo/skills | native, data, fetching | native, data, fetching, implementing, debugging, any, network, request, api, call, covers, fetch |
 | `nx-workspace-patterns` | Configure and optimize Nx monorepo workspaces. Use when setting up Nx, configuring project boundaries, optimizing build caching, or implementing affected com... | unknown | community | nx, workspace | nx, workspace, configure, optimize, monorepo, workspaces, setting, up, configuring, boundaries, optimizing, caching |
+| `ontoly-software-graph` | Use Ontoly's deterministic Software Graph, MCP server, and agent skills for architecture review, request tracing, impact analysis, and dependency analysis. | critical | 0xsarwagya/ontoly | software-graph, codebase-analysis, mcp, typescript, architecture, impact-analysis | software-graph, codebase-analysis, mcp, typescript, architecture, impact-analysis, ontoly, software, graph, deterministic, server, agent |
 | `performance-engineer` | Expert performance engineer specializing in modern observability, | unknown | community | performance | performance, engineer, specializing, observability |
 | `performance-optimization` | Optimizes application performance. Use when performance requirements exist, when you suspect performance regressions, or when Core Web Vitals or load times n... | unknown | addyosmani/agent-skills | performance, optimization | performance, optimization, optimizes, application, requirements, exist, suspect, regressions, core, web, vitals, load |
 | `performance-optimizer` | Identifies and fixes performance bottlenecks in code, databases, and APIs. Measures before and after to prove improvements. | safe | community | performance, optimizer | performance, optimizer, identifies, fixes, bottlenecks, code, databases, apis, measures, before, after, prove |
@@ -1178,7 +1188,7 @@ Total skills: 1948
 | `systematic-debugging` | Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes | unknown | community | systematic, debugging | systematic, debugging, encountering, any, bug, test, failure, unexpected, behavior, before, proposing, fixes |
 | `test-fixing` | Systematically identify and fix all failing tests using smart grouping strategies. Use when explicitly asks to fix tests ("fix these tests", "make tests pass... | safe | community | fixing | fixing, test, systematically, identify, fix, all, failing, tests, smart, grouping, explicitly, asks |
 
-## devops (35)
+## devops (36)
 
 | Skill | Description | Risk | Source | Tags | Triggers |
 | --- | --- | --- | --- | --- | --- |
@@ -1212,6 +1222,7 @@ Total skills: 1948
 | `observability-monitoring-slo-implement` | You are an SLO (Service Level Objective) expert specializing in implementing reliability standards and error budget-based engineering practices. Design compr... | unknown | community | observability, monitoring, slo, implement | observability, monitoring, slo, implement, level, objective, specializing, implementing, reliability, standards, error, budget |
 | `service-mesh-observability` | Complete guide to observability patterns for Istio, Linkerd, and service mesh deployments. | critical | community | service, mesh, observability | service, mesh, observability, complete, istio, linkerd, deployments |
 | `shipping-and-launch` | Prepares production launches. Use when preparing to deploy to production. Use when you need a pre-launch checklist, when setting up monitoring, when planning... | unknown | addyosmani/agent-skills | shipping, and, launch | shipping, and, launch, prepares, launches, preparing, deploy, pre, checklist, setting, up, monitoring |
+| `sshepherd` | Zero-knowledge SSH ops CLI — server health checks, docker/systemd control, log tailing, Postgres introspection, and declarative deploys, without ever exposin... | critical | Antheurus/sshepherd | ssh, devops, cli, server-ops, postgres, deploy, zero-knowledge | ssh, devops, cli, server-ops, postgres, deploy, zero-knowledge, sshepherd, zero, knowledge, ops, server |
 | `terraform-aws-modules` | Terraform module creation for AWS — reusable modules, state management, and HCL best practices. Use when building or reviewing Terraform AWS infrastructure. | unknown | community | terraform, aws, modules | terraform, aws, modules, module, creation, reusable, state, hcl, building, reviewing, infrastructure |
 | `terraform-module-library` | Production-ready Terraform module patterns for AWS, Azure, and GCP infrastructure. | unknown | community | terraform, module, library | terraform, module, library, aws, azure, gcp, infrastructure |
 | `terraform-skill` | Terraform infrastructure as code best practices | safe | https://github.com/antonbabenko/terraform-skill | terraform, skill | terraform, skill, infrastructure, code |
@@ -1437,17 +1448,19 @@ Total skills: 1948
 | `leiloeiro-mercado` | Analise de mercado imobiliario para leiloes. Liquidez, desagio tipico, ROI, estrategias de saida (flip/reforma/renda), Selic 2025 e benchmark CDI/FII. | safe | community | market-analysis, real-estate, roi, brazilian | market-analysis, real-estate, roi, brazilian, leiloeiro, mercado, analise, de, imobiliario, para, leiloes, liquidez |
 | `leiloeiro-risco` | Analise de risco em leiloes de imoveis. Score 36 pontos, riscos juridicos/financeiros/operacionais, stress test 4 cenarios e ROI ponderado por risco. | safe | community | risk-analysis, scoring, stress-test, brazilian | risk-analysis, scoring, stress-test, brazilian, leiloeiro, risco, analise, de, em, leiloes, imoveis, score |
 
-## marketing (52)
+## marketing (54)
 
 | Skill | Description | Risk | Source | Tags | Triggers |
 | --- | --- | --- | --- | --- | --- |
 | `ab-test-setup` | Structured guide for setting up A/B tests with mandatory gates for hypothesis, metrics, and execution readiness. | unknown | community | ab, setup | ab, setup, test, structured, setting, up, tests, mandatory, gates, hypothesis, metrics, execution |
 | `activecampaign-automation` | Automate ActiveCampaign tasks via Rube MCP (Composio): manage contacts, tags, list subscriptions, automation enrollment, and tasks. Always search tools first... | critical | community | activecampaign | activecampaign, automation, automate, tasks, via, rube, mcp, composio, contacts, tags, list, subscriptions |
+| `ad-campaign-analyzer` | Analyze cross-channel campaign data, quantify uncertainty, and propose evidence-labeled budget tests without overstating causality. | critical | gooseworks-ai/goose-skills | ads, analytics, budget-optimization, roas, marketing | ads, analytics, budget-optimization, roas, marketing, ad, campaign, analyzer, analyze, cross, channel, data |
 | `app-store-optimization` | Complete App Store Optimization (ASO) toolkit for researching, optimizing, and tracking mobile app performance on Apple App Store and Google Play Store | unknown | community | app, store, optimization | app, store, optimization, complete, aso, toolkit, researching, optimizing, tracking, mobile, performance, apple |
 | `brand-guidelines` | Write copy following Sentry brand guidelines. Use when writing UI text, error messages, empty states, onboarding flows, 404 pages, documentation, marketing c... | unknown | community | brand, guidelines | brand, guidelines, write, copy, following, sentry, writing, ui, text, error, messages, empty |
 | `brand-guidelines-anthropic` | To access Anthropic's official brand identity and style resources, use this skill. | unknown | community | brand, guidelines, anthropic | brand, guidelines, anthropic, access, official, identity, style, resources, skill |
 | `brand-guidelines-community` | To access Anthropic's official brand identity and style resources, use this skill. | unknown | community | brand, guidelines, community | brand, guidelines, community, access, anthropic, official, identity, style, resources, skill |
 | `brevo-automation` | Automate Brevo (formerly Sendinblue) email marketing operations through Composio's Brevo toolkit via Rube MCP. | critical | community | brevo | brevo, automation, automate, formerly, sendinblue, email, marketing, operations, through, composio, toolkit, via |
+| `competitor-ad-intelligence` | Research public competitor ads, analyze creative patterns and landing pages, and produce an evidence-labeled strategic teardown. | critical | gooseworks-ai/goose-skills | ads, competitive-intelligence, meta-ads, google-ads, marketing | ads, competitive-intelligence, meta-ads, google-ads, marketing, competitor, ad, intelligence, research, public, analyze, creative |
 | `competitor-analysis` | Research competitors with Browserbase discovery, enrichment lanes, screenshots, matrices, and HTML reports. | safe | browserbase/skills | competitor-analysis, browserbase, market-research, browser-automation | competitor-analysis, browserbase, market-research, browser-automation, competitor, analysis, research, competitors, discovery, enrichment, lanes, screenshots |
 | `content-creator` | Professional-grade brand voice analysis, SEO optimization, and platform-specific content frameworks. | unknown | community | content, creator | content, creator, professional, grade, brand, voice, analysis, seo, optimization, platform, specific, frameworks |
 | `convertkit-automation` | Automate ConvertKit (Kit) tasks via Rube MCP (Composio): manage subscribers, tags, broadcasts, and broadcast stats. Always search tools first for current sch... | critical | community | convertkit | convertkit, automation, automate, kit, tasks, via, rube, mcp, composio, subscribers, tags, broadcasts |
@@ -1616,6 +1629,12 @@ Total skills: 1948
 | `monopoly/security-checklist` | Reference document for monopoly security-checklist. | safe | community | monopoly/security, checklist | monopoly/security, checklist, security, reference, document, monopoly |
 | `monopoly/tech-matrix` | Reference document for monopoly tech-matrix. | safe | community | monopoly/tech, matrix | monopoly/tech, matrix, tech, reference, document, monopoly |
 
+## office-productivity (1)
+
+| Skill | Description | Risk | Source | Tags | Triggers |
+| --- | --- | --- | --- | --- | --- |
+| `pptx-deck-creation` | Create editable, production-ready PPTX decks with narrative planning, explicit layout specs, asset guidance, and quality checks. | critical | kimtth/agent-pptify-kit | powerpoint, pptx, presentation, slide-design, document-generation | powerpoint, pptx, presentation, slide-design, document-generation, deck, creation, editable, decks, narrative, planning, explicit |
+
 ## operations (4)
 
 | Skill | Description | Risk | Source | Tags | Triggers |
@@ -1674,10 +1693,11 @@ Total skills: 1948
 | --- | --- | --- | --- | --- | --- |
 | `idea-os` | Five-phase pipeline (triage → clarify → research → PRD → plan) that turns a raw idea into four linked files: clarifying questions, deep research, a PRD with ... | safe | Slashworks-biz/idea-os | product-management, prd, market-research, mvp, idea-validation, jtbd, swot, competitor-analysis, founder, non-technical | product-management, prd, market-research, mvp, idea-validation, jtbd, swot, competitor-analysis, founder, non-technical, idea, os |
 
-## productivity (31)
+## productivity (32)
 
 | Skill | Description | Risk | Source | Tags | Triggers |
 | --- | --- | --- | --- | --- | --- |
+| `anywrite` | Compiled CLI covering all 52 endpoints of the Anytype local API — objects, properties, tags, search, chat, files — one binary, no MCP server needed. | critical | Antheurus/anywrite | anytype, cli, pkm, notes, api-integration, productivity, knowledge-management | anytype, cli, pkm, notes, api-integration, productivity, knowledge-management, anywrite, compiled, covering, all, 52 |
 | `ask-matt` | Ask which skill or flow fits your situation. A router over the user-invoked skills in this repo. | safe | mattpocock/skills | productivity, workflow, coding-agents | productivity, workflow, coding-agents, ask, matt, which, skill, flow, fits, situation, router, user |
 | `box-automation` | Automate Box operations including file upload/download, content search, folder management, collaboration, metadata queries, and sign requests through Composi... | critical | community | box | box, automation, automate, operations, including, file, upload, download, content, search, folder, collaboration |
 | `brain-to-docs` | Interview the user to turn project vision and decisions into README and ADR documentation. | critical | davidondrej/skills | documentation, adr, planning | documentation, adr, planning, brain, docs, interview, user, turn, vision, decisions, readme |
@@ -1710,13 +1730,14 @@ Total skills: 1948
 | `trading-ledger` | A trading journal that captures the decision, not just the fill: thesis, plan, and emotion at the moment of entry, written to the user's own Notion database;... | critical | cruisekkk/trading-ledger | trading-journal, notion, journaling, market-wizards, decision-making | trading-journal, notion, journaling, market-wizards, decision-making, trading, ledger, journal, captures, decision, just, fill |
 | `workorai` | WorkorAI talent-marketplace skill: candidates search jobs and manage applications; employers run the job lifecycle and get ranked candidate matches with whit... | critical | work0r-ai/agent-kit | job-search, hiring, recruiting, talent-marketplace, mcp | job-search, hiring, recruiting, talent-marketplace, mcp, workorai, talent, marketplace, skill, candidates, search, jobs |
 
-## project-management (20)
+## project-management (21)
 
 | Skill | Description | Risk | Source | Tags | Triggers |
 | --- | --- | --- | --- | --- | --- |
 | `asana-automation` | Automate Asana tasks via Rube MCP (Composio): tasks, projects, sections, teams, workspaces. Always search tools first for current schemas. | unknown | community | asana | asana, automation, automate, tasks, via, rube, mcp, composio, sections, teams, workspaces, always |
 | `basecamp-automation` | Automate Basecamp project management, to-dos, messages, people, and to-do list organization via Rube MCP (Composio). Always search tools first for current sc... | critical | community | basecamp | basecamp, automation, automate, dos, messages, people, do, list, organization, via, rube, mcp |
 | `confluence-automation` | Automate Confluence page creation, content search, space management, labels, and hierarchy navigation via Rube MCP (Composio). Always search tools first for ... | critical | community | confluence | confluence, automation, automate, page, creation, content, search, space, labels, hierarchy, navigation, via |
+| `feature-tracking` | Maintain durable feature-level memory across AI coding sessions with lightweight Markdown tracks for status, source-of-truth docs, decisions, risks, and chan... | critical | JunsW/feature-track | feature-tracking, project-memory, documentation, ai-agents, session-handoff | feature-tracking, project-memory, documentation, ai-agents, session-handoff, feature, tracking, maintain, durable, level, memory, ai |
 | `freshservice-automation` | Automate Freshservice ITSM tasks via Rube MCP (Composio): create/update tickets, bulk operations, service requests, and outbound emails. Always search tools ... | critical | community | freshservice | freshservice, automation, automate, itsm, tasks, via, rube, mcp, composio, update, tickets, bulk |
 | `github-issue-creator` | Turn error logs, screenshots, voice notes, and rough bug reports into crisp, developer-ready GitHub issues with repro steps, impact, and evidence. | unknown | community | github, issue, creator | github, issue, creator, turn, error, logs, screenshots, voice, notes, rough, bug, reports |
 | `jira-automation` | Automate Jira tasks via Rube MCP (Composio): issues, projects, sprints, boards, comments, users. Always search tools first for current schemas. | critical | community | jira | jira, automation, automate, tasks, via, rube, mcp, composio, issues, sprints, boards, comments |
@@ -1942,7 +1963,7 @@ Total skills: 1948
 | `test-automator` | Master AI-powered test automation with modern frameworks, self-healing tests, and comprehensive quality engineering. Build scalable testing strategies with a... | unknown | community | automator | automator, test, ai, powered, automation, frameworks, self, healing, tests, quality, engineering, scalable |
 | `webapp-testing` | To test local web applications, write native Python Playwright scripts. | unknown | community | webapp | webapp, testing, test, local, web, applications, write, native, python, playwright, scripts |
 
-## testing (26)
+## testing (27)
 
 | Skill | Description | Risk | Source | Tags | Triggers |
 | --- | --- | --- | --- | --- | --- |
@@ -1970,6 +1991,7 @@ Total skills: 1948
 | `temporal-python-testing` | Comprehensive testing approaches for Temporal workflows using pytest, progressive disclosure resources for specific testing scenarios. | unknown | community | temporal, python | temporal, python, testing, approaches, pytest, progressive, disclosure, resources, specific, scenarios |
 | `test-driven-development` | Use when implementing any feature or bugfix, before writing implementation code | unknown | community | driven | driven, test, development, implementing, any, feature, bugfix, before, writing, code |
 | `test-framework-migration-skill` | Migrates and converts test automation scripts between Selenium, Playwright, Puppeteer, and Cypress. Use when the user asks to migrate, convert, or port tests... | unknown | LambdaTest/agent-skills | framework, migration, skill | framework, migration, skill, test, migrates, converts, automation, scripts, between, selenium, playwright, puppeteer |
+| `test-guard` | Review generated or changed test code against universal testing rules before it ships or is presented for approval. | critical | amElnagdy/guard-skills | guard | guard, test, review, generated, changed, code, against, universal, testing, rules, before, ships |
 | `testing-patterns` | Jest testing patterns, factory functions, mocking strategies, and TDD workflow. Use when writing unit tests, creating test factories, or following TDD red-gr... | unknown | community |  | testing, jest, factory, functions, mocking, tdd, writing, unit, tests, creating, test, factories |
 | `unit-testing-test-generate` | Generate comprehensive, maintainable unit tests across languages with strong coverage and edge case focus. | unknown | community | unit, generate | unit, generate, testing, test, maintainable, tests, languages, strong, coverage, edge, case |
 
@@ -1985,7 +2007,7 @@ Total skills: 1948
 | --- | --- | --- | --- | --- | --- |
 | `android-cli` | Orchestrates Android development tasks including project creation, deployment, SDK management, and environment diagnostics using the `android` command-line t... | critical | self | android, cli, adb, mobile, build, emulator | android, cli, adb, mobile, build, emulator, orchestrates, development, tasks, including, creation, deployment |
 
-## uncategorized (278)
+## uncategorized (283)
 
 | Skill | Description | Risk | Source | Tags | Triggers |
 | --- | --- | --- | --- | --- | --- |
@@ -2026,8 +2048,10 @@ Total skills: 1948
 | `churn-prevention` | Reduce voluntary and involuntary churn with cancel flows, save offers, dunning, win-back tactics, and retention strategy. Use when users are cancelling, fail... | unknown | https://github.com/coreyhaines31/marketingskills | churn, prevention | churn, prevention, reduce, voluntary, involuntary, cancel, flows, save, offers, dunning, win, back |
 | `ci-cd-and-automation` | Automates CI/CD pipeline setup. Use when setting up or modifying build and deployment pipelines. Use when you need to automate quality gates, configure test ... | unknown | addyosmani/agent-skills | ci, cd, and | ci, cd, and, automation, automates, pipeline, setup, setting, up, modifying, deployment, pipelines |
 | `claimable-postgres` | Provision instant temporary Postgres databases via Claimable Postgres by Neon (neon.new) with no login, signup, or credit card. Supports REST API, CLI, and S... | unknown | neondatabase/agent-skills | claimable, postgres | claimable, postgres, provision, instant, temporary, databases, via, neon, new, no, login, signup |
+| `clean-code-guard` | Review generated or changed production code with Clean Code, SOLID, DRY, KISS, YAGNI, and LLM-specific failure-mode checks. | critical | amElnagdy/guard-skills | clean, code, guard | clean, code, guard, review, generated, changed, solid, dry, kiss, yagni, llm, specific |
 | `clerk-auth` | Expert patterns for Clerk auth implementation, middleware, organizations, webhooks, and user sync | safe | vibeship-spawner-skills (Apache 2.0) | clerk, auth | clerk, auth, middleware, organizations, webhooks, user, sync |
 | `close-automation` | Automate Close CRM tasks via Rube MCP (Composio): create leads, manage calls/SMS, handle tasks, and track notes. Always search tools first for current schemas. | critical | community | close | close, automation, automate, crm, tasks, via, rube, mcp, composio, leads, calls, sms |
+| `cloudflare-security-audit` | Audit authorized codebases for exploitable vulnerabilities using scoped reconnaissance, adversarial review, validation, and structured reporting. | offensive | cloudflare/security-audit-skill | cloudflare, security, audit | cloudflare, security, audit, authorized, codebases, exploitable, vulnerabilities, scoped, reconnaissance, adversarial, review, validation |
 | `co-marketing` | When the user wants to find co-marketing partners, plan joint campaigns, or brainstorm partnership opportunities. Use when the user says 'co-marketing,' 'par... | unknown | coreyhaines31/marketingskills | co, marketing | co, marketing, user, wants, find, partners, plan, joint, campaigns, brainstorm, partnership, opportunities |
 | `coda-automation` | Automate Coda tasks via Rube MCP (Composio): manage docs, pages, tables, rows, formulas, permissions, and publishing. Always search tools first for current s... | critical | community | coda | coda, automation, automate, tasks, via, rube, mcp, composio, docs, pages, tables, rows |
 | `cold-email` | Write B2B cold emails and follow-up sequences that earn replies. Use when creating outbound prospecting emails, SDR outreach, personalized opening lines, sub... | unknown | https://github.com/coreyhaines31/marketingskills | cold, email | cold, email, write, b2b, emails, follow, up, sequences, earn, replies, creating, outbound |
@@ -2056,6 +2080,7 @@ Total skills: 1948
 | `developer-sandbox` | Design and build interactive playgrounds that let developers experience your product without commitment. This skill covers playground architecture, pre-popul... | unknown | jonathimer/devmarketing-skills | sandbox | sandbox, developer, interactive, playgrounds, let, developers, experience, product, without, commitment, skill, covers |
 | `doc2math` | Convert narrative technical documents into grounded Mathematical Problem Specifications with variables, constraints, objectives, and uncertainty. | safe | community | doc2math | doc2math, convert, narrative, technical, documents, grounded, mathematical, problem, specifications, variables, constraints, objectives |
 | `docs-as-marketing` | Transform documentation into a powerful marketing channel that attracts, converts, and retains developers. This skill covers creating documentation that rank... | unknown | jonathimer/devmarketing-skills | docs, as, marketing | docs, as, marketing, transform, documentation, powerful, channel, attracts, converts, retains, developers, skill |
+| `docs-guard` | Review generated or changed documentation before it ships, including READMEs, API references, docstrings, changelogs, tutorials, and documentation sites. | critical | amElnagdy/guard-skills | docs, guard | docs, guard, review, generated, changed, documentation, before, ships, including, readmes, api, references |
 | `doubt-driven-development` | Subjects every non-trivial decision to a fresh-context adversarial review before it stands. Use when correctness matters more than speed, when working in unf... | unknown | addyosmani/agent-skills | doubt, driven | doubt, driven, development, subjects, every, non, trivial, decision, fresh, context, adversarial, review |
 | `earllm-build` | Build, maintain, and extend the EarLLM One Android project — a Kotlin/Compose app that connects Bluetooth earbuds to an LLM via voice pipeline. | safe | community | android, kotlin, bluetooth, llm, voice | android, kotlin, bluetooth, llm, voice, earllm, maintain, extend, one, compose, app, connects |
 | `eas-update-insights` | Check the health of published EAS Updates: crash rates, install/launch counts, unique users, payload size, and the split between embedded and OTA users per c... | unknown | expo/skills | eas, update, insights | eas, update, insights, check, health, published, updates, crash, rates, install, launch, counts |
@@ -2187,7 +2212,7 @@ Total skills: 1948
 | `puppeteer-skill` | Generates Puppeteer scripts for browser automation, scraping, and PDF generation. Triggers on: "Puppeteer", "headless Chrome", "page.goto", "scrape", "PDF ge... | unknown | LambdaTest/agent-skills | puppeteer, skill | puppeteer, skill, generates, scripts, browser, automation, scraping, pdf, generation, triggers, headless, chrome |
 | `re-create` | Completely delete and rewrite a file or module from scratch when structural rot makes patching impossible. | critical | community | re, create | re, create, completely, delete, rewrite, file, module, scratch, structural, rot, makes, patching |
 | `redis-cli` | Redis command-line interface (redis-cli) reference and usage guide. Use this skill whenever the user mentions redis-cli, Redis CLI, or any task involving que... | unknown | chaunsin/agent-skills | redis, cli | redis, cli, command, line, interface, reference, usage, skill, whenever, user, mentions, any |
-| `repo-maintainer` | Championship-grade repository maintenance. Audits for test artifacts, dependency issues, CI/CD health, documentation sync, and FAF alignment. Generates prior... | unknown | Wolfe-Jam/faf-skills | repo, maintainer | repo, maintainer, championship, grade, repository, maintenance, audits, test, artifacts, dependency, issues, ci |
+| `repo-maintainer` | Audit and repair repository hygiene across artifacts, dependencies, CI, docs, Git state, and code-quality signals. Use for repository maintenance, cleanup, h... | critical | Wolfe-Jam/faf-skills | repo, maintainer | repo, maintainer, audit, repair, repository, hygiene, artifacts, dependencies, ci, docs, git, state |
 | `resolving-merge-conflicts` | Use when you need to resolve an in-progress git merge/rebase conflict. | unknown | mattpocock/skills | resolving, merge, conflicts | resolving, merge, conflicts, resolve, progress, git, rebase, conflict |
 | `review-and-simplify-changes` | Review a git diff or explicit file scope for reuse, code quality, efficiency, clarity, and standards issues, then optionally apply safe Codex-driven fixes. U... | unknown | Dimillian/Skills | and, simplify, changes | and, simplify, changes, review, git, diff, explicit, file, scope, reuse, code, quality |
 | `review-swarm` | Parallel read-only multi-agent review of a current git diff or explicit file scope to find behavioral regressions, security or privacy risks, performance or ... | unknown | Dimillian/Skills | swarm | swarm, review, parallel, read, multi, agent, current, git, diff, explicit, file, scope |
@@ -2264,6 +2289,8 @@ Total skills: 1948
 | `windows-shell-reliability` | Reliable command execution on Windows: paths, encoding, and common binary pitfalls. | safe | community | windows, shell, reliability | windows, shell, reliability, reliable, command, execution, paths, encoding, common, binary, pitfalls |
 | `wjttc-builder` | PLAN and GENERATE WJTTC (Championship-Grade) test suites for any project. Analyzes the codebase, classifies components across the WJTTC five tiers (Brake · E... | unknown | Wolfe-Jam/faf-skills | wjttc, builder | wjttc, builder, plan, generate, championship, grade, test, suites, any, analyzes, codebase, classifies |
 | `wjttc-tester` | F1-inspired test EXECUTOR + reporter. Runs a test plan, finds and reproduces bugs, audits suite signal integrity, then files a WJTTC report (Brake/Engine/Aer... | unknown | Wolfe-Jam/faf-skills | wjttc, tester | wjttc, tester, f1, inspired, test, executor, reporter, runs, plan, finds, reproduces, bugs |
+| `woo-guard` | Review generated or changed WooCommerce extensions, payment and shipping integrations, checkout customizations, and order or product logic. | critical | amElnagdy/guard-skills | woo, guard | woo, guard, review, generated, changed, woocommerce, extensions, payment, shipping, integrations, checkout, customizations |
+| `wp-guard` | Review generated or changed WordPress plugins, themes, and blocks for security, internationalization, performance, and API correctness. | offensive | amElnagdy/guard-skills | wp, guard | wp, guard, review, generated, changed, wordpress, plugins, themes, blocks, security, internationalization, performance |
 | `xvary-stock-research` | Thesis-driven equity analysis from public SEC EDGAR and market data; /analyze, /score, /compare workflows with bundled Python tools (Claude Code, Cursor, Cod... | safe | community | xvary, stock, research | xvary, stock, research, thesis, driven, equity, analysis, public, sec, edgar, market, data |
 | `yes-md` | 6-layer AI governance: safety gates, evidence-based debugging, anti-slack detection, and machine-enforced hooks. Makes AI safe, thorough, and honest. | safe | community | yes, md | yes, md, layer, ai, governance, safety, gates, evidence, debugging, anti, slack, detection |
 | `yield-intelligence` | Passive income portfolio analysis — activate when user asks about dividend yields, Treasury rates, REIT income, monthly passive income goals, or portfolio yi... | safe | community | yield, intelligence | yield, intelligence, passive, income, portfolio, analysis, activate, user, asks, about, dividend, yields |
@@ -2389,13 +2416,13 @@ Total skills: 1948
 | `git-advanced-workflows` | Master advanced Git techniques to maintain clean history, collaborate effectively, and recover from any situation with confidence. | critical | community | git, advanced | git, advanced, techniques, maintain, clean, history, collaborate, effectively, recover, any, situation, confidence |
 | `git-hooks-automation` | Master Git hooks setup with Husky, lint-staged, pre-commit framework, and commitlint. Automate code quality gates, formatting, linting, and commit message en... | safe | community | git, hooks | git, hooks, automation, setup, husky, lint, staged, pre, commit, framework, commitlint, automate |
 | `git-pr-review` | Generate a concise and structured PR description from commit history with minimal token usage | safe | community | git, pr | git, pr, review, generate, concise, structured, description, commit, history, minimal, token, usage |
-| `git-pr-workflows-git-workflow` | Orchestrate a comprehensive git workflow from code review through PR creation, leveraging specialized agents for quality assurance, testing, and deployment r... | critical | community | git, pr | git, pr, orchestrate, code, review, through, creation, leveraging, specialized, agents, quality, assurance |
+| `git-pr-workflows-git-workflow` | Orchestrate review, tests, commits, branch pushes, and pull-request creation with parallel agents. Use when completed changes must move through validation in... | critical | community | git, pr | git, pr, orchestrate, review, tests, commits, branch, pushes, pull, request, creation, parallel |
 | `git-pr-workflows-onboard` | You are an **expert onboarding specialist and knowledge transfer architect** with deep experience in remote-first organizations, technical team integration, ... | critical | community | git, pr, onboard | git, pr, onboard, onboarding, knowledge, transfer, architect, deep, experience, remote, first, organizations |
 | `git-pr-workflows-pr-enhance` | You are a PR optimization expert specializing in creating high-quality pull requests that facilitate efficient code reviews. Generate comprehensive PR descri... | unknown | community | git, pr, enhance | git, pr, enhance, optimization, specializing, creating, high, quality, pull, requests, facilitate, efficient |
 | `git-pushing` | Safely stage, commit, and push intended git changes with conventional commit messages. Use for ordinary non-release pushes when explicitly asked to push, sav... | critical | community | git, pushing | git, pushing, safely, stage, commit, push, intended, changes, conventional, messages, ordinary, non |
 | `git-workflow-and-versioning` | Structures git workflow practices. Use when making any code change. Use when committing, branching, resolving conflicts, or when you need to organize work ac... | unknown | addyosmani/agent-skills | git, and, versioning | git, and, versioning, structures, making, any, code, change, committing, branching, resolving, conflicts |
 | `github-actions-templates` | Production-ready GitHub Actions workflow patterns for testing, building, and deploying applications. | critical | community | github, actions | github, actions, testing, building, deploying, applications |
-| `github-automation` | Automate GitHub repositories, issues, pull requests, branches, CI/CD, and permissions via Rube MCP (Composio). Manage code workflows, review PRs, search code... | critical | community | github | github, automation, automate, repositories, issues, pull, requests, branches, ci, cd, permissions, via |
+| `github-automation` | Operate GitHub issues, pull requests, branches, checks, workflows, and permissions through Rube MCP. Use when GitHub work must be queried or changed programm... | critical | community | github | github, automation, operate, issues, pull, requests, branches, checks, permissions, through, rube, mcp |
 | `github-presence` | When the user wants to optimize their GitHub profile, README, or project discoverability. Trigger phrases include "GitHub README," "README optimization," "Gi... | unknown | jonathimer/devmarketing-skills | github, presence | github, presence, user, wants, optimize, profile, readme, discoverability, trigger, phrases, include, optimization |
 | `github-workflow-automation` | Patterns for automating GitHub workflows with AI assistance, inspired by [Gemini CLI](https://github.com/google-gemini/gemini-cli) and modern DevOps practices. | critical | community | github | github, automation, automating, ai, assistance, inspired, gemini, cli, https, com, google, devops |
 | `gitlab-automation` | Automate GitLab project management, issues, merge requests, pipelines, branches, and user operations via Rube MCP (Composio). Always search tools first for c... | critical | community | gitlab | gitlab, automation, automate, issues, merge, requests, pipelines, branches, user, operations, via, rube |

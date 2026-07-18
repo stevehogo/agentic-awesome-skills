@@ -8,7 +8,7 @@ const HEAD_SHA = "2".repeat(40);
 const BLOB_SHA = "3".repeat(40);
 const ZERO_SHA = "0".repeat(40);
 
-function makeCheckRun(name, status, conclusion, startedAt, id) {
+function makeCheckRun(name, status, conclusion, startedAt, id, suiteId = 1) {
   return {
     name,
     status,
@@ -18,6 +18,7 @@ function makeCheckRun(name, status, conclusion, startedAt, id) {
     created_at: startedAt,
     id,
     app: { id: 15368 },
+    check_suite: { id: suiteId },
   };
 }
 
@@ -104,6 +105,22 @@ function evidenceSnapshot(overrides = {}) {
   const latest = mergeBatch.selectLatestCheckRuns(runs);
   assert.strictEqual(latest.get("pr-policy").conclusion, "success");
 
+  const olderLateFailure = {
+    ...makeCheckRun("artifact-preview", "completed", "failure", "2026-04-01T10:00:00Z", 7),
+    created_at: "2026-04-01T10:00:00Z",
+    completed_at: "2026-04-01T10:20:00Z",
+  };
+  const newerPending = {
+    ...makeCheckRun("artifact-preview", "in_progress", null, "2026-04-01T10:10:00Z", 8),
+    created_at: "2026-04-01T10:10:00Z",
+    completed_at: null,
+  };
+  assert.strictEqual(
+    mergeBatch.selectLatestCheckRuns([olderLateFailure, newerPending]).get("artifact-preview").id,
+    8,
+    "run creation order must win over a stale run's later completion time",
+  );
+
   const spoofed = { ...makeCheckRun("pr-policy", "completed", "success", "2026-04-01T10:20:00Z", 6), app: { id: 999 } };
   assert.deepStrictEqual(
     mergeBatch.summarizeRequiredCheckRuns([spoofed], [["pr-policy"]]).map((entry) => entry.state),
@@ -158,6 +175,21 @@ function evidenceSnapshot(overrides = {}) {
     mergeBatch.summarizeRequiredCheckRuns([skippedReview, skippedManual], [withAttestation]).map((entry) => entry.state),
     ["missing"],
     "a skipped manual-review job must not pass",
+  );
+  const missingCredentials = makeCheckRun(
+    "Skill Review / missing-review-credentials",
+    "completed",
+    "failure",
+    "2026-04-01T10:04:00Z",
+    14,
+  );
+  assert.deepStrictEqual(
+    mergeBatch.summarizeRequiredCheckRuns(
+      [skippedReview, skippedManual, missingCredentials],
+      [withAttestation],
+    ).map((entry) => entry.state),
+    ["failed"],
+    "missing internal review credentials must fail promptly",
   );
 }
 
@@ -233,7 +265,11 @@ function runFixture(overrides = {}) {
     path: ".github/workflows/ci.yml",
     event: "pull_request",
     head_sha: HEAD_SHA,
+    head_branch: "feature/example",
+    head_repository: { full_name: "contributor/repo" },
+    repository: { full_name: "owner/repo" },
     pull_requests: [{ number: 450 }],
+    check_suite_id: 900,
     ...overrides,
   };
 }
@@ -246,6 +282,63 @@ function runFixture(overrides = {}) {
     HEAD_SHA,
   );
   assert.strictEqual(valid.length, 1);
+
+  const emptyMetadataIdentity = {
+    headRefName: "feature/example",
+    headRepository: "contributor/repo",
+    baseRepository: "owner/repo",
+  };
+  const emptyMetadata = mergeBatch.validateActionRequiredRuns(
+    [runFixture({ pull_requests: [] })],
+    [workflowFixture()],
+    450,
+    HEAD_SHA,
+    undefined,
+    emptyMetadataIdentity,
+  );
+  assert.strictEqual(emptyMetadata.length, 1);
+  for (const [label, identity] of [
+    ["wrong branch", { ...emptyMetadataIdentity, headRefName: "feature/other" }],
+    ["wrong fork", { ...emptyMetadataIdentity, headRepository: "attacker/repo" }],
+    ["wrong base repository", { ...emptyMetadataIdentity, baseRepository: "attacker/base" }],
+  ]) {
+    assert.throws(
+      () => mergeBatch.validateActionRequiredRuns(
+        [runFixture({ pull_requests: [] })],
+        [workflowFixture()],
+        450,
+        HEAD_SHA,
+        undefined,
+        identity,
+      ),
+      /exact fork identity does not match/,
+      label,
+    );
+  }
+  for (const [label, run, identity = emptyMetadataIdentity] of [
+    ["missing pull request metadata", runFixture({ pull_requests: undefined })],
+    ["non-array pull request metadata", runFixture({ pull_requests: {} })],
+    ["nonempty malformed pull request metadata", runFixture({ pull_requests: [{}] })],
+    ["missing run branch", runFixture({ pull_requests: [], head_branch: undefined })],
+    ["missing run fork", runFixture({ pull_requests: [], head_repository: undefined })],
+    ["missing run base repository", runFixture({ pull_requests: [], repository: undefined })],
+    ["missing captured branch", runFixture({ pull_requests: [] }), { ...emptyMetadataIdentity, headRefName: undefined }],
+    ["missing captured fork", runFixture({ pull_requests: [] }), { ...emptyMetadataIdentity, headRepository: undefined }],
+    ["missing captured base repository", runFixture({ pull_requests: [] }), { ...emptyMetadataIdentity, baseRepository: undefined }],
+  ]) {
+    assert.throws(
+      () => mergeBatch.validateActionRequiredRuns(
+        [run],
+        [workflowFixture()],
+        450,
+        HEAD_SHA,
+        undefined,
+        identity,
+      ),
+      /exact fork identity does not match/,
+      label,
+    );
+  }
 
   for (const [label, run, workflows, pattern] of [
     ["unrelated PR", runFixture({ pull_requests: [{ number: 451 }] }), [workflowFixture()], /does not contain #450/],
@@ -440,6 +533,38 @@ function approvalDependencies(overrides = {}) {
   );
   assert.strictEqual(approvals, 0);
   assert.strictEqual(blobReads, 0, "structurally unsafe diffs must fail before blob expansion");
+}
+
+{
+  const prDetails = {
+    number: 450,
+    baseRefName: "main",
+    baseRefOid: BASE_SHA,
+    headRefOid: HEAD_SHA,
+    headRefName: "maintenance/internal",
+    headRepository: { nameWithOwner: "OWNER/REPO" },
+  };
+  let classifications = 0;
+  const dependencies = approvalDependencies({
+    classifyChangeRecords() {
+      classifications += 1;
+      return {
+        approvalSafe: false,
+        reasons: ["record_0:new_unapproved_path"],
+        requiresHumanReview: false,
+        canonicalSkillChanges: [],
+      };
+    },
+    listActionRequiredRuns() { return []; },
+    loadPullRequestDetails() { return prDetails; },
+  });
+  const result = mergeBatch.approveActionRequiredRuns("/repo", "owner/repo", prDetails, {
+    dependencies,
+    reviewedHeads: [HEAD_SHA],
+  });
+  assert.strictEqual(result.sameRepository, true);
+  assert.strictEqual(classifications, 2);
+  assert.deepStrictEqual(result.runs, []);
 }
 
 {
@@ -725,4 +850,80 @@ function approvalDependencies(overrides = {}) {
   );
 }
 
-console.log("ok");
+(async () => {
+  const baselineRun = runFixture({ id: 190, check_suite_id: 890 });
+  const freshCiRun = runFixture({ id: 200, check_suite_id: 900 });
+  const freshReviewRun = runFixture({
+    id: 201,
+    workflow_id: 101,
+    path: ".github/workflows/skill-review.yml",
+    check_suite_id: 901,
+  });
+  const workflows = [
+    workflowFixture(),
+    workflowFixture({ id: 101, path: ".github/workflows/skill-review.yml" }),
+  ];
+  let poll = 0;
+  const approvals = [];
+  const oldFailure = makeCheckRun("pr-policy", "completed", "failure", "2026-04-01T09:00:00Z", 1, 890);
+  const ciChecks = ["pr-policy", "pr-evidence", "source-validation", "artifact-preview"]
+    .map((name, index) => makeCheckRun(name, "completed", "success", `2026-04-01T10:0${index}:00Z`, 10 + index, 900));
+  const reviewChecks = [
+    makeCheckRun("Skill Review / review", "completed", "skipped", "2026-04-01T10:04:00Z", 20, 901),
+    makeCheckRun("Skill Review / manual-review-required", "completed", "success", "2026-04-01T10:05:00Z", 21, 901),
+  ];
+  const prDetails = {
+    number: 450,
+    baseRefName: "main",
+    baseRefOid: BASE_SHA,
+    headRefOid: HEAD_SHA,
+    headRefName: "feature/example",
+    headRepository: { nameWithOwner: "contributor/repo" },
+  };
+
+  const summaries = await mergeBatch.waitForFreshRequiredChecks(
+    "/repo",
+    "owner/repo",
+    prDetails,
+    mergeBatch.getRequiredCheckAliases(
+      { hasSkillChanges: true },
+      { allowManualReview: true },
+    ),
+    0.001,
+    {
+      baselineRunIds: [190],
+      tuple: { baseOid: BASE_SHA, headOid: HEAD_SHA },
+      hasSkillChanges: true,
+      maxAttempts: 5,
+      dependencies: {
+        listPullRequestWorkflowRuns() {
+          poll += 1;
+          if (poll === 1) return [baselineRun];
+          if (poll === 2) return [baselineRun, freshCiRun];
+          return [baselineRun, freshCiRun, freshReviewRun];
+        },
+        listActionRequiredRuns() {
+          if (poll === 2) return [freshCiRun];
+          if (poll === 3) return [freshReviewRun];
+          return [];
+        },
+        listWorkflowDefinitions() { return workflows; },
+        listCheckRuns() {
+          if (poll < 3) return [oldFailure];
+          if (poll === 3) return [oldFailure, ...ciChecks];
+          return [oldFailure, ...ciChecks, ...reviewChecks];
+        },
+        loadPullRequestDetails() { return prDetails; },
+        approveWorkflowRun(_root, _slug, run) { approvals.push(run.id); },
+        sleep() { return Promise.resolve(); },
+      },
+    },
+  );
+
+  assert.deepStrictEqual(approvals, [200, 201], "only fresh workflow runs are approved once");
+  assert.ok(summaries.every((summary) => summary.state === "success"));
+  console.log("ok");
+})().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});

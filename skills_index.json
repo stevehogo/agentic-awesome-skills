@@ -499,6 +499,39 @@
     }
   },
   {
+    "id": "ad-campaign-analyzer",
+    "path": "skills/ad-campaign-analyzer",
+    "category": "marketing",
+    "name": "ad-campaign-analyzer",
+    "description": "Analyze cross-channel campaign data, quantify uncertainty, and propose evidence-labeled budget tests without overstating causality.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-07-16",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "gooseworks-ai/goose-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/gooseworks-ai/goose-skills/blob/main/LICENSE",
+    "tags": [
+      "ads",
+      "analytics",
+      "budget-optimization",
+      "roas",
+      "marketing"
+    ]
+  },
+  {
     "id": "ad-creative",
     "path": "skills/ad-creative",
     "category": "uncategorized",
@@ -2411,6 +2444,41 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "anywrite",
+    "path": "skills/anywrite",
+    "category": "productivity",
+    "name": "anywrite",
+    "description": "Compiled CLI covering all 52 endpoints of the Anytype local API \u2014 objects, properties, tags, search, chat, files \u2014 one binary, no MCP server needed.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-07-15",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "Antheurus/anywrite",
+    "license": "MIT",
+    "license_source": "https://github.com/Antheurus/anywrite/blob/main/LICENSE",
+    "tags": [
+      "anytype",
+      "cli",
+      "pkm",
+      "notes",
+      "api-integration",
+      "productivity",
+      "knowledge-management"
+    ]
   },
   {
     "id": "aomi-transact",
@@ -10141,6 +10209,30 @@
     }
   },
   {
+    "id": "clean-code-guard",
+    "path": "skills/clean-code-guard",
+    "category": "uncategorized",
+    "name": "clean-code-guard",
+    "description": "Review generated or changed production code with Clean Code, SOLID, DRY, KISS, YAGNI, and LLM-specific failure-mode checks.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-07-13",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/guard-skills"
+  },
+  {
     "id": "clerk-auth",
     "path": "skills/clerk-auth",
     "category": "uncategorized",
@@ -10293,6 +10385,30 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "cloudflare-security-audit",
+    "path": "skills/cloudflare-security-audit",
+    "category": "uncategorized",
+    "name": "cloudflare-security-audit",
+    "description": "Audit authorized codebases for exploitable vulnerabilities using scoped reconnaissance, adversarial review, validation, and structured reporting.",
+    "risk": "offensive",
+    "source": "community",
+    "date_added": "2026-07-13",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "cloudflare/security-audit-skill"
   },
   {
     "id": "cloudflare-workers-expert",
@@ -11246,6 +11362,39 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "competitor-ad-intelligence",
+    "path": "skills/competitor-ad-intelligence",
+    "category": "marketing",
+    "name": "competitor-ad-intelligence",
+    "description": "Research public competitor ads, analyze creative patterns and landing pages, and produce an evidence-labeled strategic teardown.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-07-16",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "gooseworks-ai/goose-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/gooseworks-ai/goose-skills/blob/main/LICENSE",
+    "tags": [
+      "ads",
+      "competitive-intelligence",
+      "meta-ads",
+      "google-ads",
+      "marketing"
+    ]
   },
   {
     "id": "competitor-alternatives",
@@ -15215,6 +15364,37 @@
     "license_source": "https://github.com/jonathimer/devmarketing-skills/blob/main/LICENSE"
   },
   {
+    "id": "diagnose-android-overheating",
+    "path": "skills/diagnose-android-overheating",
+    "category": "debugging",
+    "name": "diagnose-android-overheating",
+    "description": "Use when diagnosing Android overheating, idle heat, thermal throttling, charging or radio heat, or abnormal battery drain with read-only ADB evidence and approval gates.",
+    "risk": "critical",
+    "source": "self",
+    "date_added": "2026-07-16",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "self",
+    "tags": [
+      "android",
+      "adb",
+      "overheating",
+      "thermal",
+      "battery",
+      "diagnostics"
+    ]
+  },
+  {
     "id": "diagnosing-bugs",
     "path": "skills/diagnosing-bugs",
     "category": "development",
@@ -15472,6 +15652,38 @@
     }
   },
   {
+    "id": "ditto",
+    "path": "skills/ditto",
+    "category": "agent-behavior",
+    "name": "ditto",
+    "description": "Use when a user asks to mine or update a private, evidence-backed work profile from local Claude Code, Codex, Copilot CLI, or OpenCode sessions.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-07-14",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "ohad6k/ditto",
+    "license": "MIT",
+    "license_source": "https://github.com/ohad6k/ditto/blob/v0.3.6/LICENSE",
+    "tags": [
+      "personalization",
+      "context-engineering",
+      "session-mining",
+      "agent-memory"
+    ]
+  },
+  {
     "id": "django-access-review",
     "path": "skills/django-access-review",
     "category": "backend",
@@ -15651,6 +15863,30 @@
     "source_repo": "jonathimer/devmarketing-skills",
     "license": "MIT",
     "license_source": "https://github.com/jonathimer/devmarketing-skills/blob/main/LICENSE"
+  },
+  {
+    "id": "docs-guard",
+    "path": "skills/docs-guard",
+    "category": "uncategorized",
+    "name": "docs-guard",
+    "description": "Review generated or changed documentation before it ships, including READMEs, API references, docstrings, changelogs, tutorials, and documentation sites.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-07-13",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/guard-skills"
   },
   {
     "id": "documentation",
@@ -17886,6 +18122,39 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "feature-tracking",
+    "path": "skills/feature-tracking",
+    "category": "project-management",
+    "name": "feature-tracking",
+    "description": "Maintain durable feature-level memory across AI coding sessions with lightweight Markdown tracks for status, source-of-truth docs, decisions, risks, and changes.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-07-13",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "JunsW/feature-track",
+    "license": "MIT",
+    "license_source": "https://github.com/JunsW/feature-track/blob/main/LICENSE",
+    "tags": [
+      "feature-tracking",
+      "project-memory",
+      "documentation",
+      "ai-agents",
+      "session-handoff"
+    ]
   },
   {
     "id": "ffuf-claude-skill",
@@ -20192,7 +20461,7 @@
     "path": "skills/git-pr-workflows-git-workflow",
     "category": "workflow",
     "name": "git-pr-workflows-git-workflow",
-    "description": "Orchestrate a comprehensive git workflow from code review through PR creation, leveraging specialized agents for quality assurance, testing, and deployment readiness. This workflow implements modern g",
+    "description": "Orchestrate review, tests, commits, branch pushes, and pull-request creation with parallel agents. Use when completed changes must move through validation into a PR or guarded merge.",
     "risk": "critical",
     "source": "community",
     "date_added": "2026-02-27",
@@ -20402,7 +20671,7 @@
     "path": "skills/github-automation",
     "category": "workflow",
     "name": "github-automation",
-    "description": "Automate GitHub repositories, issues, pull requests, branches, CI/CD, and permissions via Rube MCP (Composio). Manage code workflows, review PRs, search code, and handle deployments programmatically.",
+    "description": "Operate GitHub issues, pull requests, branches, checks, workflows, and permissions through Rube MCP. Use when GitHub work must be queried or changed programmatically with repository-policy safeguards.",
     "risk": "critical",
     "source": "community",
     "date_added": "2026-02-27",
@@ -30981,6 +31250,40 @@
     }
   },
   {
+    "id": "ontoly-software-graph",
+    "path": "skills/ontoly-software-graph",
+    "category": "development",
+    "name": "ontoly-software-graph",
+    "description": "Use Ontoly's deterministic Software Graph, MCP server, and agent skills for architecture review, request tracing, impact analysis, and dependency analysis.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-07-14",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "0xsarwagya/ontoly",
+    "license": "MIT",
+    "license_source": "https://github.com/0xsarwagya/ontoly/blob/main/LICENSE",
+    "tags": [
+      "software-graph",
+      "codebase-analysis",
+      "mcp",
+      "typescript",
+      "architecture",
+      "impact-analysis"
+    ]
+  },
+  {
     "id": "open-dynamic-workflows",
     "path": "skills/open-dynamic-workflows",
     "category": "ai-agents",
@@ -31119,6 +31422,38 @@
       "automation",
       "code-review",
       "security"
+    ]
+  },
+  {
+    "id": "optim-agent",
+    "path": "skills/optim-agent",
+    "category": "data",
+    "name": "optim-agent",
+    "description": "Guide agent-driven parameter optimization for configurable systems with measurable objectives. Use for HPO, inference tuning, simulations, or RL/control experiments.",
+    "risk": "safe",
+    "source": "community",
+    "date_added": "2026-07-15",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "Optim-Agent/optim-agent",
+    "license": "MIT",
+    "license_source": "https://github.com/Optim-Agent/optim-agent/blob/main/LICENSE",
+    "tags": [
+      "optimization",
+      "hyperparameter-optimization",
+      "experiments",
+      "tuning"
     ]
   },
   {
@@ -32788,6 +33123,39 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "pptx-deck-creation",
+    "path": "skills/pptx-deck-creation",
+    "category": "office-productivity",
+    "name": "pptx-deck-creation",
+    "description": "Create editable, production-ready PPTX decks with narrative planning, explicit layout specs, asset guidance, and quality checks.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-07-14",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "kimtth/agent-pptify-kit",
+    "license": "MIT",
+    "license_source": "https://github.com/kimtth/agent-pptify-kit/blob/main/LICENSE",
+    "tags": [
+      "powerpoint",
+      "pptx",
+      "presentation",
+      "slide-design",
+      "document-generation"
+    ]
   },
   {
     "id": "pptx-official",
@@ -35256,8 +35624,8 @@
     "path": "skills/repo-maintainer",
     "category": "uncategorized",
     "name": "repo-maintainer",
-    "description": "Championship-grade repository maintenance. Audits for test artifacts, dependency issues, CI/CD health, documentation sync, and FAF alignment. Generates prioritized cleanup plans. Use when repos need deep cleaning or ongoing maintenance.",
-    "risk": "unknown",
+    "description": "Audit and repair repository hygiene across artifacts, dependencies, CI, docs, Git state, and code-quality signals. Use for repository maintenance, cleanup, health checks, or pre-release hardening.",
+    "risk": "critical",
     "source": "https://github.com/Wolfe-Jam/faf-skills/tree/main/skills/repo-maintainer",
     "date_added": "2026-07-01",
     "plugin": {
@@ -40067,6 +40435,41 @@
     }
   },
   {
+    "id": "sshepherd",
+    "path": "skills/sshepherd",
+    "category": "devops",
+    "name": "sshepherd",
+    "description": "Zero-knowledge SSH ops CLI \u2014 server health checks, docker/systemd control, log tailing, Postgres introspection, and declarative deploys, without ever exposing credentials to the agent.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-07-15",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "Antheurus/sshepherd",
+    "license": "MIT",
+    "license_source": "https://github.com/Antheurus/sshepherd/blob/main/LICENSE",
+    "tags": [
+      "ssh",
+      "devops",
+      "cli",
+      "server-ops",
+      "postgres",
+      "deploy",
+      "zero-knowledge"
+    ]
+  },
+  {
     "id": "stability-ai",
     "path": "skills/stability-ai",
     "category": "media",
@@ -41943,6 +42346,30 @@
     "source_repo": "LambdaTest/agent-skills",
     "license": "MIT",
     "license_source": "https://github.com/LambdaTest/agent-skills/blob/main/LICENSE"
+  },
+  {
+    "id": "test-guard",
+    "path": "skills/test-guard",
+    "category": "testing",
+    "name": "test-guard",
+    "description": "Review generated or changed test code against universal testing rules before it ships or is presented for approval.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-07-13",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/guard-skills"
   },
   {
     "id": "testing-patterns",
@@ -45306,6 +45733,35 @@
     }
   },
   {
+    "id": "warehouse",
+    "path": "skills/warehouse",
+    "category": "data",
+    "name": "warehouse",
+    "description": "Plan and review read-only data warehouse analysis with explicit scope, privacy, provenance, and validation checks.",
+    "risk": "critical",
+    "source": "self",
+    "date_added": "2026-07-12",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "self",
+    "tags": [
+      "analytics",
+      "data-warehouse",
+      "sql",
+      "data-quality"
+    ]
+  },
+  {
     "id": "warren-buffett",
     "path": "skills/warren-buffett",
     "category": "uncategorized",
@@ -46203,6 +46659,30 @@
     "license_source": "https://github.com/Wolfe-Jam/faf-skills/blob/main/LICENSE"
   },
   {
+    "id": "woo-guard",
+    "path": "skills/woo-guard",
+    "category": "uncategorized",
+    "name": "woo-guard",
+    "description": "Review generated or changed WooCommerce extensions, payment and shipping integrations, checkout customizations, and order or product logic.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-07-13",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/guard-skills"
+  },
+  {
     "id": "wordpress",
     "path": "skills/wordpress",
     "category": "workflow-bundle",
@@ -46440,6 +46920,30 @@
       "talent-marketplace",
       "mcp"
     ]
+  },
+  {
+    "id": "wp-guard",
+    "path": "skills/wp-guard",
+    "category": "uncategorized",
+    "name": "wp-guard",
+    "description": "Review generated or changed WordPress plugins, themes, and blocks for security, internationalization, performance, and API correctness.",
+    "risk": "offensive",
+    "source": "community",
+    "date_added": "2026-07-13",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/guard-skills"
   },
   {
     "id": "wp-site-health-auditor",

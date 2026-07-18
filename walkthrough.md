@@ -257,3 +257,32 @@
 - Added maintainer automation for repo-state hygiene: `sync:contributors` updates the README contributor list from GitHub contributors, `check:stale-claims`/`audit:consistency` catch drift in count-sensitive docs, and `sync:repo-state` now chains the local maintainer sweep into a single command.
 - Hardened automation surfaces beyond the local CLI: `main` CI now runs the unified repo-state sync, tracked web artifacts are refreshed through `sync:web-assets`, release verification now uses a deterministic `sync:release-state` path plus `npm pack --dry-run`, the npm publish workflow reruns those checks before publishing, and a weekly `Repo Hygiene` GitHub Actions workflow now sweeps slow drift on `main`.
 - Added two maintainer niceties on top of the hardening work: `check:warning-budget` freezes the accepted `135` validation warnings so they cannot silently grow, and `audit:maintainer` prints a read-only health snapshot of warning budget, consistency drift, and git cleanliness.
+
+# Maintenance Walkthrough - 2026-07-16 Android Overheating Diagnostics
+
+- Audited the cached third-party `adb-performance` skill and rejected a direct import because its linked source repository is unavailable, its license cannot be verified, and it mixes weak snapshot heuristics with unguarded device mutations.
+- Added the clean-room canonical `diagnose-android-overheating` skill, grounded in current Android and AOSP documentation.
+- Replaced generic “optimization” commands with a read-only-first evidence workflow, controlled comparisons, OEM-aware interpretation, confidence labels, privacy handling, explicit approval gates, rollback requirements, and a hardware-safety stop.
+- Added `references/evidence-and-interpretation.md` for symptom-specific ADB evidence, thermal status interpretation, correlation rules, Batterystats capture discipline, and bugreport privacy.
+
+# Maintenance Walkthrough - 2026-07-16 Tessl Workspace Repair
+
+- Corrected the Skill Review workflow and trusted review helper to use the token-visible `antigravity-awesome-skills` Tessl workspace instead of the renamed repository slug.
+- Added a repository-variable override so future Tessl workspace migrations can be handled through `TESSL_WORKSPACE` without another workflow patch.
+- Updated the review command regression test to lock the corrected workspace argument.
+
+# Maintenance Walkthrough - 2026-07-16 Tessl Credit Guard
+
+- Added a deterministic fingerprint over the changed `SKILL.md` content and active review policy.
+- Reuse a previously successful review for identical content, avoiding Tessl setup and another charged review after unrelated PR pushes or base refreshes.
+- Route an explicit Tessl credit/quota failure to `manual-review-required` with exact-head attestation; unrelated Tessl failures still fail closed.
+- Added regression coverage for fingerprint invalidation, GitHub Actions cache wiring, quota classification, and truthful review outcomes.
+# Maintenance Walkthrough - 2026-07-17 Legacy Redirect Infrastructure
+
+- Preserved the Google Search Console HTML verification file on the legacy Pages path and the Bing Webmaster Tools meta token on the legacy root redirect.
+- Made redirect generation follow the current `skills_index.json` count while retaining the curated sitemap-count lock and exact route-set validation.
+- Added `pages:redirect-verify` for byte-exact managed-tree validation plus bounded or full live route probing.
+- Versioned the redirect manifest contract as schema `3`, including webmaster-verification evidence consumed by the protected sync.
+- Added explicit source-repository provenance to the live manifest and used that change to exercise the complete protected auto-sync cycle.
+- Documented the protected cross-repository synchronization contract for `sickn33/sickn33.github.io`.
+- Added regression coverage for webmaster tokens, reserved-path collisions, dynamic skill counts, local drift, stale files, and live manifest/route verification.

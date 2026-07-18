@@ -76,6 +76,8 @@ const pagesWorkflow = fs.readFileSync(
   path.resolve(__dirname, "..", "..", "..", ".github", "workflows", "pages.yml"),
   "utf8",
 );
+assert.match(pagesWorkflow, /^on:\s*\n\s+workflow_dispatch:/m);
+assert.doesNotMatch(pagesWorkflow, /^\s+push:/m);
 for (const command of [
   "npm run validate:strict",
   "npm run validate:glossary",
@@ -101,6 +103,11 @@ assert.doesNotMatch(
   "PR and push CI must not depend on mutable upstream network clones",
 );
 assert.match(ciWorkflow, /^permissions:\n  contents: read$/m);
+assert.match(
+  ciWorkflow,
+  /source-validation:[\s\S]*?- name: Refresh ephemeral derived sources for tests\n\s+run: npm run plugin-compat:sync && npm run index && npm run bundles:sync\n[\s\S]*?- name: Run tests\n\s+run: npm run test/,
+  "source-only skill PRs must refresh uncommitted mirrors and indexes before tests read them",
+);
 assert.match(ciWorkflow, /name: pr-evidence-/);
 assert.doesNotMatch(ciWorkflow, /pull_request_target:/);
 assert.doesNotMatch(ciWorkflow, /actions\/download-artifact/);
@@ -119,11 +126,31 @@ const skillReviewWorkflow = fs.readFileSync(
   path.resolve(__dirname, "..", "..", "..", ".github", "workflows", "skill-review.yml"),
   "utf8",
 );
+assert.match(skillReviewWorkflow, /^permissions:\n  contents: read$/m);
+assert.match(skillReviewWorkflow, /^  review-attempt:$/m);
 assert.match(skillReviewWorkflow, /^  review:$/m);
 assert.match(skillReviewWorkflow, /^  manual-review-required:$/m);
-assert.doesNotMatch(skillReviewWorkflow, /^  missing-review-credentials:$/m);
-assert.match(skillReviewWorkflow, /if: \$\{\{ needs\.review-state\.outputs\.configured != 'true' \}\}/);
+assert.match(skillReviewWorkflow, /^  missing-review-credentials:$/m);
+assert.match(
+  skillReviewWorkflow,
+  /needs\.review-attempt\.outputs\.outcome == 'quota'/,
+  "quota exhaustion must route to exact-head manual review",
+);
+assert.match(
+  skillReviewWorkflow,
+  /github\.event\.pull_request\.head\.repo\.full_name != github\.repository/,
+);
+assert.match(
+  skillReviewWorkflow,
+  /github\.event\.pull_request\.head\.repo\.full_name == github\.repository/,
+);
 assert.match(skillReviewWorkflow, /ref: \$\{\{ github\.event\.pull_request\.base\.sha \}\}/);
+assert.match(skillReviewWorkflow, /review_changed_skills\.cjs --plan/);
+assert.match(skillReviewWorkflow, /actions\/cache\/restore@[0-9a-f]{40}/);
+assert.match(skillReviewWorkflow, /actions\/cache\/save@[0-9a-f]{40}/);
+assert.match(skillReviewWorkflow, /tessl-review-v1-\$\{\{ steps\.plan\.outputs\.fingerprint \}\}/);
+assert.match(skillReviewWorkflow, /steps\.review-cache\.outputs\.cache-hit != 'true'/);
+assert.match(skillReviewWorkflow, /needs\.review-attempt\.outputs\.outcome == 'reviewed'/);
 assert.ok(
   skillReviewWorkflow.indexOf("- name: Checkout pull request content") <
     skillReviewWorkflow.indexOf("- name: Checkout trusted base scripts"),

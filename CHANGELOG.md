@@ -9,6 +9,136 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added an offline local skill reviewer for deterministic repository-wide triage, evidence-bound scoring, P0-P3 priorities, and Codex-assisted manual review. Its documented 74.5% validation agreement is not a claim of equivalence with Tessl, and Tessl remains an optional future sample audit rather than a runtime dependency.
+
+### Changed
+
+- Made the local reviewer a mandatory maintainer pre-merge step for changed `SKILL.md` and bundle blobs, while preserving Tessl or exact-head maintainer attestation as the official merge gate.
+- Expanded the curated hosted sitemap from 42 to 180 deterministic skill routes and added crawlable static home/topic fallbacks so search engines can discover useful catalog hubs without mass-indexing the full library.
+- Enriched the four search-intent landing pages with real recommended skills, stronger internal links, and matching `ItemList` structured data while preserving canonical trailing-slash identities.
+- Replaced the marketing-only homepage heading with a descriptive AI-agent-skills heading while retaining the existing slogan as supporting copy.
+
+### Fixed
+
+- Added the current Bing Webmaster verification identity and updated the legacy Pages redirect generator contract to cover the expanded 187-route sitemap.
+- Expanded the legacy Pages bridge to every one of the 1,965 current catalog skills plus seven structural routes, while keeping crawler discovery limited to the curated 187-route sitemap and making migration-readiness checks enforce the same exact catalog coverage.
+
+## [14.6.0] - 2026-07-16 - "Diagnostics, Review Efficiency, and Protected Maintenance"
+
+> Three new skills for Claude Code, Codex CLI, Gemini CLI, Cursor, Antigravity, and other agent workflows: Android overheating diagnosis, evidence-labeled competitor ad research, and uncertainty-aware campaign optimization, backed by more reliable Tessl review and protected maintainer automation.
+
+## Start Here
+
+- Install: `npx agentic-awesome-skills@14.6.0`
+- [Choose your tool](https://github.com/sickn33/agentic-awesome-skills#choose-your-tool)
+- [Best skills by tool](https://github.com/sickn33/agentic-awesome-skills#best-skills-by-tool)
+- [Bundles](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/bundles.md)
+- [Workflows](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/workflows.md)
+
+## Added
+
+- Added **diagnose-android-overheating**, a read-only-first Android and HyperOS investigation workflow for correlating thermal state, power use, wakelocks, radio activity, and workload evidence without treating one snapshot as proof (PR #854).
+- Added **competitor-ad-intelligence** for evidence-labeled competitor paid-ad research across public libraries, landing pages, offer structure, and creative patterns while keeping observations separate from inference (PR #852).
+- Added **ad-campaign-analyzer** for diagnosing campaign efficiency and proposing bounded budget reallocation tests with uncertainty, measurement quality, and rollback conditions made explicit (PR #853).
+
+## Changed
+
+- Made repository maintenance consistently pull-request-only across maintainer policy and the `git-pushing`, `git-pr-workflows-git-workflow`, `finishing-a-development-branch`, `github-automation`, and `repo-maintainer` skills (PR #864).
+- Extended `merge:batch` to support same-repository maintainer PRs while keeping external PRs behind the strict fork content allowlist, trusted changed-skill evidence, exact-head review, required checks, and protected `main`.
+- Regenerated the canonical catalog, hosted assets, skill indexes, plugin bundles, and Claude/Codex mirrors for 1,965 skills.
+
+## Fixed
+
+- Corrected Tessl workspace selection and added a repository-variable override for future workspace migrations (PRs #856 and #858).
+- Reused successful Tessl review only for an identical changed-skill fingerprint, conserving review credits without weakening semantic-review truthfulness; explicit quota failures now route to exact-head manual review while unrelated failures remain fail-closed (PR #860).
+- Bound PR body-refresh retries to newly materialized workflow and check-suite IDs, preventing older runs on the same commit from satisfying or failing a refreshed merge gate (PR #864).
+- Made check selection prefer workflow creation time over late completion time and added regression coverage for delayed fork approvals, fresh Skill Review suites, and internal maintainer batches.
+
+## Validation
+
+- Passed protected `pr-policy`, `pr-evidence`, `source-validation`, and `artifact-preview` checks for every source and canonical-sync PR in the cycle.
+- Passed Tessl review for the five updated maintenance skills with scores of 93, 99, 88, 93, and 96 against the required threshold of 80.
+- Passed the full repository suite, documentation security, reference validation, warning-budget enforcement, Dependency Review, Snyk, Socket, all CodeQL analyzers, canonical mirror checks, and final Pages deployment.
+- Verified the three new skills and updated maintenance metadata on the live hosted catalog.
+
+## Credits
+
+- **[@himanshub42](https://github.com/himanshub42)** and **[gooseworks-ai/goose-skills](https://github.com/gooseworks-ai/goose-skills)** for `competitor-ad-intelligence` and `ad-campaign-analyzer` (PRs #852 and #853).
+
+## [14.5.0] - 2026-07-15 - "Private Context, Optimization, and Local Operations"
+
+> Four reviewed community skills for private session-derived profiles, bounded parameter optimization, credential-isolated SSH operations, and low-context Anytype automation, with maintainer hardening and synchronized distributions.
+
+## Added
+
+- Added **ditto** for extracting private, session-derived context into a local profile without introducing fork-supplied executable runtime files (PR #842).
+- Added **optim-agent** for bounded parameter optimization and evidence-driven tuning workflows (PR #844).
+- Added **sshepherd** for credential-isolated SSH operations with explicit remote-operation boundaries (PR #846).
+- Added **anywrite** for low-context Anytype workspace automation and safe local writes (PR #847).
+
+## Changed
+
+- Classified session mining, remote infrastructure operations, and mutable local workspace automation at `critical` risk.
+- Made Ditto require an existing trusted runtime instead of accepting executable bootstrap code supplied by a fork.
+- Synchronized the canonical catalog, plugin mirrors, contributor/source credits, web assets, and public discovery surfaces for 1,962+ skills.
+
+## Fixed
+
+- Added missing source credits for `sshepherd` and `anywrite` and resolved overlapping README credit changes without dropping either source.
+
+## Validation
+
+- Passed exact-head policy, evidence, source-validation, artifact-preview, and skill-review gates for PRs #842, #844, #846, and #847.
+- Passed consistency and maintainer audits, the root and web-app suites, CodeQL, and Pages deployment; verified all four skills on the live catalog.
+
+## Credits
+
+- **[@ohad6k](https://github.com/ohad6k)** for `ditto` (PR #842).
+- **[@Optim-Agent](https://github.com/Optim-Agent)** for `optim-agent` (PR #844).
+- **[@Antheurus](https://github.com/Antheurus)** for `sshepherd` and `anywrite` (PRs #846 and #847).
+
+## [14.4.0] - 2026-07-14 - "Protected Automation and Production Skills"
+
+> Ten reviewed community skills for durable project memory, software-graph analysis, Cloudflare and codebase guardrails, data warehousing, and presentation production, backed by protected exact-commit maintainer automation.
+
+## Added
+
+- Added **feature-tracking** for durable feature decisions, implementation state, and project memory across sessions (PR #819).
+- Added **ontoly-software-graph** for querying and reasoning over Ontoly software knowledge graphs (PR #827).
+- Added **cloudflare-security-audit** plus the **clean-code**, **documentation**, **testing**, **WooCommerce**, and **WordPress** guard skills (PR #822).
+- Added **warehouse** for production-oriented data warehouse architecture and implementation workflows (PR #818).
+- Added **pptx-deck-creation** for structured PowerPoint research, authoring, rendering, and visual QA (PR #830).
+
+## Changed
+
+- Protected canonical repository writers with exact pull-request and commit binding, trusted regression gates, fail-closed approval handling, and a single guarded canonical-sync path.
+- Restored the explicit fork-approval flow while preventing workflow runs from being reused across unrelated pull requests or head commits.
+- Improved curated plugin bundle composition, tracked ignored Claude mirror files correctly, and combined npm package-rename traffic without double counting.
+- Made hosted catalog SEO identities reproducible across canonical URLs, social metadata, sitemaps, and prerendered output.
+
+## Fixed
+
+- Closed the two open Security and Quality findings by declaring least-privilege workflow permissions and making the SEO package-identity regression test exact.
+- Made skill review fail closed when same-repository credentials are missing, while preserving the explicit manual-review path for forks.
+- Hardened Lore mirror targets against traversal and symlink escapes, Telegram approvals against unauthorized group senders and token leakage through process arguments, and Auto Research against implicit external-query disclosure.
+- Restored legacy Git ref-format detection, updated the redirect bridge to the current 49-route sitemap, and made Go In Depth reject non-string query inputs cleanly.
+- Regenerated ephemeral plugin mirrors and the skill index before source-only PR tests so contributions can satisfy distribution and Workbench contracts without committing generated artifacts.
+
+## Validation
+
+- Added regression coverage for workflow fail-closed behavior, mirror containment guidance, Telegram authorization and token transport, legacy Git, production redirect counts, and non-string research queries.
+- Passed the canonical 1,958-skill validation and reference checks, full root test suite, documentation security gate, web-app coverage and production build, npm high-severity audit, package dry run, CodeQL, and protected exact-head PR checks.
+
+## Credits
+
+- **[@JunsW](https://github.com/JunsW)** for `feature-tracking` (PR #819).
+- **[@0xsarwagya](https://github.com/0xsarwagya)** for `ontoly-software-graph` (PR #827).
+- **[@FrancoStino](https://github.com/FrancoStino)** for the Cloudflare security audit and guard skills (PR #822).
+- **[@Rudra-G-23](https://github.com/Rudra-G-23)** for `warehouse` (PR #818).
+- **[@kimtth](https://github.com/kimtth)** for `pptx-deck-creation` (PR #830).
+
 ## [14.3.1] - 2026-07-13 - "Expert Workbench and Community Surface Cleanup"
 
 > A public expert workbench for exact, inspectable skill sets, with the rejected maintainer-only product removed from the current installable distribution.

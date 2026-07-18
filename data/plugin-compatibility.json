@@ -345,6 +345,25 @@
       "runtime_files": []
     },
     {
+      "id": "ad-campaign-analyzer",
+      "path": "skills/ad-campaign-analyzer",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
       "id": "ad-creative",
       "path": "skills/ad-creative",
       "targets": {
@@ -1964,6 +1983,25 @@
     {
       "id": "antigravity-workflows",
       "path": "skills/antigravity-workflows",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
+      "id": "anywrite",
+      "path": "skills/anywrite",
       "targets": {
         "codex": "supported",
         "claude": "supported"
@@ -8060,6 +8098,25 @@
       "runtime_files": []
     },
     {
+      "id": "clean-code-guard",
+      "path": "skills/clean-code-guard",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
       "id": "clerk-auth",
       "path": "skills/clerk-auth",
       "targets": {
@@ -8176,6 +8233,25 @@
     {
       "id": "cloud-penetration-testing",
       "path": "skills/cloud-penetration-testing",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
+      "id": "cloudflare-security-audit",
+      "path": "skills/cloudflare-security-audit",
       "targets": {
         "codex": "supported",
         "claude": "supported"
@@ -8891,6 +8967,25 @@
     {
       "id": "competitive-landscape",
       "path": "skills/competitive-landscape",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
+      "id": "competitor-ad-intelligence",
+      "path": "skills/competitor-ad-intelligence",
       "targets": {
         "codex": "supported",
         "claude": "supported"
@@ -12732,6 +12827,25 @@
       "runtime_files": []
     },
     {
+      "id": "diagnose-android-overheating",
+      "path": "skills/diagnose-android-overheating",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
       "id": "diagnosing-bugs",
       "path": "skills/diagnosing-bugs",
       "targets": {
@@ -12940,6 +13054,25 @@
       "runtime_files": []
     },
     {
+      "id": "ditto",
+      "path": "skills/ditto",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
       "id": "django-access-review",
       "path": "skills/django-access-review",
       "targets": {
@@ -13075,6 +13208,25 @@
     {
       "id": "docs-as-marketing",
       "path": "skills/docs-as-marketing",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
+      "id": "docs-guard",
+      "path": "skills/docs-guard",
       "targets": {
         "codex": "supported",
         "claude": "supported"
@@ -14782,6 +14934,25 @@
     {
       "id": "fda-medtech-compliance-auditor",
       "path": "skills/fda-medtech-compliance-auditor",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
+      "id": "feature-tracking",
+      "path": "skills/feature-tracking",
       "targets": {
         "codex": "supported",
         "claude": "supported"
@@ -24901,6 +25072,25 @@
       "runtime_files": []
     },
     {
+      "id": "ontoly-software-graph",
+      "path": "skills/ontoly-software-graph",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
       "id": "open-dynamic-workflows",
       "path": "skills/open-dynamic-workflows",
       "targets": {
@@ -24979,6 +25169,25 @@
     {
       "id": "openclaw-github-repo-commander",
       "path": "skills/openclaw-github-repo-commander",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
+      "id": "optim-agent",
+      "path": "skills/optim-agent",
       "targets": {
         "codex": "supported",
         "claude": "supported"
@@ -26249,6 +26458,25 @@
     {
       "id": "powershell-windows",
       "path": "skills/powershell-windows",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
+      "id": "pptx-deck-creation",
+      "path": "skills/pptx-deck-creation",
       "targets": {
         "codex": "supported",
         "claude": "supported"
@@ -31820,6 +32048,25 @@
       "runtime_files": []
     },
     {
+      "id": "sshepherd",
+      "path": "skills/sshepherd",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
       "id": "stability-ai",
       "path": "skills/stability-ai",
       "targets": {
@@ -33517,6 +33764,25 @@
     {
       "id": "test-framework-migration-skill",
       "path": "skills/test-framework-migration-skill",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
+      "id": "test-guard",
+      "path": "skills/test-guard",
       "targets": {
         "codex": "supported",
         "claude": "supported"
@@ -35969,6 +36235,25 @@
       "runtime_files": []
     },
     {
+      "id": "warehouse",
+      "path": "skills/warehouse",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
       "id": "warren-buffett",
       "path": "skills/warren-buffett",
       "targets": {
@@ -36615,6 +36900,25 @@
       "runtime_files": []
     },
     {
+      "id": "woo-guard",
+      "path": "skills/woo-guard",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
       "id": "wordpress",
       "path": "skills/wordpress",
       "targets": {
@@ -36788,6 +37092,25 @@
     {
       "id": "workorai",
       "path": "skills/workorai",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
+      "id": "wp-guard",
+      "path": "skills/wp-guard",
       "targets": {
         "codex": "supported",
         "claude": "supported"
@@ -37439,10 +37762,10 @@
     }
   ],
   "summary": {
-    "total_skills": 1948,
+    "total_skills": 1965,
     "supported": {
-      "codex": 1874,
-      "claude": 1896
+      "codex": 1891,
+      "claude": 1913
     },
     "blocked": {
       "codex": 74,
