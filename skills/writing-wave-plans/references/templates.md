@@ -173,7 +173,23 @@ Task-level state lives in each wave file — this table is the wave-level rollup
      sentence enforces it. -->
 
 ## 5. Canonical module layout
-<!-- The one directory tree everything else references. -->
+<!-- The one directory tree everything else references. How you ORGANISE it is a real decision, not
+     a default — pick the axis deliberately and record it as an ADR (§11):
+       • by-layer (transport / domain / data): clearest dependency direction; but one feature
+         scatters across many folders.
+       • by-feature ("screaming architecture"): a folder per capability — the tree says what the app
+         DOES; but layer boundaries blur.
+       • feature-first, layered inside (hybrid): feature folders on top, with `ports/` (interfaces)
+         kept apart from `adapters/` (implementations) inside each, a `shared/` kernel for the common
+         vocabulary, and a host folder for wiring. Best once there is >1 adapter per port — but
+         right-size it: don't spawn single-file layer folders for a tiny effort.
+     Whichever axis, GROUP the tree so §4's dependency rule is VISIBLE in it: ports apart from
+     concretes, the domain/kernel importing nothing outward, and ONE composition root where the
+     concretes are constructed and injected. Annotate each entry with its role + the task/wave ID
+     that creates it. Then close with a short **Module conventions** list — the cross-cutting rules
+     that keep the layout clean, stack-appropriate, each with its reason: module system +
+     import-specifier style, type-only imports (keep the graph acyclic), NO barrel/re-export hubs,
+     ports-vs-adapters, validation at the boundary, errors as values, branded domain primitives. -->
 
 ## 6. Data architecture
 <!-- Stores + roles, tables/entities grouped by lifecycle, derived-not-stored rules, enum parity. -->

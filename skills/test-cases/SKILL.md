@@ -160,7 +160,7 @@ Use the Write tool to create the file with the structured test cases.
 
 ### Step 7: Summary
 
-After generating test cases, provide a brief summary in Chinese:
+After generating test cases, provide a brief summary in English:
 - Total number of test cases generated
 - Coverage breakdown (functional, edge, error, state)
 - Any assumptions made or areas needing clarification
@@ -191,7 +191,7 @@ Before finalizing test cases, verify:
 3. Identify scenarios: successful login, invalid credentials, expired session, etc.
 4. Generate test cases covering all scenarios
 5. Write to tests/auth-test-cases.md
-6. Summarize coverage in Chinese
+6. Summarize coverage in English
 
 ## References
 
