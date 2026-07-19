@@ -1,7 +1,11 @@
 # AAS Agent-First Control Plane v1 Goal
 
+> **Historical goal:** recommendation-quality, metadata, and policy gates described below were superseded on 2026-07-19 by the active [Agent-Owned Selection Profile](aas-agent-first-control-plane-preview-profile.md). Retained for decision history; not a current release gate.
+
 Status: approved source packet for the active Codex goal
 Design source: `docs/maintainers/aas-agent-first-control-plane-v1-design.md`
+
+> **Historical goal packet:** This file preserves the original certified-v1 finish line, including apply/recovery and independent verification work. It is not the current public preview contract or a claim that those gates shipped. The supported public preview stops after plan review; see [`aas-agent-first-control-plane-preview-profile.md`](aas-agent-first-control-plane-preview-profile.md).
 
 ## Fit
 

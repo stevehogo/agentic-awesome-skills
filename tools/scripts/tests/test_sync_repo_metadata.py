@@ -27,12 +27,15 @@ sync_repo_metadata = load_module(
     "tools/scripts/sync_repo_metadata.py",
     "sync_repo_metadata_test",
 )
+update_readme = sys.modules["update_readme"]
 
 
 class SyncRepoMetadataTests(unittest.TestCase):
     def test_sync_curated_docs_updates_counts_and_versions(self):
         metadata = {
             "version": "8.4.0",
+            "core_included": True,
+            "core_included_from_major": 8,
             "total_skills": 1304,
             "total_skills_label": "1,304+",
         }
@@ -62,15 +65,16 @@ class SyncRepoMetadataTests(unittest.TestCase):
             (root / "apps" / "web-app" / "public").mkdir(parents=True)
 
             (root / "apps" / "web-app" / "index.html").write_text(
-                '<meta name="description" content="Explore 1,273+ installable agentic skills">\n'
-                '<title>Agentic Awesome Skills GitHub | 1,273+ AI coding skills</title>\n',
+                '<meta name="description" content="AAS Core preview backed by 1,273+ cataloged skills">\n'
+                '<title>AAS Core Preview | Agent-first stacks backed by 1,273+ skills</title>\n',
                 encoding="utf-8",
             )
             (root / "apps" / "web-app" / "public" / "llms.txt").write_text(
                 "> Installable GitHub library of 1,273+ agentic SKILL.md playbooks.\n"
                 "- Current release: V8.3.0.\n"
+                "- Release boundary: the published V8.3.0 package predates AAS Core.\n"
                 "- Skill count: 1,273+.\n"
-                "Agentic Awesome Skills is an installable library of 1,273+ reusable SKILL.md playbooks.\n",
+                "AAS Core preview is backed by the 1,273+ skill catalog.\n",
                 encoding="utf-8",
             )
 
@@ -123,21 +127,26 @@ class SyncRepoMetadataTests(unittest.TestCase):
 
             self.assertGreaterEqual(updated_files, 12)
             readme = (root / "README.md").read_text(encoding="utf-8")
-            self.assertIn("1,304+ agentic skills", readme)
+            self.assertIn("# AAS Core — Agentic Awesome Skills", readme)
+            self.assertIn("1,304+ skills across development", readme)
             self.assertIn("[📚 Browse 1,304+ Skills](#browse-1304-skills)", readme)
             self.assertIn("[Browse 1,304+ Skills](#browse-1304-skills)", readme)
             self.assertIn("1,304+ reusable `SKILL.md` playbooks", readme)
-            self.assertIn("V8.4.0", (root / "docs" / "users" / "getting-started.md").read_text(encoding="utf-8"))
+            self.assertEqual(
+                "# Getting Started with AAS Core\n",
+                (root / "docs" / "users" / "getting-started.md").read_text(encoding="utf-8"),
+            )
             self.assertIn("1,304+ files", (root / "docs" / "users" / "gemini-cli-skills.md").read_text(encoding="utf-8"))
             self.assertIn("1,304+ specialized areas", (root / "docs" / "users" / "kiro-integration.md").read_text(encoding="utf-8"))
             self.assertIn("Total Bundles: 2", (root / "docs" / "users" / "bundles.md").read_text(encoding="utf-8"))
             web_index = (root / "apps" / "web-app" / "index.html").read_text(encoding="utf-8")
-            self.assertIn("1,304+ installable agentic skills", web_index)
-            self.assertIn("1,304+ AI coding skills", web_index)
+            self.assertIn("1,304+ cataloged skills", web_index)
+            self.assertIn("backed by 1,304+ skills", web_index)
             llms_text = (root / "apps" / "web-app" / "public" / "llms.txt").read_text(encoding="utf-8")
             self.assertIn("Current release: V8.4.0.", llms_text)
+            self.assertIn("V8.4.0 includes AAS Core", llms_text)
             self.assertIn("Skill count: 1,304+.", llms_text)
-            self.assertIn("1,304+ reusable SKILL.md playbooks", llms_text)
+            self.assertIn("1,304+ skill catalog", llms_text)
             jetski_cortex = (root / "docs" / "integrations" / "jetski-cortex.md").read_text(encoding="utf-8")
             self.assertIn("1,304+ skill", jetski_cortex)
             self.assertNotIn("1,1", jetski_cortex)
@@ -148,8 +157,59 @@ class SyncRepoMetadataTests(unittest.TestCase):
                 "total_skills_label": "1,304+",
             }
         )
+        self.assertIn("AAS Core is the local, agent-first control plane", description)
         self.assertIn("1,304+ agentic skills", description)
-        self.assertIn("installer CLI", description)
+        self.assertIn("local MCP", description)
+
+    def test_core_release_capability_is_major_based_and_fail_closed(self):
+        self.assertEqual(
+            update_readme.core_release_metadata({"version": "14.99.0", "aasCore": {"includedFromMajor": 15}}),
+            (False, 15),
+        )
+        self.assertEqual(
+            update_readme.core_release_metadata({"version": "15.0.0-rc.1", "aasCore": {"includedFromMajor": 15}}),
+            (True, 15),
+        )
+        self.assertEqual(
+            update_readme.core_release_metadata({"version": "16.0.0", "aasCore": {"includedFromMajor": 15}}),
+            (True, 15),
+        )
+        with self.assertRaises(ValueError):
+            update_readme.core_release_metadata({"version": "15.0.0"})
+        with self.assertRaises(ValueError):
+            update_readme.core_release_metadata({"version": "invalid", "aasCore": {"includedFromMajor": 15}})
+
+    def test_prerelease_metadata_sync_is_idempotent_and_can_promote_to_stable(self):
+        prerelease = {
+            "version": "15.0.0-rc.1",
+            "core_included": True,
+            "core_included_from_major": 15,
+            "total_skills": 1968,
+            "total_skills_label": "1,968+",
+            "star_badge_count": "44%2C000%2B",
+            "star_milestone": "44,000+",
+            "star_celebration": "44k",
+            "stars": 43524,
+            "updated_at": "2026-07-18T00:00:00+00:00",
+        }
+        readme = "**Current release: V15.0.0-rc.1.** stale\n"
+        once = update_readme.apply_metadata(readme, prerelease)
+        twice = update_readme.apply_metadata(once, prerelease)
+        self.assertEqual(once, twice)
+        self.assertIn("V15.0.0-rc.1.**", twice)
+        self.assertNotIn("rc.1.0-rc.1", twice)
+
+        llms = "- Current release: V15.0.0-rc.1.0-rc.1.\n"
+        synced = sync_repo_metadata.sync_llms_text(llms, prerelease)
+        self.assertEqual(synced, "- Current release: V15.0.0-rc.1.\n")
+        self.assertEqual(sync_repo_metadata.sync_llms_text(synced, prerelease), synced)
+
+        stable = {**prerelease, "version": "15.0.0"}
+        self.assertIn("V15.0.0.**", update_readme.apply_metadata(twice, stable))
+        self.assertEqual(
+            sync_repo_metadata.sync_llms_text(synced, stable),
+            "- Current release: V15.0.0.\n",
+        )
 
     def test_sync_github_about_builds_expected_commands(self):
         calls = []

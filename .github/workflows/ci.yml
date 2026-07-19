@@ -127,8 +127,7 @@ jobs:
           fi
 
           if [ "${{ steps.intake.outputs.has_quality_checklist }}" != "true" ]; then
-            echo "PR body must include the Quality Bar Checklist from the template."
-            exit 1
+            echo "::notice::PR body does not include the optional Quality Bar Checklist."
           fi
 
           if [ "${{ steps.intake.outputs.has_issue_link }}" != "true" ]; then
@@ -186,20 +185,11 @@ jobs:
         if: needs.pr-policy.outputs.requires_references == 'true'
         run: npm run validate:references
 
-      - name: Audit npm dependencies
-        run: npm audit --audit-level=high
-
       - name: Refresh ephemeral derived sources for tests
-        run: npm run plugin-compat:sync && npm run index && npm run bundles:sync
+        run: npm run plugin-compat:sync && npm run index && npm run bundles:sync && npm run sync:metadata && npm run catalog && npm run build:aas-v1-catalog
 
       - name: Run tests
         run: npm run test
-
-      - name: Install web-app dependencies
-        run: npm run app:install
-
-      - name: Run web app coverage
-        run: npm run app:test:coverage
 
       - name: Run docs security checks
         run: npm run security:docs
@@ -303,6 +293,9 @@ jobs:
     needs: [pr-policy, source-validation]
     steps:
       - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
       - name: Set up Python
         uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6

@@ -64,6 +64,18 @@ const contract = {
   releaseManagedFiles: ["CHANGELOG.md", "package.json", "package-lock.json", "README.md"],
 };
 
+const repositoryRoot = path.resolve(__dirname, "..", "..", "..");
+const agentInstructions = fs.readFileSync(path.join(repositoryRoot, "AGENTS.md"), "utf8");
+const maintenanceGuide = fs.readFileSync(path.join(repositoryRoot, ".github", "MAINTENANCE.md"), "utf8");
+for (const instructions of [agentInstructions, maintenanceGuide]) {
+  assert.match(instructions, /current[- ]base/i);
+  assert.match(instructions, /must exist on the current task base/i);
+  assert.match(instructions, /do not|never import/i);
+  assert.match(instructions, /another branch, worktree, stash, installed copy, or historical commit/i);
+}
+assert.doesNotMatch(agentInstructions, /review:skills:local|local-skill-reviewer-policy/);
+assert.doesNotMatch(maintenanceGuide, /review:skills:local|local-skill-reviewer-policy/);
+
 const publishWorkflow = fs.readFileSync(
   path.resolve(__dirname, "..", "..", "..", ".github", "workflows", "publish-npm.yml"),
   "utf8",
@@ -105,8 +117,13 @@ assert.doesNotMatch(
 assert.match(ciWorkflow, /^permissions:\n  contents: read$/m);
 assert.match(
   ciWorkflow,
-  /source-validation:[\s\S]*?- name: Refresh ephemeral derived sources for tests\n\s+run: npm run plugin-compat:sync && npm run index && npm run bundles:sync\n[\s\S]*?- name: Run tests\n\s+run: npm run test/,
+  /source-validation:[\s\S]*?- name: Refresh ephemeral derived sources for tests\n\s+run: npm run plugin-compat:sync && npm run index && npm run bundles:sync && npm run sync:metadata && npm run catalog && npm run build:aas-v1-catalog\n[\s\S]*?- name: Run tests\n\s+run: npm run test/,
   "source-only skill PRs must refresh uncommitted mirrors and indexes before tests read them",
+);
+assert.doesNotMatch(
+  ciWorkflow,
+  /build:aas-v1-review-queue|metadata-overrides\.v1\.json|review-queue\.v1\.json/,
+  "CI should not rebuild retired Core policy or review assets",
 );
 assert.match(ciWorkflow, /name: pr-evidence-/);
 assert.doesNotMatch(ciWorkflow, /pull_request_target:/);
@@ -130,20 +147,14 @@ assert.match(skillReviewWorkflow, /^permissions:\n  contents: read$/m);
 assert.match(skillReviewWorkflow, /^  review-attempt:$/m);
 assert.match(skillReviewWorkflow, /^  review:$/m);
 assert.match(skillReviewWorkflow, /^  manual-review-required:$/m);
-assert.match(skillReviewWorkflow, /^  missing-review-credentials:$/m);
+assert.doesNotMatch(skillReviewWorkflow, /^  missing-review-credentials:$/m);
 assert.match(
   skillReviewWorkflow,
-  /needs\.review-attempt\.outputs\.outcome == 'quota'/,
-  "quota exhaustion must route to exact-head manual review",
+  /needs\.review-attempt\.outputs\.outcome != 'reviewed'/,
+  "every non-passing Tessl outcome must route to exact-head manual review",
 );
-assert.match(
-  skillReviewWorkflow,
-  /github\.event\.pull_request\.head\.repo\.full_name != github\.repository/,
-);
-assert.match(
-  skillReviewWorkflow,
-  /github\.event\.pull_request\.head\.repo\.full_name == github\.repository/,
-);
+assert.match(skillReviewWorkflow, /result=manual/);
+assert.match(skillReviewWorkflow, /needs\.review-state\.outputs\.configured != 'true'/);
 assert.match(skillReviewWorkflow, /ref: \$\{\{ github\.event\.pull_request\.base\.sha \}\}/);
 assert.match(skillReviewWorkflow, /review_changed_skills\.cjs --plan/);
 assert.match(skillReviewWorkflow, /actions\/cache\/restore@[0-9a-f]{40}/);

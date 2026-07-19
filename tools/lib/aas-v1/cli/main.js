@@ -57,7 +57,7 @@ const COMMAND_OPTIONS = Object.freeze({
   "mcp configure": new Set(["host", "scope", "config", "cache-root", "version", "runtime-integrity", "runtime-closure-digest", "backup-dir", "retention", "approve", "help"]),
   "mcp backups cleanup": new Set(["config", "backup-dir", "keep", "approve", "help"]),
   "stack init": new Set(["goal", "catalog-digest", "cache-root", "host", "scope", "name", "out", "preview-windows-output", "help"]),
-  "stack recommend": new Set(["profile", "catalog-digest", "cache-root", "help"]),
+  "stack create": new Set(["selection", "catalog-digest", "cache-root", "out", "preview-windows-output", "help"]),
   "stack validate": new Set(["manifest", "help"]),
   "stack plan": new Set(["manifest", "target", "target-root", "cache-root", "runtime-version", "runtime-integrity", "out", "override-managed-drift", "preview-windows-output", "help"]),
   "stack apply": new Set(["plan", "target-root", "cache-root", "approve", "experimental-apply", "help"]),
@@ -226,7 +226,7 @@ function buildOperations({ manifest, target, adapter, allowManagedDrift }) {
     const actual = core.transaction.treeDigest(destination);
     if (actual !== current.treeDigest) {
       if (!allowManagedDrift) throw cliError("AAS_TRANSACTION_MANAGED_DRIFT", "drift", { skillId: skill.id });
-      overrides.push({ kind: "managedDrift", skillId: skill.id, reasonCodes: ["AAS_PLAN_MANAGED_DRIFT_APPROVED"], unknownFields: [] });
+      overrides.push({ kind: "managedDrift", skillId: skill.id, reasonCodes: ["AAS_PLAN_MANAGED_DRIFT_APPROVED"] });
     }
     if (actual !== sourceTreeDigest) {
       operations.push({ kind: "replaceManaged", skillId: skill.id, sourceTreeDigest, expectedTreeDigest: actual, resultTreeDigest: sourceTreeDigest, backupRequired: true });
@@ -240,7 +240,7 @@ function buildOperations({ manifest, target, adapter, allowManagedDrift }) {
     const actual = core.transaction.treeDigest(destination);
     if (actual !== current.treeDigest) {
       if (!allowManagedDrift) throw cliError("AAS_TRANSACTION_MANAGED_DRIFT", "drift", { skillId });
-      overrides.push({ kind: "managedDrift", skillId, reasonCodes: ["AAS_PLAN_MANAGED_DRIFT_APPROVED"], unknownFields: [] });
+      overrides.push({ kind: "managedDrift", skillId, reasonCodes: ["AAS_PLAN_MANAGED_DRIFT_APPROVED"] });
     }
     operations.push({ kind: "removeManaged", skillId, sourceTreeDigest: null, expectedTreeDigest: actual, resultTreeDigest: null, backupRequired: true });
     next.delete(skillId);
@@ -253,12 +253,11 @@ async function stackInit(options) {
   const host = options.host || "codex";
   const scope = options.scope || "project";
   const manifest = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     name: options.name || "aas-stack",
     catalog: { package: catalog.package, version: catalog.version, integrity: catalog.digest },
     targets: [{ host, scope }],
-    intent: { goals: [requireOption(options, "goal")] },
-    policy: { allowedRisk: ["none", "safe"], requireKnownSource: true, allowManualSetup: false },
+    profile: { goals: [requireOption(options, "goal")], languages: [], frameworks: [], constraints: [] },
     skills: [],
   };
   const validation = core.stack.validateManifest(manifest);
@@ -274,6 +273,22 @@ async function stackInit(options) {
   };
 }
 
+async function stackCreate(options) {
+  const catalog = await catalogFor(options);
+  const composed = core.composeStack(catalog, readJsonFile(requireOption(options, "selection")));
+  const output = options.out || "aas-stack.json";
+  const written = writeNewJson(output, composed.manifest, { previewWindowsOutput: options["preview-windows-output"] === true });
+  return {
+    ok: true,
+    status: "created",
+    selectionSource: "agent",
+    path: path.resolve(output),
+    selectedSkillIds: composed.manifest.skills.map((skill) => skill.id),
+    manifestDigest: composed.manifestDigest,
+    ...windowsOutputDurabilityDetails(written),
+  };
+}
+
 async function stackPlan(options, dependencies = {}) {
   const manifest = readJsonFile(requireOption(options, "manifest"));
   const validation = core.stack.validateManifest(manifest);
@@ -283,7 +298,10 @@ async function stackPlan(options, dependencies = {}) {
     throw cliError("AAS_PLAN_CATALOG_MISMATCH", "integrity", {});
   }
   const targetBase = selectTarget(manifest, requireOption(options, "target"));
-  const runtime = await verifiedRuntimeFor(options, null, dependencies);
+  if (options["runtime-version"] !== undefined && options["runtime-version"] !== manifest.catalog.version) {
+    throw cliError("AAS_PLAN_RUNTIME_CATALOG_MISMATCH", "integrity", {});
+  }
+  const runtime = await verifiedRuntimeFor({ ...options, "runtime-version": manifest.catalog.version }, null, dependencies);
   if (runtime.identity.package !== manifest.catalog.package || runtime.identity.version !== manifest.catalog.version) {
     throw cliError("AAS_PLAN_RUNTIME_CATALOG_MISMATCH", "integrity", {});
   }
@@ -292,27 +310,14 @@ async function stackPlan(options, dependencies = {}) {
   const target = { ...targetBase, adapterVersion: ADAPTER_VERSION, identityDigest: adapter.computeTargetIdentity(layout, targetBase) };
   const observed = buildOperations({ manifest, target, adapter, allowManagedDrift: options["override-managed-drift"] === true });
   for (const desired of manifest.skills) {
-    const candidate = core.getSkill(catalog, desired.id);
-    const assessment = core.eligibility(candidate, { policy: manifest.policy, targets: [targetBase] });
-    if (assessment.hardBlocked) {
-      throw cliError("AAS_PLAN_SKILL_POLICY_BLOCKED", "policy", { skillId: desired.id, reasonCodes: assessment.eligibilityReasonCodes });
-    }
-    if (!assessment.eligibleForRecommendation) {
-      observed.overrides.push({
-        kind: "discoveryCandidate",
-        skillId: desired.id,
-        reasonCodes: ["AAS_PLAN_DISCOVERY_CANDIDATE_VISIBLE_OVERRIDE"],
-        unknownFields: assessment.unknownFields,
-      });
-    }
+    core.getSkill(catalog, desired.id);
   }
   const plan = core.stack.buildPlanEnvelope({
     manifest,
     handshake: {
       protocolVersion: core.protocolVersion,
       coreVersion: core.coreVersion,
-      metadataSchemaVersion: core.metadataSchemaVersion,
-      scorerVersion: core.scorerVersion,
+      catalogSchemaVersion: core.catalogSchemaVersion,
     },
     catalog: manifest.catalog,
     runtime: runtime.identity,
@@ -347,9 +352,9 @@ function help() {
       "mcp configure --host codex|claude --scope user|project --config <absolute> --cache-root <absolute> [--version <semver>] [--runtime-integrity <npm-sri> --runtime-closure-digest <sha256>] [--backup-dir <absolute>] [--approve <digest>]",
       "mcp backups cleanup --config <absolute> --backup-dir <absolute> --keep <count> [--approve <digest>]",
       "stack init --goal <goal> [--catalog-digest <sha256> --cache-root <absolute>] [--preview-windows-output]",
-      "stack recommend --profile <json> [--catalog-digest <sha256> --cache-root <absolute>]",
+      "stack create --selection <json> --out <aas-stack.json> [--catalog-digest <sha256> --cache-root <absolute>]",
       "stack validate --manifest <aas-stack.json>",
-      "stack plan --manifest <file> --target <host:scope> --target-root <dir> --cache-root <absolute> --runtime-version <semver> --runtime-integrity <npm-sri> --out <file> [--preview-windows-output]",
+      "stack plan --manifest <file> --target <host:scope> --target-root <dir> --cache-root <absolute> --runtime-integrity <npm-sri> --out <file> [--preview-windows-output]",
       "stack apply --experimental-apply --plan <file> --target-root <dir> --cache-root <absolute> --approve <plan-digest> (EXPERIMENTAL; NOT CERTIFIED)",
       "stack doctor --plan <file> --target-root <dir> --cache-root <absolute>",
       "stack recover --experimental-recovery --plan <file> --target-root <dir> --cache-root <absolute> --id <id> --action rollback|cleanup [--approve <digest>] (EXPERIMENTAL; NOT CERTIFIED)",
@@ -513,8 +518,12 @@ async function execute(argv, dependencies = {}) {
   if (root === "mcp" && command === "backups" && positional[2] === "cleanup") return mcpBackupCleanup(options);
   if (root !== "stack") throw cliError("AAS_CLI_COMMAND_UNKNOWN", "invalidInput", { command: root });
   if (command === "init") return stackInit(options);
-  if (command === "recommend") return core.recommendStack(await catalogFor(options), readJsonFile(requireOption(options, "profile")));
-  if (command === "validate") return core.stack.validateManifest(readJsonFile(requireOption(options, "manifest")));
+  if (command === "create") return stackCreate(options);
+  if (command === "validate") {
+    const validation = core.stack.validateManifest(readJsonFile(requireOption(options, "manifest")));
+    if (!validation.ok) throw cliError(validation.code, validation.category, validation.details);
+    return validation;
+  }
   if (command === "plan") return stackPlan(options, dependencies);
   if (["apply", "doctor", "recover"].includes(command)) {
     const plan = readJsonFile(requireOption(options, "plan"));
@@ -577,8 +586,7 @@ async function main(argv = process.argv.slice(2), io = {}) {
       schemaVersion: 1,
       protocolVersion: core.protocolVersion,
       coreVersion: core.coreVersion,
-      metadataSchemaVersion: core.metadataSchemaVersion,
-      scorerVersion: core.scorerVersion,
+      catalogSchemaVersion: core.catalogSchemaVersion,
       reasonCodes: [],
       unknown: [],
       details: {},
@@ -594,8 +602,7 @@ async function main(argv = process.argv.slice(2), io = {}) {
       status: "error",
       protocolVersion: core.protocolVersion,
       coreVersion: core.coreVersion,
-      metadataSchemaVersion: core.metadataSchemaVersion,
-      scorerVersion: core.scorerVersion,
+      catalogSchemaVersion: core.catalogSchemaVersion,
       code: error.code || "AAS_CLI_EXECUTION_FAILED",
       category: error.category || "execution",
       details: error.details || {},

@@ -14,9 +14,6 @@ const INDEX_RELATIVE = "data/aas-v1/skill-content-index.v1.json";
 const MANIFEST_RELATIVE = "data/aas-v1/catalog-manifest.v1.json";
 const STATIC_ASSETS = [
   "data/catalog.json",
-  "data/plugin-compatibility.json",
-  "tools/lib/aas-v1/metadata-reviews.v1.json",
-  "tools/lib/aas-v1/metadata-overrides.v1.json",
   "tools/lib/aas-v1/ontology.v1.json",
 ];
 
@@ -66,7 +63,7 @@ function buildArtifacts() {
     schemaVersion: 1,
     package: packageMetadata.name,
     packageVersion: packageMetadata.version,
-    metadataSchemaVersion: versions.metadataSchemaVersion,
+    catalogSchemaVersion: versions.catalogSchemaVersion,
     digestVersion: 1,
     catalogDigest,
     assets,

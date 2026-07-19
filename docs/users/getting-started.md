@@ -1,8 +1,21 @@
-# Getting Started with Agentic Awesome Skills (V14.6.0)
+# Getting Started with AAS Core
 
-**New here? This guide will help you supercharge your AI Agent in 5 minutes.**
+**New here? Start with AAS Core and let your agent choose a reviewable skill stack from the complete catalog.**
 
-> **💡 Confused about what to do after installation?** Check out the [**Complete Usage Guide**](usage.md) for detailed explanations and examples!
+> **Product boundary:** Codex or Claude owns skill selection. AAS Core provides complete local catalog access, reproducible composition, validation, and plan preview; apply and recovery remain experimental.
+
+## Start with AAS Core
+
+AAS Core is the primary product path. Codex or Claude inspects your project, searches and reads the complete catalog through the local read-only AAS MCP, chooses the exact skill IDs, and uses `compose_stack` to propose an `aas-stack.json`. You review those IDs before using the `aas` CLI to validate the manifest and preview a plan.
+
+```text
+project -> agent -> full local catalog -> agent selection -> compose_stack -> aas-stack.json
+        -> human review -> validate -> plan preview
+```
+
+Start with the canonical [AAS Core guide](aas-core.md) to configure the MCP and run that flow. The direct installer, plugins, bundles, and manual skill invocation described below remain useful alternatives, especially for hosts without a native AAS MCP adapter.
+
+> **Need more examples after setup?** Continue with the [Complete Usage Guide](usage.md).
 
 ---
 
@@ -15,16 +28,16 @@ AI Agents (like **Claude Code**, **Gemini**, **Cursor**) are smart, but they lac
 
 ---
 
-## Quick Start: The "Starter Packs"
+## Alternative Path: Direct Skill Distribution and Starter Packs
 
 Don't panic about the size of the repository. You don't need everything at once.
 We have curated **Starter Packs** to get you running immediately.
 
-You **install the full repo once** (npx or clone); Starter Packs are curated lists to help you **pick which skills to use** by role (e.g. Web Wizard, Hacker Pack)—they are not a different way to install.
+On the direct-install path, you install the library once (npx or clone); Starter Packs are curated lists to help you **pick which skills to use** by role (e.g. Web Wizard, Hacker Pack)—they are not a different way to install.
 
 If you prefer a marketplace-style install for **Claude Code** or **Codex**, use the new plugin distributions described in [plugins.md](plugins.md).
 
-### 1. Install the Repo
+### 1. Install Skills Directly
 
 **Option A — npx (easiest):**
 
@@ -154,7 +167,7 @@ For Claude Code, use:
 For Codex, this repository also ships a root plugin plus bundle plugins through the repo-local metadata described in [plugins.md](plugins.md).
 
 **Q: Do I need to install every skill?**
-A: You clone the whole repo once; your AI only _reads_ the skills you invoke (or that are relevant), so it stays lightweight. **Starter Packs** in [bundles.md](bundles.md) are curated lists to help you discover the right skills for your role—they don't change how you install.
+A: No. With AAS Core, ask the agent to inspect the project and choose exact IDs from the complete catalog. On the legacy direct-install path, you can install the broad library while the host reads only invoked or relevant skills. **Starter Packs** in [bundles.md](bundles.md) remain human-curated discovery aids.
 
 **Q: Can I make my own skills?**
 A: Yes! Use the **@skill-creator** skill to build your own.
@@ -186,6 +199,7 @@ Need a tool-specific starting point first?
 - [Codex CLI skills](codex-cli-skills.md)
 - [Gemini CLI skills](gemini-cli-skills.md)
 
-1. [Browse the Bundles](bundles.md)
-2. [See Real-World Examples](../contributors/examples.md)
-3. [Contribute a Skill](../../CONTRIBUTING.md)
+1. [Configure and use AAS Core](aas-core.md)
+2. [Browse the Bundles](bundles.md)
+3. [See Real-World Examples](../contributors/examples.md)
+4. [Contribute a Skill](../../CONTRIBUTING.md)

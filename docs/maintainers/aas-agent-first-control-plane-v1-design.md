@@ -1,7 +1,11 @@
 # AAS Agent-First Control Plane v1 Design
 
+> **Historical design:** deterministic Core recommendation, metadata eligibility, and selection policy described below were superseded on 2026-07-19 by the active [Agent-Owned Selection Profile](aas-agent-first-control-plane-preview-profile.md). Retained for architecture history; not current product policy.
+
 Status: frozen and approved for implementation
 Date: 2026-07-17
+
+> **Historical target design:** This frozen document records the stronger certified-v1 target and preserves the terminology approved at that time. It is not a statement of current public guarantees. The supported public preview stops after plan review; see [`aas-agent-first-control-plane-preview-profile.md`](aas-agent-first-control-plane-preview-profile.md). In current product documentation, AAS Core is the product and `aas-stack.json` plus the plan are its durable artifacts.
 
 ## Product statement
 

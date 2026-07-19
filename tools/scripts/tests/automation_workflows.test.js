@@ -11,6 +11,7 @@ function readText(relativePath) {
 const packageJson = JSON.parse(readText("package.json"));
 const generatedFiles = JSON.parse(readText("tools/config/generated-files.json"));
 const ciWorkflow = readText(".github/workflows/ci.yml");
+const offlineCatalogBuilder = readText("tools/scripts/build-aas-v1-offline-catalog.js");
 const canonicalMergeScript = readText("tools/scripts/merge_canonical_sync_pr.cjs");
 const publishWorkflow = readText(".github/workflows/publish-npm.yml");
 const releaseWorkflowScript = readText("tools/scripts/release_workflow.js");
@@ -65,6 +66,11 @@ assert.match(
   /check:warning-budget/,
   "sync:repo-state should enforce the frozen validation warning budget",
 );
+assert.match(
+  packageJson.scripts.chain,
+  /build:aas-v1-catalog/,
+  "chain should refresh the offline AAS v1 catalog after skill index generation",
+);
 assert.strictEqual(
   packageJson.scripts["app:install"],
   "cd apps/web-app && npm ci",
@@ -75,6 +81,7 @@ for (const filePath of [
   "apps/web-app/public/sitemap.xml",
   "apps/web-app/public/skills.json.backup",
   "data/plugin-compatibility.json",
+  "data/aas-v1/",
   ".agents/plugins/",
   ".claude-plugin/plugin.json",
   ".claude-plugin/marketplace.json",
@@ -83,6 +90,17 @@ for (const filePath of [
   assert.ok(
     generatedFiles.derivedFiles.includes(filePath),
     `generated-files derivedFiles should include ${filePath}`,
+  );
+}
+
+for (const retiredCoreAsset of [
+  "tools/lib/aas-v1/metadata-overrides.v1.json",
+  "tools/lib/aas-v1/metadata-reviews.v1.json",
+  "tools/lib/aas-v1/review-queue.v1.json",
+]) {
+  assert.ok(
+    !generatedFiles.derivedFiles.includes(retiredCoreAsset),
+    `generated-files should not retain retired Core policy asset ${retiredCoreAsset}`,
   );
 }
 
@@ -150,6 +168,28 @@ assert.match(
   ciWorkflow,
   /source-validation:[\s\S]*?- uses: actions\/checkout@[a-f0-9]{40}[\s\S]*?with:[\s\S]*?fetch-depth: 0/,
   "source-validation should use an unshallowed checkout so base-branch diffs have a merge base",
+);
+
+const pagesWorkflow = readText(".github/workflows/pages.yml");
+assert.match(
+  pagesWorkflow,
+  /- name: Checkout[\s\S]*?uses: actions\/checkout@[a-f0-9]{40}[\s\S]*?with:[\s\S]*?fetch-depth: 0[\s\S]*?persist-credentials: false/,
+  "Pages should use an unshallowed, credential-free checkout because canonical provenance validation reads git history",
+);
+assert.match(
+  ciWorkflow,
+  /artifact-preview:[\s\S]*?actions\/checkout@[a-f0-9]{40}[\s\S]*?fetch-depth: 0[\s\S]*?persist-credentials: false/,
+  "artifact-preview should retain history because canonical provenance generation reads git history",
+);
+assert.doesNotMatch(
+  offlineCatalogBuilder,
+  /buildMetadataOverrides|metadata-overrides|review-queue/,
+  "offline catalog builds should not bind retired Core policy or review assets",
+);
+assert.match(
+  offlineCatalogBuilder,
+  /catalogSchemaVersion:\s*versions\.catalogSchemaVersion/,
+  "offline catalog manifests should bind the explicit catalog schema version",
 );
 assert.match(
   ciWorkflow,
@@ -293,6 +333,31 @@ assert.match(
 );
 
 assert.match(publishWorkflow, /run: npm ci/, "npm publish workflow should install dependencies");
+assert.match(
+  publishWorkflow,
+  /node-version: "22\.23\.1"/,
+  "npm publish workflow should use the supported Node 22 runtime",
+);
+assert.match(
+  publishWorkflow,
+  /npm publish --tag next/,
+  "npm prereleases should publish to the next dist-tag",
+);
+assert.match(
+  publishWorkflow,
+  /else[\s\S]*npm publish --tag latest/,
+  "stable npm releases should publish explicitly to latest",
+);
+assert.doesNotMatch(
+  publishWorkflow,
+  /^\s*npm publish\s*$/mu,
+  "npm releases should never publish without an explicit dist-tag",
+);
+assert.match(
+  publishWorkflow,
+  /semver\.test/,
+  "npm releases should fail closed on an invalid package version",
+);
 assert.match(
   publishWorkflow,
   /pip install -r tools\/requirements\.txt/,

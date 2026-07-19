@@ -10,12 +10,13 @@ const core = require("../../lib/aas-v1");
 const { execute, main, windowsOutputDurabilityDetails } = require("../../lib/aas-v1/cli/main");
 
 const ROOT = path.resolve(__dirname, "../../..");
+const PACKAGE_VERSION = require(path.join(ROOT, "package.json")).version;
 
 function fixture() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "aas-cli-"));
   const runtime = {
     package: "agentic-awesome-skills",
-    version: "14.6.0",
+    version: PACKAGE_VERSION,
     integrity: "sha512-VTOb3O9PSYKCDO99i3h0vOn7vHQlGtO/+jSErR80g6OGaDJoBzg3q2GE9Nu890en1/Z54hBEYiVQj/1Rl95xEg==",
     closureDigest: `sha256-${"1".repeat(64)}`,
   };
@@ -43,16 +44,32 @@ test("Windows output reports certified durability without marking the preview fa
   );
 });
 
-test("CLI stack lifecycle creates a minimal manifest, immutable plan, applies it, and diagnoses it", async (context) => {
+test("CLI stack lifecycle persists an explicit agent selection, plans it, applies it, and diagnoses it", async (context) => {
   const item = fixture();
   context.after(() => fs.rmSync(item.root, { recursive: true, force: true }));
   const manifestPath = path.join(item.root, "aas-stack.json");
-  const initialized = await execute(["stack", "init", "--out", manifestPath, "--name", "cli-test", "--goal", "build"]);
-  assert.equal(initialized.status, "initialized");
+  const selectionPath = path.join(item.root, "selection.json");
+  fs.writeFileSync(selectionPath, `${core.canonicalJson({
+    name: "cli-test",
+    targets: [{ host: "codex", scope: "project" }],
+    profile: {
+      goals: ["build"],
+      projectType: "agent application",
+      languages: ["javascript"],
+      frameworks: [],
+      constraints: ["local-only"],
+    },
+    skillIds: ["ai-agents-architect"],
+  })}\n`);
+  const created = await execute(["stack", "create", "--selection", selectionPath, "--out", manifestPath]);
+  assert.equal(created.status, "created");
+  assert.equal(created.selectionSource, "agent");
+  assert.deepEqual(created.selectedSkillIds, ["ai-agents-architect"]);
   const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
-  assert.deepEqual(manifest.skills, []);
-  manifest.skills = [{ id: "ai-agents-architect" }];
-  fs.writeFileSync(manifestPath, `${core.canonicalJson(manifest)}\n`);
+  assert.equal(manifest.schemaVersion, 2);
+  assert.deepEqual(manifest.skills, [{ id: "ai-agents-architect" }]);
+  assert.deepEqual(manifest.profile.goals, ["build"]);
+  assert.equal(Object.hasOwn(manifest, "policy"), false);
   const planPath = path.join(item.root, "plan.json");
   const planned = await execute([
     "stack", "plan", "--manifest", manifestPath, "--target", "codex:project",
@@ -117,6 +134,26 @@ test("CLI exits stably on missing approval and never prints a stack trace", asyn
   assert.doesNotMatch(stderr, /\bat\s+\S+\.js:/);
 });
 
+test("CLI reports an invalid stack manifest as invalid input", async (context) => {
+  const item = fixture();
+  context.after(() => fs.rmSync(item.root, { recursive: true, force: true }));
+  const manifestPath = path.join(item.root, "invalid-stack.json");
+  fs.writeFileSync(manifestPath, "{}\n");
+  let stdout = "";
+  let stderr = "";
+  const code = await main(["stack", "validate", "--manifest", manifestPath], {
+    stdout: { write: (value) => { stdout += value; } },
+    stderr: { write: (value) => { stderr += value; } },
+  });
+  assert.equal(code, 2);
+  assert.equal(stdout, "");
+  const error = JSON.parse(stderr);
+  assert.equal(error.status, "error");
+  assert.equal(error.code, "AAS_STACK_MANIFEST_INVALID");
+  assert.equal(error.category, "invalidInput");
+  assert.ok(error.details.issues.length > 0);
+});
+
 test("CLI success is emitted through the versioned result envelope", async () => {
   let stdout = "";
   const code = await main(["help"], {
@@ -143,21 +180,32 @@ test("CLI rejects unknown flags and extra positional arguments fail-closed", asy
   );
 });
 
-test("CLI recommendation reads only the explicit profile file", async (context) => {
+test("CLI stack create reads the agent's explicit selection and persists it atomically", async (context) => {
   const item = fixture();
   context.after(() => fs.rmSync(item.root, { recursive: true, force: true }));
-  const profile = {
-    intent: "test-qa-automation",
+  const selection = {
+    name: "qa-stack",
     targets: [{ host: "codex", scope: "project" }],
-    profile: { languages: ["javascript"] },
-    criticalGoals: ["unit-testing"],
-    nonCriticalGoals: [],
-    policy: { allowedRisk: ["none", "safe"], requireKnownSource: true, allowManualSetup: false },
+    profile: {
+      goals: ["unit-testing"],
+      languages: ["javascript"],
+      frameworks: [],
+      constraints: [],
+    },
+    skillIds: ["playwright-skill"],
   };
-  const profilePath = path.join(item.root, "profile.json");
-  fs.writeFileSync(profilePath, `${core.canonicalJson(profile)}\n`);
-  const result = await execute(["stack", "recommend", "--profile", profilePath]);
-  assert.equal(result.ok, true);
+  const selectionPath = path.join(item.root, "selection.json");
+  const manifestPath = path.join(item.root, "selected-stack.json");
+  fs.writeFileSync(selectionPath, `${core.canonicalJson(selection)}\n`);
+  const result = await execute(["stack", "create", "--selection", selectionPath, "--out", manifestPath]);
+  assert.equal(result.status, "created");
+  assert.deepEqual(result.selectedSkillIds, selection.skillIds);
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+  assert.deepEqual(manifest.skills, [{ id: "playwright-skill" }]);
+  await assert.rejects(
+    execute(["stack", "create", "--selection", selectionPath, "--out", manifestPath]),
+    { code: "AAS_CLI_OUTPUT_EXISTS" },
+  );
 });
 
 test("production CLI resolves and re-verifies a content-addressed runtime cache", async (context) => {
@@ -169,7 +217,7 @@ test("production CLI resolves and re-verifies a content-addressed runtime cache"
   const integrity = item.runtime.integrity;
   const packageJson = {
     name: "agentic-awesome-skills",
-    version: "14.6.0",
+    version: item.runtime.version,
     bin: { "aas-mcp": "tools/bin/aas-mcp.js" },
     bundledDependencies: ["ajv", "sanitize-filename", "yaml"],
   };
@@ -190,7 +238,7 @@ test("production CLI resolves and re-verifies a content-addressed runtime cache"
     cacheRoot,
     release: {
       package: "agentic-awesome-skills",
-      version: "14.6.0",
+      version: item.runtime.version,
       integrity,
       provenance: { registryOrigin: "https://registry.npmjs.org", signaturesPresent: false, attestationsPresent: false },
     },
@@ -211,13 +259,25 @@ test("production CLI resolves and re-verifies a content-addressed runtime cache"
   const planned = spawnSync(process.execPath, [
     path.join(ROOT, "tools/bin/aas.js"), "stack", "plan",
     "--manifest", manifestPath, "--target", "codex:project", "--target-root", targetRoot,
-    "--cache-root", cacheRoot, "--runtime-version", "14.6.0", "--runtime-integrity", integrity,
+    "--cache-root", cacheRoot, "--runtime-integrity", integrity,
     "--out", planPath,
   ], { cwd: targetRoot, encoding: "utf8" });
   assert.equal(planned.status, 0, planned.stderr);
   const plan = JSON.parse(fs.readFileSync(planPath, "utf8"));
+  assert.equal(plan.payload.runtime.version, manifest.catalog.version);
   assert.equal(plan.payload.runtime.closureDigest, promoted.runtimeIdentity.closureDigest);
   assert.equal(fs.existsSync(path.join(targetRoot, ".aas")), false);
+
+  const mismatchedPlanPath = path.join(item.root, "mismatched-plan.json");
+  const mismatched = spawnSync(process.execPath, [
+    path.join(ROOT, "tools/bin/aas.js"), "stack", "plan",
+    "--manifest", manifestPath, "--target", "codex:project", "--target-root", targetRoot,
+    "--cache-root", cacheRoot, "--runtime-version", "99.0.0", "--runtime-integrity", integrity,
+    "--out", mismatchedPlanPath,
+  ], { cwd: targetRoot, encoding: "utf8" });
+  assert.equal(mismatched.status, 3, mismatched.stderr);
+  assert.equal(JSON.parse(mismatched.stderr).code, "AAS_PLAN_RUNTIME_CATALOG_MISMATCH");
+  assert.equal(fs.existsSync(mismatchedPlanPath), false);
 
   fs.writeFileSync(path.join(promoted.targetPath, "package", "skills", "ai-agents-architect", "SKILL.md"), "tampered\n");
   const rejected = spawnSync(process.execPath, [

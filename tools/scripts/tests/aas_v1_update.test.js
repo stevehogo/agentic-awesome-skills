@@ -21,6 +21,7 @@ const {
 
 const ROOT = path.resolve(__dirname, "../../..");
 const packageMetadata = require(path.join(ROOT, "package.json"));
+const expectedSkillCount = require(path.join(ROOT, "skills_index.json")).length;
 const TARBALL_URL = `${REGISTRY_ORIGIN}/${packageMetadata.name}/-/${packageMetadata.name}-${packageMetadata.version}.tgz`;
 
 let fixtureRoot;
@@ -35,7 +36,7 @@ async function makeAlternateBundledCatalog(sourceRoot, destinationRoot) {
   await fsp.cp(sourceRoot, destinationRoot, { recursive: true });
   const manifestPath = path.join(destinationRoot, ...CATALOG_MANIFEST_PATH.split("/"));
   const manifest = JSON.parse(await fsp.readFile(manifestPath, "utf8"));
-  const changedPath = "data/plugin-compatibility.json";
+  const changedPath = "data/catalog.json";
   const changedFile = path.join(destinationRoot, ...changedPath.split("/"));
   await fsp.appendFile(changedFile, "\n");
   const bytes = await fsp.readFile(changedFile);
@@ -149,7 +150,7 @@ test("the mocked npm registry promotes, verifies, resolves, and reuses the real 
   const resolved = await resolveCatalog(result.identity.catalogDigest);
   assert.ok(resolved);
   assert.equal(resolved.digest, result.identity.catalogDigest);
-  assert.equal(resolved.skills.length, 1965);
+  assert.equal(resolved.skills.length, expectedSkillCount);
 
   const beforeRepeat = JSON.stringify(status.identity);
   calls.length = 0;

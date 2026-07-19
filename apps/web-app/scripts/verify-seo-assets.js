@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import crypto from 'node:crypto';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -190,11 +191,20 @@ function parseCliArgs(argv) {
   return args;
 }
 
-function getPackageReleaseLabel() {
+function getPackageReleaseMetadata() {
   const raw = readFile(path.join(REPO_ROOT_DIR, 'package.json'), REPO_ROOT_DIR);
   const pkg = JSON.parse(raw);
   assert(typeof pkg.version === 'string' && pkg.version.trim(), 'Root package.json must define version.');
-  return `V${pkg.version.trim()}`;
+  assert(
+    Number.isInteger(pkg.aasCore?.includedFromMajor) && pkg.aasCore.includedFromMajor > 0,
+    'Root package.json must define aasCore.includedFromMajor.',
+  );
+  const major = Number.parseInt(pkg.version.split('.')[0], 10);
+  assert(Number.isInteger(major), 'Root package.json version must begin with a major number.');
+  return {
+    label: `V${pkg.version.trim()}`,
+    coreIncluded: major >= pkg.aasCore.includedFromMajor,
+  };
 }
 
 function extractMetaContent(htmlText, selectorType, selectorValue) {
@@ -724,8 +734,9 @@ export function assertIndexDiscoveryMeta(htmlText, { expectedSkillCountLabel = '
     combined.includes(expectedSkillCountLabel),
     `Home SEO metadata must expose the current ${expectedSkillCountLabel} skill count.`,
   );
-  assert(combined.includes('GitHub library'), 'Home SEO metadata must mention the GitHub library.');
-  assert(combined.includes('specialized plugins'), 'Home SEO metadata must mention specialized plugins.');
+  assert(combined.includes('AAS Core'), 'Home SEO metadata must lead with AAS Core.');
+  assert(combined.includes('preview'), 'Home SEO metadata must state the preview boundary.');
+  assert(combined.includes('catalog'), 'Home SEO metadata must identify the supporting catalog.');
   assert(!combined.includes('prompt templates'), 'Home SEO metadata must not use stale prompt-template positioning.');
   assertOnlyExpectedSkillCountLabel(combined, expectedSkillCountLabel, 'Home SEO metadata');
   const jsonLdText = JSON.stringify(extractJsonLdEntries(htmlText));
@@ -751,8 +762,9 @@ export function assertStaticIndexShell(htmlText, { expectedSkillCountLabel = '1,
     combined.includes(expectedSkillCountLabel),
     `Source index shell must expose the current ${expectedSkillCountLabel} skill count.`,
   );
-  assert(combined.includes('GitHub library'), 'Source index shell must mention the GitHub library.');
-  assert(combined.includes('specialized plugins'), 'Source index shell must mention specialized plugins.');
+  assert(combined.includes('AAS Core'), 'Source index shell must lead with AAS Core.');
+  assert(combined.includes('preview'), 'Source index shell must state the preview boundary.');
+  assert(combined.includes('catalog'), 'Source index shell must identify the supporting catalog.');
   assertOnlyExpectedSkillCountLabel(combined, expectedSkillCountLabel, 'Source index shell');
   if (requireHostedUrl) {
     assertNoLocalhostUrl(combined, 'Source index shell');
@@ -784,6 +796,19 @@ export function assertSocialCard(cardData, { expectedSkillCountLabel = '1,678+' 
   );
   assert(text.includes('Agentic Awesome Skills'), 'Social card must identify Agentic Awesome Skills.');
   assertOnlyExpectedSkillCountLabel(text, expectedSkillCountLabel, 'Social card');
+}
+
+export function assertSocialCardProvenance(cardData, provenanceText) {
+  const provenance = JSON.parse(String(provenanceText ?? ''));
+  const { width, height } = readPngDimensions(cardData);
+  const digest = crypto.createHash('sha256').update(cardData).digest('hex');
+
+  assert(provenance.schemaVersion === 1, 'Social card provenance must use schema version 1.');
+  assert(provenance.generator === 'OpenAI ImageGen', 'Social card provenance must identify OpenAI ImageGen.');
+  assert(provenance.dimensions?.width === width && provenance.dimensions?.height === height, 'Social card provenance dimensions must match the PNG.');
+  assert(provenance.sha256 === digest, 'Social card provenance SHA-256 must match the PNG.');
+  assert(Array.isArray(provenance.visibleCopy) && provenance.visibleCopy.includes('AAS Core'), 'Social card provenance must preserve AAS Core as the primary visible product.');
+  assert(provenance.visibleCopy.includes('profile → stack → plan'), 'Social card provenance must preserve the Core workflow.');
 }
 
 export function assertPluginsDiscoveryMeta(htmlText) {
@@ -869,7 +894,7 @@ export function assertPrerenderedWorkbenchRoutes(workbenchUrls, distDir = 'dist'
       `Missing prerendered page for workbench route: ${parsed.pathname}. Expected ${filePath}.`,
     );
     const html = readFile(filePath, distDir);
-    assert(extractTitle(html).includes('Stack Review Workbench'), 'Workbench prerender must expose its exact review product title.');
+    assert(extractTitle(html).includes('AAS Core Stack Review'), 'Workbench prerender must expose its AAS Core review title.');
     assert(extractMetaContent(html, 'name', 'description')?.includes('Imports stay in memory'), 'Workbench prerender must describe in-memory review.');
   }
 }
@@ -910,10 +935,14 @@ export function assertRobots(robotsText, { expectedSitemapUrl = '' } = {}) {
   assert(allowsAiSearchCrawlers, 'robots.txt must explicitly expose AI search crawler directives.');
 }
 
-export function assertLlms(llmsText, { expectedSkillCountLabel = '1,678+', expectedReleaseLabel = '' } = {}) {
+export function assertLlms(
+  llmsText,
+  { expectedSkillCountLabel = '1,678+', expectedReleaseLabel = '', expectedCoreIncluded = false } = {},
+) {
   const text = String(llmsText ?? '');
   const requiredSnippets = [
     '# Agentic Awesome Skills',
+    'AAS Core preview',
     expectedSkillCountLabel,
     'specialized plugins',
     'Claude Code',
@@ -921,6 +950,7 @@ export function assertLlms(llmsText, { expectedSkillCountLabel = '1,678+', expec
     'https://github.com/sickn33/agentic-awesome-skills',
     'https://sickn33.github.io/agentic-awesome-skills/workbench',
     'Canonical source of truth',
+    expectedCoreIncluded ? 'includes AAS Core' : 'predates AAS Core',
   ];
 
   for (const snippet of requiredSnippets) {
@@ -975,7 +1005,7 @@ export function runVerification({
   socialImagePath = safeUserPath(socialImagePath);
   distDir = safeUserPath(distDir);
 
-  const expectedReleaseLabel = getPackageReleaseLabel();
+  const releaseMetadata = getPackageReleaseMetadata();
   const sitemapText = readFile(sitemapPath);
   const sitemapReport = analyzeSitemap(sitemapText, { minSkillUrls, requireHostedUrl });
   const indexHtml = readFile(indexPath);
@@ -996,11 +1026,18 @@ export function runVerification({
   const sourceIndexHtml = readFile(sourceIndexPath);
   assertStaticIndexShell(sourceIndexHtml, { expectedSkillCountLabel, requireHostedUrl });
   assertWebmasterVerificationMeta(sourceIndexHtml);
-  assertSocialCard(readBinaryFile(socialImagePath), { expectedSkillCountLabel });
+  const socialCard = readBinaryFile(socialImagePath);
+  assertSocialCard(socialCard, { expectedSkillCountLabel });
+  const socialCardProvenancePath = path.join(path.dirname(socialImagePath), 'social-card.provenance.json');
+  assertSocialCardProvenance(socialCard, readFile(socialCardProvenancePath));
   assertRobots(readFile(robotsPath), {
     expectedSitemapUrl: new URL('sitemap.xml', sitemapReport.rootUrl).href,
   });
-  assertLlms(readFile(llmsPath), { expectedSkillCountLabel, expectedReleaseLabel });
+  assertLlms(readFile(llmsPath), {
+    expectedSkillCountLabel,
+    expectedReleaseLabel: releaseMetadata.label,
+    expectedCoreIncluded: releaseMetadata.coreIncluded,
+  });
   assertManifest(readFile(manifestPath));
   if (requireHostedUrl) {
     assertNoLocalhostUrl(sitemapText, 'Sitemap');

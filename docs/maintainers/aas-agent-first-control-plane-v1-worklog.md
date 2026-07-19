@@ -1,5 +1,12 @@
 # AAS Agent-First Control Plane v1 Worklog
 
+- 2026-07-19: Semantic skill selection moved to Codex and Claude. Core now exposes the complete catalog and validates/pins exact agent-selected IDs through `compose_stack`; selection policy and metadata eligibility gates were retired. Every canonical skill must remain searchable, readable, selectable, and usable. Earlier recommendation entries below are historical.
+
+## 2026-07-18 — Baseline workflow retired
+
+- The standalone `aas-v1-baseline` pull-request workflow and required status check were retired by maintainer decision. The obsolete verifier corpus, harness, tuning runner, and paused apply/optimize workflows were subsequently removed. The protected `pr-policy`, `pr-evidence`, `source-validation`, and `artifact-preview` gates remain required.
+- Entries below this point are a historical construction log. References to frozen verifier assets, matrices, paths, or pending certification gates describe the state at that date and are not current repository policy.
+
 ## 2026-07-17 — Goal activation and clean baseline
 
 - Active objective is defined by the approved design and goal documents.

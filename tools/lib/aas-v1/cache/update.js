@@ -17,9 +17,6 @@ const CATALOG_ASSET_PATHS = Object.freeze([
   "data/aas-v1/skill-content-index.v1.json",
   "data/aas-v1/skill-content.v1.ndjson",
   "data/catalog.json",
-  "data/plugin-compatibility.json",
-  "tools/lib/aas-v1/metadata-reviews.v1.json",
-  "tools/lib/aas-v1/metadata-overrides.v1.json",
   "tools/lib/aas-v1/ontology.v1.json",
 ]);
 
@@ -68,7 +65,8 @@ function validateCatalogManifest(bytes, version) {
   const text = bytes.toString("utf8");
   const manifest = JSON.parse(text);
   if (`${canonicalJson(manifest)}\n` !== text || manifest.schemaVersion !== 1 || manifest.digestVersion !== 1
-    || manifest.package !== PACKAGE_NAME || manifest.packageVersion !== version || manifest.skillCount !== 1965
+    || manifest.package !== PACKAGE_NAME || manifest.packageVersion !== version
+    || !Number.isSafeInteger(manifest.skillCount) || manifest.skillCount <= 0
     || !/^sha256-[a-f0-9]{64}$/.test(manifest.catalogDigest) || !Array.isArray(manifest.assets)) {
     throw cacheError("AAS_UPDATE_CATALOG_MANIFEST_INVALID", "catalog manifest is invalid or incompatible");
   }

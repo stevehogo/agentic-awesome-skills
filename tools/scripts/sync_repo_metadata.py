@@ -9,7 +9,15 @@ from pathlib import Path
 
 from plugin_compatibility import compatibility_by_skill_id, load_plugin_compatibility
 from sync_editorial_bundles import load_editorial_bundles, render_bundles_doc
-from update_readme import configure_utf8_output, find_repo_root, load_metadata, update_readme
+from update_readme import (
+    VERSION_TOKEN_PATTERN,
+    configure_utf8_output,
+    core_release_boundary,
+    core_release_status,
+    find_repo_root,
+    load_metadata,
+    update_readme,
+)
 
 
 ABOUT_DESCRIPTION_RE = re.compile(r'"description"\s*:\s*"([^"]*)"')
@@ -37,10 +45,17 @@ RECOMMENDED_TOPICS = [
     "mcp",
 ]
 README_TAGLINE_RE = re.compile(
-    r"^> \*\*Installable GitHub library of \d[\d,]*\+ agentic skills for Claude Code, Cursor, Codex CLI, (?:Autohand Code, )?Gemini CLI, Antigravity, and other AI coding assistants\.\*\*$",
+    r"^> \*\*(?:A complete local skill catalog for coding agents—from project inspection and agent-owned selection to a reproducible, reviewable plan\.|Local, deterministic skill-stack composition for coding agents—from an explicit project profile to a reviewable plan before any target change\.|AAS Core is the local, agent-first control plane for composing explainable, reproducible skill stacks from a catalog of \d[\d,]*\+ agentic skills\.|Installable GitHub library of \d[\d,]*\+ agentic skills for Claude Code, Cursor, Codex CLI, (?:Autohand Code, )?Gemini CLI, Antigravity, and other AI coding assistants\.)\*\*$",
     re.MULTILINE,
 )
-README_RELEASE_RE = re.compile(r"^\*\*Current release: V[\d.]+\.\*\* .*?$", re.MULTILINE)
+README_TITLE_RE = re.compile(
+    r"^# (?:🌌 Agentic Awesome Skills: .*|AAS Core — Agentic Awesome Skills)$",
+    re.MULTILINE,
+)
+README_RELEASE_RE = re.compile(
+    rf"^\*\*Current release: V{VERSION_TOKEN_PATTERN}\.\*\* .*?$",
+    re.MULTILINE,
+)
 README_BROAD_COVERAGE_RE = re.compile(
     r"^- \*\*Broad coverage with real utility\*\*: \d[\d,]*\+ skills across development, testing, security, infrastructure, product, and marketing\.$",
     re.MULTILINE,
@@ -57,7 +72,7 @@ README_TOC_BROWSE_RE = re.compile(
     re.MULTILINE,
 )
 GETTING_STARTED_TITLE_RE = re.compile(
-    r"^# Getting Started with Agentic Awesome Skills \(V[\d.]+\)$", re.MULTILINE
+    r"^# Getting Started with (?:Agentic Awesome Skills \(V[\d.]+\)|AAS Core)$", re.MULTILINE
 )
 BUNDLES_FOOTER_RE = re.compile(
     r"^_Last updated: .*? \| Total Skills: \d[\d,]*\+ \| Total Bundles: \d+_$",
@@ -67,9 +82,9 @@ BUNDLES_FOOTER_RE = re.compile(
 
 def build_about_description(metadata: dict) -> str:
     return (
-        f"Installable GitHub library of {metadata['total_skills_label']} agentic skills for "
-        "Claude Code, Cursor, Codex CLI, Autohand Code, Gemini CLI, Antigravity, and more. "
-        "Includes specialized plugins, installer CLI, bundles, workflows, and official/community skill collections."
+        "AAS Core is the local, agent-first control plane for complete catalog discovery, agent-owned selection, "
+        f"stack validation, and planning, backed by {metadata['total_skills_label']} agentic skills. "
+        "Includes CLI, local MCP, catalog, plugins, and Workbench."
     )
 
 
@@ -132,21 +147,25 @@ def count_documented_bundles(content: str) -> int:
 
 
 def sync_readme_copy(content: str, metadata: dict) -> str:
-    star_celebration = metadata.get("star_celebration", "25k")
+    version = metadata["version"]
+    release_status = core_release_status(metadata)
     replacements = [
+        (
+            README_TITLE_RE,
+            "# AAS Core — Agentic Awesome Skills",
+        ),
         (
             README_TAGLINE_RE,
             (
-                f"> **Installable GitHub library of {metadata['total_skills_label']} agentic skills "
-                "for Claude Code, Cursor, Codex CLI, Autohand Code, Gemini CLI, Antigravity, and other AI coding assistants.**"
+                "> **A complete local skill catalog for coding agents—from project inspection and agent-owned "
+                "selection to a reproducible, reviewable plan.**"
             ),
         ),
         (
             README_RELEASE_RE,
             (
-                f"**Current release: V{metadata['version']}.** Trusted by {star_celebration}+ GitHub stargazers, "
-                "this repository combines official and community skill collections with bundles, "
-                "workflows, installation paths, and docs that help you go from first install to daily use quickly."
+                f"**Current release: V{version}.** {release_status}Apply and recovery remain experimental "
+                "and outside the supported preview path."
             ),
         ),
         (
@@ -186,7 +205,7 @@ def sync_getting_started(content: str, metadata: dict) -> str:
     content, _ = replace_if_present(
         content,
         GETTING_STARTED_TITLE_RE,
-        f"# Getting Started with Agentic Awesome Skills (V{metadata['version']})",
+        "# Getting Started with AAS Core",
     )
     return content
 
@@ -198,6 +217,8 @@ def sync_web_index_shell(content: str, metadata: dict) -> str:
         [
             (r"\d[\d,]*\+ installable agentic skills", f"{skill_label} installable agentic skills"),
             (r"\d[\d,]*\+ AI coding skills", f"{skill_label} AI coding skills"),
+            (r"backed by \d[\d,]*\+ skills", f"backed by {skill_label} skills"),
+            (r"\d[\d,]*\+ cataloged skills", f"{skill_label} cataloged skills"),
         ],
     )
 
@@ -207,10 +228,12 @@ def sync_llms_text(content: str, metadata: dict) -> str:
     return sync_regex_text(
         content,
         [
-            (r"Current release: V[\d.]+\.", f"Current release: V{metadata['version']}."),
+            (r"(?m)^- Current release: V[^\n]+$", f"- Current release: V{metadata['version']}."),
+            (r"Release boundary: .*", core_release_boundary(metadata)),
             (r"\d[\d,]*\+ agentic SKILL\.md playbooks", f"{skill_label} agentic SKILL.md playbooks"),
             (r"Skill count: \d[\d,]*\+\.", f"Skill count: {skill_label}."),
             (r"\d[\d,]*\+ reusable SKILL\.md playbooks", f"{skill_label} reusable SKILL.md playbooks"),
+            (r"\d[\d,]*\+ skill catalog", f"{skill_label} skill catalog"),
         ],
     )
 
@@ -371,8 +394,8 @@ def update_package_description(base_dir: str, metadata: dict, dry_run: bool) -> 
         content = file.read()
 
     new_description = (
-        f"{metadata['total_skills_label']} agentic skills for Claude Code, Gemini CLI, "
-        "Cursor, Antigravity & more. Installer CLI."
+        "AAS Core: complete local skill discovery, agent-owned selection, stack validation, and planning, "
+        f"backed by {metadata['total_skills_label']} agentic skills."
     )
     updated_content = ABOUT_DESCRIPTION_RE.sub(
         f'"description": "{new_description}"', content, count=1
