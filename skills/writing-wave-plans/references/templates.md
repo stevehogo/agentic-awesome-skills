@@ -173,16 +173,20 @@ Task-level state lives in each wave file — this table is the wave-level rollup
      sentence enforces it. -->
 
 ## 5. Canonical module layout
-<!-- The one directory tree everything else references. How you ORGANISE it is a real decision, not
-     a default — pick the axis deliberately and record it as an ADR (§11):
-       • by-layer (transport / domain / data): clearest dependency direction; but one feature
-         scatters across many folders.
+<!-- The one directory tree everything else references. **RULE — design this section with the
+     `clean-code` and `senior-architect` skills loaded**, and DEFAULT to a feature-first +
+     layered-inside layout (layer-base × feature-base) unless the effort is too small to earn it.
+     How you organise the tree is a real decision; record the chosen axis as an ADR (§11). Options,
+     default first:
+       • feature-first, layered inside (hybrid — DEFAULT): feature folders on top, with `ports/`
+         (interfaces) kept apart from `adapters/` (implementations) inside each, a `shared/` kernel
+         for the common vocabulary, and a host folder for wiring. Best once there is >1 adapter per
+         port — but right-size it: don't spawn single-file layer folders for a tiny effort.
+       • by-layer (transport / domain / data): clearest dependency direction, but one feature
+         scatters across many folders — use only when the system is too thin/uniform for features to
+         earn their own folders.
        • by-feature ("screaming architecture"): a folder per capability — the tree says what the app
-         DOES; but layer boundaries blur.
-       • feature-first, layered inside (hybrid): feature folders on top, with `ports/` (interfaces)
-         kept apart from `adapters/` (implementations) inside each, a `shared/` kernel for the common
-         vocabulary, and a host folder for wiring. Best once there is >1 adapter per port — but
-         right-size it: don't spawn single-file layer folders for a tiny effort.
+         DOES, but layer boundaries blur.
      Whichever axis, GROUP the tree so §4's dependency rule is VISIBLE in it: ports apart from
      concretes, the domain/kernel importing nothing outward, and ONE composition root where the
      concretes are constructed and injected. Annotate each entry with its role + the task/wave ID
