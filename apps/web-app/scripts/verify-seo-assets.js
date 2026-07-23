@@ -737,9 +737,17 @@ export function assertIndexDiscoveryMeta(htmlText, { expectedSkillCountLabel = '
   assert(combined.includes('AAS Core'), 'Home SEO metadata must lead with AAS Core.');
   assert(combined.includes('preview'), 'Home SEO metadata must state the preview boundary.');
   assert(combined.includes('catalog'), 'Home SEO metadata must identify the supporting catalog.');
+  assert(
+    !/\bAAS Core[^.]*recommend|\bCore preview[^.]*recommend|\brecommend(?:ing|ation)?(?:,\s*validat|\s+and\s+plan)/i.test(combined),
+    'Home SEO metadata must not describe current AAS Core as a recommender.',
+  );
   assert(!combined.includes('prompt templates'), 'Home SEO metadata must not use stale prompt-template positioning.');
   assertOnlyExpectedSkillCountLabel(combined, expectedSkillCountLabel, 'Home SEO metadata');
   const jsonLdText = JSON.stringify(extractJsonLdEntries(htmlText));
+  assert(
+    !/\bAAS Core[^.]*recommend|\bCore preview[^.]*recommend|\brecommend(?:ing|ation)?(?:,\s*validat|\s+and\s+plan)/i.test(jsonLdText),
+    'Home JSON-LD must not describe current AAS Core as a recommender.',
+  );
   assertOnlyExpectedSkillCountLabel(jsonLdText, expectedSkillCountLabel, 'Home JSON-LD');
   if (requireHostedUrl) {
     assertNoLocalhostUrl(combined, 'Home SEO metadata');
@@ -765,6 +773,10 @@ export function assertStaticIndexShell(htmlText, { expectedSkillCountLabel = '1,
   assert(combined.includes('AAS Core'), 'Source index shell must lead with AAS Core.');
   assert(combined.includes('preview'), 'Source index shell must state the preview boundary.');
   assert(combined.includes('catalog'), 'Source index shell must identify the supporting catalog.');
+  assert(
+    !/\bAAS Core[^.]*recommend|\bCore preview[^.]*recommend|\brecommend(?:ing|ation)?(?:,\s*validat|\s+and\s+plan)/i.test(combined),
+    'Source index shell must not describe current AAS Core as a recommender.',
+  );
   assertOnlyExpectedSkillCountLabel(combined, expectedSkillCountLabel, 'Source index shell');
   if (requireHostedUrl) {
     assertNoLocalhostUrl(combined, 'Source index shell');
@@ -957,7 +969,12 @@ export function assertLlms(
     assert(text.includes(snippet), `llms.txt missing required snippet: ${snippet}`);
   }
   if (expectedReleaseLabel) {
-    assert(text.includes(`Current release: ${expectedReleaseLabel}.`), `llms.txt missing current release: ${expectedReleaseLabel}`);
+    const releaseLines = text.split(/\r?\n/).filter((line) => line.trim().startsWith('- Current release:'));
+    assert(releaseLines.length === 1, 'llms.txt must expose exactly one canonical current-release line.');
+    assert(
+      releaseLines[0].trim() === `- Current release: ${expectedReleaseLabel}.`,
+      `llms.txt current release must equal ${expectedReleaseLabel} exactly.`,
+    );
   }
   assertOnlyExpectedSkillCountLabel(text, expectedSkillCountLabel, 'llms.txt');
 }

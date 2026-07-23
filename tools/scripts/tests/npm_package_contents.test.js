@@ -78,20 +78,20 @@ assert.strictEqual(
   "published package must declare the first Core-capable major",
 );
 assert.ok(
-  readme.includes("https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/aas-core.md"),
-  "published README must link to the canonical AAS Core guide without relying on an unpackaged relative path",
+  readme.includes(`https://github.com/sickn33/agentic-awesome-skills/blob/v${packageJson.version}/docs/users/aas-core.md`),
+  "published README must link to the AAS Core guide pinned to the exact package release",
 );
 assert.ok(
-  !readme.includes("](docs/users/aas-core.md)"),
-  "published README must not link to an AAS Core guide path excluded from the npm package",
+  !readme.includes("/blob/main/docs/users/aas-core.md"),
+  "published README must not direct package readers to moving main-branch Core instructions",
 );
 assert.ok(
-  coreGuide.includes("--package=agentic-awesome-skills@X.Y.Z"),
-  "AAS Core onboarding must require an explicitly Core-capable release",
+  coreGuide.includes(`--package=agentic-awesome-skills@${packageJson.version}`),
+  "AAS Core onboarding must pin the exact published package version",
 );
 assert.ok(
   !coreGuide.includes("--package=agentic-awesome-skills@latest"),
-  "AAS Core onboarding must not resolve latest while the current dist-tag predates Core",
+  "AAS Core onboarding must not resolve a moving npm dist-tag",
 );
 assert.ok(
   !/^\s*--runtime-version\b/m.test(coreGuide),

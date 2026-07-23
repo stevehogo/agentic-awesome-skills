@@ -71,7 +71,7 @@ class AuditConsistencyTests(unittest.TestCase):
             f"""<!-- registry-sync: version=8.4.0; skills={total_skills}; stars=26132; updated_at=2026-03-21T00:00:00+00:00 -->
 # AAS Core — Agentic Awesome Skills
 
-> **A complete local skill catalog for coding agents—from project inspection and agent-owned selection to a reproducible, reviewable plan.**
+> **Local, agent-owned skill stacks for coding agents—from complete catalog access to a reproducible, reviewable plan.**
 
 [![GitHub stars](https://img.shields.io/badge/⭐%2026%2C000%2B%20Stars-gold?style=for-the-badge)](https://github.com/sickn33/agentic-awesome-skills/stargazers)
 
@@ -162,6 +162,20 @@ class AuditConsistencyTests(unittest.TestCase):
             issues = audit_consistency.find_local_consistency_issues(root)
 
             self.assertTrue(any("data/skills_index.json" in issue for issue in issues))
+
+    def test_local_consistency_flags_current_core_recommender_copy(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self.write_repo_state(root)
+            (root / "apps" / "web-app" / "scripts").mkdir(parents=True)
+            (root / "apps" / "web-app" / "scripts" / "prerender-routes.js").write_text(
+                "const copy = 'Discover. Recommend. Validate. Preview.';\n",
+                encoding="utf-8",
+            )
+
+            issues = audit_consistency.find_local_consistency_issues(root)
+
+            self.assertTrue(any("apps/web-app/scripts/prerender-routes.js" in issue for issue in issues))
 
     def test_local_consistency_flags_missing_manifest_fields(self):
         with tempfile.TemporaryDirectory() as temp_dir:

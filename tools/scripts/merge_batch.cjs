@@ -6,6 +6,7 @@ const path = require("path");
 const { spawnSync } = require("child_process");
 
 const { findProjectRoot } = require("../lib/project-root");
+const { resolveBlobSizes } = require("../lib/git-blob-sizes");
 const { parseRawDiff } = require("../lib/git-raw-diff");
 const {
   classifyChangeRecords,
@@ -13,11 +14,6 @@ const {
 } = require("../lib/workflow-contract");
 
 const DEFAULT_POLL_SECONDS = 20;
-const BASE_BRANCH_MODIFIED_PATTERNS = [
-  /base branch was modified/i,
-  /base branch has been modified/i,
-  /branch was modified/i,
-];
 const REQUIRED_CHECKS = [
   ["pr-policy", { label: "pr-policy", aliases: ["pr-policy"], appId: 15368 }],
   ["pr-evidence", { label: "pr-evidence", aliases: ["pr-evidence"], appId: 15368 }],
@@ -186,7 +182,10 @@ function normalizeEvidenceRecord(record) {
 function isSkillContentRecord(record) {
   return [record?.old_path, record?.new_path]
     .filter((filePath) => typeof filePath === "string" && filePath)
-    .some((filePath) => ["canonical_skill", "skill_support"].includes(classifyPathPolicy(filePath).kind));
+    .some((filePath) => (
+      filePath.startsWith("skills/")
+      || ["canonical_skill", "skill_support"].includes(classifyPathPolicy(filePath).kind)
+    ));
 }
 
 function assertValidSnapshot(snapshot, label) {
@@ -410,43 +409,6 @@ function readRawChangeRecords(projectRoot, baseOid, headOid, dependencies = {}) 
   return parseRawDiff(raw);
 }
 
-function resolveBlobSizes(projectRoot, records, dependencies = {}) {
-  const execute = dependencies.runCommand || runCommand;
-  const objectIds = [...new Set(records.flatMap((record) => [record.old_oid, record.new_oid]))]
-    .filter((oid) => FULL_SHA_PATTERN.test(String(oid || "")) && !/^0+$/u.test(oid));
-  if (!objectIds.length) {
-    throw new Error("Raw Git diff did not contain any materialized blob object IDs.");
-  }
-
-  const stdout = execute(
-    "git",
-    ["cat-file", "--batch-check=%(objectname) %(objecttype) %(objectsize)"],
-    projectRoot,
-    { capture: true, input: `${objectIds.join("\n")}\n` },
-  );
-  const sizes = new Map();
-  for (const line of String(stdout || "").split(/\r?\n/u).filter(Boolean)) {
-    const match = line.match(/^(?<oid>[0-9a-f]{40}) (?<type>\S+) (?<size>\d+)$/u);
-    if (!match?.groups || !objectIds.includes(match.groups.oid)) {
-      throw new Error(`Unexpected git cat-file response: ${line}`);
-    }
-    if (match.groups.type !== "blob") {
-      throw new Error(`Object ${match.groups.oid} is ${match.groups.type}, not a blob.`);
-    }
-    const size = Number(match.groups.size);
-    if (!Number.isSafeInteger(size) || size < 0) {
-      throw new Error(`Object ${match.groups.oid} has an invalid size.`);
-    }
-    sizes.set(match.groups.oid, size);
-  }
-  for (const oid of objectIds) {
-    if (!sizes.has(oid)) {
-      throw new Error(`git cat-file did not return metadata for ${oid}.`);
-    }
-  }
-  return sizes;
-}
-
 function runGhJson(projectRoot, args, options = {}) {
   const stdout = runCommand(
     "gh",
@@ -583,6 +545,7 @@ function loadPullRequestDetails(projectRoot, repoSlug, prNumber) {
     jsonFields: [
       "body",
       "autoMergeRequest",
+      "author",
       "baseRefName",
       "baseRefOid",
       "mergeStateStatus",
@@ -1061,8 +1024,13 @@ function approveActionRequiredRuns(projectRoot, repoSlug, prDetails, options = {
   const mergeBaseOid = getMergeBase(projectRoot, baseOid, headOid, dependencies);
   const records = readRecords(projectRoot, mergeBaseOid, headOid, dependencies);
   const sameRepository = isSameRepositoryPullRequest(repoSlug, prDetails);
+  const reviewedHeads = new Set(options.reviewedHeads || []);
+  const repositoryOwner = String(repoSlug || "").split("/")[0].toLowerCase();
+  const ownerAuthorizedSensitiveChange = sameRepository
+    && String(prDetails?.author?.login || "").toLowerCase() === repositoryOwner
+    && reviewedHeads.has(headOid);
   const preliminaryPolicy = classifyRecords(records, { requireBlobSizes: false });
-  if (!sameRepository && !preliminaryPolicy?.approvalSafe) {
+  if (!preliminaryPolicy?.approvalSafe && !ownerAuthorizedSensitiveChange) {
     const reasons = Array.isArray(preliminaryPolicy?.reasons) && preliminaryPolicy.reasons.length
       ? preliminaryPolicy.reasons.slice(0, 12).join(", ")
       : "unclassified local diff";
@@ -1070,7 +1038,7 @@ function approveActionRequiredRuns(projectRoot, repoSlug, prDetails, options = {
   }
   const blobSizes = getSizes(projectRoot, records, dependencies);
   const policy = classifyRecords(records, { blobSizes });
-  if (!sameRepository && !policy?.approvalSafe) {
+  if (!policy?.approvalSafe && !ownerAuthorizedSensitiveChange) {
     const reasons = Array.isArray(policy?.reasons) && policy.reasons.length
       ? policy.reasons.slice(0, 12).join(", ")
       : "unclassified local diff";
@@ -1091,7 +1059,6 @@ function approveActionRequiredRuns(projectRoot, repoSlug, prDetails, options = {
     throw new Error(`PR #${prNumber} trusted changed-skill evidence is blocking: ${reasons}.`);
   }
 
-  const reviewedHeads = new Set(options.reviewedHeads || []);
   if (policy.requiresHumanReview && !reviewedHeads.has(headOid)) {
     throw new Error(
       `PR #${prNumber} changes canonical skill content. Re-run with --reviewed-head ${headOid} after reviewing that exact full SHA.`,
@@ -1214,11 +1181,6 @@ function mergePullRequestImmediately(projectRoot, repoSlug, prDetails, dependenc
   return response;
 }
 
-function isRetryableMergeError(error) {
-  const message = String(error?.message || error || "");
-  return BASE_BRANCH_MODIFIED_PATTERNS.some((pattern) => pattern.test(message));
-}
-
 function gitCheckoutMain(projectRoot) {
   runCommand("git", ["checkout", "main"], projectRoot);
 }
@@ -1245,9 +1207,9 @@ async function mergePullRequest(projectRoot, repoSlug, prNumber, options) {
   });
   const headSha = prDetails.headRefOid;
   const approvedRuns = approval.approvedRuns;
-  // The Skill Review workflow is path-filtered to SKILL.md. Supporting skill
-  // content still requires exact-head human attestation, but has no review
-  // check run to wait for.
+  // The Skill Review workflow covers canonical skill files and their tracked
+  // support trees. Exact-head attestation remains the fallback when Tessl is
+  // unavailable or does not produce a passing review.
   prDetails.hasSkillChanges = approval.policy.canonicalSkillChanges.length > 0;
   if (approvedRuns.length) {
     console.log(
@@ -1356,7 +1318,6 @@ module.exports = {
   assertEffectiveMainProtection,
   assertFullSha,
   assertUnchangedTuple,
-  baseBranchModifiedPatterns: BASE_BRANCH_MODIFIED_PATTERNS,
   buildSquashMergeBody,
   buildSquashMergeSubject,
   checkRunMatchesAliases,
@@ -1368,7 +1329,6 @@ module.exports = {
   getRequiredCheckAliases,
   gitCheckoutMain,
   gitPullMain,
-  isRetryableMergeError,
   listActionRequiredRuns,
   listCheckRuns,
   listWorkflowDefinitions,
