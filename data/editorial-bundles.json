@@ -2858,7 +2858,16 @@
         { "id": "database-architect", "summary": "Design robust database schemas." },
         { "id": "writing-plans", "summary": "Write clear implementation plans." },
         { "id": "executing-plans", "summary": "Execute implementation plans reliably." },
-        { "id": "test-driven-development", "summary": "Drive development with tests first." }
+        { "id": "test-driven-development", "summary": "Drive development with tests first." },
+        { "id": "brainstorming", "summary": "Turn vague ideas into validated designs before building." },
+        { "id": "plan-writing", "summary": "Break work into tasks with dependencies and verification criteria." },
+        { "id": "using-git-worktrees", "summary": "Work multiple branches in isolated worktrees." },
+        { "id": "requesting-code-review", "summary": "Request a structured review before merging." },
+        { "id": "receiving-code-review", "summary": "Respond to review with technical evaluation, not defensiveness." },
+        { "id": "finishing-a-development-branch", "summary": "Merge, PR, or clean up completed branches." },
+        { "id": "writing-skills", "summary": "Create, update, and improve agent skills." },
+        { "id": "using-superpowers", "summary": "Invoke relevant skills before responding, every time." },
+        { "id": "superpowers-lab", "summary": "Lab/sandbox environment for the superpowers skill set." }
       ]
     }
   ]
