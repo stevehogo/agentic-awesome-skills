@@ -1,8 +1,8 @@
 # Skill Catalog
 
-Generated at: 2026-07-22T08:51:33.000Z
+Generated at: 2026-07-28T15:21:12.000Z
 
-Total skills: 1988
+Total skills: 1993
 
 ## agent-behavior (5)
 
@@ -20,7 +20,7 @@ Total skills: 1988
 | --- | --- | --- | --- | --- | --- |
 | `run-deep-swe` | Run reproducible DeepSWE coding-agent benchmark evaluations through OpenRouter and mini-swe-agent. | critical | davidondrej/skills | benchmark, deepswe, openrouter, evaluation | benchmark, deepswe, openrouter, evaluation, run, deep, swe, reproducible, coding, agent, evaluations, through |
 
-## agent-orchestration (6)
+## agent-orchestration (7)
 
 | Skill | Description | Risk | Source | Tags | Triggers |
 | --- | --- | --- | --- | --- | --- |
@@ -30,6 +30,7 @@ Total skills: 1988
 | `goal-loop` | Draft and explain persistent goal-loop prompts for long-running agent work with clear stop conditions. | safe | davidondrej/skills | goals, autonomy, planning | goals, autonomy, planning, goal, loop, draft, explain, persistent, prompts, long, running, agent |
 | `grok-build` | Delegate well-specified implementation tasks to xAI's Grok Build CLI running headlessly while the orchestrating agent plans, writes task specs, reviews every... | critical | sanjay3290/ai-skills | grok, delegation, code-generation, xai | grok, delegation, code-generation, xai, delegate, well, specified, tasks, cli, running, headlessly, while |
 | `multi-agent-task-orchestrator` | Route tasks to specialized AI agents with anti-duplication, quality gates, and 30-minute heartbeat monitoring | safe | milkomida77/guardian-agent-prompts | multi-agent, orchestration, task-routing, quality-gates, anti-duplication | multi-agent, orchestration, task-routing, quality-gates, anti-duplication, multi, agent, task, orchestrator, route, tasks, specialized |
+| `orchestrate` | Coordinate focused subagents on substantial work, keep their ownership non-overlapping, and integrate verified results. Use for large-scope Codex tasks; keep... | safe | provencher/codex-skills | codex, orchestration, multi-agent, delegation, subagents | codex, orchestration, multi-agent, delegation, subagents, orchestrate, coordinate, substantial, work, keep, ownership, non |
 
 ## agent-squad (8)
 
@@ -421,10 +422,11 @@ Total skills: 1988
 | `lightning-factory-explainer` | Explain Bitcoin Lightning channel factories and the SuperScalar protocol — scalable Lightning onboarding using shared UTXOs, Decker-Wattenhofer trees, timeou... | safe | community | lightning, factory, explainer | lightning, factory, explainer, explain, bitcoin, channel, factories, superscalar, protocol, scalable, onboarding, shared |
 | `web3-testing` | Master comprehensive testing strategies for smart contracts using Hardhat, Foundry, and advanced testing patterns. | unknown | community | web3 | web3, testing, smart, contracts, hardhat, foundry |
 
-## browser-automation (2)
+## browser-automation (3)
 
 | Skill | Description | Risk | Source | Tags | Triggers |
 | --- | --- | --- | --- | --- | --- |
+| `browser-act` | Use BrowserAct for authenticated browser automation, JS-rendered extraction, screenshots, parallel sessions, verification handling, and human handoff. | critical | browser-act/skills | browser-automation, web-extraction, ai-agents, cli, multi-session | browser-automation, web-extraction, ai-agents, cli, multi-session, browser, act, browseract, authenticated, automation, js, rendered |
 | `browser-harness` | Drive an existing browser through CDP for authenticated, visual, or interactive web automation. | critical | davidondrej/skills | browser, cdp, automation, scraping | browser, cdp, automation, scraping, harness, drive, existing, through, authenticated, visual, interactive, web |
 | `skyvern-browser-automation` | AI-powered browser automation — navigate sites, fill forms, extract structured data, log in with stored credentials, and build reusable workflows. | safe | Skyvern-AI/skyvern | browser-automation, mcp, web-scraping, form-filling, ai-agents, workflow-automation | browser-automation, mcp, web-scraping, form-filling, ai-agents, workflow-automation, skyvern, browser, automation, ai, powered, navigate |
 
@@ -502,10 +504,11 @@ Total skills: 1988
 | `usage-based-pricing` | Design pricing models that developers understand, accept, and can predict. Trigger phrases: usage-based pricing, API pricing, metered billing, developer pric... | unknown | jonathimer/devmarketing-skills | usage, based, pricing | usage, based, pricing, models, developers, understand, accept, predict, trigger, phrases, api, metered |
 | `zoho-crm-automation` | Automate Zoho CRM tasks via Rube MCP (Composio): create/update records, search contacts, manage leads, and convert leads. Always search tools first for curre... | critical | community | zoho, crm | zoho, crm, automation, automate, tasks, via, rube, mcp, composio, update, records, search |
 
-## business-strategy (2)
+## business-strategy (3)
 
 | Skill | Description | Risk | Source | Tags | Triggers |
 | --- | --- | --- | --- | --- | --- |
+| `find-complementary-founders` | Use when an owner asks to find a cofounder or project partner. Assess only that agent's own owner and rank only approved profiles other agents posted for the... | critical | merc1305/findMate | cofounder, founder-matching, collaboration, privacy, agent-skills | cofounder, founder-matching, collaboration, privacy, agent-skills, find, complementary, founders, owner, asks, partner, assess |
 | `kotler-macro-analyzer` | Professional PESTEL/SWOT analysis agent based on Kotler's methodology for strategic market audits. | safe | self | marketing, economics, strategy, kotler, pestel | marketing, economics, strategy, kotler, pestel, macro, analyzer, professional, swot, analysis, agent, methodology |
 | `osterwalder-canvas-architect` | Iterative consultant agent for building and validating logically consistent 9-block Business Model Canvases. | safe | self | business-model, osterwalder, strategy, bmc | business-model, osterwalder, strategy, bmc, canvas, architect, iterative, consultant, agent, building, validating, logically |
 
@@ -809,7 +812,7 @@ Total skills: 1988
 | Skill | Description | Risk | Source | Tags | Triggers |
 | --- | --- | --- | --- | --- | --- |
 | `article-illustrations` | Generate hand-drawn 16:9 article illustrations with the Grav character IP, sparse annotations, and absurd but clear visual metaphors. | safe | vipin-si/article-illustrations | illustration, article-graphics, visual-metaphors, image-generation, whiteboard-sketch | illustration, article-graphics, visual-metaphors, image-generation, whiteboard-sketch, article, illustrations, generate, hand, drawn, 16, grav |
-| `modellix` | Integrate Modellix unified API/CLI for async AI image and video generation (model run --wait, task download). | critical | Modellix/modellix-skill | image-generation, video-generation, modellix, cli, api | image-generation, video-generation, modellix, cli, api, integrate, unified, async, ai, image, video, generation |
+| `modellix` | Integrate the Modellix API/CLI for async AI image, video, and speech generation or transcription (model run --wait, task download). | critical | Modellix/modellix-plugin | image-generation, video-generation, audio-generation, text-to-speech, speech-to-text, speech-to-speech, modellix, cli, api | image-generation, video-generation, audio-generation, text-to-speech, speech-to-text, speech-to-speech, modellix, cli, api, integrate, async, ai |
 
 ## data (24)
 
@@ -939,7 +942,7 @@ Total skills: 1988
 | `stitch-ui-design` | Expert guidance for crafting effective prompts in Google Stitch, the AI-powered UI design tool by Google Labs. This skill helps create precise, actionable pr... | safe | self | stitch, ui | stitch, ui, guidance, crafting, effective, prompts, google, ai, powered, labs, skill, helps |
 | `theme-factory` | This skill provides a curated collection of professional font and color themes themes, each with carefully selected color palettes and font pairings. Once a ... | unknown | community | theme, factory | theme, factory, skill, provides, curated, collection, professional, font, color, themes, each, carefully |
 | `ui-visual-validator` | Rigorous visual validation expert specializing in UI testing, design system compliance, and accessibility verification. | unknown | community | ui, visual, validator | ui, visual, validator, rigorous, validation, specializing, testing, compliance, accessibility, verification |
-| `uizze-ui-research` | Use when building or reviewing web and iOS product UI and you need real UI references, structured design contracts, or implementation validation through UIZZ... | safe | aislon/uizze-mcp | ui-design, ui-research, mcp, design-contracts, agent-workflows | ui-design, ui-research, mcp, design-contracts, agent-workflows, uizze, ui, research, building, reviewing, web, ios |
+| `uizze-ui-research` | Use when building or reviewing web and iOS UI and you need real references from the free UIZZE public catalog, a structured design contract, a consent-gated ... | safe | aislon/uizze-mcp | ui-design, ui-research, mcp, design-contracts, agent-workflows | ui-design, ui-research, mcp, design-contracts, agent-workflows, uizze, ui, research, building, reviewing, web, ios |
 | `uxui-principles` | Evaluate interfaces against 168 research-backed UX/UI principles, detect antipatterns, and inject UX context into AI coding sessions. | safe | community | ux, ui, design, evaluation, principles, antipatterns, accessibility | ux, ui, design, evaluation, principles, antipatterns, accessibility, uxui, evaluate, interfaces, against, 168 |
 | `vizcom` | AI-powered product design tool for transforming sketches into full-fidelity 3D renders. | safe | community | vizcom | vizcom, ai, powered, product, transforming, sketches, full, fidelity, 3d, renders |
 | `wcag-audit-patterns` | Comprehensive guide to auditing web content against WCAG 2.2 guidelines with actionable remediation strategies. | safe | community | wcag, audit | wcag, audit, auditing, web, content, against, guidelines, actionable, remediation |
@@ -1196,12 +1199,13 @@ Total skills: 1988
 | `systematic-debugging` | Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes | unknown | community | systematic, debugging | systematic, debugging, encountering, any, bug, test, failure, unexpected, behavior, before, proposing, fixes |
 | `test-fixing` | Systematically identify and fix all failing tests using smart grouping strategies. Use when explicitly asks to fix tests ("fix these tests", "make tests pass... | safe | community | fixing | fixing, test, systematically, identify, fix, all, failing, tests, smart, grouping, explicitly, asks |
 
-## devops (36)
+## devops (38)
 
 | Skill | Description | Risk | Source | Tags | Triggers |
 | --- | --- | --- | --- | --- | --- |
 | `aegisops-ai` | Autonomous DevSecOps & FinOps Guardrails. Orchestrates Gemini 3 Flash to audit Linux Kernel patches, Terraform cost drifts, and K8s compliance. | safe | community | aegisops, ai | aegisops, ai, autonomous, devsecops, finops, guardrails, orchestrates, gemini, flash, audit, linux, kernel |
 | `apple-container` | Build, run, and manage OCI/Linux containers as lightweight per-container VMs on Apple-silicon macOS using Apple's open-source container CLI, no Docker daemon... | critical | sanjay3290/ai-skills | macos, containers, oci, apple-silicon | macos, containers, oci, apple-silicon, apple, container, run, linux, lightweight, per, vms, silicon |
+| `brendangregg-use-tsa` | Methodical performance troubleshooting and root-cause analysis with Brendan Gregg's USE and TSA methods, plus evidence-backed RCA and postmortem reports. | safe | thecsdoctor/brendangregg-use-tsa-skill | performance, troubleshooting, root-cause-analysis, linux, observability, sre, postmortem | performance, troubleshooting, root-cause-analysis, linux, observability, sre, postmortem, brendangregg, tsa, methodical, root, cause |
 | `cron-doctor` | Diagnose and validate cron expressions before they ship. Catches the five silent death-traps: impossible dates that never fire, OR-semantics that fire too of... | safe | takeaseatventure/devops-skills | cron, crontab, scheduling, devops, debugging, kubernetes, validation | cron, crontab, scheduling, devops, debugging, kubernetes, validation, doctor, diagnose, validate, expressions, before |
 | `deploy-to-vercel` | Deploy applications and websites to Vercel. Use when the user requests deployment actions like "deploy my app", "deploy and give me the link", "push this liv... | safe | https://github.com/vercel-labs/agent-skills | deploy, to, vercel | deploy, to, vercel, applications, websites, user, requests, deployment, actions, like, my, app |
 | `deployment-engineer` | Expert deployment engineer specializing in modern CI/CD pipelines, GitOps workflows, and advanced deployment automation. | critical | community | deployment | deployment, engineer, specializing, ci, cd, pipelines, gitops, automation |
@@ -1211,6 +1215,7 @@ Total skills: 1988
 | `devops-deploy` | DevOps e deploy de aplicacoes — Docker, CI/CD com GitHub Actions, AWS Lambda, SAM, Terraform, infraestrutura como codigo e monitoramento. | critical | community | devops, docker, ci-cd, aws, terraform, github-actions | devops, docker, ci-cd, aws, terraform, github-actions, deploy, de, aplicacoes, ci, cd, com |
 | `devops-troubleshooter` | Expert DevOps troubleshooter specializing in rapid incident response, advanced debugging, and modern observability. | unknown | community | devops, troubleshooter | devops, troubleshooter, specializing, rapid, incident, response, debugging, observability |
 | `docker-expert` | You are an advanced Docker containerization expert with comprehensive, practical knowledge of container optimization, security hardening, multi-stage builds,... | unknown | community | docker | docker, containerization, practical, knowledge, container, optimization, security, hardening, multi, stage, orchestration, deployment |
+| `fedora-hyprland-installer` | Install, configure, verify, repair, update, and uninstall Hyprland on Fedora Linux with GPU-aware detection (NVIDIA/AMD/Intel). | critical | maleksaadi0109/hyprfedora | fedora, hyprland, wayland, linux | fedora, hyprland, wayland, linux, installer, install, configure, verify, repair, update, uninstall, gpu |
 | `github-actions-advanced` | Design, debug, and harden GitHub Actions CI/CD workflows, including reusable workflows, matrix builds, self-hosted runners, OIDC authentication, caching, env... | safe | community | github, actions, advanced | github, actions, advanced, debug, harden, ci, cd, including, reusable, matrix, self, hosted |
 | `github-actions-debugger` | Specialized skill for diagnosing, analyzing, and fixing failing GitHub Actions workflows by parsing run logs and pipeline definitions. | safe | community | github-actions, ci-cd, devops, debugging, workflows | github-actions, ci-cd, devops, debugging, workflows, github, actions, debugger, specialized, skill, diagnosing, analyzing |
 | `gitops-workflow` | Complete guide to implementing GitOps workflows with ArgoCD and Flux for automated Kubernetes deployments. | critical | community | gitops | gitops, complete, implementing, argocd, flux, automated, kubernetes, deployments |
@@ -1682,7 +1687,7 @@ Total skills: 1988
 
 | Skill | Description | Risk | Source | Tags | Triggers |
 | --- | --- | --- | --- | --- | --- |
-| `blueprint` | Turn a one-line objective into a step-by-step construction plan any coding agent can execute cold. Each step has a self-contained context brief — a fresh age... | safe | community | blueprint | blueprint, turn, one, line, objective, step, construction, plan, any, coding, agent, execute |
+| `blueprint` | Turn a one-line objective into a step-by-step construction plan any coding agent can execute cold. Each step has a self-contained context brief — a fresh age... | critical | community | blueprint | blueprint, turn, one, line, objective, step, construction, plan, any, coding, agent, execute |
 | `concise-planning` | Use when a user asks for a plan for a coding task, to generate a clear, actionable, and atomic checklist. | unknown | community | concise, planning | concise, planning, user, asks, plan, coding, task, generate, clear, actionable, atomic, checklist |
 | `decision-navigator` | Guide stuck or overwhelmed users through targeted branching questions until they reach concrete next steps. | safe | community | decision, navigator | decision, navigator, stuck, overwhelmed, users, through, targeted, branching, questions, until, reach, concrete |
 | `plan-writing` | Structured task planning with clear breakdowns, dependencies, and verification criteria. Use when implementing features, refactoring, or any multi-step work. | unknown | community | plan, writing | plan, writing, structured, task, planning, clear, breakdowns, dependencies, verification, criteria, implementing, features |

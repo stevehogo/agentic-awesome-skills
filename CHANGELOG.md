@@ -11,8 +11,184 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Updated the catalog web app from `@supabase/supabase-js` 2.110.0 to 2.111.0, including the auth fix for overlapping PKCE flows, while preserving platform-specific native package metadata in the lockfile.
+
+### Validation
+
+- Passed the repository test suite, web-app tests and production build, dependency audit, skill/reference validation, documentation security, and warning-budget checks.
+
+## [15.6.0] - 2026-07-28 - "Browser Automation and Performance RCA"
+
+> Added safety-hardened browser automation and evidence-first performance troubleshooting while preserving verified upstream provenance across the catalog.
+
+Start here:
+
+- AAS Core setup: configure the exact `aas` runtime with the [Core guide](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/aas-core.md)
+- Direct skill distribution: `npx agentic-awesome-skills`
+- [Choose your tool](https://github.com/sickn33/agentic-awesome-skills#choose-your-tool)
+- [Best skills by tool](https://github.com/sickn33/agentic-awesome-skills#best-skills-by-tool)
+- [Bundles](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/bundles.md)
+- [Workflows](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/workflows.md)
+
+### Added
+
+- Added [`browser-act`](skills/browser-act/) for real-browser automation, authenticated and JavaScript-rendered workflows, isolated sessions, screenshots, verification handling, and consent-gated human handoff.
+- Added [`brendangregg-use-tsa`](skills/brendangregg-use-tsa/) for structured USE and TSA performance analysis, evidence-backed root-cause analysis, and postmortem reporting.
+- Regenerated the canonical catalog and distribution surfaces for 1,993 skills.
+
+### Changed
+
+- Expanded [`apify-ultimate-scraper`](skills/apify-ultimate-scraper/) with Xquik X Actors guidance for authenticated X/Twitter extraction, including explicit legal, privacy, and credential-handling boundaries.
+- Updated the [`modellix`](skills/modellix/) provenance record after its verified upstream repository rename, preserving the stable repository identity and canonical source link.
+- Added a protected-base exception ledger for verified upstream repository renames while keeping all unverified provenance changes fail-closed.
+- Hardened BrowserAct guidance with a pinned CLI version, untrusted-runtime-guide handling, explicit confirmation gates, and disclosures for telemetry, error reporting, machine identification, CAPTCHA services, and remote assistance.
+
+### Who should care
+
+- Claude Code, Cursor, Codex CLI, Gemini CLI, and Windsurf users who need browser-backed automation with explicit approval and data-exposure boundaries.
+- SRE and platform teams diagnosing CPU, memory, storage, network, thread-state, and application latency regressions.
+- Maintainers who need upstream repository renames to retain provenance without weakening the source-identity gate.
+
+### Validation
+
+- Passed canonical skill and reference validation, documentation security, warning-budget enforcement, changed-skill evidence, repository tests, protected CI, and CodeQL.
+- Confirmed canonical synchronization reproduced the new skills across Codex and Claude plugin distributions and left generated state drift-free.
+- The protected release gate will bind the release PR, tag, GitHub Release, npm `latest`, CI, CodeQL, release-only Pages deployment, live catalog and legacy bridge, and every already-configured AAS MCP host to the exact released commit.
+
+### Credits
+
+- **[@browseract-skill](https://github.com/browseract-skill)** and **[browser-act/skills](https://github.com/browser-act/skills)** for `browser-act` in [PR #1019](https://github.com/sickn33/agentic-awesome-skills/pull/1019).
+- **[@thecsdoctor](https://github.com/thecsdoctor)** and **[thecsdoctor/brendangregg-use-tsa-skill](https://github.com/thecsdoctor/brendangregg-use-tsa-skill)** for `brendangregg-use-tsa` in [PR #1012](https://github.com/sickn33/agentic-awesome-skills/pull/1012).
+- **[@alen-hh](https://github.com/alen-hh)** for the verified Modellix upstream rename in [PR #1009](https://github.com/sickn33/agentic-awesome-skills/pull/1009).
+- **[@kriptoburak](https://github.com/kriptoburak)** for the Xquik X Actors documentation in [PR #1002](https://github.com/sickn33/agentic-awesome-skills/pull/1002).
+
+## [15.5.1] - 2026-07-27 - "MCP Client Compatibility"
+
+> Restored AAS MCP connectivity for newer clients while preserving an explicit, fail-closed protocol boundary.
+
+Start here:
+
+- AAS Core setup: configure the exact `aas` runtime with the [Core guide](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/aas-core.md)
+- Direct skill distribution: `npx agentic-awesome-skills`
+- [Choose your tool](https://github.com/sickn33/agentic-awesome-skills#choose-your-tool)
+- [Best skills by tool](https://github.com/sickn33/agentic-awesome-skills#best-skills-by-tool)
+- [Bundles](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/bundles.md)
+- [Workflows](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/workflows.md)
+
+### Fixed
+
+- Fixed AAS MCP initialization for newer clients such as Claude Code 2.1.x by negotiating the server-supported protocol revision instead of rejecting every request that advertises a different revision ([#1003](https://github.com/sickn33/agentic-awesome-skills/issues/1003)).
+
+### Who should care
+
+- Claude Code 2.1.x users whose MCP clients advertise protocol revision `2025-11-25`.
+- Other MCP clients that advertise a revision newer than the server-supported `2025-06-18` revision.
+- Integrators that require malformed or missing protocol revisions to remain rejected.
+
+### Validation
+
+- Passed direct server, stdio binary, isolated packed-runtime, and release-preview negotiation tests.
+- Passed the 150-test AAS Core suite, the 102-file repository suite, catalog integrity, reference validation, documentation security, warning-budget enforcement, protected CI, and CodeQL.
+
+### Credits
+
+- **[@rk2kaler](https://github.com/rk2kaler)** for reporting the protocol negotiation regression with a complete reproduction in [issue #1003](https://github.com/sickn33/agentic-awesome-skills/issues/1003).
+
+## [15.5.0] - 2026-07-26 - "Coordination, Founder Matching, and Fedora Hyprland"
+
+> Added focused multi-agent orchestration, privacy-preserving founder matching, and a consent-gated Fedora Hyprland lifecycle workflow; also expanded UIZZE with a free manual path and a harder UI finish gate.
+
+Start here:
+
+- AAS Core setup: configure the exact `aas` runtime with the [Core guide](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/aas-core.md)
+- Direct skill distribution: `npx agentic-awesome-skills`
+- [Choose your tool](https://github.com/sickn33/agentic-awesome-skills#choose-your-tool)
+- [Best skills by tool](https://github.com/sickn33/agentic-awesome-skills#best-skills-by-tool)
+- [Bundles](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/bundles.md)
+- [Workflows](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/workflows.md)
+
+### Added
+
+- Added [`orchestrate`](skills/orchestrate/) for delegating independent, large-scope work to focused agents while keeping trivial tasks with the coordinator and preserving user-held approval boundaries.
+- Added [`find-complementary-founders`](skills/find-complementary-founders/) for private owner assessment, consent-gated pseudonymous profiles, locally ranked complementary founder candidates, expiry controls, and explicit privacy boundaries.
+- Added [`fedora-hyprland-installer`](skills/fedora-hyprland-installer/) for GPU-aware Fedora Hyprland preflight, backup, installation, configuration, verification, scoped repair, and confirmation-gated removal across NVIDIA, AMD, Intel, and hybrid systems.
+- Regenerated the canonical catalog and distribution surfaces for 1,991 skills.
+
+### Changed
+
+- Expanded [`uizze-ui-research`](skills/uizze-ui-research/) with a useful no-account manual workflow, explicit evidence labels, a consent-gated rendered HTML/CSS preview, and a hard pre-ship finish gate.
+- Hardened the Fedora workflow with immutable source and license provenance, critical-risk classification, explicit approval before privileged changes, diagnostic-only repair by default, current NVIDIA guidance, and isolated tests.
+- Clarified that founder-match rankings are decision aids rather than evidence that a candidate is available, interested, or committed.
+
+### Fixed
+
+- Updated the hosted catalog's ESLint toolchain to the ESLint 10-compatible dependency set, removing the high-severity `brace-expansion` and `minimatch` advisory chain that would otherwise block the release-only Pages deployment.
+
+### Who should care
+
+- Codex users coordinating multiple independent implementation or research lanes.
+- Founders and agents who need privacy-preserving, owner-approved matching instead of profiling strangers or mining private data.
+- Fedora users adopting Hyprland while preserving an existing GNOME or KDE installation.
+- Product teams needing UIZZE-backed UI research or a bounded manual finish gate without requiring a full hosted connection.
+
+### Validation
+
+- Passed canonical skill and reference validation, documentation security checks, warning-budget enforcement, repository tests, changed-skill evidence, and plugin and bundle parity checks.
+- Exercised the Fedora detection and isolated script suites and compiled and smoke-tested the founder-matching Python utilities.
+- Confirmed the protected canonical synchronization reproduced all three new skills across Codex and Claude plugin distributions.
+- The protected release gate will bind the source and release PRs, canonical synchronization, tag, GitHub Release, npm `latest`, CI, CodeQL, release-only Pages deployment, live catalog and legacy bridge, and every already-configured AAS MCP host to the exact released commit.
+
+### Credits
+
+- **[@provencher](https://github.com/provencher)** and **[provencher/codex-skills](https://github.com/provencher/codex-skills)** for the upstream `orchestrate` skill integrated in [PR #989](https://github.com/sickn33/agentic-awesome-skills/pull/989).
+- **[@merc1305](https://github.com/merc1305)** and **[merc1305/findMate](https://github.com/merc1305/findMate)** for `find-complementary-founders` in [PR #992](https://github.com/sickn33/agentic-awesome-skills/pull/992).
+- **[@maleksaadi0109](https://github.com/maleksaadi0109)** and **[maleksaadi0109/hyprfedora](https://github.com/maleksaadi0109/hyprfedora)** for `fedora-hyprland-installer` in [PR #994](https://github.com/sickn33/agentic-awesome-skills/pull/994).
+- **Samuel Bushi** and **UIZZE** for the expanded `uizze-ui-research` workflow finalized in [PR #988](https://github.com/sickn33/agentic-awesome-skills/pull/988).
+
+## [15.4.0] - 2026-07-24 - "SEO Drift and Dependency Safety"
+
+> Added official SEO regression monitoring, closed the current high-severity frontend dependency advisories, and refreshed contributor and conduct links while preserving the protected release workflow.
+
+Start here:
+
+- AAS Core setup: configure the exact `aas` runtime with the [Core guide](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/aas-core.md)
+- Direct skill distribution: `npx agentic-awesome-skills`
+- [Choose your tool](https://github.com/sickn33/agentic-awesome-skills#choose-your-tool)
+- [Best skills by tool](https://github.com/sickn33/agentic-awesome-skills#best-skills-by-tool)
+- [Bundles](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/bundles.md)
+- [Workflows](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/workflows.md)
+
+### Added
+
+- Added the official [`seo-drift`](skills/seo-drift/) skill from [nowork-studio/NotFair](https://github.com/nowork-studio/NotFair) for dated SEO baselines and regression detection across rankings, indexation, metadata, directives, schema, and on-page elements.
+- Regenerated the canonical catalog and distribution surfaces for 1,988 skills.
+
+### Changed
+
 - Shortened PR feedback by parallelizing independent validation, cancelling superseded PR runs, and removing repeated canonical setup and catalog generation; also removed retired workflow/retry code and bound Pages deployments to the exact published release tag.
 - Added trusted-base fork fail-fast intake and shadow impact telemetry without weakening `merge:batch`; source validation now generates one exact-head preview manifest for verification, canonical checks split exact-tree reproduction from drift confirmation, and local timing/sharding remains observational and opt-in while required CI stays complete.
+
+### Fixed
+
+- Updated PostCSS to 8.5.18 in the hosted web app and canonical Loki frontend example, resolving GHSA-r28c-9q8g-f849 while preserving canonical and generated-mirror lock parity.
+- Migrated the hosted catalog from `react-router-dom` 7 to the patched `react-router` 8.3.0 API surface, resolving GHSA-qwww-vcr4-c8h2 without the unsafe 7.11.0 downgrade.
+- Replaced obsolete GitHub abuse-reporting and Pro Git links, and removed three dead or unsupported localized community destinations.
+
+### Who should care
+
+- Maintainers and Pages operators who require a zero-advisory web build and reproducible example locks.
+- SEO teams using Claude Code, Cursor, Codex CLI, Gemini CLI, or Antigravity to detect regressions after migrations and content changes.
+- Contributors following the repository's conduct, Git, and localized community guidance.
+
+### Validation
+
+- Confirmed all six tracked npm lockfile surfaces report zero known vulnerabilities after the dependency updates.
+- Passed canonical skill and reference validation, documentation security checks, warning-budget enforcement, repository tests, web tests, lint and production build, Loki frontend builds, plugin and bundle parity checks, and repository consistency checks.
+- The protected release gate will bind the source and release PRs, canonical synchronization, tag, GitHub Release, npm `latest`, CI, CodeQL, release-only Pages deployment, live catalog and legacy bridge, and every already-configured AAS MCP host to the exact released commit.
+
+### Credits
+
+- **[@ununununium](https://github.com/ununununium)** and **[nowork-studio/NotFair](https://github.com/nowork-studio/NotFair)** for the official `seo-drift` contribution in [PR #974](https://github.com/sickn33/agentic-awesome-skills/pull/974).
 
 ## [15.3.0] - 2026-07-22 - "Security Boundaries and Maintainer Reliability"
 

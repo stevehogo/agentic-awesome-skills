@@ -8137,12 +8137,12 @@
     "category": "planning",
     "name": "blueprint",
     "description": "Turn a one-line objective into a step-by-step construction plan any coding agent can execute cold. Each step has a self-contained context brief \u2014 a fresh agent in a new session can pick up any step without reading prior steps.",
-    "risk": "safe",
+    "risk": "critical",
     "source": "community",
     "date_added": "2026-03-10",
     "plugin": {
       "targets": {
-        "codex": "blocked",
+        "codex": "supported",
         "claude": "supported"
       },
       "setup": {
@@ -8150,9 +8150,7 @@
         "summary": "",
         "docs": null
       },
-      "reasons": [
-        "target_specific_home_path"
-      ]
+      "reasons": []
     }
   },
   {
@@ -8339,6 +8337,41 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "brendangregg-use-tsa",
+    "path": "skills/brendangregg-use-tsa",
+    "category": "devops",
+    "name": "brendangregg-use-tsa",
+    "description": "Methodical performance troubleshooting and root-cause analysis with Brendan Gregg's USE and TSA methods, plus evidence-backed RCA and postmortem reports.",
+    "risk": "safe",
+    "source": "community",
+    "date_added": "2026-07-28",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "thecsdoctor/brendangregg-use-tsa-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/thecsdoctor/brendangregg-use-tsa-skill/blob/main/LICENSE",
+    "tags": [
+      "performance",
+      "troubleshooting",
+      "root-cause-analysis",
+      "linux",
+      "observability",
+      "sre",
+      "postmortem"
+    ]
   },
   {
     "id": "brevo-automation",
@@ -8572,6 +8605,39 @@
     "source_repo": "hyhmrright/brooks-lint",
     "license": "MIT",
     "license_source": "https://github.com/hyhmrright/brooks-lint/blob/main/LICENSE"
+  },
+  {
+    "id": "browser-act",
+    "path": "skills/browser-act",
+    "category": "browser-automation",
+    "name": "browser-act",
+    "description": "Use BrowserAct for authenticated browser automation, JS-rendered extraction, screenshots, parallel sessions, verification handling, and human handoff.",
+    "risk": "critical",
+    "source": "https://github.com/browser-act/skills/tree/main/browser-act",
+    "date_added": "2026-07-28",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "official",
+    "source_repo": "browser-act/skills",
+    "license": "MIT",
+    "license_source": "https://github.com/browser-act/skills/blob/main/LICENSE",
+    "tags": [
+      "browser-automation",
+      "web-extraction",
+      "ai-agents",
+      "cli",
+      "multi-session"
+    ]
   },
   {
     "id": "browser-automation",
@@ -18203,6 +18269,38 @@
     ]
   },
   {
+    "id": "fedora-hyprland-installer",
+    "path": "skills/fedora-hyprland-installer",
+    "category": "devops",
+    "name": "fedora-hyprland-installer",
+    "description": "Install, configure, verify, repair, update, and uninstall Hyprland on Fedora Linux with GPU-aware detection (NVIDIA/AMD/Intel).",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-07-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "maleksaadi0109/hyprfedora",
+    "license": "MIT",
+    "license_source": "https://github.com/maleksaadi0109/hyprfedora/blob/3ec6d4fc5eecdb188613dd841dce9926ae5c8319/LICENSE",
+    "tags": [
+      "fedora",
+      "hyprland",
+      "wayland",
+      "linux"
+    ]
+  },
+  {
     "id": "ffuf-claude-skill",
     "path": "skills/ffuf-claude-skill",
     "category": "security",
@@ -18377,6 +18475,39 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "find-complementary-founders",
+    "path": "skills/find-complementary-founders",
+    "category": "business-strategy",
+    "name": "find-complementary-founders",
+    "description": "Use when an owner asks to find a cofounder or project partner. Assess only that agent's own owner and rank only approved profiles other agents posted for their own owners.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-07-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "merc1305/findMate",
+    "license": "MIT",
+    "license_source": "https://github.com/merc1305/findMate/blob/main/LICENSE",
+    "tags": [
+      "cofounder",
+      "founder-matching",
+      "collaboration",
+      "privacy",
+      "agent-skills"
+    ]
   },
   {
     "id": "finishing-a-development-branch",
@@ -29029,7 +29160,7 @@
     "path": "skills/modellix",
     "category": "creative",
     "name": "modellix",
-    "description": "Integrate Modellix unified API/CLI for async AI image and video generation (model run --wait, task download).",
+    "description": "Integrate the Modellix API/CLI for async AI image, video, and speech generation or transcription (model run --wait, task download).",
     "risk": "critical",
     "source": "community",
     "date_added": "2026-07-16",
@@ -29046,12 +29177,16 @@
       "reasons": []
     },
     "source_type": "official",
-    "source_repo": "Modellix/modellix-skill",
+    "source_repo": "Modellix/modellix-plugin",
     "license": "MIT",
-    "license_source": "https://github.com/Modellix/modellix-skill/blob/main/LICENSE",
+    "license_source": "https://github.com/Modellix/modellix-plugin/blob/main/LICENSE",
     "tags": [
       "image-generation",
       "video-generation",
+      "audio-generation",
+      "text-to-speech",
+      "speech-to-text",
+      "speech-to-speech",
       "modellix",
       "cli",
       "api"
@@ -32141,6 +32276,39 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "orchestrate",
+    "path": "skills/orchestrate",
+    "category": "agent-orchestration",
+    "name": "orchestrate",
+    "description": "Coordinate focused subagents on substantial work, keep their ownership non-overlapping, and integrate verified results. Use for large-scope Codex tasks; keep trivial work with the coordinator.",
+    "risk": "safe",
+    "source": "https://github.com/provencher/codex-skills/tree/8aa6c42b73781c905c55f8a1253a18127079ac21/orchestrate",
+    "date_added": "2026-07-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "provencher/codex-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/provencher/codex-skills/blob/8aa6c42b73781c905c55f8a1253a18127079ac21/LICENSE",
+    "tags": [
+      "codex",
+      "orchestration",
+      "multi-agent",
+      "delegation",
+      "subagents"
+    ]
   },
   {
     "id": "orchestrate-batch-refactor",
@@ -44770,7 +44938,7 @@
     "path": "skills/uizze-ui-research",
     "category": "design",
     "name": "uizze-ui-research",
-    "description": "Use when building or reviewing web and iOS product UI and you need real UI references, structured design contracts, or implementation validation through UIZZE MCP.",
+    "description": "Use when building or reviewing web and iOS UI and you need real references from the free UIZZE public catalog, a structured design contract, a consent-gated rendered HTML/CSS preview, or a hard pre-ship finish gate.",
     "risk": "safe",
     "source": "https://github.com/aislon/uizze-mcp/tree/main/skills/uizze-ui-research",
     "date_added": "2026-07-12",
@@ -44788,6 +44956,8 @@
     },
     "source_type": "official",
     "source_repo": "aislon/uizze-mcp",
+    "license": "MIT",
+    "license_source": "https://github.com/aislon/uizze-mcp/blob/main/LICENSE",
     "tags": [
       "ui-design",
       "ui-research",

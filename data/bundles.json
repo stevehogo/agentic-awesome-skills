@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-22T08:51:33.000Z",
+  "generatedAt": "2026-07-28T15:21:12.000Z",
   "bundles": {
     "core-dev": {
       "description": "Core development skills across languages, frameworks, and backend/frontend fundamentals.",
@@ -533,6 +533,7 @@
         "fda-food-safety-auditor",
         "fda-medtech-compliance-auditor",
         "find-bugs",
+        "find-complementary-founders",
         "firebase",
         "firmware-analyst",
         "fixing-accessibility",
@@ -925,6 +926,7 @@
         "azure-mgmt-weightsandbiases-dotnet",
         "azure-monitor-opentelemetry-ts",
         "backend-development-feature-development",
+        "brendangregg-use-tsa",
         "brooks-harness",
         "ci-cd-and-automation",
         "cicd-automation-workflow-automate",
@@ -1071,6 +1073,7 @@
         "bitbucket-automation",
         "box-automation",
         "brevo-automation",
+        "browser-act",
         "browser-automation",
         "browser-harness",
         "cal-com-automation",
