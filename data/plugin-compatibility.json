@@ -1024,6 +1024,25 @@
       "runtime_files": []
     },
     {
+      "id": "agents-generator",
+      "path": "skills/agents-generator",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
       "id": "agents-md",
       "path": "skills/agents-md",
       "targets": {
@@ -8948,6 +8967,25 @@
       "runtime_files": []
     },
     {
+      "id": "cohesivity",
+      "path": "skills/cohesivity",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
       "id": "cold-email",
       "path": "skills/cold-email",
       "targets": {
@@ -9959,6 +9997,31 @@
       "blocked_reasons": {
         "codex": [],
         "claude": []
+      },
+      "runtime_files": []
+    },
+    {
+      "id": "cowork-to-code-bridge",
+      "path": "skills/cowork-to-code-bridge",
+      "targets": {
+        "codex": "blocked",
+        "claude": "blocked"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [
+        "absolute_host_path"
+      ],
+      "blocked_reasons": {
+        "codex": [
+          "absolute_host_path"
+        ],
+        "claude": [
+          "absolute_host_path"
+        ]
       },
       "runtime_files": []
     },
@@ -14687,6 +14750,25 @@
       "runtime_files": []
     },
     {
+      "id": "fact-check-x-complete",
+      "path": "skills/fact-check-x-complete",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
       "id": "faf-context",
       "path": "skills/faf-context",
       "targets": {
@@ -16734,6 +16816,25 @@
       "runtime_files": []
     },
     {
+      "id": "generate-nanobanana",
+      "path": "skills/generate-nanobanana",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
       "id": "geo-fundamentals",
       "path": "skills/geo-fundamentals",
       "targets": {
@@ -16768,6 +16869,31 @@
       "blocked_reasons": {
         "codex": [],
         "claude": []
+      },
+      "runtime_files": []
+    },
+    {
+      "id": "gh-attach",
+      "path": "skills/gh-attach",
+      "targets": {
+        "codex": "blocked",
+        "claude": "blocked"
+      },
+      "setup": {
+        "type": "manual",
+        "summary": "Installs a reviewed gh-attach release and, for uploads, uses an explicitly approved interactive browser session cookie.",
+        "docs": "SKILL.md"
+      },
+      "reasons": [
+        "explicit_target_restriction"
+      ],
+      "blocked_reasons": {
+        "codex": [
+          "explicit_target_restriction"
+        ],
+        "claude": [
+          "explicit_target_restriction"
+        ]
       },
       "runtime_files": []
     },
@@ -21946,6 +22072,25 @@
       "runtime_files": []
     },
     {
+      "id": "maintain-codex-wiki",
+      "path": "skills/maintain-codex-wiki",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
       "id": "make-automation",
       "path": "skills/make-automation",
       "targets": {
@@ -24652,12 +24797,10 @@
         "docs": null
       },
       "reasons": [
-        "target_specific_home_path",
         "undeclared_runtime_dependency"
       ],
       "blocked_reasons": {
         "codex": [
-          "target_specific_home_path",
           "undeclared_runtime_dependency"
         ],
         "claude": [
@@ -31436,6 +31579,25 @@
       "runtime_files": []
     },
     {
+      "id": "shopify-review-triage",
+      "path": "skills/shopify-review-triage",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
       "id": "short",
       "path": "skills/short",
       "targets": {
@@ -33633,6 +33795,25 @@
       "runtime_files": []
     },
     {
+      "id": "talivia-agent-kit",
+      "path": "skills/talivia-agent-kit",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
       "id": "tanstack-query-expert",
       "path": "skills/tanstack-query-expert",
       "targets": {
@@ -35589,6 +35770,25 @@
     {
       "id": "uncle-bob-craft",
       "path": "skills/uncle-bob-craft",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
+      "id": "unified-ai-gateway",
+      "path": "skills/unified-ai-gateway",
       "targets": {
         "codex": "supported",
         "claude": "supported"
@@ -38308,15 +38508,15 @@
     }
   ],
   "summary": {
-    "total_skills": 1993,
+    "total_skills": 2003,
     "supported": {
-      "codex": 1917,
-      "claude": 1938
+      "codex": 1925,
+      "claude": 1946
     },
     "blocked": {
-      "codex": 76,
-      "claude": 55
+      "codex": 78,
+      "claude": 57
     },
-    "manual_setup": 19
+    "manual_setup": 20
   }
 }

@@ -9,13 +9,200 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Security
+
+- Hardened coordinated-disclosure trust boundaries across NotebookLM, YouTube ingestion, Instagram OAuth/CSV export, Telegram HTML replies, Loki task export, Vercel claim verification, macOS packaging templates, and generated TSX content.
+
+## [15.9.0] - 2026-08-04 - "Security Boundaries and Multimodal Workflows"
+
+> Hardened repository and runtime trust boundaries while adding governed Gemini media generation and evidence-first Shopify review triage.
+
+This release gives Claude Code, Cursor, Codex CLI, Gemini CLI, Antigravity, and related AI coding assistants a safer 2,003-skill catalog. It closes the August Codex Security sweep, clears the remaining local dependency alerts, and adds two human-gated workflows for multimodal generation and public-review triage.
+
+Start here:
+
+- AAS Core setup: configure the exact `aas` runtime with the [Core guide](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/aas-core.md)
+- Direct skill distribution: `npx agentic-awesome-skills`
+- [Choose your tool](https://github.com/sickn33/agentic-awesome-skills#choose-your-tool)
+- [Best skills by tool](https://github.com/sickn33/agentic-awesome-skills#best-skills-by-tool)
+- [Bundles](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/bundles.md)
+- [Workflows](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/workflows.md)
+
+### Added
+
+- Added [`generate-nanobanana`](skills/generate-nanobanana/) for routing image and video generation across Nano Banana and Gemini Omni models, with reference-image support, explicit video-cost approval, and prompt/seed sidecar logs.
+- Added [`shopify-review-triage`](skills/shopify-review-triage/) for turning supplied public Shopify App Store reviews into a source-linked P0-P3 first-pass brief, with private-data stop conditions, human-verification labels, and no outbound messaging.
+
 ### Changed
 
-- Updated the catalog web app from `@supabase/supabase-js` 2.110.0 to 2.111.0, including the auth fix for overlapping PKCE flows, while preserving platform-specific native package metadata in the lockfile.
+- Updated [`unified-ai-gateway`](skills/unified-ai-gateway/) to the reviewed v0.4.0 release, documenting its ninth governed MCP tool and the pinned Linux arm64 image-review path while preserving provider-free, no-network, and separate-approval boundaries.
+- Regenerated the canonical catalog, offline AAS Core data, marketplaces, bundles, and Codex/Claude plugin distributions for 2,003 skills.
+
+### Security
+
+- Closed the August Codex Security sweep by making image review symlink-safe, treating project scripts and credentials as untrusted, pinning the GitHub attachment helper, confining Loki cleanup, loading PR-policy dependencies only from protected `main`, scoping oversized MCP requests to bounded metadata, and removing the public Star History token.
+- Pinned and bundled Ajv's `fast-uri` dependency on the patched 3.1.x line, resolving GHSA-7p8r-x3mc-p8w7 in the production dependency tree.
+- Updated the web app's PostCSS and transitive brace-expansion and ip-address tooling to patched releases, clearing the remaining local npm audit findings.
+- Refreshed the bundled `loki-mode` todo example lockfiles to patched `ip-address` and PostCSS releases, clearing the remaining Dependabot findings in the canonical skill and generated Claude mirror.
+
+### Who should care
+
+- Claude Code, Cursor, Codex CLI, Gemini CLI, and Antigravity users who install skills from the canonical or plugin distributions.
+- Security-conscious teams relying on bounded MCP framing, protected CI dependencies, credential handling, or container-image review guidance.
+- Creators using Gemini image or video generation who need explicit cost approval and reproducible prompt metadata.
+- Shopify app teams triaging low-star public reviews without treating unverified reports as confirmed incidents.
 
 ### Validation
 
-- Passed the repository test suite, web-app tests and production build, dependency audit, skill/reference validation, documentation security, and warning-budget checks.
+- Resolved all 22 findings from the August Codex Security sweep: 19 verified fixes and 3 documented false positives; the refreshed open-findings view is empty.
+- Passed canonical skill and reference validation, documentation security, warning-budget enforcement, the complete 106-group repository suite, the 150-test AAS Core suite, web build and prerender, and package dry-run checks.
+- Confirmed root and web-app npm audits report zero vulnerabilities and protected `main` CI and CodeQL are green before release preparation.
+
+### Credits
+
+- **[@AntonioCardenas](https://github.com/AntonioCardenas)** and **[AntonioCardenas/generate-nanobanana](https://github.com/AntonioCardenas/generate-nanobanana)** for `generate-nanobanana` in [PR #1076](https://github.com/sickn33/agentic-awesome-skills/pull/1076).
+- **[@alfredtech2026](https://github.com/alfredtech2026)** and **[alfredtech2026/shopify-app-review-brief](https://github.com/alfredtech2026/shopify-app-review-brief)** for `shopify-review-triage` in [PR #1075](https://github.com/sickn33/agentic-awesome-skills/pull/1075).
+- **[@happy520ai](https://github.com/happy520ai)** and **[happy520ai/unified-ai-system](https://github.com/happy520ai/unified-ai-system)** for the v0.4.0 `unified-ai-gateway` refresh in [PR #1073](https://github.com/sickn33/agentic-awesome-skills/pull/1073).
+
+## [15.8.0] - 2026-08-02 - "Governed Integrations and Agent Project Workflows"
+
+> Added four evidence-first skills for GitHub attachments, governed AI gateways, project-specific agent instructions, and revenue analytics through MCP.
+
+Start here:
+
+- AAS Core setup: configure the exact `aas` runtime with the [Core guide](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/aas-core.md)
+- Direct skill distribution: `npx agentic-awesome-skills`
+- [Choose your tool](https://github.com/sickn33/agentic-awesome-skills#choose-your-tool)
+- [Best skills by tool](https://github.com/sickn33/agentic-awesome-skills#best-skills-by-tool)
+- [Bundles](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/bundles.md)
+- [Workflows](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/workflows.md)
+
+### Added
+
+- Added [`gh-attach`](skills/gh-attach/) for uploading and downloading GitHub user attachments through the `gh` CLI, with repository-scoped visibility and GitHub Enterprise Server support.
+- Added [`unified-ai-gateway`](skills/unified-ai-gateway/) for governed inspection of Unified AI System's eight Codex MCP tools, with pinned image provenance, non-executing review, and separate activation approvals.
+- Added [`agents-generator`](skills/agents-generator/) for generating project-specific `AGENTS.md` and companion rules with package-manager detection, monorepo handling, backups, dry-run/update modes, and command validation.
+- Added [`talivia-agent-kit`](skills/talivia-agent-kit/) for revenue-first website analytics through the official Talivia MCP server, with explicit confirmation for tracking, deployment, and payment-attribution changes.
+
+### Changed
+
+- Regenerated the canonical catalog and Codex/Claude distribution surfaces for 2,001 skills.
+
+### Who should care
+
+- Developers who need to attach or retrieve GitHub artifacts directly from the terminal.
+- Teams evaluating a self-hosted AI gateway with bounded, fake-provider, and approval-aware MCP workflows.
+- Maintainers who want reproducible project-specific agent instructions and companion rules.
+- Revenue and growth teams using Talivia analytics while keeping website, deployment, and payment-attribution mutations consent-gated.
+
+### Validation
+
+- Passed canonical skill and reference validation, documentation security, warning-budget enforcement, repository tests, protected CI, and CodeQL.
+- Confirmed canonical synchronization reproduced the four new skills across Codex and Claude plugin distributions with no generated-state drift.
+- Confirmed npm package audit has no moderate-or-higher production vulnerabilities on the release base.
+
+### Credits
+
+- **[sudosubin/gh-attach](https://github.com/sudosubin/gh-attach)** for `gh-attach` in [PR #1060](https://github.com/sickn33/agentic-awesome-skills/pull/1060).
+- **[happy520ai/unified-ai-system](https://github.com/happy520ai/unified-ai-system)** for `unified-ai-gateway` in [PR #1061](https://github.com/sickn33/agentic-awesome-skills/pull/1061).
+- **[OJPalenzuela/agents-generator](https://github.com/OJPalenzuela/agents-generator)** for `agents-generator` in [PR #1067](https://github.com/sickn33/agentic-awesome-skills/pull/1067), which closes issue #1065.
+- **[talivia-group/agent](https://github.com/talivia-group/agent)** for `talivia-agent-kit` in [PR #1069](https://github.com/sickn33/agentic-awesome-skills/pull/1069).
+
+## [15.7.1] - 2026-07-31 - "Verified Knowledge and Cross-Environment Workflows"
+
+> Added evidence-first knowledge maintenance, cross-environment task handoff, multi-platform fact checking, and proactive founder-complement discovery.
+
+Start here:
+
+- AAS Core setup: configure the exact `aas` runtime with the [Core guide](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/aas-core.md)
+- Direct skill distribution: `npx agentic-awesome-skills`
+- [Choose your tool](https://github.com/sickn33/agentic-awesome-skills#choose-your-tool)
+- [Best skills by tool](https://github.com/sickn33/agentic-awesome-skills#best-skills-by-tool)
+- [Bundles](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/bundles.md)
+- [Workflows](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/workflows.md)
+
+### Added
+
+- Added [`maintain-codex-wiki`](skills/maintain-codex-wiki/) for review-first repository knowledge capture, ingestion, archiving, linting, and promotion with immutable provenance and explicit mutation gates.
+- Added [`cowork-to-code-bridge`](skills/cowork-to-code-bridge/) for consent-scoped task handoff from sandboxed agents to a user's own development machine through a shared-directory queue.
+- Added [`fact-check-x-complete`](skills/fact-check-x-complete/) as the complete official Fact-Check-X workflow for capturing and comparing claims, citations, screenshots, and HTML evidence across supported AI platforms.
+
+### Changed
+
+- Updated [`find-complementary-founders`](skills/find-complementary-founders/) to surface a tentative founder, operator, go-to-market, or scaling complement hypothesis from active-task evidence before offering the private Canvas and owner-controlled public-profile flow.
+- Made direct Antigravity installation fail closed before cloning or writing when no skill selection is supplied. The installer now directs users to let a Codex or Claude agent choose exact IDs through the read-only AAS Core MCP, preview the resulting `--skills` install, and use `--all` only as explicit acceptance of full-catalog context and crash-loop risk. Other host targets retain their existing behavior.
+- Regenerated the canonical catalog and Codex/Claude distribution surfaces for 1,997 skills.
+
+### Who should care
+
+- Claude Code, Cursor, Codex CLI, Gemini CLI, Windsurf, and Antigravity users who need auditable knowledge, verification, or machine-handoff workflows.
+- Teams maintaining repository-local engineering knowledge with explicit provenance and human review.
+- Users comparing AI-platform claims or coordinating sandboxed agents with their own development machines.
+- Founders who want a concrete, evidence-bound complement hypothesis without an unsolicited public action.
+
+### Validation
+
+- Passed canonical skill and reference validation, documentation security, warning-budget enforcement, changed-skill evidence, repository tests, protected CI, and CodeQL.
+- Confirmed canonical synchronization reproduced all four source changes across Codex and Claude plugin distributions with no generated-state drift.
+- The protected release gate binds the release PR, tag, GitHub Release, npm `latest`, CI, CodeQL, release-only Pages deployment, live catalog and legacy bridge, and every already-configured AAS MCP host to the exact released commit.
+
+### Credits
+
+- **[@Phelan164](https://github.com/Phelan164)** and **[Phelan164/codex-howto](https://github.com/Phelan164/codex-howto)** for `maintain-codex-wiki` in [PR #1052](https://github.com/sickn33/agentic-awesome-skills/pull/1052).
+- **[@merc1305](https://github.com/merc1305)** and **[merc1305/findMate](https://github.com/merc1305/findMate)** for the `find-complementary-founders` improvements in [PR #1011](https://github.com/sickn33/agentic-awesome-skills/pull/1011).
+- **[@abhinaykrupa](https://github.com/abhinaykrupa)** and **[abhinaykrupa/cowork-to-code-bridge](https://github.com/abhinaykrupa/cowork-to-code-bridge)** for `cowork-to-code-bridge` in [PR #1046](https://github.com/sickn33/agentic-awesome-skills/pull/1046).
+- **[@ASI2030](https://github.com/ASI2030)** and **[ASI2030/Fact-Check-X](https://github.com/ASI2030/Fact-Check-X)** for `fact-check-x-complete` in [PR #1049](https://github.com/sickn33/agentic-awesome-skills/pull/1049).
+
+## [15.7.0] - 2026-07-29 - "Risk Metadata and Installation Hardening"
+
+> Completed semantic risk classification across the catalog, hardened skill installation and maintainer evidence boundaries, and added a consent-gated backend provisioning skill.
+
+Start here:
+
+- AAS Core setup: configure the exact `aas` runtime with the [Core guide](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/aas-core.md)
+- Direct skill distribution: `npx agentic-awesome-skills`
+- [Choose your tool](https://github.com/sickn33/agentic-awesome-skills#choose-your-tool)
+- [Best skills by tool](https://github.com/sickn33/agentic-awesome-skills#best-skills-by-tool)
+- [Bundles](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/bundles.md)
+- [Workflows](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/workflows.md)
+
+### Added
+
+- Added [`cohesivity`](skills/cohesivity/) for consent-gated provisioning of Postgres, Redis, object and vector storage, hosting, authentication, email, managed browser, and model APIs, with private credential storage, explicit retention disclosure, and budget controls.
+- Regenerated the canonical catalog and Codex/Claude distribution surfaces for 1,994 skills.
+
+### Changed
+
+- Replaced all 940 remaining `risk: unknown` declarations with individually reviewed semantic classifications: 798 `critical`, 71 `none`, 60 `safe`, and 11 `offensive`.
+- Added the repository-standard authorized-use disclaimer and per-action confirmation gate to the 11 newly classified offensive skills.
+- Added a pre-install audit and prominent risk summary while preserving the full-catalog installation default.
+- Replaced mutable external installation guidance with approval-gated, full-commit-SHA inspect-first workflows and clarified the difference between antivirus text detections and evidence of execution.
+- Bounded changed-skill ownership lookup by changed-path depth, extended the trusted evaluator budget for repository-wide reviews, and safely supported legacy executable-mode `SKILL.md` snapshots without materializing executable files, symlinks, or gitlinks.
+- Updated Modellix vendored source URLs and speech defaults, upgraded the catalog web app to `@supabase/supabase-js` 2.111.0, and normalized indexable catalog links for GitHub Pages.
+
+### Security
+
+- Removed mutable provider instructions from BrowserAct's operating-policy boundary and required full 40-character Git commit pins for linked FindMate profiles.
+- Strengthened installation safety for offensive and externally sourced skills with explicit authorization, command confirmation, provenance inspection, and immutable source pins.
+- Hardened Cohesivity credential files to private permissions and documented privacy, retention, billing, overage, and x402 self-payment boundaries.
+
+### Who should care
+
+- Claude Code, Cursor, Codex CLI, Gemini CLI, Windsurf, and Antigravity users who want actionable risk metadata before installing or running skills.
+- Security-conscious teams auditing offensive, networked, credential-bearing, or externally sourced skills.
+- Maintainers running large repository-wide skill reviews through the protected evidence and merge workflow.
+- Developers who need a consent-gated, agent-provisioned backend without manually copying credentials.
+
+### Validation
+
+- Passed canonical skill and reference validation, documentation security, warning-budget enforcement, changed-skill evidence, repository and AAS Core tests, protected CI, and CodeQL.
+- Confirmed canonical synchronization reproduced all risk labels and Cohesivity content byte-for-byte across Codex and Claude plugin distributions.
+- The protected release gate binds the release PR, tag, GitHub Release, npm `latest`, CI, CodeQL, release-only Pages deployment, live catalog and legacy bridge, and every already-configured AAS MCP host to the exact released commit.
+
+### Credits
+
+- **[@shouryamaanjain](https://github.com/shouryamaanjain)** and **[cohesivity-org/cohesivity-skill](https://github.com/cohesivity-org/cohesivity-skill)** for `cohesivity` in [PR #1032](https://github.com/sickn33/agentic-awesome-skills/pull/1032).
+- **[@alen-hh](https://github.com/alen-hh)** for the Modellix source URL and speech-default refresh in [PR #1025](https://github.com/sickn33/agentic-awesome-skills/pull/1025).
 
 ## [15.6.0] - 2026-07-28 - "Browser Automation and Performance RCA"
 
