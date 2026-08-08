@@ -25996,6 +25996,25 @@
       "runtime_files": []
     },
     {
+      "id": "outreachagent",
+      "path": "skills/outreachagent",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
       "id": "page-cro",
       "path": "skills/page-cro",
       "targets": {
@@ -26264,6 +26283,25 @@
     {
       "id": "pentest-commands",
       "path": "skills/pentest-commands",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
+      "id": "people-data",
+      "path": "skills/people-data",
       "targets": {
         "codex": "supported",
         "claude": "supported"
@@ -35160,6 +35198,25 @@
       "runtime_files": []
     },
     {
+      "id": "travel-planner",
+      "path": "skills/travel-planner",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
       "id": "tree-ring-memory",
       "path": "skills/tree-ring-memory",
       "targets": {
@@ -36736,6 +36793,25 @@
     {
       "id": "video-content-extractor",
       "path": "skills/video-content-extractor",
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [],
+      "blocked_reasons": {
+        "codex": [],
+        "claude": []
+      },
+      "runtime_files": []
+    },
+    {
+      "id": "video-router",
+      "path": "skills/video-router",
       "targets": {
         "codex": "supported",
         "claude": "supported"
@@ -38508,10 +38584,10 @@
     }
   ],
   "summary": {
-    "total_skills": 2003,
+    "total_skills": 2007,
     "supported": {
-      "codex": 1925,
-      "claude": 1946
+      "codex": 1929,
+      "claude": 1950
     },
     "blocked": {
       "codex": 78,
