@@ -125,7 +125,7 @@ Ship the plan pre-verified; fix defects in the plan files (this is authoring, no
 
    **It warns on:** referenced repo paths that don't exist (to-be-created dirs and deliberately-quoted stale paths are legitimate — review each) · package scripts the plan invokes (`yarn x` / `npm run x` / `pnpm x`) that the root `package.json` doesn't define — the classic "gate demands a test suite the repo doesn't have" defect; write the degraded form instead.
 
-   Editing the verifier? Run its regression suite: `node <skill-base-dir>/scripts/test-verify-plan.mjs`.
+   The verifier is two files that ship together — `verify-plan.mjs` (CLI) and `verify-plan-lib.mjs` (logic). Copy both; the CLI deliberately runs unconditionally rather than guarding on `import.meta.url`, which silently no-ops when the skill is installed at a symlinked path. Editing the verifier? Run its regression suite: `node <skill-base-dir>/scripts/test-verify-plan.mjs`.
 2. **Anchor check (manual):** spot-check cited line numbers — the script verifies paths, not line contents.
 3. **Spec fidelity:** re-read the authority doc for every quoted value (scales, state specs, durations); where the plan encodes a value the spec *doesn't* state, add a provenance note rather than implying it's spec'd.
 4. **Tooling check:** every workflow/skill/script invocation in gates uses names, args, and option keys that actually exist — **and is runnable in the execution environment** per the capability baseline (a script `package.json` doesn't define, or an e2e rung with no browsers installed, is a broken gate: write its degraded form instead).

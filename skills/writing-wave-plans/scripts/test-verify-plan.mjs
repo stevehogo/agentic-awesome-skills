@@ -15,7 +15,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import test, { after, describe } from 'node:test';
 
-import { expandIds, normalizeIdSpec, parseReadmeWaveRows, PlanSpecError } from './verify-plan.mjs';
+import { expandIds, normalizeIdSpec, parseReadmeWaveRows, PlanSpecError } from './verify-plan-lib.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const VERIFY = path.join(HERE, 'verify-plan.mjs');
@@ -239,6 +239,55 @@ describe('end-to-end verdicts', () => {
       '--ids', 'F1');
     assert.equal(r.code, 1, r.out);
     assert.match(r.out, /unwired/);
+  });
+});
+
+describe('invocation paths', () => {
+  // An `import.meta.url === argv[1]` entry guard compares the symlink-RESOLVED module URL against
+  // the path as typed, so a symlinked install made the CLI exit 0 printing NOTHING — a silent
+  // false PASS. The CLI now runs unconditionally; this pins that it stays that way.
+  test('runs identically through a symlinked install path', () => {
+    const linkDir = path.join(TMP, 'linked-scripts');
+    if (!fs.existsSync(linkDir)) fs.symlinkSync(HERE, linkDir, 'dir');
+    const folder = build({ 0: '### Task F1 — A\n\n### Task F2 — B' });
+
+    const direct = run(folder, '--ids', 'F1,F2');
+    const viaLink = spawnSync(
+      process.execPath,
+      [path.join(linkDir, 'verify-plan.mjs'), folder, '--root', TMP, '--ids', 'F1,F2'],
+      { encoding: 'utf8' },
+    );
+
+    assert.notEqual(viaLink.stdout.trim(), '', 'symlinked invocation must produce output');
+    assert.match(viaLink.stdout, /VERDICT: PASS/);
+    assert.equal(viaLink.status, direct.code);
+    assert.equal(viaLink.stdout, direct.out, 'symlinked and direct output must match');
+  });
+
+  test('a failing plan through a symlink still exits non-zero', () => {
+    const linkDir = path.join(TMP, 'linked-scripts');
+    if (!fs.existsSync(linkDir)) fs.symlinkSync(HERE, linkDir, 'dir');
+    const folder = build({ 0: '### Task F1 — A' });
+    const r = spawnSync(
+      process.execPath,
+      [path.join(linkDir, 'verify-plan.mjs'), folder, '--root', TMP, '--ids', 'F1,F9'],
+      { encoding: 'utf8' },
+    );
+    assert.equal(r.status, 1, r.stdout + r.stderr);
+    assert.match(r.stdout, /VERDICT: FAIL/);
+  });
+
+  test('a bad --ids spec through a symlink reports and exits 1', () => {
+    const linkDir = path.join(TMP, 'linked-scripts');
+    if (!fs.existsSync(linkDir)) fs.symlinkSync(HERE, linkDir, 'dir');
+    const folder = build({ 0: '### Task F1 — A' });
+    const r = spawnSync(
+      process.execPath,
+      [path.join(linkDir, 'verify-plan.mjs'), folder, '--root', TMP, '--ids', 'F1-U3'],
+      { encoding: 'utf8' },
+    );
+    assert.equal(r.status, 1);
+    assert.match(r.stdout + r.stderr, /mixes prefixes/);
   });
 });
 
