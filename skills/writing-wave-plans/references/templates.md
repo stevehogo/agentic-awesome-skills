@@ -249,6 +249,49 @@ Task-level state lives in each wave file — this table is the wave-level rollup
 **Depends on:** <waves/tasks>. **Unblocks:** <waves/tasks>.
 <!-- Optional: wave-wide warnings — blast radius, "nothing visual changes until task X", etc. -->
 
+## Dependency graph
+
+<!-- Method, drawing rules, and the "this wave does not split" case: references/batching.md -->
+
+<One line: slices are demo checkpoints not barriers · who owns which tree · **batches are one executor's ordered queue, not a concurrency set**.>
+
+```
+         Lane A — <tree or role>             Lane B — <tree or role>
+         ───────────────────────             ───────────────────────
+  B0     <cross-wave prerequisites>          <prerequisite or blank>
+         │                                   │
+         ▼                                   │
+  B1     <ID> ──► <ID> ─── unblocks <ID> ───►┤    Lane B idle — structural
+         │                                   │
+         ▼                                   ▼
+  B2     <ID> ──► <ID>                       <ID> ──► <ID>
+         │                                   │
+         └────── both feed <ID> ────────────►│
+                                             ▼
+  B3     <demo or gate prep>                 <ID>
+
+  <ID> floats — unblocked after <ID>, first consumed in Wave <N>. Fill any gap with it.
+```
+
+**Critical path:** `<ID> → <ID> → …`. No headcount shortens it.
+
+<Why the lanes cannot collide · the sole reconvergence · any lane-spanning task.>
+
+> ⚠ **<N> edges the task lines get wrong, leave unowned, or cannot verify.**
+>
+> 1. **<ID> declares `<x>` but also needs `<y>`** — <evidence, with a link to the task that owns it>.
+
+### <N>-executor batch schedule
+
+| Batch | Lane A — <name> | Lane B — <name> | Opens when |
+|---|---|---|---|
+| **0** | <cross-wave prerequisites> | — | <prior gate> |
+| **1** | **<ID>** (<size>) — <what> | — structural idle | <real prerequisites> |
+
+<Notes: structural idle · lane-spanning task · serial tail · calendar waits.>
+
+**Single executor:** `<ID> → <ID> → …`, slotting <floating IDs> into any gap.
+
 ## Status tracking — Wave <N>
 
 Status: not started
