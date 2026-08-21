@@ -4,7 +4,8 @@ Copy these skeletons and fill every `<placeholder>`. Delete guidance comments (`
 Structure is normative — `scripts/verify-plan.mjs` checks for the marked sections. Add sections
 freely; don't remove the required ones. Number waves from 0 (wave 0 = the foundation wave).
 Small plans may compact task blocks (Covers/Files merged, Steps inlined) — the invariants are
-the `### Task <ID> — ` heading, exact paths, an exact verify command, and a commit line.
+the `### Task <ID> — ` heading, exact paths, and an exact verify command. Tasks carry no commit
+line: each wave lands as ONE commit, made at its gate.
 
 ---
 
@@ -16,10 +17,11 @@ the `### Task <ID> — ` heading, exact paths, an exact verify command, and a co
 Status: not started
 Created: <YYYY-MM-DD> · Branch: `<branch>` · Covers **all <N> rows** of <backlog source, e.g. the Estimation sheet in docs/<file>.xlsx>.
 
-> **For Claude:** Execute task-by-task, one commit per task. Each wave is its own file in this
-> folder and **owns its task-level status tracking** — update the wave file's *Status tracking*
-> section as you work, then roll the wave-level result up to the [Status tracking](#status-tracking-wave-rollup)
-> table below. Use the skills named in each task. Keep these files in sync with reality as work
+> **For Claude:** Execute task-by-task; commit **once per wave**, at its gate — never per task.
+> Each wave is its own file in this folder and **owns its task-level status tracking** — update the
+> wave file's *Status tracking* section as you work (a ticked task carries its delta, not a hash —
+> the wave is uncommitted until its gate), then roll the wave-level result up to the
+> [Status tracking](#status-tracking-wave-rollup) table below. Use the skills named in each task. Keep these files in sync with reality as work
 > progresses<, and per the project's CLAUDE.md plan conventions if it has them>. **This plan is a
 > living doc:** when execution uncovers a recurring gotcha, promote it into *Shared conventions*
 > right away; when work moves between tasks/waves or a step is deferred, record it in **both**
@@ -84,13 +86,14 @@ WAVE 2 — <A>   WAVE 3 — <B>       │  <which tracks are parallel and why (n
 <!-- REQUIRED. The DRY home for every-task rules. Wave files must NOT repeat these. Typical entries: -->
 - **Spec first.** <authority doc>; when anything disagrees with it, <authority> wins.
 - **Verification ladder:** per task = <cheap check the environment can run>; per wave gate = <build + runnable test rungs + fresh-context audits> (degraded forms per the Reality baseline's capability line).
-- **Commits:** one per task, on `<branch>`, message `<type>(<scope>): <ID> — <what>`. Do not push unless asked.
-- **No invented identifiers.** Any class/token/util/symbol a task newly references must be grep-proven to exist (in its defining file) before commit — renames are the classic silent breakage.
+- **Commits:** ONE per wave, on `<branch>`, made at that wave's gate — subject `<type>(<scope>): W<N> — <theme> (<ID range>)`, body one line per task ID (`<ID> — <what changed>`) so IDs stay greppable (`git log --grep "<ID> —"`). Tasks do not commit: they verify, then tick the wave checklist, leaving the change in the tree. Run any concurrent wave tracks in separate worktrees/branches so each wave's commit stays one whole diff. Do not push unless asked.
+- **Interrupted wave.** If a wave must be handed off before its gate, the Status checklist is the boundary and the tree stays uncommitted; only if the handoff needs a clean tree, commit `wip(<scope>): W<N> — partial (<IDs> done)` and squash it into the wave commit at the gate.
+- **No invented identifiers.** Any class/token/util/symbol a task newly references must be grep-proven to exist (in its defining file) before that task is ticked — renames are the classic silent breakage.
 - **Shared surfaces extend additively.** Adding keys to shared maps/enums/barrels is safe; re-valuing an existing key requires a consumer sweep by a task that owns that key.
 - **Dead code stays dead.** Don't migrate commented-out/unused blocks — note them for the cleanup task; never enable dead behavior mid-migration.
 - **Per-wave testing summary:** at each gate, write/refresh `docs/<effort>-summary/wave-<N>-<theme>.md` — *what changed · how to verify · what is intentionally NOT changed yet* (prevents false-regression reports while the tree is deliberately half-migrated) — and add its row to that folder's index README.
 - **Keep state truthful:** after each task, tick the wave file's checklist; after each gate, update this README's rollup and <any external checklist tooling reads>.
-- **Backlog drift is append-only.** If the source gains, loses, or splits a row mid-effort: never renumber or delete an ID (commit messages carry them) — add the new heading to the wave that owns its dependencies, retitle a dropped one `(withdrawn <date>: <why>)`, split as `<ID>a`/`<ID>b`, and record any cross-wave move in **both** wave Status sections. Then re-run the plan verifier with the updated IDs.
+- **Backlog drift is append-only.** If the source gains, loses, or splits a row mid-effort: never renumber or delete an ID (wave commit bodies list them) — add the new heading to the wave that owns its dependencies, retitle a dropped one `(withdrawn <date>: <why>)`, split as `<ID>a`/`<ID>b`, and record any cross-wave move in **both** wave Status sections. Then re-run the plan verifier with the updated IDs.
 - <do-not-touch list / hard rules>
 
 ## Status tracking (wave rollup)
@@ -300,12 +303,12 @@ Status: not started
 - [ ] <ID2> — <task name>
 - [ ] W<N>-GATE — Wave verification gate
 
-<!-- Tick with EVIDENCE, not bare [x]: append the commit hash + a one-line delta + any deviation
-     from the plan, e.g.
-       - [x] U1 — Buttons to spec — `a1b2c3d`. Primary/outline restyled; deviation: scroll-shadow
+<!-- Tick with EVIDENCE, not bare [x]: append a one-line delta + any deviation from the plan. Task
+     lines carry NO hash — the wave's work is uncommitted until its gate, e.g.
+       - [x] U1 — Buttons to spec. Primary/outline restyled; deviation: scroll-shadow
          not wired (no scroll handler exists — applied at rest, noted).
-     The GATE line additionally records: build/test/audit results, what was NOT verifiable in this
-     environment, and each deferral with its new owner task ID. -->
+     The GATE line additionally records: the wave commit's subject, build/test/audit results, what
+     was NOT verifiable in this environment, and each deferral with its new owner task ID. -->
 
 <!-- Optional but recommended when tasks repeat the same shape: -->
 ## Task template (applies to every task below)
@@ -313,7 +316,8 @@ Status: not started
 1. **Inventory:** read the target + grep its usages/consumers.
 2. **Change:** <the wave's standard transformation, stated once>.
 3. **Verify:** <the wave's standard per-task check>.
-4. **Commit:** `<type>(<scope>): <ID> — <what>`.
+4. **Tick:** mark the task `[x]` in *Status tracking* with its delta — leave the change uncommitted;
+   the wave commits once, at its gate.
 
 Per-task notes below are the *deltas* from this template.
 
@@ -334,7 +338,7 @@ for any value the spec does NOT state explicitly>
 1. <one 2–5-minute action>
 2. <…>
 3. Verify: <exact command + expected result>
-4. Commit: `<type>(<scope>): <ID> — <what>`
+4. Tick `<ID>` in *Status tracking* with its delta — no commit (the wave commits at its gate)
 
 ---
 
@@ -342,7 +346,8 @@ for any value the spec does NOT state explicitly>
 
 1. <build command> exits 0 <on the pinned toolchain from the Reality baseline>.
 2. <the test rungs the capability baseline says are runnable> — <what must stay green; how to handle
-   intended snapshot/golden churn: eyeball diffs, then re-baseline; commit baselines separately>.
+   intended snapshot/golden churn: eyeball diffs, then re-baseline and note the re-baselining in
+   the gate status line — the baselines ride in the wave commit>.
    Unrunnable rungs: execute the degraded form <build + targeted greps + read-only reviewer agents>
    and record "not verified in-session" in the status line — never claim them.
 3. Fresh-context audit — run <audit workflow/skill> with **exact valid args**: `<invocation>`
@@ -350,13 +355,17 @@ for any value the spec does NOT state explicitly>
    Scope: this wave's surface **plus the shared/global files it touched**.
 4. Triage findings: fix in-scope high/medium (+ cheap nits) now; re-home every deferral onto a
    **named later task** (usually the QA wave) and record it in this file's gate status line.
-5. Commit remediation (if anything was fixed): `fix(<scope>): W<N> gate — remediate audit findings`.
+5. Remediate in the working tree (no separate commit — the fixes ride in the wave commit); list
+   each fix in this file's gate status line.
 6. Testing summary: write/refresh `docs/<effort>-summary/wave-<N>-<theme>.md` — *what changed ·
    how to verify · what is intentionally NOT changed yet* — and add/tick its row in that folder's
    index README.
-7. Update: this file's Status section → all `[x]` with commit hashes + deviations; README rollup row
+7. Update: this file's Status section → all `[x]` with deltas + deviations; README rollup row
    (outcome · env caveats · deferrals); <external checklist tooling reads, if any>.
-8. Commit: `docs(<scope>): W<N> gate — <theme> complete`.
+8. **Commit the wave — one commit, everything in it** (tasks + remediation + testing summary +
+   these status/rollup edits): `<type>(<scope>): W<N> — <theme> (<ID range>)`, body one line per
+   task ID. Docs are staged BEFORE this commit so the wave lands as a single reviewable unit;
+   recover its hash later with `git log --grep "W<N> —"`.
 9. **Context checkpoint:** stop here — end the turn and announce that Wave <N> is complete and
    committed, so this is a lossless point to `/compact` or `/clear` (all state the next wave needs
    is on disk: this Status section, the README rollup, git history). Don't start Wave <N+1> in the
