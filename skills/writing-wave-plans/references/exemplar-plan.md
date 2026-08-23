@@ -40,9 +40,13 @@ The working tree is **fully legacy — a previous implementation round was rever
   tokens "exist"). Task **F0** reconciles it before any code changes.
 - **Toolchain:** Node 20, Yarn. **Vue pinned 3.4.38** — a floated 3.5 compiler crashes `yarn build`
   on valid templates; the pin is load-bearing for every gate.
-- **Verification capability (execution environment):** build ✓ · e2e/browsers ✗ (no Playwright
-  browsers) · dev server ✗ — gates run build + targeted greps + read-only auditor agents; visual
-  and keyboard checks route to the wave testing summaries as human checks.
+- **Verification capability (execution environment):** build ✓ · unit ✓ · e2e/browsers ✗ (no
+  Playwright browsers) · dev server ✗ — gates run build + the full unit suite + targeted greps +
+  read-only auditor agents; visual and keyboard checks route to the wave testing summaries as human
+  checks.
+- **Test scoping:** full suite `yarn test:unit` (128 tests, ~40 s) · select with
+  `yarn test:unit <path>` · component specs sit adjacent to their `.vue` files (`Button.spec.ts`
+  beside `Button.vue`); the SCSS token files have no covering tests at all.
 
 | Sheet cell | Sheet says (stale) | Actual spec (guide) |
 |---|---|---|
@@ -52,6 +56,10 @@ The working tree is **fully legacy — a previous implementation round was rever
 ## Shared conventions (excerpt)
 
 - **Spec first.** `docs/brand-guide.md`; on any conflict, the guide wins.
+- **Verification ladder:** per task = `yarn build` + `yarn test:unit <only this task's specs>`; per
+  gate = `yarn build` + the FULL `yarn test:unit` + the audits. Scoped greens don't compose — two
+  tasks can each be green on their own spec and still fight over a shared `Button` snapshot, which
+  only the whole-suite run sees.
 - **Commits:** one per wave, made at its gate — e.g. `style(brand): W0 — foundation SCSS tokens
   (F0–F8)`, body one line per task ID. Tasks verify and tick the checklist; they don't commit.
 - **No invented identifiers.** Any class/token a task newly references is grep-proven to exist first
@@ -114,9 +122,10 @@ Status: not started
      stays uncommitted until its gate), e.g. how this looked done:
 - [x] F1 — Core palette + semantic tokens. Tokens added, no consumers yet; deviation:
   scroll-elevation not wired (no scroll handler exists — shadow applied at rest, noted).
-- [x] W0-GATE — build exit 0 (Vue 3.4.38); e2e NOT run in-session (no browsers — degraded to
-  greps + auditor agents); audits 0 HIGH after in-tree remediation (2 files: `_buttons.scss`,
-  `_forms.scss`); deferred to Q4: content-link focus rings, small tap targets. Wave committed as
+- [x] W0-GATE — build exit 0 (Vue 3.4.38); unit 128/128 (full suite, not the tasks' scoped runs);
+  e2e NOT run in-session (no browsers — degraded to greps + auditor agents); audits 0 HIGH after
+  in-tree remediation (2 files: `_buttons.scss`, `_forms.scss`); deferred to Q4: content-link focus
+  rings, small tap targets; deferred to Q6: no unit coverage for the token layer. Wave committed as
   `style(brand): W0 — foundation SCSS tokens (F0–F8)`.
   Summary: docs/branding-migration-summary/wave-0-foundation-tokens.md
 -->
@@ -127,6 +136,9 @@ Status: not started
 **Files:**
 - Modify: `assets/scss/src/_variables.scss` (insert after the legacy color block)
 
+**Tests:** none cover `_variables.scss` (style-only tokens, no consumers yet) — degraded to
+`yarn build` + the token grep in Step 2; coverage gap re-homed onto Wave-6 task Q6.
+
 **Step 1: Add the token block** (from guide §15, adapted with `!default` to match file style):
     $brand-green:  #166B54 !default; // --primary
     $green-deep:   #0D4437 !default; // D3 hover/active (#0D5A46 is a PDF typo — D12)
@@ -136,13 +148,15 @@ Status: not started
 <!-- Compact form (small plans) — same invariants, one block: -->
 ### Task T1 — Color tokens to brand green
 **Covers:** T1 (S) · depends — · **Modify:** `src/styles/tokens.css`
-**Steps:** 1) Edit the `--primary` value. 2) Verify: `grep -c "#117755" src/styles/tokens.css` → `1`.
+**Steps:** 1) Edit the `--primary` value. 2) Verify: `grep -c "#117755" src/styles/tokens.css` → `1`,
+then `yarn test:unit src/components/Button.spec.ts` → `6 passed` (its only spec'd consumer).
 3) Tick T1 with its delta (the wave's single commit comes at its gate).
 
 ### Task W0-GATE — Wave verification gate
 
 1. `yarn build` exits 0 (on the pinned Vue 3.4.38 — see Reality baseline).
-2. e2e/visual: ✗ in this environment (no browsers) — degraded form: targeted greps + the audits
+2. `yarn test:unit` — the **full** suite (all 128 green), not just the specs the tasks ran scoped.
+   e2e/visual: ✗ in this environment (no browsers) — degraded form: targeted greps + the audits
    below; record "e2e not verified in-session" in the status line.
 3. Fresh-context audit: **`verify-style-migration`** workflow (`coverage` dimension) — or the
    standalone read-only `style-conformance-auditor` agent when workflows need an unavailable

@@ -35,7 +35,9 @@
  *   - package scripts the plan invokes in code spans/fences (`yarn x` / `npm run x` / `pnpm x`)
  *     that the repo-root package.json does not define — a gate must not demand tooling the repo
  *     lacks (write its degraded form instead). Skipped when no root package.json exists;
- *     package-manager builtins (install, add, dlx, ...) are ignored.
+ *     package-manager builtins (install, add, dlx, ...) are ignored, and so is `yarn <bin>` /
+ *     `pnpm <bin>` binary passthrough when <bin> is installed (node_modules/.bin) or declared as a
+ *     dependency — the shape a per-task scoped test rung takes (`yarn vitest run <path>`).
  *
  * IDs: comma-separated tokens; `F1-F8` expands to F1..F8; bare tokens pass through.
  * Zero-padding is preserved (`F01-F03` -> F01, F02, F03) because spreadsheet backlogs pad row IDs.
@@ -402,11 +404,23 @@ export function run(argv) {
     console.log('scripts: skipped (no package.json at root)');
   } else {
     let scripts = null;
+    let deps = new Set();
     try {
-      scripts = new Set(Object.keys(JSON.parse(fs.readFileSync(pkgPath, 'utf8')).scripts ?? {}));
+      const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+      scripts = new Set(Object.keys(pkg.scripts ?? {}));
+      deps = new Set([
+        ...Object.keys(pkg.dependencies ?? {}),
+        ...Object.keys(pkg.devDependencies ?? {}),
+      ]);
     } catch (e) {
       console.log(`scripts: skipped (package.json unreadable: ${e.message})`);
     }
+    // `yarn <bin> …` / `pnpm <bin> …` run a locally installed BINARY, not a script — the shape of a
+    // per-task scoped test rung (`yarn vitest run src/x.spec.ts`). Warning on those would punish
+    // exactly the commands the skill tells authors to write, so an installed or declared binary
+    // counts as real tooling.
+    const isLocalBinary = (word) =>
+      deps.has(word) || fs.existsSync(path.join(root, 'node_modules', '.bin', word));
     if (scripts) {
       const hits = new Map();
       for (const text of texts.values()) {
@@ -421,14 +435,14 @@ export function run(argv) {
           } else if (!ran && PM_BUILTINS[tool].has(word)) {
             continue;
           }
-          if (!scripts.has(word)) {
-            const key = `${tool} ${word}`;
-            hits.set(key, (hits.get(key) ?? 0) + 1);
-          }
+          if (scripts.has(word)) continue;
+          if (tool !== 'npm' && isLocalBinary(word)) continue;
+          const key = `${tool}\0${word}`;
+          hits.set(key, (hits.get(key) ?? 0) + 1);
         }
       }
       for (const [key, n] of [...hits.entries()].sort()) {
-        const [tool, word] = key.split(' ');
+        const [tool, word] = key.split('\0');
         const runPart = tool === 'npm' ? ' run' : '';
         warnings.push(
           `plan invokes \`${tool}${runPart} ${word}\` (${n}x) but package.json defines no script ` +

@@ -291,6 +291,62 @@ describe('invocation paths', () => {
   });
 });
 
+describe('package-script check', () => {
+  /** A root with its own package.json, so the scripts check runs instead of being skipped. */
+  function withPkg(pkg, planTasks, bins = []) {
+    const root = path.join(TMP, `root-${seq++}`);
+    fs.mkdirSync(root, { recursive: true });
+    fs.writeFileSync(path.join(root, 'package.json'), JSON.stringify(pkg));
+    for (const b of bins) {
+      fs.mkdirSync(path.join(root, 'node_modules', '.bin'), { recursive: true });
+      fs.writeFileSync(path.join(root, 'node_modules', '.bin', b), '#!/bin/sh\n');
+    }
+    const folder = build({ 0: planTasks });
+    const r = spawnSync(process.execPath, [VERIFY, folder, '--root', root, '--ids', 'F1'], {
+      encoding: 'utf8',
+    });
+    return { code: r.status, out: r.stdout + r.stderr };
+  }
+
+  test('undefined script still warns', () => {
+    const r = withPkg({ scripts: { build: 'vite build' } },
+      '### Task F1 — A\n\nVerify: `yarn nope`');
+    assert.match(r.out, /no script 'nope'/);
+  });
+
+  // `yarn vitest run <path>` is the per-task scoped test rung the skill asks authors to write —
+  // it runs node_modules/.bin/vitest, not a package script, and must not be warned about.
+  test('yarn <declared-dep> binary passthrough does not warn', () => {
+    const r = withPkg(
+      { scripts: { build: 'vite build' }, devDependencies: { vitest: '^1.6.0' } },
+      '### Task F1 — A\n\n**Tests:** `yarn vitest run src/a.spec.ts` → `6 passed`',
+    );
+    assert.doesNotMatch(r.out, /no script 'vitest'/, r.out);
+    assert.match(r.out, /scripts: 0 undefined-script warning/);
+  });
+
+  test('yarn <installed-bin> passthrough does not warn', () => {
+    const r = withPkg({ scripts: {} }, '### Task F1 — A\n\nVerify: `yarn jest src/a.spec.ts`',
+      ['jest']);
+    assert.doesNotMatch(r.out, /no script 'jest'/, r.out);
+  });
+
+  // `npm run <x>` genuinely needs a script — passthrough must not leak to npm.
+  test('npm run <bin> still warns even when the bin is installed', () => {
+    const r = withPkg({ scripts: {} }, '### Task F1 — A\n\nVerify: `npm run jest`', ['jest']);
+    assert.match(r.out, /no script 'jest'/);
+  });
+});
+
+describe('source hygiene', () => {
+  // The warning key/split pair once used RAW NUL bytes, which made verify-plan-lib.mjs "binary" to
+  // grep/ugrep — every match in it silently skipped, in a skill whose discipline is grep-proof.
+  test('verify-plan-lib.mjs contains no raw control bytes', () => {
+    const src = fs.readFileSync(path.join(HERE, 'verify-plan-lib.mjs'));
+    assert.equal(src.includes(0x00), false, 'raw NUL byte in source — use the \\0 escape');
+  });
+});
+
 describe('--ids-from-readme (backlog-drift detection)', () => {
   test('derives IDs and passes when in sync', () => {
     const folder = build(

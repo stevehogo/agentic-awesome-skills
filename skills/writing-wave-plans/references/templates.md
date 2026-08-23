@@ -4,7 +4,8 @@ Copy these skeletons and fill every `<placeholder>`. Delete guidance comments (`
 Structure is normative — `scripts/verify-plan.mjs` checks for the marked sections. Add sections
 freely; don't remove the required ones. Number waves from 0 (wave 0 = the foundation wave).
 Small plans may compact task blocks (Covers/Files merged, Steps inlined) — the invariants are
-the `### Task <ID> — ` heading, exact paths, and an exact verify command. Tasks carry no commit
+the `### Task <ID> — ` heading, exact paths, and an exact verify command (with the scoped test
+selector inlined, where tests cover the surface). Tasks carry no commit
 line: each wave lands as ONE commit, made at its gate.
 
 ---
@@ -50,6 +51,11 @@ Created: <YYYY-MM-DD> · Branch: `<branch>` · Covers **all <N> rows** of <backl
   · dev server <✓/✗> · network <✓/✗> · devices <✓/✗> — gates only demand the runnable rungs; each
   missing rung gets a named degraded form, and what can't be verified in-session routes to the wave
   testing summaries as human checks (recorded, never claimed).
+- **Test scoping:** full suite `<command>` (<N tests, duration>) · select a subset with
+  `<exact selector syntax, e.g. yarn vitest run <path> / pytest <path> -k <expr> / go test ./pkg/x/...>`
+  · tests live <adjacent to their sources | in `<tree>`, mapped to sources by <convention>>.
+  <If the full suite is fast (< ~1 min) or the runner cannot select: say so — then the per-task rung
+  IS the full suite, and no task carries a selector.>
 
 <!-- If a backlog/spec has stale cells, include the corrections table: -->
 | Source cell | Says (stale) | Actual / authoritative |
@@ -85,7 +91,8 @@ WAVE 2 — <A>   WAVE 3 — <B>       │  <which tracks are parallel and why (n
 
 <!-- REQUIRED. The DRY home for every-task rules. Wave files must NOT repeat these. Typical entries: -->
 - **Spec first.** <authority doc>; when anything disagrees with it, <authority> wins.
-- **Verification ladder:** per task = <cheap check the environment can run>; per wave gate = <build + runnable test rungs + fresh-context audits> (degraded forms per the Reality baseline's capability line).
+- **Verification ladder:** per task = <cheap check the environment can run> **+ only the tests covering that task's files** (`<selector>`); per wave gate = <build + the FULL runnable test suites + fresh-context audits> (degraded forms per the Reality baseline's capability line). Task-scoped greens don't compose — the gate's full run is what authorizes the wave commit, never the sum of the task ticks.
+- **Test scope per task.** Each task block names its selector and the result it expects; the selector must collect ≥1 test (a zero-match filter can exit 0 and buy a green rung that tests nothing). A task touching a **shared or generated** file inherits its *consumers'* tests — blast radius sets the scope, not file adjacency; when the fan-out is wide, that task's rung is the full suite. If nothing covers the surface, write `**Tests:** none cover this surface — <degraded check>` and re-home the coverage gap onto a named QA-wave task.
 - **Commits:** ONE per wave, on `<branch>`, made at that wave's gate — subject `<type>(<scope>): W<N> — <theme> (<ID range>)`, body one line per task ID (`<ID> — <what changed>`) so IDs stay greppable (`git log --grep "<ID> —"`). Tasks do not commit: they verify, then tick the wave checklist, leaving the change in the tree. Run any concurrent wave tracks in separate worktrees/branches so each wave's commit stays one whole diff. Do not push unless asked.
 - **Interrupted wave.** If a wave must be handed off before its gate, the Status checklist is the boundary and the tree stays uncommitted; only if the handoff needs a clean tree, commit `wip(<scope>): W<N> — partial (<IDs> done)` and squash it into the wave commit at the gate.
 - **No invented identifiers.** Any class/token/util/symbol a task newly references must be grep-proven to exist (in its defining file) before that task is ticked — renames are the classic silent breakage.
@@ -112,7 +119,7 @@ Task-level state lives in each wave file — this table is the wave-level rollup
 
 ## Final verification (after all waves)
 
-1. <build/test suite fully green>
+1. <build green + the FULL test suite green — not a scoped selection>
 2. <audit workflows / review passes clean>
 3. <greps that must return clean>
 4. <all wave files [x]; external checklists ticked; manual passes recorded>
@@ -307,7 +314,8 @@ Status: not started
      lines carry NO hash — the wave's work is uncommitted until its gate, e.g.
        - [x] U1 — Buttons to spec. Primary/outline restyled; deviation: scroll-shadow
          not wired (no scroll handler exists — applied at rest, noted).
-     The GATE line additionally records: the wave commit's subject, build/test/audit results, what
+     The GATE line additionally records: the wave commit's subject, build / full-suite / audit
+     results (the full-suite pass count, not the tasks' scoped runs), what
      was NOT verifiable in this environment, and each deferral with its new owner task ID. -->
 
 <!-- Optional but recommended when tasks repeat the same shape: -->
@@ -315,7 +323,8 @@ Status: not started
 
 1. **Inventory:** read the target + grep its usages/consumers.
 2. **Change:** <the wave's standard transformation, stated once>.
-3. **Verify:** <the wave's standard per-task check>.
+3. **Verify:** <the wave's standard per-task check> + <the wave's scoped test command, e.g.
+   `yarn vitest run <the tests covering the task's files>`> → <expected result>.
 4. **Tick:** mark the task `[x]` in *Status tracking* with its delta — leave the change uncommitted;
    the wave commits once, at its gate.
 
@@ -334,10 +343,15 @@ Per-task notes below are the *deltas* from this template.
 **Spec:** <exact values / state tables with source-section references; add a provenance note
 for any value the spec does NOT state explicitly>
 
+**Tests:** `<selector covering exactly this task's files>` → <expected, e.g. `12 passed`>
+<!-- Only this task's tests — the gate runs the whole suite. Selector must collect ≥1 test (verified
+     in Step 4). Shared/generated file? Use its CONSUMERS' tests, or the full suite when fan-out is
+     wide. Nothing covers it? `none cover this surface — <degraded check>` + a named QA-wave task. -->
+
 **Steps:**
 1. <one 2–5-minute action>
 2. <…>
-3. Verify: <exact command + expected result>
+3. Verify: <exact command + expected result>, then the **Tests** selector above → <expected>
 4. Tick `<ID>` in *Status tracking* with its delta — no commit (the wave commits at its gate)
 
 ---
@@ -345,11 +359,13 @@ for any value the spec does NOT state explicitly>
 ### Task W<N>-GATE — Wave verification gate
 
 1. <build command> exits 0 <on the pinned toolchain from the Reality baseline>.
-2. <the test rungs the capability baseline says are runnable> — <what must stay green; how to handle
-   intended snapshot/golden churn: eyeball diffs, then re-baseline and note the re-baselining in
-   the gate status line — the baselines ride in the wave commit>.
-   Unrunnable rungs: execute the degraded form <build + targeted greps + read-only reviewer agents>
-   and record "not verified in-session" in the status line — never claim them.
+2. **Full suites, every runnable rung** — `<full-suite command>` (<expected: all N green>), *not*
+   the union of the tasks' selectors: task-scoped greens can't see cross-task interaction, shared
+   fixture/ordering leakage, or the tests outside the paths each task touched, so this run is what
+   authorizes the commit. <How to handle intended snapshot/golden churn: eyeball diffs, then
+   re-baseline and note the re-baselining in the gate status line — the baselines ride in the wave
+   commit.> Unrunnable rungs: execute the degraded form <build + targeted greps + read-only reviewer
+   agents> and record "not verified in-session" in the status line — never claim them.
 3. Fresh-context audit — run <audit workflow/skill> with **exact valid args**: `<invocation>`
    <or standalone read-only reviewer agent(s) if workflows need an opt-in the session lacks>.
    Scope: this wave's surface **plus the shared/global files it touched**.
@@ -453,5 +469,6 @@ for any value the spec does NOT state explicitly>
 
 ## Testing Strategy
 <!-- Unit tests (bullets), property-based tests (tool + min runs, pointing at Correctness Properties),
-     and integration tests. This is the contract the wave's test task and gate implement. -->
+     and integration tests. This is the contract the wave's test task and gate implement — and the
+     source of the selectors its task blocks scope their per-task runs to. -->
 ```
