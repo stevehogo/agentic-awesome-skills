@@ -198,13 +198,13 @@ jobs:
         if: github.event_name == 'pull_request' && env.IS_TRUSTED_CANONICAL_SYNC_PR != 'true'
         run: npm run check:readme-credits -- --base "origin/${{ github.base_ref }}" --head HEAD
 
-      - name: Validate references
-        if: env.IS_TRUSTED_CANONICAL_SYNC_PR != 'true' && needs.pr-policy.outputs.requires_references == 'true'
-        run: npm run validate:references
-
       - name: Refresh ephemeral derived sources for tests
         if: env.IS_TRUSTED_CANONICAL_SYNC_PR != 'true'
         run: npm run plugin-compat:sync && npm run index && npm run bundles:sync && npm run sync:metadata && npm run catalog && npm run build:aas-v1-catalog && npm run sync:web-assets
+
+      - name: Validate references
+        if: env.IS_TRUSTED_CANONICAL_SYNC_PR != 'true' && needs.pr-policy.outputs.requires_references == 'true'
+        run: npm run validate:references
 
       - name: Run tests
         if: env.IS_TRUSTED_CANONICAL_SYNC_PR != 'true'
@@ -488,13 +488,13 @@ jobs:
           test -f README.md
           test -f CONTRIBUTING.md
 
-      - name: Validate references
-        run: npm run validate:references
-
       - name: Run repo-state sync
         env:
           GH_TOKEN: ${{ github.token }}
         run: npm run sync:repo-state
+
+      - name: Validate references
+        run: npm run validate:references
 
       - name: Audit npm dependencies
         run: npm audit --audit-level=high

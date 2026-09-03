@@ -9,6 +9,998 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [16.6.0] - 2026-09-02 - "Evidence-First Instructions and Safer Dependencies"
+
+> Added focused email cleanup, made AGENTS.md maintenance evidence-first, and
+> removed the web catalog's known Browserslist advisories. The published
+> catalog contains 2,108 skills.
+
+This release helps Claude Code, Cursor, Codex CLI, Gemini CLI, Antigravity, and
+related AI coding assistants maintain repository instructions without erasing
+project policy, polish email drafts without sending them, and use a catalog
+whose current npm dependency audit is clean.
+
+Start here:
+
+- Install: `npx agentic-awesome-skills`
+- [`email-issue-fixer`](skills/email-issue-fixer/) for proofreading and optional
+  tracking-parameter cleanup without changing the sender's voice.
+- [`agents-md`](skills/agents-md/) for repository-evidence-first agent
+  instructions and scoped monorepo guidance.
+- [Choose your tool](https://github.com/sickn33/agentic-awesome-skills#choose-your-tool)
+- [Best skills by tool](https://github.com/sickn33/agentic-awesome-skills#best-skills-by-tool)
+- [Bundles](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/bundles.md)
+- [Workflows](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/workflows.md)
+
+### Added
+
+- Added [`email-issue-fixer`](skills/email-issue-fixer/) for typo, grammar,
+  clarity, and optional link-tracking cleanup while preserving intent, voice,
+  placeholders, and the boundary that the skill never sends the message
+  ([#1318](https://github.com/sickn33/agentic-awesome-skills/pull/1318)).
+- Added a curated full-library overview that maps capability areas, risk
+  labels, discovery paths, and distribution surfaces across the catalog
+  ([#1319](https://github.com/sickn33/agentic-awesome-skills/pull/1319)).
+
+### Changed
+
+- Reworked [`agents-md`](skills/agents-md/) around bounded repository evidence,
+  preservation of maintainer intent, nested scope, exact commands, and
+  proportionate validation instead of universal symlink, attribution, section,
+  or line-count mandates
+  ([#1315](https://github.com/sickn33/agentic-awesome-skills/pull/1315)).
+- Updated `@supabase/supabase-js` from 2.112.2 to 2.112.3 and `highlight.js`
+  from 11.11.1 to 11.11.2
+  ([#1316](https://github.com/sickn33/agentic-awesome-skills/pull/1316),
+  [#1317](https://github.com/sickn33/agentic-awesome-skills/pull/1317)).
+- Regenerated the canonical catalog, offline AAS Core data, tracked web assets,
+  marketplaces, editorial bundles, compatibility reports, and Codex/Claude
+  plugin distributions for 2,108 skills.
+
+### Fixed
+
+- Updated the web app lockfile from `browserslist` 4.28.4 to 4.28.8, resolving
+  the known unbounded-memory-growth and malformed-custom-stats crash/prototype
+  write advisories while keeping the dependency change lockfile-scoped
+  ([#1322](https://github.com/sickn33/agentic-awesome-skills/pull/1322)).
+
+### Security and Reliability
+
+- Kept `agents-md` repository edits behind diff review and preserved existing
+  approval gates, secrets boundaries, and tool-specific instruction files.
+- Required `email-issue-fixer` to redact token values, preserve placeholders,
+  avoid external transmission, and return edited text without sending it.
+- Verified zero known npm vulnerabilities in both the root package and web app
+  after the dependency updates.
+
+### Who should care
+
+- Maintainers who need AGENTS.md guidance grounded in the actual checkout rather
+  than generic conventions that can overwrite repository policy.
+- Teams using Claude Code, Cursor, Codex CLI, Gemini CLI, or Antigravity that
+  want a clearer entry point into the complete skill library.
+- Users who want conservative email proofreading and privacy-aware link cleanup
+  without handing over message delivery.
+- Catalog users who depend on the web application and its syntax-highlighting
+  and browser-compatibility dependency chain.
+
+### Validation
+
+- Passed validation for 2,108 canonical skills, reference validation,
+  documentation-security checks, warning-budget enforcement, plugin and bundle
+  convergence, 114 repository test groups, 176 web-app tests, lint, production
+  web build, npm audits, and protected exact-head merge gates.
+- Release publication additionally verifies clean final `main`, tag and npm
+  parity, CI, CodeQL, release-only Pages, current and legacy public surfaces,
+  and every already-configured local AAS MCP host.
+
+### Limitations
+
+- `email-issue-fixer` improves text and links but cannot verify a sender,
+  recipient, claim, attachment, or delivery outcome.
+- `agents-md` can only be as accurate as the repository evidence available in
+  the current checkout; contradictory policy still requires maintainer judgment.
+- Dependency audits cover known advisories in the resolved package graph and do
+  not constitute an independent security audit of every skill or upstream
+  package.
+
+### Credits
+
+- **[@WHOISABHISHEKADHIKARI](https://github.com/WHOISABHISHEKADHIKARI)** for
+  `email-issue-fixer` and the full skill-library overview in
+  [#1318](https://github.com/sickn33/agentic-awesome-skills/pull/1318) and
+  [#1319](https://github.com/sickn33/agentic-awesome-skills/pull/1319).
+- **[@sunxiayi](https://github.com/sunxiayi)** for the evidence-first
+  `agents-md` revision in
+  [#1315](https://github.com/sickn33/agentic-awesome-skills/pull/1315).
+
+## [16.5.0] - 2026-08-31 - "Document Trust and Safer Automation"
+
+> Added ten reviewed skills for document trust, repository-backed slide decks,
+> serverless Redis, and distributed rate limiting; resolved the complete
+> exported security-findings batch. The published catalog contains 2,107
+> skills.
+
+This release helps Claude Code, Cursor, Codex CLI, Gemini CLI, Antigravity, and
+related AI coding assistants inspect documents with explicit human-review
+boundaries, keep code-derived presentations tied to their source, and use
+Upstash Redis and rate limiting without hiding production mutation or
+fail-open behavior.
+
+Start here:
+
+- Install: `npx agentic-awesome-skills`
+- [`verify-document`](skills/verify-document/) and
+  [`verify-citations`](skills/verify-citations/) for evidence-labeled document
+  and source checks.
+- [`slideops`](skills/slideops/) for cited HTML decks with later drift
+  detection.
+- [`upstash-redis`](skills/upstash-redis/) and
+  [`upstash-ratelimit`](skills/upstash-ratelimit/) for serverless data and
+  traffic controls.
+- [Choose your tool](https://github.com/sickn33/agentic-awesome-skills#choose-your-tool)
+- [Bundles](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/bundles.md)
+
+### Added
+
+- Added seven Stipple-backed document-trust skills for document forensics,
+  citation verification, grounded extraction, Australian identity-pack gap
+  checks, adverse-media review, AU/NZ tender matching, and AI-text triage. Each
+  declares hosted-data transmission, consequential-decision, false-positive,
+  and qualified-human-review boundaries
+  ([#1305](https://github.com/sickn33/agentic-awesome-skills/pull/1305)).
+- Added [`slideops`](skills/slideops/) for repository-derived HTML decks whose
+  code excerpts carry file, line, hash, and build-commit citations. The
+  catalog copy pins upstream v1.0.0 and requires approval before installation,
+  home-directory symlinks, optional downloads, or deck writes
+  ([#1306](https://github.com/sickn33/agentic-awesome-skills/pull/1306)).
+- Added [`upstash-redis`](skills/upstash-redis/) and
+  [`upstash-ratelimit`](skills/upstash-ratelimit/) with explicit transaction,
+  latency, algorithm, timeout, and edge-runtime limits; connected five
+  existing queue, workflow, caching, and retry skills to the new routes
+  ([#1307](https://github.com/sickn33/agentic-awesome-skills/pull/1307)).
+- Added a public FLOSS funding manifest with dated repository and npm evidence,
+  a bounded sustainability plan, and a documented public/private boundary;
+  then aligned its description with the live directory validator's
+  500-character constraint
+  ([#1299](https://github.com/sickn33/agentic-awesome-skills/pull/1299),
+  [#1301](https://github.com/sickn33/agentic-awesome-skills/pull/1301)).
+
+### Changed
+
+- Expanded [`lovable-cleanup`](skills/lovable-cleanup/) with Vercel favicon and
+  CDN-cache recovery: overwrite-in-place semantics, complete icon linkage,
+  cache-header guidance, and post-deployment verification
+  ([#1296](https://github.com/sickn33/agentic-awesome-skills/pull/1296)).
+- Regenerated the canonical catalog, offline AAS Core data, tracked web assets,
+  marketplaces, editorial bundles, compatibility reports, and Codex/Claude
+  plugin distributions for 2,107 skills.
+
+### Fixed
+
+- Replaced executable JavaScript parsing in Liuguang Banlan manifest helpers
+  with a strict size-bounded parser, removed a mutable Agent QA `npx` fallback,
+  and corrected mutation-risk metadata across Atlas, babysitting, and delegation
+  skills
+  ([#1303](https://github.com/sickn33/agentic-awesome-skills/pull/1303)).
+- Hardened pentest bootstrap instructions against mutable pipe-to-shell use;
+  made Atlas temporary and final output handling symlink- and overwrite-aware;
+  added a symlink-safe favicon writer; enforced Boost.Asio frame caps before
+  allocation; rejected raw control characters before URL parsing; and pinned
+  Unsloth model and dataset revisions with approval and provenance gates
+  ([#1303](https://github.com/sickn33/agentic-awesome-skills/pull/1303)).
+- Removed a documentation-security false positive by describing atomic Upstash
+  Lua scripting without presenting a dynamic evaluation call
+  ([#1307](https://github.com/sickn33/agentic-awesome-skills/pull/1307)).
+
+### Security and Reliability
+
+- Classified all hosted document, identity, screening, database, rate-limit,
+  and installer-backed workflows as critical where they transmit sensitive
+  data, mutate remote state, deny traffic, install links, or write output.
+- Required explicit approval and data minimization before third-party document
+  uploads, and kept authenticity, misconduct, sanctions, tender, identity, and
+  citation results as bounded review signals rather than final verdicts.
+- Locked the exported security fixes with focused regression tests and kept
+  generated catalogs and mirrors in the protected canonical-sync lane.
+
+### Who should care
+
+- Compliance, finance, procurement, education, and operations teams that need
+  document triage without turning probabilistic API output into an automatic
+  consequential decision.
+- Platform engineers using serverless Redis, distributed rate limits, queues,
+  caching, or edge runtimes that need honest fail-open and mutation semantics.
+- Engineering teams publishing code-derived decks that must show when cited
+  snippets move or change.
+- Maintainers who need security-export findings resolved in source and then
+  propagated through protected canonical mirrors.
+
+### Validation
+
+- Passed repository and reference validation, documentation-security checks,
+  warning-budget enforcement, focused security regressions, the complete
+  repository test suite, web-app coverage, npm audits, and protected canonical
+  synchronization for the accepted source batch.
+- Verified exact-head maintainer review and PR evidence for every changed
+  canonical skill, with the redundant `ai-code-reviewer` proposal closed rather
+  than adding a third overlapping AI-code audit workflow.
+- Release publication additionally verifies clean final `main`, version and tag
+  parity, npm metadata, CI, CodeQL, release-only Pages, live catalog and legacy
+  bridge surfaces, and every already-configured local AAS MCP host.
+
+### Limitations
+
+- The Stipple skills depend on a hosted third-party service; users must evaluate
+  current retention, residency, deletion, legal, and organizational requirements
+  before transmitting sensitive documents or personal data.
+- Upstash behavior remains service-, plan-, region-, and SDK-version-dependent;
+  examples do not replace production load, timeout, consistency, or failure-mode
+  testing.
+- SlideOps verifies cited snippets against repository state but cannot prove that
+  uncited prose is correct or that a deck remains appropriate for its audience.
+- Focused hardening reduces known failure paths but is not an independent audit of
+  every bundled skill or upstream service.
+
+### Credits
+
+- **[@Sketchjar](https://github.com/Sketchjar)** for the seven document-trust
+  skills in
+  [#1305](https://github.com/sickn33/agentic-awesome-skills/pull/1305).
+- **[@glukicov](https://github.com/glukicov)** for `slideops` in
+  [#1306](https://github.com/sickn33/agentic-awesome-skills/pull/1306).
+- **[@CahidArda](https://github.com/CahidArda)** for the Upstash Redis and rate
+  limiting skills and routing updates in
+  [#1307](https://github.com/sickn33/agentic-awesome-skills/pull/1307).
+- **[@WHOISABHISHEKADHIKARI](https://github.com/WHOISABHISHEKADHIKARI)** for the
+  Vercel favicon-cache recovery guidance in
+  [#1296](https://github.com/sickn33/agentic-awesome-skills/pull/1296).
+
+## [16.4.0] - 2026-08-30 - "Sharper Reasoning and Safer Service Draining"
+
+> Refined falsification routing and graceful-shutdown guidance, retired a
+> discontinued UIZZE skill, and hardened canonical reference validation. The
+> published catalog contains 2,097 skills.
+
+This release helps Claude Code, Cursor, Codex CLI, Gemini CLI, Antigravity, and
+related AI coding assistants choose the right reasoning depth, drain production
+services without fighting their process manager, and avoid stale catalog
+references after a canonical skill is removed.
+
+Start here:
+
+- Install: `npx agentic-awesome-skills`
+- [`falsify`](skills/falsify/) for explicit mode selection, calibrated
+  falsification, and lightweight estimate routing.
+- [`graceful-shutdown`](skills/graceful-shutdown/) for bounded draining,
+  readiness transitions, and shutdown deadlines.
+- [Choose your tool](https://github.com/sickn33/agentic-awesome-skills#choose-your-tool)
+- [Bundles](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/bundles.md)
+- [Workflows](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/workflows.md)
+
+### Changed
+
+- Updated [`falsify`](skills/falsify/) with a mandatory mode-selection gate so
+  incidents, simple requests, rough estimates, questions, and deep analysis do
+  not all enter the same heavyweight reasoning protocol
+  ([#1287](https://github.com/sickn33/agentic-awesome-skills/pull/1287)).
+- Refined [`graceful-shutdown`](skills/graceful-shutdown/) so liveness probes
+  remain available during draining, aborted HTTP requests release their active
+  counters, and FastAPI shutdown guidance preserves Uvicorn's signal ownership
+  ([#1289](https://github.com/sickn33/agentic-awesome-skills/pull/1289)).
+
+### Removed
+
+- Removed the retired `ui-slop-score` skill after the canonical UIZZE project
+  stopped publishing it; the maintained `anti-ui-slop`, `ui-design`, and
+  `ui-radar` skills remain available
+  ([#1288](https://github.com/sickn33/agentic-awesome-skills/pull/1288)).
+
+### Fixed
+
+- Reordered protected-main validation so canonical repository state is
+  regenerated before cross-reference validation. Source-only skill deletions
+  can now remove stale bundle and web references before the reference gate runs
+  ([#1291](https://github.com/sickn33/agentic-awesome-skills/pull/1291)).
+- Regenerated the canonical catalog, offline AAS Core data, tracked web assets,
+  marketplaces, editorial bundles, compatibility reports, and Codex/Claude
+  plugin distributions for 2,097 skills
+  ([#1292](https://github.com/sickn33/agentic-awesome-skills/pull/1292)).
+
+### Security and Reliability
+
+- Kept the updated skills documentation-only: they do not bundle or execute a
+  server runtime, install dependencies, or take ownership of production
+  signals.
+- Preserved explicit shutdown deadlines and forced-exit fallbacks so draining
+  cannot wait forever, while keeping readiness and liveness semantics separate.
+- Bound canonical-reference checks to freshly regenerated trusted state and
+  locked the workflow ordering with regression tests.
+
+### Who should care
+
+- Engineers using agent reasoning protocols who need fast incident handling and
+  direct, useful rough estimates without unnecessary ceremony.
+- Platform teams operating Node.js, FastAPI, Kubernetes, workers, and long-lived
+  connections that need predictable termination behavior.
+- Maintainers removing retired skills from a source-only catalog without
+  leaving stale generated references behind.
+
+### Validation
+
+- Passed repository and reference validation, documentation-security checks,
+  warning-budget enforcement, the complete 113-group repository test suite,
+  176 web-app tests, the production web build, npm audits, plugin compatibility,
+  bundle and marketplace checks, and protected canonical synchronization.
+- Verified final source and canonical CI plus CodeQL on the exact protected
+  `main` commit, with zero open pull requests, issues, security alerts, or
+  generated-state drift before release preparation.
+
+### Limitations
+
+- `falsify` structures routing and evidence checks but cannot guarantee truth or
+  replace domain expertise and higher-quality evidence.
+- Graceful shutdown remains runtime- and infrastructure-dependent; align probe,
+  load-balancer, process-manager, and orchestrator deadlines in the deployed
+  environment.
+- Removing `ui-slop-score` does not remove the maintained UIZZE design-analysis
+  skills or affect projects that independently pinned the retired upstream
+  package.
+
+### Credits
+
+- **[@263311487-ux](https://github.com/263311487-ux)** for the `falsify`
+  routing update in
+  [#1287](https://github.com/sickn33/agentic-awesome-skills/pull/1287).
+- **[@Prajeeth-12](https://github.com/Prajeeth-12)** for the revised
+  `graceful-shutdown` guidance in
+  [#1289](https://github.com/sickn33/agentic-awesome-skills/pull/1289).
+- **[@samuelbushi](https://github.com/samuelbushi)** for identifying the
+  retired UIZZE skill in
+  [#1288](https://github.com/sickn33/agentic-awesome-skills/pull/1288).
+
+## [16.3.0] - 2026-08-28 - "Delegation Workflows and Reliable Operations"
+
+> Added 24 reviewed skills for multi-agent delegation, pull-request review,
+> scientific reasoning, model fine-tuning, MCP operation, and graceful service
+> shutdown. The published catalog contains 2,098 skills.
+
+This release helps Claude Code, Cursor, Codex CLI, Gemini CLI, Antigravity, and
+related AI coding assistants delegate bounded implementation work, review and
+monitor pull requests, challenge scientific claims, fine-tune models on limited
+hardware, operate SandBase safely, and shut down production services without
+dropping in-flight work.
+
+Start here:
+
+- Install: `npx agentic-awesome-skills`
+- [`delegate-setup`](skills/delegate-setup/) for configuring the external
+  delegation runtime before selecting an implementer relay.
+- [`babysit-pr`](skills/babysit-pr/) and
+  [`debate-review`](skills/debate-review/) for iterative review and
+  two-perspective code-review workflows.
+- [`graceful-shutdown`](skills/graceful-shutdown/) for bounded draining,
+  readiness transitions, and shutdown deadlines.
+- [Choose your tool](https://github.com/sickn33/agentic-awesome-skills#choose-your-tool)
+- [Bundles](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/bundles.md)
+
+### Added
+
+- Added [`delegate-setup`](skills/delegate-setup/) and 17 docs-only implementer
+  relays for Agy, Aider, Claude, Cline, Codex, CommandCode, Copilot, Cursor,
+  Grok, Kimi, OMP, OpenCode, Pi, Qoder, Vibe, Warp, and ZCode. Each relay ships
+  its complete dispatch, queue, review, and brief-writing references while
+  keeping review and landing with the orchestrator
+  ([#1283](https://github.com/sickn33/agentic-awesome-skills/pull/1283)).
+- Added [`babysit-pr`](skills/babysit-pr/) for bounded review-round monitoring
+  and [`debate-review`](skills/debate-review/) for structured two-model review,
+  including their prompt, schema, and comment-format assets
+  ([#1282](https://github.com/sickn33/agentic-awesome-skills/pull/1282)).
+- Added [`falsify`](skills/falsify/) for explicit hypotheses, adversarial
+  checks, evidence grading, calibrated conclusions, and a durable thinking
+  ledger ([#1281](https://github.com/sickn33/agentic-awesome-skills/pull/1281)).
+- Added [`sandbase-mcp`](skills/sandbase-mcp/) with immutable release pinning,
+  checksum and archive verification, and explicit credential, privacy, cost,
+  and mutation approval gates
+  ([#1279](https://github.com/sickn33/agentic-awesome-skills/pull/1279)).
+- Added [`unsloth-finetuning`](skills/unsloth-finetuning/) for single-GPU VRAM
+  planning, LoRA and QLoRA, GRPO and DPO, template and loss-mask correctness,
+  and GGUF or merged-model export
+  ([#1278](https://github.com/sickn33/agentic-awesome-skills/pull/1278)).
+- Added [`graceful-shutdown`](skills/graceful-shutdown/) for SIGTERM and SIGINT
+  handling, connection draining, probe transitions, shutdown deadlines, and
+  Kubernetes-aware Node.js, Python, and worker patterns
+  ([#1276](https://github.com/sickn33/agentic-awesome-skills/pull/1276)).
+
+### Changed
+
+- Upgraded the catalog web app from `@supabase/supabase-js` 2.112.0 to 2.112.2,
+  including fixes for duplicate Realtime bindings, stale sign-out payloads,
+  preserved authentication 5xx messages, and token refresh behavior
+  ([#1273](https://github.com/sickn33/agentic-awesome-skills/pull/1273)).
+- Regenerated the canonical catalog, offline AAS Core data, tracked web assets,
+  marketplaces, editorial bundles, compatibility reports, and Codex/Claude
+  plugin distributions for 2,098 skills.
+
+### Fixed
+
+- Removed retired UIZZE score-endpoint guidance while keeping the skill's
+  source-only scoring workflow intact
+  ([#1274](https://github.com/sickn33/agentic-awesome-skills/pull/1274)).
+- Restored every companion reference, prompt, schema, and template required by
+  the imported review, delegation, and scientific-reasoning skills instead of
+  publishing incomplete entrypoints.
+- Replaced 18 truncated delegation descriptions with complete trigger and
+  operating-boundary summaries.
+
+### Security
+
+- Kept the delegation and review integrations docs-only: their external
+  runtimes are not bundled, relays never land changes, and unsandboxed,
+  all-tools, or `danger-full-access` execution requires separate human
+  authorization.
+- Pinned SandBase to the reviewed `v0.1.17` release and SHA-256
+  `1ad535b2899ca460b57b3c268aef278fee28fd28e649a89b92951514fd71fffa`,
+  with archive inspection before installation and two approval boundaries
+  before credentialed or mutating work.
+- Kept Unsloth training and export guidance bounded by hardware checks,
+  explicit dataset and template validation, checkpointing, and output review.
+- Kept graceful shutdown bounded by deadlines and forced-exit fallbacks so
+  draining cannot hang a deployment indefinitely.
+
+### Who should care
+
+- Teams orchestrating multiple coding agents that need explicit task briefs,
+  bounded permissions, polling, independent review, and controlled landing.
+- Maintainers who need repeatable pull-request review rounds without confusing
+  an external runtime with bundled repository functionality.
+- Researchers and ML practitioners who need falsification discipline or
+  practical single-GPU fine-tuning guidance.
+- Platform engineers operating MCP services, Kubernetes workloads, workers,
+  and long-lived production connections.
+
+### Validation
+
+- Passed repository and reference validation, documentation-security checks,
+  warning-budget enforcement, the complete 113-group repository test suite,
+  176 web-app tests, the production web build, npm audits, plugin compatibility,
+  bundle and marketplace checks, and protected canonical synchronization.
+- Reviewed every changed canonical skill subtree and bundled asset for
+  semantics, safety, provenance, declared risk, limitations, permission
+  escalation, and review or landing boundaries before protected merge.
+- Verified final source and canonical CI plus CodeQL on the exact protected
+  `main` commit with no open pull requests, issues, or generated-state drift.
+
+### Limitations
+
+- The delegation and review skills document external runtimes; installing AAS
+  alone does not install or authenticate those tools.
+- Delegation can distribute implementation work, but it does not replace
+  orchestrator review, test evidence, repository policy, or human approval for
+  elevated execution.
+- Falsification structures reasoning but cannot guarantee scientific truth or
+  replace domain expertise, replication, or higher-quality evidence.
+- Unsloth memory estimates and export paths remain model-, dataset-, hardware-,
+  and version-dependent; validate against the current upstream project.
+- SandBase operations may incur external service costs and expose supplied
+  data to its service; review current upstream terms and privacy behavior.
+
+### Credits
+
+- **[@FrancoStino](https://github.com/FrancoStino)** and the MIT-licensed
+  **[amElnagdy/delegate-skills](https://github.com/amElnagdy/delegate-skills)**
+  and **[amElnagdy/review-skills](https://github.com/amElnagdy/review-skills)**
+  sources for the delegation and review collections proposed in
+  [#1265](https://github.com/sickn33/agentic-awesome-skills/pull/1265) and
+  [#1264](https://github.com/sickn33/agentic-awesome-skills/pull/1264).
+- **[@263311487-ux](https://github.com/263311487-ux)** for `falsify`, proposed
+  in [#1266](https://github.com/sickn33/agentic-awesome-skills/pull/1266).
+- **[@A-ryanVAT-S](https://github.com/A-ryanVAT-S)** for
+  `unsloth-finetuning`, proposed in
+  [#1267](https://github.com/sickn33/agentic-awesome-skills/pull/1267).
+- **[@denial123789](https://github.com/denial123789)** for `sandbase-mcp`,
+  proposed in [#1269](https://github.com/sickn33/agentic-awesome-skills/pull/1269).
+- **[@Prajeeth-12](https://github.com/Prajeeth-12)** for
+  `graceful-shutdown`, proposed in
+  [#1272](https://github.com/sickn33/agentic-awesome-skills/pull/1272).
+- **[@samuelbushi](https://github.com/samuelbushi)** for the UIZZE documentation
+  correction proposed in
+  [#1271](https://github.com/sickn33/agentic-awesome-skills/pull/1271).
+- **[Snyk](https://snyk.io/)** for the Supabase dependency update in
+  [#1273](https://github.com/sickn33/agentic-awesome-skills/pull/1273).
+
+## [16.2.0] - 2026-08-26 - "Security Operations Expansion and Safer Integrations"
+
+> Added a reviewed 43-skill security and reverse-engineering collection,
+> introduced API rate-limit, media-generation, and repository-instruction
+> workflows, corrected install guidance, and refreshed dependency safety. The
+> published catalog contains 2,074 skills.
+
+This release expands defensive security, authorized assessment, reverse
+engineering, incident-response, and threat-intelligence coverage while keeping
+high-impact operations behind explicit scope, authorization, evidence, and
+environment-safety gates.
+
+### Added
+
+- Added 43 security skills adapted from the MIT-licensed
+  [`zhaoxuya520/reverse-skill`](https://github.com/zhaoxuya520/reverse-skill)
+  collection, spanning reverse engineering, malware analysis, forensics,
+  threat hunting, API and identity security, firmware, wireless, cloud,
+  supply-chain, and authorized assessment workflows
+  ([#1247](https://github.com/sickn33/agentic-awesome-skills/pull/1247)).
+- Added [`instructree`](skills/instructree/) for generating and validating
+  scoped repository instruction trees without walking outside the selected
+  project root
+  ([#1251](https://github.com/sickn33/agentic-awesome-skills/pull/1251)).
+- Added [`muapi-media`](skills/muapi-media/) for authenticated MuAPI image,
+  video, and music generation with explicit cost, credential, and output
+  handling
+  ([#1257](https://github.com/sickn33/agentic-awesome-skills/pull/1257)).
+- Added [`api-rate-limit-handler`](skills/api-rate-limit-handler/) for
+  retry-aware API clients with bounded backoff, jitter, idempotency guidance,
+  and billable-request safeguards
+  ([#1258](https://github.com/sickn33/agentic-awesome-skills/pull/1258)).
+
+### Changed
+
+- Updated `express-rate-limit` from 8.6.1 to 8.6.2 in the generated Loki Mode
+  example dependency set
+  ([#1256](https://github.com/sickn33/agentic-awesome-skills/pull/1256)).
+- Regenerated the canonical catalog, offline AAS Core data, tracked web assets,
+  marketplaces, editorial bundles, compatibility reports, and Codex/Claude
+  plugin distributions for 2,074 skills.
+
+### Fixed
+
+- Corrected [`tree-ring-memory`](skills/tree-ring-memory/) installation
+  guidance to target the reviewed `v0.15.0` release and aligned its declared
+  risk with its install and update mutations
+  ([#1253](https://github.com/sickn33/agentic-awesome-skills/pull/1253)).
+- Sanitized embedded NUL bytes from imported Markdown in the security pack so
+  the complete canonical skill subtrees remain text-safe and reviewable.
+- Kept API retry guidance bounded and prevented automatic retries from silently
+  multiplying non-idempotent or billable operations.
+
+### Security
+
+- Excluded upstream runtime bootstrap scripts and the GPLv3 sidecar from the
+  imported security collection; only reviewed Markdown skill content and
+  references are distributed.
+- Preserved explicit authorization, target-scope, lab-isolation, evidence, and
+  stop-condition gates across offensive and dual-use security workflows.
+- Classified credentialed media generation and repository-mutating install
+  guidance as critical risk, with secrets supplied through environment or
+  secure input rather than command-line arguments.
+
+## [16.1.0] - 2026-08-25 - "Specification-First Delivery and Mistake-Proofing"
+
+> Added specification-first delivery and software mistake-proofing workflows,
+> aligned durable project-state lifecycle semantics, refreshed Lore's complete
+> operating surface, and hardened the protected skill-review path. The
+> published catalog contains 2,028 skills.
+
+This release helps Claude Code, Cursor, Codex CLI, Gemini CLI, Antigravity, and
+related AI coding assistants freeze requirements before implementation, design
+controls that prevent predictable mistakes, preserve consistent project-state
+transitions, and query durable repository knowledge without weakening approval,
+provenance, or path-safety boundaries.
+
+Start here:
+
+- Install: `npx agentic-awesome-skills`
+- [`spec-driven-loop`](skills/spec-driven-loop/) for a specification-first
+  workflow with frozen artifacts, non-overlapping agent ownership, and an
+  independent delivery judgment.
+- [`poka-yoke`](skills/poka-yoke/) for replacing reminders with controls,
+  warnings, and bounded detection that make software mistakes impossible or
+  immediately visible.
+- [Choose your tool](https://github.com/sickn33/agentic-awesome-skills#choose-your-tool)
+- [Bundles](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/bundles.md)
+
+### Added
+
+- Added [`spec-driven-loop`](skills/spec-driven-loop/) with PRD, technical
+  design, acceptance-criteria, ownership, and completion artifacts; explicit
+  approval before implementation; bounded rework; and independent lead-agent
+  judgment backed by diffs, tests, and evidence
+  ([#1242](https://github.com/sickn33/agentic-awesome-skills/pull/1242)).
+- Added [`poka-yoke`](skills/poka-yoke/) for identifying software error traps
+  and selecting the strongest practical device on a control, warning,
+  detection, or instruction ladder
+  ([#1240](https://github.com/sickn33/agentic-awesome-skills/pull/1240)).
+
+### Changed
+
+- Aligned [`project-state-governor`](skills/project-state-governor/)
+  workstream completion with `COMPLETED` and retained `CANCELLED` in the
+  canonical milestone lifecycle vocabulary
+  ([#1241](https://github.com/sickn33/agentic-awesome-skills/pull/1241)).
+- Synchronized [`lore`](skills/lore/) to its reviewed upstream layout, moved
+  workflow guidance into the supported reference tree, refreshed its scripts
+  and compatibility documentation, and preserved the repository's stricter
+  mirror-target containment rules
+  ([#1244](https://github.com/sickn33/agentic-awesome-skills/pull/1244)).
+- Upgraded the catalog web app from `@supabase/supabase-js` 2.111.0 to 2.112.0,
+  including upstream authentication, PostgREST, storage, retry, and opt-in
+  tracing fixes ([#1244](https://github.com/sickn33/agentic-awesome-skills/pull/1244)).
+- Bounded the external semantic skill-review attempt to ten minutes and routed
+  timeouts to the truthful `manual-review-required` path instead of allowing an
+  indefinitely running review job
+  ([#1244](https://github.com/sickn33/agentic-awesome-skills/pull/1244)).
+- Regenerated the canonical catalog, offline AAS Core data, tracked web assets,
+  marketplaces, editorial bundles, compatibility reports, and Codex/Claude
+  plugin distributions for 2,028 skills.
+
+### Fixed
+
+- Fixed Lore full-history queries so the absence of a `since` value no longer
+  injects Git's epoch cutoff and silently omits existing commits.
+- Kept multi-entry successor-history results bound to each entry's own code
+  path and time boundary while retaining fail-closed path validation.
+
+### Security
+
+- Kept `spec-driven-loop` implementation behind explicit specification
+  approval, separated agent ownership, and evidence-based completion instead
+  of treating generated artifacts or self-reported status as proof.
+- Kept `poka-yoke` read-only and analysis-first: consequential code or process
+  changes still require proposal, authorization, and validation, and detection
+  is not presented as equivalent to a preventive control.
+- Preserved Lore's canonical path-containment hardening, rejected unsafe mirror
+  targets, and pinned license provenance to the reviewed upstream commit.
+- Made a timed-out or unavailable external semantic review fail into an exact
+  head maintainer-review requirement; it is never reported as an automated
+  semantic pass.
+
+### Who should care
+
+- Teams coordinating multi-agent implementation that need requirements,
+  ownership, acceptance evidence, and final judgment to stay independently
+  inspectable.
+- Maintainers and reviewers who want software error traps converted into
+  concrete preventive or self-announcing controls.
+- Long-running projects using durable state or Lore histories across sessions,
+  repositories, mirrors, and successor entries.
+- Catalog web-app users relying on current Supabase authentication, storage,
+  PostgREST, retry, and tracing behavior.
+
+### Validation
+
+- Passed repository and reference validation, documentation-security checks,
+  warning-budget enforcement, the complete 113-group repository test suite,
+  web-app tests and production build, npm package dry-run, plugin compatibility,
+  bundle checks, and protected canonical synchronization.
+- Reviewed the complete tracked trees for both added skills and the full Lore
+  refresh for semantics, safety, provenance, declared risk, limitations,
+  references, scripts, and exact-head evidence before protected merge.
+- Added regression coverage for bounded skill-review execution and retained
+  upstream Lore test coverage for history, containment, and mirror behavior.
+
+### Limitations
+
+- `spec-driven-loop` structures planning and evidence; it does not prove domain
+  correctness, replace stakeholder approval, or authorize implementation
+  outside the approved scope.
+- `poka-yoke` helps select stronger controls, but compatibility and system
+  constraints may leave only warning or detection fallbacks; those weaker
+  rungs must remain explicit.
+- Lore can only query repository and entry history that still exists locally;
+  it cannot reconstruct missing commits or validate external systems by itself.
+- Supabase remains an independently evolving upstream dependency, so its live
+  documentation and service behavior remain authoritative.
+
+### Credits
+
+- **[@Linji-x](https://github.com/Linji-x)** and the MIT-licensed
+  **[spec-driven-loop](https://github.com/Linji-x/spec-driven-loop)** source for
+  [`spec-driven-loop`](skills/spec-driven-loop/) in
+  [PR #1242](https://github.com/sickn33/agentic-awesome-skills/pull/1242).
+- **[@rainmanjam](https://github.com/rainmanjam)** for
+  [`poka-yoke`](skills/poka-yoke/) in
+  [PR #1240](https://github.com/sickn33/agentic-awesome-skills/pull/1240).
+- **[@Ghost011118](https://github.com/Ghost011118)** for the project-state
+  lifecycle correction in
+  [PR #1241](https://github.com/sickn33/agentic-awesome-skills/pull/1241).
+- **[@TheaDust](https://github.com/TheaDust)** for the reviewed Lore upstream
+  synchronization proposed in
+  [PR #1237](https://github.com/sickn33/agentic-awesome-skills/pull/1237) and
+  integrated through
+  [PR #1244](https://github.com/sickn33/agentic-awesome-skills/pull/1244).
+- **[Snyk](https://snyk.io/)** for the Supabase dependency update proposed in
+  [PR #1239](https://github.com/sickn33/agentic-awesome-skills/pull/1239) and
+  integrated through
+  [PR #1244](https://github.com/sickn33/agentic-awesome-skills/pull/1244).
+
+## [16.0.0] - 2026-08-24 - "Durable Project State and Runtime Reliability"
+
+> Added durable project-state governance and a complete Famulor MCP operating
+> guide, modernized Salesforce and X/Twitter integration guidance, and repaired
+> two native Windows setup failures. The published catalog contains 2,026
+> skills.
+
+This release helps Claude Code, Cursor, Codex CLI, Gemini CLI, Antigravity, and
+related AI coding assistants preserve verified project state across sessions,
+operate the Famulor platform with explicit tool and consent boundaries, and use
+current Salesforce and X/Twitter integration patterns without weakening safety
+or evidence requirements.
+
+Start here:
+
+- Install: `npx agentic-awesome-skills`
+- [`project-state-governor`](skills/project-state-governor/) for reconstructing,
+  validating, and maintaining durable project state from authoritative evidence.
+- [`famulor-skill`](skills/famulor-skill/) for selecting and operating Famulor
+  MCP tools across assistants, calls, campaigns, automations, and related areas.
+- [Choose your tool](https://github.com/sickn33/agentic-awesome-skills#choose-your-tool)
+- [Bundles](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/bundles.md)
+
+### Added
+
+- Added [`project-state-governor`](skills/project-state-governor/) for durable
+  project-state reconstruction and maintenance with authority ordering, compact
+  and scaled schemas, lifecycle rules, negative evidence, and independently
+  verified completion transitions
+  ([#1214](https://github.com/sickn33/agentic-awesome-skills/pull/1214)).
+- Added [`famulor-skill`](skills/famulor-skill/) with a 282-tool snapshot,
+  task-oriented toolset maps, assistant-design guidance, consent boundaries,
+  and live-schema verification requirements
+  ([#1224](https://github.com/sickn33/agentic-awesome-skills/pull/1224)).
+
+### Changed
+
+- Modernized [`salesforce-development`](skills/salesforce-development/) around
+  current API-version configuration, External Client Apps, OAuth security,
+  integration patterns, deployment, and testing guidance
+  ([#1213](https://github.com/sickn33/agentic-awesome-skills/pull/1213)).
+- Refreshed [`x-twitter-scraper`](skills/x-twitter-scraper/) for its current SDK
+  and tightened consent, credential, rate-limit, privacy, and automation
+  boundaries ([#1220](https://github.com/sickn33/agentic-awesome-skills/pull/1220)).
+- Upgraded `express-rate-limit` from 8.6.0 to 8.6.1
+  ([#1216](https://github.com/sickn33/agentic-awesome-skills/pull/1216)).
+- Corrected eight frontmatter delimiters whose trailing spaces caused the
+  external skills CLI to skip otherwise valid skills
+  ([#1218](https://github.com/sickn33/agentic-awesome-skills/pull/1218)).
+- Retired the unavailable `uizze-ui-research` source listing and synchronized
+  its stale bundle memberships while keeping the maintained `anti-ui-slop`
+  workflow ([#1225](https://github.com/sickn33/agentic-awesome-skills/pull/1225),
+  [#1228](https://github.com/sickn33/agentic-awesome-skills/pull/1228)).
+- Regenerated the canonical catalog, offline AAS Core data, web assets,
+  marketplaces, editorial bundles, compatibility reports, and Codex/Claude
+  plugin distributions for 2,026 skills.
+
+### Fixed
+
+- Restored native Windows MCP configuration by loading the built-in PowerShell
+  security module explicitly before ACL inspection and hardening
+  ([#1221](https://github.com/sickn33/agentic-awesome-skills/issues/1221),
+  [#1227](https://github.com/sickn33/agentic-awesome-skills/pull/1227)).
+- Made npm release-identity verification compatible with npm 12 on Windows by
+  invoking the npm CLI through Node instead of spawning `npm.cmd` directly
+  ([#1222](https://github.com/sickn33/agentic-awesome-skills/issues/1222),
+  [#1227](https://github.com/sickn33/agentic-awesome-skills/pull/1227)).
+- Removed stale `uizze-ui-research` bundle memberships after the retired skill
+  was removed from the canonical catalog.
+
+### Security
+
+- Kept project-state reconstruction evidence-first: incomplete verification
+  preserves the current lifecycle state, records the evidence gap separately,
+  and never promotes child completion to a project-level claim.
+- Kept Famulor operations scoped to the selected toolset, required live schema
+  inspection for authoritative parameters, and made consequential external
+  actions subject to explicit user confirmation and platform permissions.
+- Kept Salesforce credentials environment-backed and X/Twitter collection
+  bounded by user consent, platform rules, rate limits, and privacy constraints.
+- Kept Windows ACL hardening fail-closed while loading only the built-in
+  PowerShell security module, and preserved immutable npm release-identity
+  verification under the npm 12 invocation path.
+
+### Who should care
+
+- Teams running long-lived agent projects that need a compact, auditable state
+  model which survives context loss without turning unverified claims into fact.
+- Famulor operators who need task-based discovery across a large MCP surface
+  while preserving schema, scope, consent, and side-effect boundaries.
+- Salesforce and X/Twitter integrators maintaining authentication, API-version,
+  automation, privacy, and rate-limit guidance.
+- Windows users configuring the local AAS MCP host or installing from npm 12.
+
+### Validation
+
+- Passed repository validation, reference validation, documentation-security
+  checks, warning-budget enforcement, the complete repository test suite,
+  plugin-compatibility and editorial-bundle checks, canonical artifact preview,
+  and protected canonical synchronization.
+- Reviewed both added skill trees and all bundled reference files for semantics,
+  safety, provenance, declared risk, limitations, consent boundaries, and exact
+  head evidence before protected merge.
+- Added targeted regression coverage for PowerShell security-module loading and
+  npm-managed Windows release-identity invocation.
+
+### Limitations
+
+- Durable project state improves continuity and exposes missing evidence; it
+  does not create evidence, replace domain verification, or authorize cleanup
+  beyond the user's stated boundary.
+- The Famulor tool inventory is a static snapshot and may lag the live MCP
+  server; workspace permissions, plan entitlements, and consent still govern
+  which operations are available.
+- Salesforce and X/Twitter platform behavior can change independently of this
+  release, so live schemas and official platform constraints remain authoritative.
+- The Windows fixes are covered by isolated regression tests and protected CI;
+  they do not substitute for every possible enterprise PowerShell policy or npm
+  installation layout.
+
+### Credits
+
+- **[@Ghost011118](https://github.com/Ghost011118)** for
+  [`project-state-governor`](skills/project-state-governor/) in
+  [PR #1214](https://github.com/sickn33/agentic-awesome-skills/pull/1214).
+- **[@bekservice](https://github.com/bekservice)** and the official
+  **[Famulor Skill](https://github.com/bekservice/Famulor-Skill)** source for
+  [`famulor-skill`](skills/famulor-skill/) in
+  [PR #1224](https://github.com/sickn33/agentic-awesome-skills/pull/1224).
+- **[@SfImran](https://github.com/SfImran)** for the Salesforce
+  guidance update in
+  [PR #1213](https://github.com/sickn33/agentic-awesome-skills/pull/1213).
+- **[@kriptoburak](https://github.com/kriptoburak)** for the X/Twitter scraper
+  refresh in [PR #1220](https://github.com/sickn33/agentic-awesome-skills/pull/1220).
+- **[@cj-ant](https://github.com/cj-ant)** for identifying and fixing
+  the eight frontmatter delimiters in
+  [PR #1218](https://github.com/sickn33/agentic-awesome-skills/pull/1218).
+
+## [15.16.0] - 2026-08-20 - "Agent Reliability, Evidence Integrity, and Stack Audits"
+
+> Added six focused skills for asynchronous C++ networking, controlled agent
+> fault injection, run-evidence auditing, orchestration review, measurable UI
+> quality, and multi-source research, while adding cross-artifact stack checks
+> and modernizing YouTube transcript extraction. The published catalog contains
+> 2,025 skills.
+
+This release helps Claude Code, Cursor, Codex CLI, Gemini CLI, Antigravity, and
+related AI coding assistants test agent harnesses safely, distinguish run claims
+from inspectable evidence, review multi-agent control flow, score recurring UI
+failure modes, and keep research conclusions honest when sources disagree.
+
+Start here:
+
+- Install: `npx agentic-awesome-skills`
+- [`agent-harness-fault-injection`](skills/agent-harness-fault-injection/) for
+  bounded resilience testing with explicit cleanup and recovery gates.
+- [`audit-agent-run-evidence`](skills/audit-agent-run-evidence/) for tracing
+  agent-run claims back to logs, traces, artifacts, and reproducible checks.
+- [`multi-source-search`](skills/multi-source-search/) for provider-optional
+  research backed by an offline, schema-validated evidence ledger.
+- [Choose your tool](https://github.com/sickn33/agentic-awesome-skills#choose-your-tool)
+- [Bundles](https://github.com/sickn33/agentic-awesome-skills/blob/main/docs/users/bundles.md)
+
+### Added
+
+- Added [`boost-asio-pro`](skills/boost-asio-pro/) for production-oriented
+  asynchronous C++ networking with Boost.Asio, including composed operations,
+  cancellation, coroutine lifetimes, strands, backpressure, and testable error
+  paths ([#1186](https://github.com/sickn33/agentic-awesome-skills/pull/1186)).
+- Added
+  [`agent-harness-fault-injection`](skills/agent-harness-fault-injection/) for
+  controlled timeouts, malformed outputs, partial failures, and recovery checks
+  with explicit blast-radius, consent, rollback, and evidence requirements
+  ([#1189](https://github.com/sickn33/agentic-awesome-skills/pull/1189)).
+- Added [`audit-agent-run-evidence`](skills/audit-agent-run-evidence/) for
+  read-only auditing of agent-run claims against recorded events, artifacts,
+  timestamps, identifiers, and reproducible verification steps
+  ([#1192](https://github.com/sickn33/agentic-awesome-skills/pull/1192)).
+- Added
+  [`review-multi-agent-orchestration`](skills/review-multi-agent-orchestration/)
+  for reviewing delegation boundaries, shared-state hazards, handoff contracts,
+  retry behavior, convergence, and evidence quality in multi-agent systems
+  ([#1193](https://github.com/sickn33/agentic-awesome-skills/pull/1193)).
+- Added [`ui-slop-score`](skills/ui-slop-score/) for scoring recurring generic
+  interface patterns against a concrete product brief, reference evidence,
+  accessibility constraints, and a transparent weighted rubric
+  ([#1196](https://github.com/sickn33/agentic-awesome-skills/pull/1196)).
+- Added [`multi-source-search`](skills/multi-source-search/) for bounded research
+  across optional providers with claim-level citations, source polarity,
+  conflict tracking, URL canonicalization, and an offline validation script
+  ([#1202](https://github.com/sickn33/agentic-awesome-skills/pull/1202),
+  [#1205](https://github.com/sickn33/agentic-awesome-skills/pull/1205)).
+
+### Changed
+
+- Added a read-only `aas stack audit` flow and paired browser-local Workbench
+  comparison for detecting digest, catalog, target, and exact skill-set drift
+  between stack artifacts without applying either stack
+  ([#1199](https://github.com/sickn33/agentic-awesome-skills/pull/1199)).
+- Updated the YouTube transcript extractor for both legacy 0.6.x and modern 1.x
+  `youtube-transcript-api` interfaces, common YouTube URL forms, and UTF-8 output
+  on legacy Windows consoles, with isolated network-free regression tests
+  ([#1198](https://github.com/sickn33/agentic-awesome-skills/pull/1198)).
+- Hardened multi-source evidence validation so every source is classified as
+  supporting or contradicting, conflicts agree with that classification, and
+  superficial URL variants cannot inflate source diversity
+  ([#1205](https://github.com/sickn33/agentic-awesome-skills/pull/1205)).
+- Regenerated the canonical catalog, offline AAS Core data, web assets,
+  marketplaces, editorial bundles, compatibility reports, and Codex/Claude
+  plugin distributions for 2,025 skills.
+
+### Security
+
+- Kept fault injection opt-in, bounded to an approved environment, and gated by
+  explicit preconditions, abort thresholds, rollback, recovery verification,
+  and evidence capture before any resilience claim is accepted.
+- Kept run-evidence and orchestration review read-only by default: neither skill
+  treats missing telemetry as success or authorizes repairs, retries, or
+  production actions without a separate user-approved step.
+- Kept multi-source provider access optional and explicit, with credentials out
+  of report artifacts and an offline validator that fails closed on missing
+  evidence, inconsistent conflict state, or duplicate canonical sources.
+- Kept stack comparison local and non-applying; artifact mismatches are reported
+  before any installation or workspace mutation can be considered.
+
+### Who should care
+
+- C++ teams building asynchronous network services that need explicit lifetime,
+  cancellation, serialization, backpressure, and shutdown contracts.
+- Agent-platform teams testing failure recovery or auditing whether reported run
+  outcomes are actually supported by durable evidence.
+- Multi-agent system owners reviewing delegation, shared-state, retry, and
+  convergence risks before expanding autonomy.
+- Product and design teams that want a repeatable anti-generic UI score tied to
+  a real brief rather than subjective aesthetic claims.
+- Researchers and maintainers who need conflict-aware multi-source reports and
+  exact stack-artifact drift detection.
+
+### Validation
+
+- Passed repository validation, reference validation, documentation-security
+  checks, warning-budget enforcement, the complete repository test suite,
+  plugin-compatibility and bundle checks, web-app install/build/prerender, and
+  the npm package dry run on the protected release base.
+- Reviewed all six added skills and their bundled files for semantics, safety,
+  provenance, declared risk, limitations, consent boundaries, and relevant
+  regression coverage; also reviewed the YouTube compatibility and stack-audit
+  changes against their isolated tests.
+
+### Limitations
+
+- Fault injection can demonstrate behavior only in the tested environment and
+  scenario; it does not prove resilience to untested failures or authorize
+  experiments against production systems.
+- Evidence audits and orchestration reviews expose unsupported claims and
+  control-flow risks but do not reconstruct missing telemetry or implement the
+  fixes they recommend.
+- `ui-slop-score` is a transparent heuristic tied to supplied references and
+  constraints, not an objective guarantee of visual quality or user success.
+- Multi-source research still depends on source availability and provider
+  access; source count cannot replace source quality, and unresolved conflicts
+  remain unresolved in the final report.
+- Stack audit detects artifact drift but intentionally does not choose a winner
+  or mutate an installation.
+
+### Credits
+
+- **[@alexprivalov](https://github.com/alexprivalov)** for
+  [`boost-asio-pro`](skills/boost-asio-pro/) in
+  [PR #1186](https://github.com/sickn33/agentic-awesome-skills/pull/1186).
+- **[@Whxuan0701](https://github.com/Whxuan0701)** for
+  [`agent-harness-fault-injection`](skills/agent-harness-fault-injection/),
+  [`audit-agent-run-evidence`](skills/audit-agent-run-evidence/),
+  [`review-multi-agent-orchestration`](skills/review-multi-agent-orchestration/),
+  and the paired stack-audit source contributions in
+  [PRs #1189, #1192, #1193, and #1199](https://github.com/sickn33/agentic-awesome-skills/pull/1199).
+- **[@FrancoStino](https://github.com/FrancoStino)** and the official
+  **[uizze/uizze](https://github.com/uizze/uizze)** source for
+  [`ui-slop-score`](skills/ui-slop-score/) in
+  [PR #1196](https://github.com/sickn33/agentic-awesome-skills/pull/1196).
+- **[@Kormix760](https://github.com/Kormix760)** for the modern YouTube
+  transcript API compatibility repair ported in
+  [PR #1198](https://github.com/sickn33/agentic-awesome-skills/pull/1198).
+- **[@liyangbing](https://github.com/liyangbing)** and
+  **[@denial123789](https://github.com/denial123789)** for
+  [`multi-source-search`](skills/multi-source-search/) and its evidence-integrity
+  follow-up in [PR #1202](https://github.com/sickn33/agentic-awesome-skills/pull/1202)
+  and [PR #1205](https://github.com/sickn33/agentic-awesome-skills/pull/1205).
+
 ## [15.15.0] - 2026-08-18 - "Evidence, Durable Context, and UI Contracts"
 
 > Added six focused skills for deep reading, durable agent context, measurable

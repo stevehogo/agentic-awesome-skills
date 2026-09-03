@@ -1341,12 +1341,12 @@
   {
     "id": "agents-md",
     "path": "skills/agents-md",
-    "category": "ai-ml",
+    "category": "development",
     "name": "agents-md",
-    "description": "This skill should be used when the user asks to \"create AGENTS.md\", \"update AGENTS.md\", \"maintain agent docs\", \"set up CLAUDE.md\", or needs to keep agent instructions concise. Enforces research-backed best practices for minimal, high-signal agent documentation.",
+    "description": "Create, revise, or audit AGENTS.md files from repository evidence, verified commands, and correctly scoped instructions without overwriting maintainer intent.",
     "risk": "critical",
     "source": "community",
-    "date_added": null,
+    "date_added": "2026-03-06",
     "plugin": {
       "targets": {
         "codex": "supported",
@@ -1413,6 +1413,32 @@
       "cost-tracking",
       "session-analysis"
     ]
+  },
+  {
+    "id": "agy-delegate",
+    "path": "skills/agy-delegate",
+    "category": "agent-orchestration",
+    "name": "agy-delegate",
+    "description": "Delegate coding tasks to the Google Antigravity CLI (`agy`) only when the user explicitly requests it, while the orchestrator retains review and landing responsibility.",
+    "risk": "critical",
+    "source": "https://github.com/amElnagdy/delegate-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/delegate-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/delegate-skills/blob/master/LICENSE"
   },
   {
     "id": "ai-agent-development",
@@ -1780,6 +1806,32 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "aider-delegate",
+    "path": "skills/aider-delegate",
+    "category": "agent-orchestration",
+    "name": "aider-delegate",
+    "description": "Delegate coding tasks to Aider (`aider`) only when the user explicitly requests it, while the orchestrator retains review and landing responsibility.",
+    "risk": "critical",
+    "source": "https://github.com/amElnagdy/delegate-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/delegate-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/delegate-skills/blob/master/LICENSE"
   },
   {
     "id": "airflow-dag-patterns",
@@ -2540,7 +2592,7 @@
     "path": "skills/anti-ui-slop",
     "category": "frontend",
     "name": "anti-ui-slop",
-    "description": "Stop coding agents from shipping generic UI with UIZZE's 800,000+ real web and iOS screens, product-specific contracts, required states, and a hard finish gate.",
+    "description": "Stop coding agents from shipping generic UI. Extend the product's design system, use UIZZE evidence only when useful, cover required states, and inspect the rendered result.",
     "risk": "safe",
     "source": "https://github.com/uizze/uizze/tree/main/skills/anti-ui-slop",
     "date_added": "2026-08-16",
@@ -3050,6 +3102,39 @@
     }
   },
   {
+    "id": "api-rate-limit-handler",
+    "path": "skills/api-rate-limit-handler",
+    "category": "development",
+    "name": "api-rate-limit-handler",
+    "description": "Implement bounded, idempotency-aware API throttling, backoff, and retry handling for 429 and transient 5xx responses.",
+    "risk": "safe",
+    "source": "self",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "self",
+    "license": "MIT",
+    "tags": [
+      "rate-limiting",
+      "retry",
+      "backoff",
+      "api",
+      "resilience",
+      "throttle",
+      "429"
+    ]
+  },
+  {
     "id": "api-sdk-generator",
     "path": "skills/api-sdk-generator",
     "category": "backend",
@@ -3074,6 +3159,32 @@
     "source_repo": "LambdaTest/agent-skills",
     "license": "MIT",
     "license_source": "https://github.com/LambdaTest/agent-skills/blob/main/LICENSE"
+  },
+  {
+    "id": "api-security",
+    "path": "skills/api-security",
+    "category": "backend",
+    "name": "api-security",
+    "description": "Authorized security assessment of REST, GraphQL, WebSocket, and SOAP APIs: discovery, authentication and authorization flaws (BOLA/IDOR, JWT/OAuth), rate-limit testing, and a structured multi-phase methodology.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "api-security-best-practices",
@@ -3406,6 +3517,32 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "apk-reverse",
+    "path": "skills/apk-reverse",
+    "category": "uncategorized",
+    "name": "apk-reverse",
+    "description": "Android APK reverse engineering: unpacking, Java decompilation, smali modification, repacking and signing, Frida dynamic hooking, and native .so analysis with jadx, apktool, adb, and related tools.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "app-builder",
@@ -4025,7 +4162,7 @@
     "category": "media",
     "name": "atlas-cloud-media",
     "description": "Generate Atlas Cloud images and videos through its asynchronous media API with schema-first model selection and credential-safe polling.",
-    "risk": "safe",
+    "risk": "critical",
     "source": "self",
     "date_added": "2026-08-12",
     "plugin": {
@@ -4103,6 +4240,32 @@
     "source_repo": "wede-wx/atlas",
     "license": "MIT",
     "license_source": "https://github.com/wede-wx/atlas/blob/main/LICENSE"
+  },
+  {
+    "id": "attack-chain",
+    "path": "skills/attack-chain",
+    "category": "uncategorized",
+    "name": "attack-chain",
+    "description": "Authorized multi-stage attack-path planning and orchestration spanning reconnaissance, initial access, privilege escalation, lateral movement, and reporting. Entry point for full engagements and cross-phase operations.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "attack-tree-construction",
@@ -7633,6 +7796,32 @@
     }
   },
   {
+    "id": "babysit-pr",
+    "path": "skills/babysit-pr",
+    "category": "code-quality",
+    "name": "babysit-pr",
+    "description": "Babysit a pull request through its bot review rounds: verify, fix, reply, resolve. Use for any babysit or watch-the-PR ask.",
+    "risk": "critical",
+    "source": "https://github.com/amElnagdy/review-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/review-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/review-skills/blob/master/LICENSE"
+  },
+  {
     "id": "backend-architect",
     "path": "skills/backend-architect",
     "category": "backend",
@@ -8294,6 +8483,32 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "binary-diff",
+    "path": "skills/binary-diff",
+    "category": "uncategorized",
+    "name": "binary-diff",
+    "description": "Cross-version binary symbol migration: diff updated binaries, recover function names without PDBs, and propagate annotations after software updates using BinDiff-style tooling.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "biopython",
@@ -8993,6 +9208,32 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "browser-extension-reverse",
+    "path": "skills/browser-extension-reverse",
+    "category": "web-development",
+    "name": "browser-extension-reverse",
+    "description": "Authorized reverse engineering of Chrome/Firefox extensions: manifest analysis, background workers, content scripts, and extension-based credential or data-exposure research.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "browser-harness",
@@ -9762,6 +10003,32 @@
     }
   },
   {
+    "id": "case-review",
+    "path": "skills/case-review",
+    "category": "uncategorized",
+    "name": "case-review",
+    "description": "Quality-gate review of a reverse-engineering or assessment case package: scope readiness, Evidence-to-Finding-to-Path traceability, work-item coverage, timeline consistency, and artifact hashes.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
     "id": "cc-skill-backend-patterns",
     "path": "skills/cc-skill-backend-patterns",
     "category": "meta",
@@ -10028,6 +10295,38 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "check-identity-pack",
+    "path": "skills/check-identity-pack",
+    "category": "document-verification",
+    "name": "check-identity-pack",
+    "description": "Run an AFP 100-point or AUSTRAC safe-harbour identity check over a set of documents, and report exactly what's missing. Use when the user asks to check identity documents, verify someone's ID for onboarding, or assess whether a document pack satisfies Australian identity requirements.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-08-31",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "Sketchjar/stipple-agent-skills",
+    "license": "Apache-2.0",
+    "license_source": "https://github.com/Sketchjar/stipple-agent-skills/blob/main/LICENSE",
+    "tags": [
+      "document-verification",
+      "fact-checking",
+      "stipple",
+      "authenticity"
+    ]
   },
   {
     "id": "chrome-extension-developer",
@@ -10422,6 +10721,32 @@
     }
   },
   {
+    "id": "claude-delegate",
+    "path": "skills/claude-delegate",
+    "category": "agent-orchestration",
+    "name": "claude-delegate",
+    "description": "Delegate coding tasks to a separate Claude Code CLI process or Claude session only when the user explicitly requests it, while the orchestrator retains review and landing responsibility.",
+    "risk": "critical",
+    "source": "https://github.com/amElnagdy/delegate-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/delegate-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/delegate-skills/blob/master/LICENSE"
+  },
+  {
     "id": "claude-in-chrome-troubleshooting",
     "path": "skills/claude-in-chrome-troubleshooting",
     "category": "ai-ml",
@@ -10678,6 +11003,32 @@
     }
   },
   {
+    "id": "cline-delegate",
+    "path": "skills/cline-delegate",
+    "category": "agent-orchestration",
+    "name": "cline-delegate",
+    "description": "Delegate coding tasks to the Cline CLI (`cline`) only when the user explicitly requests it, while the orchestrator retains review and landing responsibility.",
+    "risk": "critical",
+    "source": "https://github.com/amElnagdy/delegate-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/delegate-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/delegate-skills/blob/master/LICENSE"
+  },
+  {
     "id": "close-automation",
     "path": "skills/close-automation",
     "category": "uncategorized",
@@ -10764,6 +11115,32 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "cloud-k8s",
+    "path": "skills/cloud-k8s",
+    "category": "uncategorized",
+    "name": "cloud-k8s",
+    "description": "Authorized cloud, container, and Kubernetes security assessment: metadata SSRF, IAM misconfiguration, container escape paths, and cluster RBAC review.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "cloud-penetration-testing",
@@ -10934,6 +11311,32 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "code-audit",
+    "path": "skills/code-audit",
+    "category": "development",
+    "name": "code-audit",
+    "description": "Authorized source-code security review and SAST workflows: Semgrep and CodeQL pattern hunting, dangerous API identification, and fix verification.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "code-documentation-code-explain",
@@ -11475,6 +11878,32 @@
     }
   },
   {
+    "id": "codex-delegate",
+    "path": "skills/codex-delegate",
+    "category": "agent-orchestration",
+    "name": "codex-delegate",
+    "description": "Delegate coding tasks to the OpenAI Codex CLI only when the user explicitly requests it, while the orchestrator retains review and landing responsibility.",
+    "risk": "critical",
+    "source": "https://github.com/amElnagdy/delegate-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/delegate-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/delegate-skills/blob/master/LICENSE"
+  },
+  {
     "id": "codex-fable5",
     "path": "skills/codex-fable5",
     "category": "agent-behavior",
@@ -11726,6 +12155,32 @@
       "reasons": []
     },
     "source_type": "self"
+  },
+  {
+    "id": "commandcode-delegate",
+    "path": "skills/commandcode-delegate",
+    "category": "agent-orchestration",
+    "name": "commandcode-delegate",
+    "description": "Delegate coding tasks to the Command Code CLI (`cmd`) only when the user explicitly requests it, while the orchestrator retains review and landing responsibility.",
+    "risk": "critical",
+    "source": "https://github.com/amElnagdy/delegate-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/delegate-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/delegate-skills/blob/master/LICENSE"
   },
   {
     "id": "commit",
@@ -12825,6 +13280,32 @@
     }
   },
   {
+    "id": "copilot-delegate",
+    "path": "skills/copilot-delegate",
+    "category": "agent-orchestration",
+    "name": "copilot-delegate",
+    "description": "Delegate coding tasks to the GitHub Copilot CLI (`copilot`) only when the user explicitly requests it, while the orchestrator retains review and landing responsibility.",
+    "risk": "critical",
+    "source": "https://github.com/amElnagdy/delegate-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/delegate-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/delegate-skills/blob/master/LICENSE"
+  },
+  {
     "id": "copilot-sdk",
     "path": "skills/copilot-sdk",
     "category": "backend",
@@ -13747,6 +14228,34 @@
     "license_source": "https://github.com/LambdaTest/agent-skills/blob/main/LICENSE"
   },
   {
+    "id": "cursor-delegate",
+    "path": "skills/cursor-delegate",
+    "category": "agent-orchestration",
+    "name": "cursor-delegate",
+    "description": "Delegate coding tasks to the Cursor Agent CLI (`cursor-agent`) only when the user explicitly requests it, while the orchestrator retains review and landing responsibility.",
+    "risk": "critical",
+    "source": "https://github.com/amElnagdy/delegate-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "blocked",
+        "claude": "blocked"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [
+        "target_specific_home_path"
+      ]
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/delegate-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/delegate-skills/blob/master/LICENSE"
+  },
+  {
     "id": "customer-psychographic-profiler",
     "path": "skills/customer-psychographic-profiler",
     "category": "uncategorized",
@@ -14503,6 +15012,32 @@
     }
   },
   {
+    "id": "database-security",
+    "path": "skills/database-security",
+    "category": "database",
+    "name": "database-security",
+    "description": "Authorized database security assessment across PostgreSQL, MySQL, MSSQL, MongoDB, and Redis: exposure, authorization gaps, UDF/command execution paths, and misconfiguration review.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
     "id": "datadog-automation",
     "path": "skills/datadog-automation",
     "category": "reliability",
@@ -14696,6 +15231,32 @@
       "value-objects",
       "domain-events]"
     ]
+  },
+  {
+    "id": "debate-review",
+    "path": "skills/debate-review",
+    "category": "code-quality",
+    "name": "debate-review",
+    "description": "Two-model debate review of a GitHub PR, GitLab MR, Azure DevOps PR, or local working tree, posted as inline comments or printed. Use for any PR/MR review request, or a local review before a PR exists.",
+    "risk": "safe",
+    "source": "https://github.com/amElnagdy/review-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/review-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/review-skills/blob/master/LICENSE"
   },
   {
     "id": "debug-buttercup",
@@ -14979,6 +15540,32 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "delegate-setup",
+    "path": "skills/delegate-setup",
+    "category": "agent-orchestration",
+    "name": "delegate-setup",
+    "description": "Configure approved delegation lanes across installed implementer CLIs, including optional model and effort choices, then write global or project config only after explicit user approval.",
+    "risk": "safe",
+    "source": "https://github.com/amElnagdy/delegate-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/delegate-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/delegate-skills/blob/master/LICENSE"
   },
   {
     "id": "delegating-to-agents",
@@ -15474,6 +16061,38 @@
     "license_source": "https://github.com/connerkward/ckw-design-skill/blob/main/LICENSE"
   },
   {
+    "id": "detect-ai-text",
+    "path": "skills/detect-ai-text",
+    "category": "document-verification",
+    "name": "detect-ai-text",
+    "description": "Estimate whether a document's prose was written by AI, with the linguistic tells and honest abstention on non-prose. Use when the user asks whether an essay, report, CV, submission, or article was AI-generated \u2014 for triage, not proof.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-08-31",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "Sketchjar/stipple-agent-skills",
+    "license": "Apache-2.0",
+    "license_source": "https://github.com/Sketchjar/stipple-agent-skills/blob/main/LICENSE",
+    "tags": [
+      "document-verification",
+      "fact-checking",
+      "stipple",
+      "authenticity"
+    ]
+  },
+  {
     "id": "deterministic-design",
     "path": "skills/deterministic-design",
     "category": "uncategorized",
@@ -15951,6 +16570,32 @@
     ]
   },
   {
+    "id": "diagram-generator",
+    "path": "skills/diagram-generator",
+    "category": "uncategorized",
+    "name": "diagram-generator",
+    "description": "Generate, refine, validate, and render diagrams from natural language, notes, code, schemas, or existing diagram sources: flowcharts, swimlanes, attack-path graphs, data-flow diagrams, architecture, and state machines.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
     "id": "diary",
     "path": "skills/diary",
     "category": "meta",
@@ -15995,6 +16640,32 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "digital-forensics",
+    "path": "skills/digital-forensics",
+    "category": "uncategorized",
+    "name": "digital-forensics",
+    "description": "Authorized digital forensics: memory dumps, disk timelines, PCAP investigation, artifact triage, and incident-response evidence preservation.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "discord-automation",
@@ -16390,6 +17061,32 @@
     "license_source": "https://github.com/jonathimer/devmarketing-skills/blob/main/LICENSE"
   },
   {
+    "id": "docs-generator",
+    "path": "skills/docs-generator",
+    "category": "uncategorized",
+    "name": "docs-generator",
+    "description": "Generate technical deliverables from completed analysis: reverse-engineering reports, penetration-test reports, CTF write-ups, and signature-analysis documentation with evidence-backed structure.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
     "id": "docs-guard",
     "path": "skills/docs-guard",
     "category": "uncategorized",
@@ -16710,6 +17407,32 @@
     }
   },
   {
+    "id": "dotnet-reverse",
+    "path": "skills/dotnet-reverse",
+    "category": "uncategorized",
+    "name": "dotnet-reverse",
+    "description": ".NET/C# binary reverse engineering: managed PE analysis, dnSpyEx debugging, de4dot deobfuscation (ConfuserEx/SmartAssembly/Babel), IL patching, NativeAOT targets, and analysis of red-team Sharp* tooling.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
     "id": "doubt-driven-development",
     "path": "skills/doubt-driven-development",
     "category": "uncategorized",
@@ -16868,6 +17591,32 @@
       "feynman",
       "document-analysis"
     ]
+  },
+  {
+    "id": "dsl-vm-reverse",
+    "path": "skills/reverse-engineering/dsl-vm-reverse",
+    "category": "reverse-engineering",
+    "name": "dsl-vm-reverse",
+    "description": "Reverse JavaScript-based custom DSL/VM interpreters and risk-control engines: identify IIFE/switch-based opcode dispatch, extract opcode tables, and capture runtime semantics.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "duotone-design",
@@ -17092,6 +17841,32 @@
     "source_type": "self"
   },
   {
+    "id": "edr-bypass-re",
+    "path": "skills/edr-bypass-re",
+    "category": "uncategorized",
+    "name": "edr-bypass-re",
+    "description": "Reverse engineer EDR internals (user-mode hook tables, ETW, AMSI) and study bypass techniques such as direct syscalls, Hell's Gate, and call-stack spoofing. Lab-only red-team research.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
     "id": "effective-agent-skills",
     "path": "skills/effective-agent-skills",
     "category": "development",
@@ -17265,6 +18040,61 @@
       "innovation",
       "strategy"
     ]
+  },
+  {
+    "id": "email-issue-fixer",
+    "path": "skills/email-issue-fixer",
+    "category": "writing",
+    "name": "email-issue-fixer",
+    "description": "Fix small email mistakes without touching the writer's voice, and strip tracking parameters from links on request. Always returns the corrected draft plus a change list.",
+    "risk": "safe",
+    "source": "self",
+    "date_added": "2026-09-01",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "self",
+    "tags": [
+      "email",
+      "proofreading",
+      "grammar",
+      "links"
+    ]
+  },
+  {
+    "id": "email-security",
+    "path": "skills/email-security",
+    "category": "security",
+    "name": "email-security",
+    "description": "Authorized email security review: phishing analysis, SPF/DKIM/DMARC header authentication, BEC pattern investigation, and mailbox token abuse research.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "email-sequence",
@@ -18273,6 +19103,38 @@
     }
   },
   {
+    "id": "extract-document-data",
+    "path": "skills/extract-document-data",
+    "category": "document-verification",
+    "name": "extract-document-data",
+    "description": "Extract structured, grounded fields from documents \u2014 values cite their page, missing values abstain instead of hallucinating. Use for parsing invoices, payslips, statements, contracts.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-08-31",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "Sketchjar/stipple-agent-skills",
+    "license": "Apache-2.0",
+    "license_source": "https://github.com/Sketchjar/stipple-agent-skills/blob/main/LICENSE",
+    "tags": [
+      "document-verification",
+      "fact-checking",
+      "stipple",
+      "authenticity"
+    ]
+  },
+  {
     "id": "fable-safe-prompt",
     "path": "skills/fable-safe-prompt",
     "category": "agent-behavior",
@@ -18582,6 +19444,40 @@
     }
   },
   {
+    "id": "falsify",
+    "path": "skills/falsify",
+    "category": "reasoning",
+    "name": "falsify",
+    "description": "The scientific thinking protocol for AI agents. Use when facing complex, ambiguous, or high-stakes questions where guessing is costly: hypothesis \u2192 attempt to break it \u2192 evidence \u2192 calibrated conclusion.",
+    "risk": "safe",
+    "source": "community",
+    "date_added": "2026-08-27",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "263311487-ux/falsify",
+    "license": "MIT",
+    "license_source": "https://github.com/263311487-ux/falsify/blob/main/LICENSE",
+    "tags": [
+      "reasoning",
+      "falsification",
+      "science",
+      "thinking",
+      "verification",
+      "epistemology"
+    ]
+  },
+  {
     "id": "family-health-analyzer",
     "path": "skills/family-health-analyzer",
     "category": "health",
@@ -18602,6 +19498,39 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "famulor-skill",
+    "path": "skills/famulor-skill",
+    "category": "api-integration",
+    "name": "famulor-skill",
+    "description": "Operate Famulor assistants, communication history, campaigns, knowledge, automations, telephony, and workspace administration through its hosted MCP server.",
+    "risk": "critical",
+    "source": "https://github.com/bekservice/Famulor-Skill",
+    "date_added": "2026-08-23",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "official",
+    "source_repo": "bekservice/Famulor-Skill",
+    "license": "MIT",
+    "license_source": "https://github.com/bekservice/Famulor-Skill/blob/main/LICENSE",
+    "tags": [
+      "famulor",
+      "mcp",
+      "voice-ai",
+      "communication",
+      "automation"
+    ]
   },
   {
     "id": "fastapi-pro",
@@ -19010,6 +19939,38 @@
     ]
   },
   {
+    "id": "find-matching-tenders",
+    "path": "skills/find-matching-tenders",
+    "category": "document-verification",
+    "name": "find-matching-tenders",
+    "description": "Find open AU/NZ government tenders matching what a company does, ranked by fit with why and gap analysis. Use when the user asks to find tenders, bid opportunities, government contracts, or RFPs for their business (or a client's).",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-08-31",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "Sketchjar/stipple-agent-skills",
+    "license": "Apache-2.0",
+    "license_source": "https://github.com/Sketchjar/stipple-agent-skills/blob/main/LICENSE",
+    "tags": [
+      "document-verification",
+      "fact-checking",
+      "stipple",
+      "authenticity"
+    ]
+  },
+  {
     "id": "finishing-a-development-branch",
     "path": "skills/finishing-a-development-branch",
     "category": "workflow",
@@ -19096,6 +20057,32 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "firmware-pentest",
+    "path": "skills/firmware-pentest",
+    "category": "uncategorized",
+    "name": "firmware-pentest",
+    "description": "Firmware penetration testing following the OWASP FSTM nine-stage flow: extraction, EMBA automation, Firmadyne/QEMU emulation, AFL++ fuzzing, and hands-on exploitation in authorized labs.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "fitness-analyzer",
@@ -21135,6 +22122,32 @@
     }
   },
   {
+    "id": "ghidra-reverse",
+    "path": "skills/ghidra-reverse",
+    "category": "uncategorized",
+    "name": "ghidra-reverse",
+    "description": "Free/open reverse engineering with Ghidra (headless or GUI): decompilation, cross-references, scripting, and optional Ghidra MCP workflows when IDA is unavailable.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
     "id": "git-advanced-workflows",
     "path": "skills/git-advanced-workflows",
     "category": "workflow",
@@ -21759,6 +22772,32 @@
     }
   },
   {
+    "id": "go-rust-reverse",
+    "path": "skills/go-rust-reverse",
+    "category": "development",
+    "name": "go-rust-reverse",
+    "description": "Reverse engineer stripped Go and Rust binaries: runtime recognition, pclntab/module metadata recovery, panic-string analysis, and idiomatic decompilation strategies.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
     "id": "goal-analyzer",
     "path": "skills/goal-analyzer",
     "category": "health",
@@ -22067,6 +23106,42 @@
     ]
   },
   {
+    "id": "graceful-shutdown",
+    "path": "skills/graceful-shutdown",
+    "category": "development",
+    "name": "graceful-shutdown",
+    "description": "Implement graceful shutdown for servers and workers: drain connections, finish in-flight work, release resources, and exit cleanly on SIGTERM/SIGINT.",
+    "risk": "safe",
+    "source": "self",
+    "date_added": "2026-08-27",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "self",
+    "license": "MIT",
+    "tags": [
+      "graceful-shutdown",
+      "signals",
+      "SIGTERM",
+      "SIGINT",
+      "drain",
+      "health-check",
+      "kubernetes",
+      "docker",
+      "production",
+      "resilience"
+    ]
+  },
+  {
     "id": "gradient-design",
     "path": "skills/design-it/gradient-design",
     "category": "design-it",
@@ -22307,6 +23382,32 @@
     ]
   },
   {
+    "id": "grok-delegate",
+    "path": "skills/grok-delegate",
+    "category": "agent-orchestration",
+    "name": "grok-delegate",
+    "description": "Delegate coding tasks to the Grok Build CLI only when the user explicitly requests it, while the orchestrator retains review and landing responsibility.",
+    "risk": "critical",
+    "source": "https://github.com/amElnagdy/delegate-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/delegate-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/delegate-skills/blob/master/LICENSE"
+  },
+  {
     "id": "growth-engine",
     "path": "skills/growth-engine",
     "category": "marketing",
@@ -22387,6 +23488,32 @@
       "workflow",
       "coding-agents"
     ]
+  },
+  {
+    "id": "hardware-security",
+    "path": "skills/hardware-security",
+    "category": "uncategorized",
+    "name": "hardware-security",
+    "description": "Authorized hardware and embedded interface security research: UART/JTAG discovery, debug-pad triage, secure-boot overview, and offline firmware analysis.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "hasdata",
@@ -23914,6 +25041,32 @@
     }
   },
   {
+    "id": "ida-reverse",
+    "path": "skills/ida-reverse",
+    "category": "uncategorized",
+    "name": "ida-reverse",
+    "description": "Reverse engineer binaries with IDA Pro: decompilation, disassembly, data-flow tracking, cross-references, and IDA MCP automation for deep static analysis of PE/ELF/Mach-O targets.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
     "id": "idea-autopsy",
     "path": "skills/idea-autopsy",
     "category": "product",
@@ -24031,6 +25184,32 @@
     "source_repo": "addyosmani/agent-skills",
     "license": "MIT",
     "license_source": "https://github.com/addyosmani/agent-skills/blob/main/LICENSE"
+  },
+  {
+    "id": "identity-federation",
+    "path": "skills/identity-federation",
+    "category": "uncategorized",
+    "name": "identity-federation",
+    "description": "Authorized assessment of federated identity systems: SAML, OIDC, OAuth2 flows, SSO misconfiguration, and token-confusion issues.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "identity-mirror",
@@ -24616,6 +25795,38 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "instructree",
+    "path": "skills/instructree",
+    "category": "development",
+    "name": "instructree",
+    "description": "Map, explain, and lint repository-scoped coding-agent instructions before changing code.",
+    "risk": "safe",
+    "source": "community",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "kotobuki09/instructree",
+    "license": "MIT",
+    "license_source": "https://github.com/kotobuki09/instructree/blob/v0.7.0/LICENSE",
+    "tags": [
+      "agent-instructions",
+      "agents-md",
+      "codex",
+      "static-analysis"
+    ]
   },
   {
     "id": "interactive-portfolio",
@@ -25299,6 +26510,32 @@
     ]
   },
   {
+    "id": "js-reverse",
+    "path": "skills/js-reverse",
+    "category": "uncategorized",
+    "name": "js-reverse",
+    "description": "Front-end JavaScript reverse engineering: locate signature chains, analyze encrypted request parameters, sample runtime behavior, and reproduce logic locally in Node for evidence-based output.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
     "id": "json-canvas",
     "path": "skills/json-canvas",
     "category": "uncategorized",
@@ -25512,6 +26749,32 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "kimi-delegate",
+    "path": "skills/kimi-delegate",
+    "category": "agent-orchestration",
+    "name": "kimi-delegate",
+    "description": "Delegate coding tasks to the Kimi Code CLI (`kimi`) only when the user explicitly requests it, while the orchestrator retains review and landing responsibility.",
+    "risk": "critical",
+    "source": "https://github.com/amElnagdy/delegate-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/delegate-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/delegate-skills/blob/master/LICENSE"
   },
   {
     "id": "klaviyo-automation",
@@ -26966,6 +28229,32 @@
     }
   },
   {
+    "id": "llm-security",
+    "path": "skills/llm-security",
+    "category": "ai-ml",
+    "name": "llm-security",
+    "description": "Authorized security assessment of LLM applications and AI agents: prompt injection, tool abuse, RAG exposure, memory poisoning, system-prompt extraction, and agent-compliance engineering per OWASP LLM/ASI Top 10.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
     "id": "llm-structured-output",
     "path": "skills/llm-structured-output",
     "category": "ai-ml",
@@ -27502,7 +28791,7 @@
     "source_type": "community",
     "source_repo": "TheaDust/lore",
     "license": "MIT",
-    "license_source": "https://github.com/TheaDust/lore/blob/main/LICENSE",
+    "license_source": "https://github.com/TheaDust/lore/blob/25111dead1b54053d65124e43c35d307951c1844/LICENSE",
     "tags": [
       "memory",
       "knowledge-base",
@@ -27541,7 +28830,7 @@
     "path": "skills/lovable-cleanup",
     "category": "uncategorized",
     "name": "lovable-cleanup",
-    "description": "Audits and strips Lovable scaffolding from Vite + React projects \u2014 removes lovable-tagger, swaps placeholder assets, prunes unused Radix deps, and cleans generated docs so the codebase ships as yours.",
+    "description": "Audits and strips Lovable scaffolding from Vite + React projects \u2014 removes lovable-tagger, swaps placeholder assets, prunes unused Radix deps, cleans generated docs, and neutralizes stale favicon/CDN caching so the codebase ships as yours.",
     "risk": "safe",
     "source": "community",
     "date_added": "2026-06-13",
@@ -27565,7 +28854,9 @@
       "vite",
       "react",
       "shadcn",
-      "devtools"
+      "devtools",
+      "vercel",
+      "favicon"
     ]
   },
   {
@@ -27699,6 +28990,32 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "macos-reverse",
+    "path": "skills/macos-reverse",
+    "category": "uncategorized",
+    "name": "macos-reverse",
+    "description": "Authorized macOS and Mach-O reverse engineering: codesign inspection, Objective-C/Swift recovery, endpoint-security surfaces, and Apple-platform malware analysis.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "macos-screen-recorder",
@@ -28251,6 +29568,32 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "malware-analysis",
+    "path": "skills/malware-analysis",
+    "category": "uncategorized",
+    "name": "malware-analysis",
+    "description": "Analyze suspected malware through static, dynamic, and behavioral techniques: IOC extraction, YARA/Sigma rule authoring, sandbox orchestration, and anti-analysis detection.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "malware-analyst",
@@ -29727,6 +31070,32 @@
     }
   },
   {
+    "id": "mobile-reverse",
+    "path": "skills/mobile-reverse",
+    "category": "mobile",
+    "name": "mobile-reverse",
+    "description": "Authorized Android/iOS application reverse engineering and security testing: APK/IPA analysis, runtime instrumentation (Frida/Objection), SSL-pinning and jailbreak/root-detection bypass, per OWASP MASTG.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
     "id": "mobile-security-coder",
     "path": "skills/mobile-security-coder",
     "category": "mobile",
@@ -30354,6 +31723,35 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "muapi-media",
+    "path": "skills/muapi-media",
+    "category": "media",
+    "name": "muapi-media",
+    "description": "Generate images and videos with MuAPI's schema-driven asynchronous media API while protecting keys, polling, and output downloads.",
+    "risk": "critical",
+    "source": "self",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "self",
+    "tags": [
+      "muapi",
+      "image-generation",
+      "video-generation",
+      "media-api"
+    ]
   },
   {
     "id": "multi-advisor",
@@ -32568,6 +33966,32 @@
     }
   },
   {
+    "id": "omp-delegate",
+    "path": "skills/omp-delegate",
+    "category": "agent-orchestration",
+    "name": "omp-delegate",
+    "description": "Delegate coding tasks to Oh My Pi (`omp`) only when the user explicitly requests it, while the orchestrator retains review and landing responsibility.",
+    "risk": "critical",
+    "source": "https://github.com/amElnagdy/delegate-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/delegate-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/delegate-skills/blob/master/LICENSE"
+  },
+  {
     "id": "on-call-handoff-patterns",
     "path": "skills/on-call-handoff-patterns",
     "category": "reliability",
@@ -32857,6 +34281,32 @@
     ]
   },
   {
+    "id": "opencode-delegate",
+    "path": "skills/opencode-delegate",
+    "category": "agent-orchestration",
+    "name": "opencode-delegate",
+    "description": "Delegate coding tasks to the OpenCode CLI only when the user explicitly requests it, while the orchestrator retains review and landing responsibility.",
+    "risk": "critical",
+    "source": "https://github.com/amElnagdy/delegate-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/delegate-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/delegate-skills/blob/master/LICENSE"
+  },
+  {
     "id": "optim-agent",
     "path": "skills/optim-agent",
     "category": "data",
@@ -33067,6 +34517,32 @@
       "strategy",
       "bmc"
     ]
+  },
+  {
+    "id": "ot-ics",
+    "path": "skills/ot-ics",
+    "category": "uncategorized",
+    "name": "ot-ics",
+    "description": "Authorized OT/ICS security assessment: Purdue-model zoning review, PLC/SCADA exposure, industrial protocol discovery, and passive-first evaluation discipline.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "outlook-automation",
@@ -33322,6 +34798,32 @@
     }
   },
   {
+    "id": "patch-diff-exploit",
+    "path": "skills/patch-diff-exploit",
+    "category": "uncategorized",
+    "name": "patch-diff-exploit",
+    "description": "Locate vulnerability fixes in vendor patches, diff binaries across versions, and build N-day PoCs. Attack-side complement to binary-diff for authorized research.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
     "id": "patterns",
     "path": "skills/monopoly/patterns",
     "category": "monopoly",
@@ -33540,6 +35042,32 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "pentest-tools",
+    "path": "skills/pentest-tools",
+    "category": "uncategorized",
+    "name": "pentest-tools",
+    "description": "Operate 20+ penetration-testing tools (Nmap, Nuclei, SQLMap, FFUF, Hashcat, and more) through structured workflows with consistent output handling.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "people-data",
@@ -33882,6 +35410,32 @@
     ]
   },
   {
+    "id": "pi-delegate",
+    "path": "skills/pi-delegate",
+    "category": "agent-orchestration",
+    "name": "pi-delegate",
+    "description": "Delegate coding tasks to the Pi coding agent CLI (`pi`) only when the user explicitly requests it, while the orchestrator retains review and landing responsibility.",
+    "risk": "critical",
+    "source": "https://github.com/amElnagdy/delegate-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/delegate-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/delegate-skills/blob/master/LICENSE"
+  },
+  {
     "id": "pi-web-search",
     "path": "skills/pi-web-search",
     "category": "research",
@@ -34207,6 +35761,39 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "poka-yoke",
+    "path": "skills/poka-yoke",
+    "category": "development",
+    "name": "poka-yoke",
+    "description": "Mistake-proof code, config and process: make the wrong action impossible or self-announcing rather than documented.",
+    "risk": "safe",
+    "source": "rainmanjam/poka-yoke",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "rainmanjam/poka-yoke",
+    "license": "MIT",
+    "license_source": "https://github.com/rainmanjam/poka-yoke/blob/v0.1.2/LICENSE",
+    "tags": [
+      "mistake-proofing",
+      "code-review",
+      "api-design",
+      "guardrails",
+      "reliability"
+    ]
   },
   {
     "id": "polars",
@@ -35441,6 +37028,40 @@
     }
   },
   {
+    "id": "project-state-governor",
+    "path": "skills/project-state-governor",
+    "category": "project-management",
+    "name": "project-state-governor",
+    "description": "Govern evidence-backed canonical project state across sessions, branches, reviews, and research cycles without inventing product intent.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-08-20",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "Ghost011118/project-state-governor",
+    "license": "Apache-2.0",
+    "license_source": "https://github.com/Ghost011118/project-state-governor/blob/main/LICENSE",
+    "tags": [
+      "project-state",
+      "project-memory",
+      "documentation",
+      "governance",
+      "context-engineering",
+      "multi-agent"
+    ]
+  },
+  {
     "id": "projection-patterns",
     "path": "skills/projection-patterns",
     "category": "architecture",
@@ -35623,6 +37244,32 @@
     },
     "source_type": "official",
     "source_repo": "scopeblind/scopeblind-gateway"
+  },
+  {
+    "id": "protocol-reverse",
+    "path": "skills/protocol-reverse",
+    "category": "uncategorized",
+    "name": "protocol-reverse",
+    "description": "Authorized reverse engineering of custom binary protocols, Protobuf/gRPC schemas, WebSocket frames, and PCAP-driven protocol recovery.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "protocol-reverse-engineering",
@@ -35813,6 +37460,32 @@
       "activity-planning",
       "event"
     ]
+  },
+  {
+    "id": "pwn-chain",
+    "path": "skills/pwn-chain",
+    "category": "uncategorized",
+    "name": "pwn-chain",
+    "description": "Go from reverse engineering to a working exploit: stack/heap/kernel pwn workflows with pwntools, libc-database, ROP, and stabilization from CTF to authorized remote targets.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "pydantic-ai",
@@ -36169,6 +37842,32 @@
     "license": "Apache-2.0 license"
   },
   {
+    "id": "qoder-delegate",
+    "path": "skills/qoder-delegate",
+    "category": "agent-orchestration",
+    "name": "qoder-delegate",
+    "description": "Delegate coding tasks to the Qoder CLI (`qodercli`) only when the user explicitly requests it, while the orchestrator retains review and landing responsibility.",
+    "risk": "critical",
+    "source": "https://github.com/amElnagdy/delegate-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/delegate-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/delegate-skills/blob/master/LICENSE"
+  },
+  {
     "id": "quality-nonconformance",
     "path": "skills/quality-nonconformance",
     "category": "business",
@@ -36268,6 +37967,58 @@
       "wellbeing",
       "coaching"
     ]
+  },
+  {
+    "id": "radare2",
+    "path": "skills/radare2",
+    "category": "uncategorized",
+    "name": "radare2",
+    "description": "Drive the radare2 CLI for binary reconnaissance, disassembly, analysis, function locating, export, and lightweight patching (r2/rabin2/rasm2/radiff2) without a GUI.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
+    "id": "radio-sdr",
+    "path": "skills/radio-sdr",
+    "category": "uncategorized",
+    "name": "radio-sdr",
+    "description": "Authorized RF/SDR security research: signal identification, replay-feasibility study in shielded labs, and wireless protocol analysis outside regulated bands.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "radix-ui-design-system",
@@ -37324,6 +39075,32 @@
     }
   },
   {
+    "id": "reverse-browser-automation",
+    "path": "skills/reverse-browser-automation",
+    "category": "uncategorized",
+    "name": "reverse-browser-automation",
+    "description": "Automate browsers (Playwright) and Windows desktop applications (UI automation) for reverse-engineering evidence collection, UI-driven workflows, and network observation during analysis.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
     "id": "reverse-engineer",
     "path": "skills/reverse-engineer",
     "category": "security",
@@ -37344,6 +39121,32 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "reverse-engineering",
+    "path": "skills/reverse-engineering",
+    "category": "uncategorized",
+    "name": "reverse-engineering",
+    "description": "General reverse-engineering methodology for compiled, obfuscated, packed, or virtualized targets: GDB, Frida, angr, Unicorn, and Qiling workflows across languages and platforms, with anti-analysis countermeasures.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "review-and-simplify-changes",
@@ -38131,7 +39934,7 @@
     "path": "skills/salesforce-development",
     "category": "api-integration",
     "name": "salesforce-development",
-    "description": "Expert patterns for Salesforce platform development including Lightning Web Components (LWC), Apex triggers and classes, REST/Bulk APIs, Connected Apps, and Salesforce DX with scratch orgs and 2nd generation packages (2GP).",
+    "description": "Expert patterns for Salesforce platform development including Lightning Web Components (LWC), Apex triggers and classes, REST/Bulk APIs, External Client Apps, and Salesforce DX with scratch orgs and 2nd generation packages (2GP).",
     "risk": "safe",
     "source": "vibeship-spawner-skills (Apache 2.0)",
     "date_added": "2026-02-27",
@@ -38175,6 +39978,39 @@
       "agi",
       "yc",
       "fundraising"
+    ]
+  },
+  {
+    "id": "sandbase-mcp",
+    "path": "skills/sandbase-mcp",
+    "category": "ai-ml",
+    "name": "sandbase-mcp",
+    "description": "Discover, inspect, and invoke 2,000+ AI models and APIs through SandBase's local MCP bridge with explicit schema and cost checks.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-08-27",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "official",
+    "source_repo": "sandbaseai/cli",
+    "license": "Apache-2.0",
+    "license_source": "https://github.com/sandbaseai/cli/blob/main/LICENSE",
+    "tags": [
+      "mcp",
+      "ai-models",
+      "api-gateway",
+      "inference",
+      "media-generation"
     ]
   },
   {
@@ -38518,6 +40354,38 @@
       "reasons": []
     },
     "license": "BSD-3-Clause license"
+  },
+  {
+    "id": "screen-adverse-media",
+    "path": "skills/screen-adverse-media",
+    "category": "document-verification",
+    "name": "screen-adverse-media",
+    "description": "Screen a person or organisation for adverse media coverage, PEP status, and sanctions exposure \u2014 corroboration-gated, returns \"review\" never \"guilty\". Use when the user asks to screen someone before onboarding, partnership, or investment; for AML/CTF flows; or for ongoing counterparty monitoring.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-08-31",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "Sketchjar/stipple-agent-skills",
+    "license": "Apache-2.0",
+    "license_source": "https://github.com/Sketchjar/stipple-agent-skills/blob/main/LICENSE",
+    "tags": [
+      "document-verification",
+      "fact-checking",
+      "stipple",
+      "authenticity"
+    ]
   },
   {
     "id": "screen-reader-testing",
@@ -41233,6 +43101,43 @@
     }
   },
   {
+    "id": "slideops",
+    "path": "skills/slideops",
+    "category": "content",
+    "name": "slideops",
+    "description": "Turn a repository into a cited HTML slide deck and detect the day it drifts from the code. Citations record file, lines, and hash; a stdlib check reports CURRENT, MOVED, or CHANGED.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-08-31",
+    "plugin": {
+      "targets": {
+        "codex": "blocked",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": [
+        "target_specific_home_path"
+      ]
+    },
+    "source_type": "community",
+    "source_repo": "glukicov/slideops",
+    "license": "MIT",
+    "license_source": "https://github.com/glukicov/slideops/blob/main/LICENSE",
+    "tags": [
+      "slides",
+      "presentations",
+      "documentation",
+      "docs-as-code",
+      "drift-detection",
+      "citations",
+      "html"
+    ]
+  },
+  {
     "id": "slo-implementation",
     "path": "skills/slo-implementation",
     "category": "reliability",
@@ -41715,6 +43620,39 @@
     "license_source": "https://github.com/addyosmani/agent-skills/blob/main/LICENSE"
   },
   {
+    "id": "spec-driven-loop",
+    "path": "skills/spec-driven-loop",
+    "category": "development",
+    "name": "spec-driven-loop",
+    "description": "Freeze PRD, technical design, and acceptance criteria before medium-to-large Codex work; coordinate agents with explicit ownership, then judge delivery from diffs, tests, and evidence.",
+    "risk": "safe",
+    "source": "self",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "self",
+    "source_repo": "Linji-x/spec-driven-loop",
+    "license": "MIT",
+    "license_source": "https://github.com/Linji-x/spec-driven-loop/blob/v1.0.0/LICENSE",
+    "tags": [
+      "codex",
+      "spec-driven-development",
+      "multi-agent",
+      "agent-orchestration",
+      "acceptance-testing"
+    ]
+  },
+  {
     "id": "spec-to-code-compliance",
     "path": "skills/spec-to-code-compliance",
     "category": "code-quality",
@@ -41987,6 +43925,32 @@
       "documentation",
       "ci-cd"
     ]
+  },
+  {
+    "id": "src-hunter",
+    "path": "skills/pentest-tools/src-hunter",
+    "category": "pentest-tools",
+    "name": "src-hunter",
+    "description": "Bug-bounty/SRC vulnerability-hunting workflow: five-phase methodology (intake, recon, enumeration, hunt, report) with attack playbooks for SQLi, XSS, RCE, SSRF, IDOR, CSRF, path traversal, and file upload.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "sred-project-organizer",
@@ -42680,6 +44644,32 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "supply-chain-security",
+    "path": "skills/supply-chain-security",
+    "category": "security",
+    "name": "supply-chain-security",
+    "description": "Software supply-chain security assessment: SBOM generation, SCA scanning, CI/CD pipeline review, container image audit, build integrity, dependency provenance, and vulnerability reachability verification.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "survey-generator",
@@ -44180,6 +46170,84 @@
     }
   },
   {
+    "id": "thick-client",
+    "path": "skills/thick-client",
+    "category": "uncategorized",
+    "name": "thick-client",
+    "description": "Authorized security testing of desktop thick clients: local storage, update channels, IPC, traffic interception, and client-side trust-boundary review.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
+    "id": "threat-hunting",
+    "path": "skills/threat-hunting",
+    "category": "uncategorized",
+    "name": "threat-hunting",
+    "description": "Blue-team threat hunting: detection engineering with Sigma/YARA, SIEM query design, and validation of incident detections against known technique patterns.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
+    "id": "threat-intelligence",
+    "path": "skills/threat-intelligence",
+    "category": "uncategorized",
+    "name": "threat-intelligence",
+    "description": "Authorized OSINT and cyber threat intelligence: enriching IOCs, campaigns, impersonation, scams, and threat-actor profiles from public sources with defined boundaries.",
+    "risk": "safe",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
     "id": "threat-mitigation-mapping",
     "path": "skills/threat-mitigation-mapping",
     "category": "security",
@@ -44977,7 +47045,7 @@
     "category": "development",
     "name": "tree-ring-memory",
     "description": "Use Tree Ring Memory for local-first AI-agent memory lifecycle work: recall, evidence, audit, forgetting, and consolidation without transcript dumping.",
-    "risk": "safe",
+    "risk": "critical",
     "source": "community",
     "date_added": "2026-07-08",
     "plugin": {
@@ -44994,7 +47062,7 @@
     },
     "source_type": "community",
     "source_repo": "TerminallyLazy/Tree-Ring-Memory",
-    "license": "Apache-2.0",
+    "license": "MIT",
     "license_source": "https://github.com/TerminallyLazy/Tree-Ring-Memory/blob/main/LICENSE",
     "tags": [
       "agent-memory",
@@ -45668,39 +47736,6 @@
     "license_source": "https://github.com/ibelick/ui-skills/blob/main/LICENSE"
   },
   {
-    "id": "ui-slop-score",
-    "path": "skills/ui-slop-score",
-    "category": "frontend",
-    "name": "ui-slop-score",
-    "description": "Score a rendered web or iOS screen for generic UI risk before it ships. Use when a user asks whether a UI looks generic or needs an honest pre-merge visual review.",
-    "risk": "safe",
-    "source": "https://github.com/uizze/uizze/tree/main/skills/ui-slop-score",
-    "date_added": "2026-08-19",
-    "plugin": {
-      "targets": {
-        "codex": "supported",
-        "claude": "supported"
-      },
-      "setup": {
-        "type": "none",
-        "summary": "",
-        "docs": null
-      },
-      "reasons": []
-    },
-    "source_type": "official",
-    "source_repo": "uizze/uizze",
-    "license": "MIT",
-    "license_source": "https://github.com/uizze/uizze/blob/main/LICENSE",
-    "tags": [
-      "ui",
-      "ux",
-      "frontend",
-      "design",
-      "ui-slop-score"
-    ]
-  },
-  {
     "id": "ui-tokens",
     "path": "skills/ui-tokens",
     "category": "uncategorized",
@@ -45817,39 +47852,6 @@
       },
       "reasons": []
     }
-  },
-  {
-    "id": "uizze-ui-research",
-    "path": "skills/uizze-ui-research",
-    "category": "design",
-    "name": "uizze-ui-research",
-    "description": "Use when building or reviewing web and iOS UI and you need real references from the free UIZZE public catalog, a structured design contract, a consent-gated rendered HTML/CSS preview, or a hard pre-ship finish gate.",
-    "risk": "safe",
-    "source": "https://github.com/aislon/uizze-mcp/tree/main/skills/uizze-ui-research",
-    "date_added": "2026-07-12",
-    "plugin": {
-      "targets": {
-        "codex": "supported",
-        "claude": "supported"
-      },
-      "setup": {
-        "type": "none",
-        "summary": "",
-        "docs": null
-      },
-      "reasons": []
-    },
-    "source_type": "official",
-    "source_repo": "aislon/uizze-mcp",
-    "license": "MIT",
-    "license_source": "https://github.com/aislon/uizze-mcp/blob/main/LICENSE",
-    "tags": [
-      "ui-design",
-      "ui-research",
-      "mcp",
-      "design-contracts",
-      "agent-workflows"
-    ]
   },
   {
     "id": "uncle-bob-craft",
@@ -46204,6 +48206,41 @@
     "license_source": "https://github.com/MohamedAbdallah-14/unslop/blob/main/LICENSE"
   },
   {
+    "id": "unsloth-finetuning",
+    "path": "skills/unsloth-finetuning",
+    "category": "ai-ml",
+    "name": "unsloth-finetuning",
+    "description": "Fine-tune and post-train LLMs with Unsloth Core on a single consumer GPU: VRAM sizing, LoRA/QLoRA, GRPO/DPO, chat-template correctness, and GGUF export.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-08-27",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "unslothai/unsloth",
+    "license": "Apache-2.0",
+    "license_source": "https://github.com/unslothai/unsloth/blob/main/LICENSE",
+    "tags": [
+      "unsloth",
+      "fine-tuning",
+      "lora",
+      "qlora",
+      "grpo",
+      "gguf",
+      "vram"
+    ]
+  },
+  {
     "id": "unsplash-integration",
     "path": "skills/unsplash-integration",
     "category": "api-integration",
@@ -46298,6 +48335,69 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "upstash-ratelimit",
+    "path": "skills/upstash-ratelimit",
+    "category": "backend",
+    "name": "upstash-ratelimit",
+    "description": "Add rate limiting to API routes, middleware, and edge functions with @upstash/ratelimit: sliding window, fixed window, and token bucket backed by Upstash Redis.",
+    "risk": "critical",
+    "source": "self",
+    "date_added": "2026-08-31",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "self",
+    "tags": [
+      "upstash",
+      "rate-limiting",
+      "redis",
+      "serverless",
+      "edge",
+      "middleware",
+      "429"
+    ]
+  },
+  {
+    "id": "upstash-redis",
+    "path": "skills/upstash-redis",
+    "category": "backend",
+    "name": "upstash-redis",
+    "description": "Use the @upstash/redis HTTP client for caching, sessions, counters, and Redis data structures from serverless and edge runtimes without connection pooling.",
+    "risk": "critical",
+    "source": "self",
+    "date_added": "2026-08-31",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "self",
+    "tags": [
+      "upstash",
+      "redis",
+      "cache",
+      "serverless",
+      "edge",
+      "key-value"
+    ]
   },
   {
     "id": "us-property-data",
@@ -47010,6 +49110,70 @@
     }
   },
   {
+    "id": "verify-citations",
+    "path": "skills/verify-citations",
+    "category": "document-verification",
+    "name": "verify-citations",
+    "description": "Verify citations and references in a document, report, or article against real sources. Use when the user asks to fact-check, verify references, check citations, or validate evidence in research reports, tender responses, whitepapers, or academic writing.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-08-31",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "Sketchjar/stipple-agent-skills",
+    "license": "Apache-2.0",
+    "license_source": "https://github.com/Sketchjar/stipple-agent-skills/blob/main/LICENSE",
+    "tags": [
+      "document-verification",
+      "fact-checking",
+      "stipple",
+      "authenticity"
+    ]
+  },
+  {
+    "id": "verify-document",
+    "path": "skills/verify-document",
+    "category": "document-verification",
+    "name": "verify-document",
+    "description": "Check whether a document (PDF or image) shows signs of tampering or forgery before you rely on it. Use when the user asks to verify a payslip, invoice, bank statement, ID document, contract, or any document where authenticity matters.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-08-31",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "Sketchjar/stipple-agent-skills",
+    "license": "Apache-2.0",
+    "license_source": "https://github.com/Sketchjar/stipple-agent-skills/blob/main/LICENSE",
+    "tags": [
+      "document-verification",
+      "fact-checking",
+      "stipple",
+      "authenticity"
+    ]
+  },
+  {
     "id": "vexor",
     "path": "skills/vexor",
     "category": "development",
@@ -47106,6 +49270,32 @@
       "fullstack",
       "nodejs"
     ]
+  },
+  {
+    "id": "vibe-delegate",
+    "path": "skills/vibe-delegate",
+    "category": "agent-orchestration",
+    "name": "vibe-delegate",
+    "description": "Delegate coding tasks to the Mistral Vibe CLI (`vibe`) only when the user explicitly requests it, while the orchestrator retains review and landing responsibility.",
+    "risk": "critical",
+    "source": "https://github.com/amElnagdy/delegate-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/delegate-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/delegate-skills/blob/master/LICENSE"
   },
   {
     "id": "vibecode-production-qa-validator",
@@ -47643,6 +49833,32 @@
       "sql",
       "data-quality"
     ]
+  },
+  {
+    "id": "warp-delegate",
+    "path": "skills/warp-delegate",
+    "category": "agent-orchestration",
+    "name": "warp-delegate",
+    "description": "Delegate coding tasks to the Warp Agent CLI (`oz`) only when the user explicitly requests it, while the orchestrator retains review and landing responsibility.",
+    "risk": "critical",
+    "source": "https://github.com/amElnagdy/delegate-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/delegate-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/delegate-skills/blob/master/LICENSE"
   },
   {
     "id": "warren-buffett",
@@ -48239,6 +50455,32 @@
     "source_type": "self"
   },
   {
+    "id": "wifi-wireless",
+    "path": "skills/wifi-wireless",
+    "category": "uncategorized",
+    "name": "wifi-wireless",
+    "description": "Authorized wireless security assessment: Wi-Fi capture, WPA handshake analysis, rogue AP detection research, and lab-only deauthentication testing.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
     "id": "wiki-architect",
     "path": "skills/wiki-architect",
     "category": "content",
@@ -48422,6 +50664,32 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "windows-ad",
+    "path": "skills/windows-ad",
+    "category": "uncategorized",
+    "name": "windows-ad",
+    "description": "Authorized Active Directory and Windows identity attacks: Kerberos abuse, AD CS escalation, BloodHound path analysis, NTLM relay, and domain privilege-escalation research.",
+    "risk": "offensive",
+    "source": "https://github.com/zhaoxuya520/reverse-skill",
+    "date_added": "2026-08-25",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "zhaoxuya520/reverse-skill",
+    "license": "MIT",
+    "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
     "id": "windows-privilege-escalation",
@@ -49574,6 +51842,32 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "zcode-delegate",
+    "path": "skills/zcode-delegate",
+    "category": "agent-orchestration",
+    "name": "zcode-delegate",
+    "description": "Delegate coding tasks to the Z.AI ZCode CLI only when the user explicitly requests it, while the orchestrator retains review and landing responsibility.",
+    "risk": "critical",
+    "source": "https://github.com/amElnagdy/delegate-skills",
+    "date_added": "2026-08-26",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "amElnagdy/delegate-skills",
+    "license": "MIT",
+    "license_source": "https://github.com/amElnagdy/delegate-skills/blob/master/LICENSE"
   },
   {
     "id": "zendesk-automation",

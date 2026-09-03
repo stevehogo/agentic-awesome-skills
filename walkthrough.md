@@ -1,3 +1,32 @@
+# Codex security findings remediation - 2026-08-31
+
+- Re-evaluated all 14 exported Codex Security records against the current
+  protected `main`: 13 remained actionable and the graceful-shutdown counter
+  fix was already present and byte-identical in both plugin mirrors.
+- Replaced executable theme-manifest validation with a bounded static parser;
+  removed moving package and pipe-to-shell fallbacks; confined Atlas artifacts;
+  made favicon replacement symlink-safe and atomic; capped network frames before
+  allocation; rejected raw URL controls; and pinned model/dataset inputs by full
+  reviewed Hub revisions.
+- Corrected the risk metadata for Atlas, autonomous PR babysitting, and all 17
+  write-capable delegate skills, with focused regression coverage for each
+  affected trust boundary.
+- Kept the repair source-only. Generated registries, catalog metadata, and both
+  plugin distributions remain owned by protected canonical synchronization.
+
+# FLOSS/fund sustainability application - 2026-08-31
+
+- Added a public `funding.json` manifest using the current v1.1.0 schema for a
+  one-time USD 25,000 AAS sustainability request.
+- Tied the request to a concrete 12-month allocation covering maintainer and
+  reviewer time, security and provenance work, CI and catalog infrastructure,
+  and documentation and community support.
+- Kept the plan description within the directory's 500-character validation
+  limit while retaining the complete allocation.
+- Kept bank details and funding history out of the public manifest; payment and
+  tax documentation remain private follow-up items if the application is
+  selected.
+
 # Multi-source evidence integrity repair - 2026-08-20
 
 - Ported the executable follow-up from community PR #1204 onto the protected
@@ -485,3 +514,11 @@
 - Kept the host-specific full-library roots separate, flattened qualified paths only inside generated packages, and normalized AAS provenance/risk fields into standard string metadata without changing instruction bodies.
 - Pinned offline validation to an attributed snapshot of the official Agent Plugins 1.0.0 JSON Schema, added deterministic Codex prompt fallbacks, and covered closed-schema, fixed-discovery, pilot-bundle, and release-alignment regressions.
 - Updated the user onboarding trinity, plugin/bundle guides, maintainer contract, and release checklist while leaving the active release-notes PR untouched.
+
+# Maintenance Walkthrough - 2026-09-02 Source and Dependency Sweep
+
+- Merged the documentation overview and the safe `email-issue-fixer` skill after exact-head policy, evidence, source-validation, artifact-preview, and semantic-review gates passed.
+- Updated the Supabase and Highlight.js dependency lines through their contributor pull requests.
+- Repaired the `agents-md` contribution before merge so its evidence-first guidance remains source-only and contains no promotional link or unrelated walkthrough change.
+- Updated the web app lockfile from vulnerable `browserslist` `4.28.4` to `4.28.8`, including its lockfile-resolved browser-data dependencies; `npm audit` then reported zero known vulnerabilities for the web app.
+- Kept generated registries and contributor credits in the protected canonical-sync lane. No release was requested or published during this sweep.
