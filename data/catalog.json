@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-02T10:41:06.000Z",
-  "total": 2108,
+  "generatedAt": "2026-09-04T09:06:54.000Z",
+  "total": 2111,
   "skills": [
     {
       "id": "00-andruia-consultant",
@@ -3280,7 +3280,7 @@
       "id": "antigravity-workflows",
       "canonical_id": "antigravity-workflows",
       "name": "antigravity-workflows",
-      "description": "Orchestrate multiple Antigravity skills through guided workflows for SaaS MVP delivery, security audits, AI agent builds, and browser QA.",
+      "description": "Use when asked to ship a SaaS MVP, audit application security, build an AI agent, run browser QA, or design a domain model with multiple skills and verified checkpoints.",
       "category": "workflow",
       "risk": "none",
       "source": "self",
@@ -3289,17 +3289,17 @@
       ],
       "triggers": [
         "antigravity",
-        "orchestrate",
-        "multiple",
-        "skills",
-        "through",
-        "guided",
+        "asked",
+        "ship",
         "saas",
         "mvp",
-        "delivery",
+        "audit",
+        "application",
         "security",
-        "audits",
-        "ai"
+        "ai",
+        "agent",
+        "run",
+        "browser"
       ],
       "path": "skills/antigravity-workflows/SKILL.md"
     },
@@ -22602,6 +22602,41 @@
       "path": "skills/enhance-prompt/SKILL.md"
     },
     {
+      "id": "entropy-box",
+      "canonical_id": "entropy-box",
+      "name": "entropy-box",
+      "description": "Entropy Box knowledge-compiler for embodied-AI: turns bounded requirements into grounded workflows via Solution Consult, Search, Lookup, and Evidence. Do not use it to control physical robots.",
+      "category": "research",
+      "risk": "critical",
+      "source": "community",
+      "source_type": "community",
+      "source_repo": "chenli-yy/entropy-box-public",
+      "license": "CC-BY-4.0",
+      "license_source": "https://github.com/sickn33/agentic-awesome-skills/blob/main/LICENSE-CONTENT",
+      "tags": [
+        "robotics",
+        "embodied-ai",
+        "knowledge-graph",
+        "knowledge-compiler",
+        "research"
+      ],
+      "triggers": [
+        "robotics",
+        "embodied-ai",
+        "knowledge-graph",
+        "knowledge-compiler",
+        "research",
+        "entropy",
+        "box",
+        "knowledge",
+        "compiler",
+        "embodied",
+        "ai",
+        "turns"
+      ],
+      "path": "skills/entropy-box/SKILL.md"
+    },
+    {
       "id": "environment-setup-guide",
       "canonical_id": "environment-setup-guide",
       "name": "environment-setup-guide",
@@ -32758,6 +32793,41 @@
       "path": "skills/langgraph/SKILL.md"
     },
     {
+      "id": "laravel-development-workflow",
+      "canonical_id": "laravel-development-workflow",
+      "name": "laravel-development-workflow",
+      "description": "Build and fix existing Laravel applications through root-cause diagnosis, repository-native implementation, regression coverage, and risk-based verification.",
+      "category": "development",
+      "risk": "critical",
+      "source": "community",
+      "source_type": "community",
+      "source_repo": "Junaid-PK/laravel-development-workflow",
+      "license": "MIT",
+      "license_source": "https://github.com/Junaid-PK/laravel-development-workflow/blob/main/LICENSE",
+      "tags": [
+        "laravel",
+        "php",
+        "debugging",
+        "testing",
+        "development"
+      ],
+      "triggers": [
+        "laravel",
+        "php",
+        "debugging",
+        "testing",
+        "development",
+        "fix",
+        "existing",
+        "applications",
+        "through",
+        "root",
+        "cause",
+        "diagnosis"
+      ],
+      "path": "skills/laravel-development-workflow/SKILL.md"
+    },
+    {
       "id": "laravel-expert",
       "canonical_id": "laravel-expert",
       "name": "laravel-expert",
@@ -41252,6 +41322,42 @@
         "analyzer"
       ],
       "path": "skills/oral-health-analyzer/SKILL.md"
+    },
+    {
+      "id": "orca-replay",
+      "canonical_id": "orca-replay",
+      "name": "orca-replay",
+      "description": "Answers questions about a past agent run from its recording rather than from memory, and replays or forks that run. Use when asked why an earlier run did something, or to reproduce a failure.",
+      "category": "development",
+      "risk": "critical",
+      "source": "community",
+      "source_type": "community",
+      "source_repo": "Continuum-AI-Corp/OrcaReplay",
+      "license": "Apache-2.0",
+      "license_source": "https://github.com/Continuum-AI-Corp/OrcaReplay/blob/main/LICENSE",
+      "tags": [
+        "debugging",
+        "replay",
+        "trace",
+        "root-cause",
+        "agent-runs",
+        "mcp"
+      ],
+      "triggers": [
+        "debugging",
+        "replay",
+        "trace",
+        "root-cause",
+        "agent-runs",
+        "mcp",
+        "orca",
+        "answers",
+        "questions",
+        "about",
+        "past",
+        "agent"
+      ],
+      "path": "skills/orca-replay/SKILL.md"
     },
     {
       "id": "orchestrate",

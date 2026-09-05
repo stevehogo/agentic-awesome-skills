@@ -2728,7 +2728,7 @@
     "path": "skills/antigravity-workflows",
     "category": "workflow",
     "name": "antigravity-workflows",
-    "description": "Orchestrate multiple Antigravity skills through guided workflows for SaaS MVP delivery, security audits, AI agent builds, and browser QA.",
+    "description": "Use when asked to ship a SaaS MVP, audit application security, build an AI agent, run browser QA, or design a domain model with multiple skills and verified checkpoints.",
     "risk": "none",
     "source": "self",
     "date_added": "2026-02-27",
@@ -18350,6 +18350,39 @@
     }
   },
   {
+    "id": "entropy-box",
+    "path": "skills/entropy-box",
+    "category": "research",
+    "name": "entropy-box",
+    "description": "Entropy Box knowledge-compiler for embodied-AI: turns bounded requirements into grounded workflows via Solution Consult, Search, Lookup, and Evidence. Do not use it to control physical robots.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-09-02",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "chenli-yy/entropy-box-public",
+    "license": "CC-BY-4.0",
+    "license_source": "https://github.com/sickn33/agentic-awesome-skills/blob/main/LICENSE-CONTENT",
+    "tags": [
+      "robotics",
+      "embodied-ai",
+      "knowledge-graph",
+      "knowledge-compiler",
+      "research"
+    ]
+  },
+  {
     "id": "environment-setup-guide",
     "path": "skills/environment-setup-guide",
     "category": "development",
@@ -27143,6 +27176,39 @@
     }
   },
   {
+    "id": "laravel-development-workflow",
+    "path": "skills/laravel-development-workflow",
+    "category": "development",
+    "name": "laravel-development-workflow",
+    "description": "Build and fix existing Laravel applications through root-cause diagnosis, repository-native implementation, regression coverage, and risk-based verification.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-09-02",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "Junaid-PK/laravel-development-workflow",
+    "license": "MIT",
+    "license_source": "https://github.com/Junaid-PK/laravel-development-workflow/blob/main/LICENSE",
+    "tags": [
+      "laravel",
+      "php",
+      "debugging",
+      "testing",
+      "development"
+    ]
+  },
+  {
     "id": "laravel-expert",
     "path": "skills/laravel-expert",
     "category": "framework",
@@ -34389,6 +34455,40 @@
       },
       "reasons": []
     }
+  },
+  {
+    "id": "orca-replay",
+    "path": "skills/orca-replay",
+    "category": "development",
+    "name": "orca-replay",
+    "description": "Answers questions about a past agent run from its recording rather than from memory, and replays or forks that run. Use when asked why an earlier run did something, or to reproduce a failure.",
+    "risk": "critical",
+    "source": "community",
+    "date_added": "2026-09-03",
+    "plugin": {
+      "targets": {
+        "codex": "supported",
+        "claude": "supported"
+      },
+      "setup": {
+        "type": "none",
+        "summary": "",
+        "docs": null
+      },
+      "reasons": []
+    },
+    "source_type": "community",
+    "source_repo": "Continuum-AI-Corp/OrcaReplay",
+    "license": "Apache-2.0",
+    "license_source": "https://github.com/Continuum-AI-Corp/OrcaReplay/blob/main/LICENSE",
+    "tags": [
+      "debugging",
+      "replay",
+      "trace",
+      "root-cause",
+      "agent-runs",
+      "mcp"
+    ]
   },
   {
     "id": "orchestrate",

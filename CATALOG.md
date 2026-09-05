@@ -1,8 +1,8 @@
 # Skill Catalog
 
-Generated at: 2026-09-02T10:41:06.000Z
+Generated at: 2026-09-04T09:06:54.000Z
 
-Total skills: 2108
+Total skills: 2111
 
 ## agent-behavior (5)
 
@@ -1044,7 +1044,7 @@ Total skills: 2108
 | `mcp-tool-developer` | Build Model Context Protocol (MCP) servers and tools from scratch. Full-stack MCP development with TypeScript/Python, testing, deployment, and registry publi... | safe | demo112/yunqu-ai-skills | mcp, ai-agent, tool-development, typescript, python, llm, model-context-protocol | mcp, ai-agent, tool-development, typescript, python, llm, model-context-protocol, developer, model, context, protocol, servers |
 | `tokenwise` | Measurement-driven model router for Claude Code. Routes Haiku/Sonnet/Opus per task class, logs every routed task with real $ numbers, and A/B tests cheaper t... | critical | CodeShuX/tokenwise | model-routing, token-optimization, cost-reduction, anthropic, haiku, sonnet, opus, claude-code, ab-testing, measurement | model-routing, token-optimization, cost-reduction, anthropic, haiku, sonnet, opus, claude-code, ab-testing, measurement, tokenwise, driven |
 
-## development (185)
+## development (187)
 
 | Skill | Description | Risk | Source | Tags | Triggers |
 | --- | --- | --- | --- | --- | --- |
@@ -1163,6 +1163,7 @@ Total skills: 2108
 | `javascript-testing-patterns` | Comprehensive guide for implementing robust testing strategies in JavaScript/TypeScript applications using modern testing frameworks and best practices. | safe | community | javascript | javascript, testing, implementing, robust, typescript, applications, frameworks |
 | `jq` | Expert jq usage for JSON querying, filtering, transformation, and pipeline integration. Practical patterns for real shell workflows. | safe | community | jq, json, shell, cli, data-transformation, bash | jq, json, shell, cli, data-transformation, bash, usage, querying, filtering, transformation, pipeline, integration |
 | `kotlin-coroutines-expert` | Expert patterns for Kotlin Coroutines and Flow, covering structured concurrency, error handling, and testing. | safe | community | kotlin, coroutines | kotlin, coroutines, flow, covering, structured, concurrency, error, handling, testing |
+| `laravel-development-workflow` | Build and fix existing Laravel applications through root-cause diagnosis, repository-native implementation, regression coverage, and risk-based verification. | critical | Junaid-PK/laravel-development-workflow | laravel, php, debugging, testing, development | laravel, php, debugging, testing, development, fix, existing, applications, through, root, cause, diagnosis |
 | `legacy-modernizer` | Refactor legacy codebases, migrate outdated frameworks, and implement gradual modernization. Handles technical debt, dependency updates, and backward compati... | safe | community | legacy, modernizer | legacy, modernizer, refactor, codebases, migrate, outdated, frameworks, gradual, modernization, technical, debt, dependency |
 | `linux-shell-scripting` | Provide production-ready shell script templates for common Linux system administration tasks including backups, monitoring, user management, log analysis, an... | critical | community | linux, shell, scripting | linux, shell, scripting, provide, script, common, administration, tasks, including, backups, monitoring, user |
 | `logic-lens` | AI-powered Claude Code skill that performs deep code review using formal logic and reasoning frameworks to detect bugs, anti-patterns, and security risks bey... | safe | hyhmrright/logic-lens | code-review, logic-analysis, debugging, security-review, claude-code | code-review, logic-analysis, debugging, security-review, claude-code, logic, lens, ai, powered, claude, code, skill |
@@ -1188,6 +1189,7 @@ Total skills: 2108
 | `native-data-fetching` | Use when implementing or debugging ANY network request, API call, or data fetching. Covers fetch API, React Query, SWR, error handling, caching, offline supp... | critical | expo/skills | native, data, fetching | native, data, fetching, implementing, debugging, any, network, request, api, call, covers, fetch |
 | `nx-workspace-patterns` | Configure and optimize Nx monorepo workspaces. Use when setting up Nx, configuring project boundaries, optimizing build caching, or implementing affected com... | critical | community | nx, workspace | nx, workspace, configure, optimize, monorepo, workspaces, setting, up, configuring, boundaries, optimizing, caching |
 | `ontoly-software-graph` | Use Ontoly's deterministic Software Graph, MCP server, and agent skills for architecture review, request tracing, impact analysis, and dependency analysis. | critical | 0xsarwagya/ontoly | software-graph, codebase-analysis, mcp, typescript, architecture, impact-analysis | software-graph, codebase-analysis, mcp, typescript, architecture, impact-analysis, ontoly, software, graph, deterministic, server, agent |
+| `orca-replay` | Answers questions about a past agent run from its recording rather than from memory, and replays or forks that run. Use when asked why an earlier run did som... | critical | Continuum-AI-Corp/OrcaReplay | debugging, replay, trace, root-cause, agent-runs, mcp | debugging, replay, trace, root-cause, agent-runs, mcp, orca, answers, questions, about, past, agent |
 | `performance-engineer` | Expert performance engineer specializing in modern observability, | critical | community | performance | performance, engineer, specializing, observability |
 | `performance-optimization` | Optimizes application performance. Use when performance requirements exist, when you suspect performance regressions, or when Core Web Vitals or load times n... | critical | addyosmani/agent-skills | performance, optimization | performance, optimization, optimizes, application, requirements, exist, suspect, regressions, core, web, vitals, load |
 | `performance-optimizer` | Identifies and fixes performance bottlenecks in code, databases, and APIs. Measures before and after to prove improvements. | safe | community | performance, optimizer | performance, optimizer, identifies, fixes, bottlenecks, code, databases, apis, measures, before, after, prove |
@@ -1896,12 +1898,13 @@ Total skills: 2108
 | `slo-implementation` | Framework for defining and implementing Service Level Indicators (SLIs), Service Level Objectives (SLOs), and error budgets. | critical | community | slo | slo, framework, defining, implementing, level, indicators, slis, objectives, slos, error, budgets |
 | `tool-use-guardian` | FREE — Intelligent tool-call reliability wrapper. Monitors, retries, fixes, and learns from tool failures. Auto-recovers from truncated JSON, timeouts, rate ... | safe | community | reliability, tool-use, error-handling, retries, recovery, agent-infrastructure | reliability, tool-use, error-handling, retries, recovery, agent-infrastructure, guardian, free, intelligent, call, wrapper, monitors |
 
-## research (13)
+## research (14)
 
 | Skill | Description | Risk | Source | Tags | Triggers |
 | --- | --- | --- | --- | --- | --- |
 | `deepapi` | Use DeepAPI for supported scraping, research, and email workflows with explicit credentials and approval. | critical | davidondrej/skills | deepapi, scraping, email, api | deepapi, scraping, email, api, supported, research, explicit, credentials, approval |
 | `dsh-deepread` | Use for evidence-first reading of articles, books, PDFs, web pages, or document sets, with knowledge maps and Feynman checks. | safe | xiehuan123/dsh-deepread | deep-reading, evidence, knowledge-map, feynman, document-analysis | deep-reading, evidence, knowledge-map, feynman, document-analysis, dsh, deepread, first, reading, articles, books, pdfs |
+| `entropy-box` | Entropy Box knowledge-compiler for embodied-AI: turns bounded requirements into grounded workflows via Solution Consult, Search, Lookup, and Evidence. Do not... | critical | chenli-yy/entropy-box-public | robotics, embodied-ai, knowledge-graph, knowledge-compiler, research | robotics, embodied-ai, knowledge-graph, knowledge-compiler, research, entropy, box, knowledge, compiler, embodied, ai, turns |
 | `fact-check-x-complete` | Compare claims from one or more AI answers, verify their citations against public primary sources, and produce an evidence-linked fact-check report without i... | critical | ASI2030/Fact-Check-X | fact-checking, research, evidence, source-verification | fact-checking, research, evidence, source-verification, fact, check, complete, compare, claims, one, ai, answers |
 | `gemini-deep-research` | Run autonomous multi-step research with Google's Gemini Deep Research Agent: kick off a query, poll progress, and collect a cited report for market analysis ... | critical | sanjay3290/ai-skills | research, gemini, google, reports | research, gemini, google, reports, deep, run, autonomous, multi, step, agent, kick, off |
 | `ii-commons` | Deterministic search across arXiv, PubMed/PMC, and US policy corpora with daily freshness cutoffs. | safe | Intelligent-Internet/II-Commons-Skills | research, arxiv, pubmed, pmc, policy, retrieval, cli, codex | research, arxiv, pubmed, pmc, policy, retrieval, cli, codex, ii, commons, deterministic, search |
@@ -2555,7 +2558,7 @@ Total skills: 2108
 | `address-github-comments` | Use when you need to address review or issue comments on an open GitHub Pull Request using the gh CLI. | critical | community | address, github, comments | address, github, comments, review, issue, open, pull, request, gh, cli |
 | `ai-loop` | Runs a bounded spec-build-review development loop with explicit scope, stop conditions, and human approval gates for risky or ambiguous work. | safe | community | agent-workflow, specification, implementation, review, verification, feedback-loop | agent-workflow, specification, implementation, review, verification, feedback-loop, ai, loop, runs, bounded, spec, development |
 | `airflow-dag-patterns` | Build production Apache Airflow DAGs with best practices for operators, sensors, testing, and deployment. Use when creating data pipelines, orchestrating wor... | safe | community | airflow, dag | airflow, dag, apache, dags, operators, sensors, testing, deployment, creating, data, pipelines, orchestrating |
-| `antigravity-workflows` | Orchestrate multiple Antigravity skills through guided workflows for SaaS MVP delivery, security audits, AI agent builds, and browser QA. | none | self | antigravity | antigravity, orchestrate, multiple, skills, through, guided, saas, mvp, delivery, security, audits, ai |
+| `antigravity-workflows` | Use when asked to ship a SaaS MVP, audit application security, build an AI agent, run browser QA, or design a domain model with multiple skills and verified ... | none | self | antigravity | antigravity, asked, ship, saas, mvp, audit, application, security, ai, agent, run, browser |
 | `ask-questions-if-underspecified` | Clarify requirements before implementing. Use when serious doubts arise. | safe | community | ask, questions, if, underspecified | ask, questions, if, underspecified, clarify, requirements, before, implementing, serious, doubts, arise |
 | `bitbucket-automation` | Automate Bitbucket repositories, pull requests, branches, issues, and workspace management via Rube MCP (Composio). Always search tools first for current sch... | critical | community | bitbucket | bitbucket, automation, automate, repositories, pull, requests, branches, issues, workspace, via, rube, mcp |
 | `build` | build | critical | community | build | build |
