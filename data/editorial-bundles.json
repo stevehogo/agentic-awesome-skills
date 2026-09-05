@@ -2869,6 +2869,40 @@
         { "id": "using-superpowers", "summary": "Invoke relevant skills before responding, every time." },
         { "id": "superpowers-lab", "summary": "Lab/sandbox environment for the superpowers skill set." }
       ]
+    },
+    {
+      "id": "dj-test-automation",
+      "name": "DJ Test Automation",
+      "group": "Custom",
+      "emoji": "\ud83e\uddea",
+      "tagline": "AAS QA & Test Automation + Superpowers",
+      "audience": "QA and full-stack engineers who want the full test-automation toolkit plus the complete Superpowers workflow discipline.",
+      "description": "Inherits the AAS QA & Test Automation toolkit and adds every Superpowers skill for planning, TDD, debugging, review, and verification discipline.",
+      "skills": [
+        { "id": "test-driven-development", "summary": "Use red-green-refactor development loops." },
+        { "id": "systematic-debugging", "summary": "Trace failures to root cause." },
+        { "id": "browser-automation", "summary": "Automate browsers for testing and scraping." },
+        { "id": "e2e-testing-patterns", "summary": "Build reliable end-to-end suites." },
+        { "id": "playwright-skill", "summary": "Use Playwright for browser test automation." },
+        { "id": "webapp-testing", "summary": "Test local web applications with Playwright." },
+        { "id": "k6-load-testing", "summary": "Run load and scalability tests." },
+        { "id": "test-fixing", "summary": "Fix failing tests systematically." },
+        { "id": "code-review-checklist", "summary": "Catch common bugs in reviews." },
+        { "id": "screen-reader-testing", "summary": "Test interfaces with screen-reader expectations." },
+        { "id": "using-superpowers", "summary": "Invoke relevant skills before responding, every time." },
+        { "id": "brainstorming", "summary": "Turn vague ideas into validated designs before building." },
+        { "id": "writing-plans", "summary": "Write clear implementation plans." },
+        { "id": "executing-plans", "summary": "Execute implementation plans reliably." },
+        { "id": "subagent-driven-development", "summary": "Delegate independent tasks to subagents." },
+        { "id": "dispatching-parallel-agents", "summary": "Dispatch multiple agents in parallel for independent work." },
+        { "id": "verification-before-completion", "summary": "Verify your work before marking it complete." },
+        { "id": "requesting-code-review", "summary": "Request a structured review before merging." },
+        { "id": "receiving-code-review", "summary": "Respond to review with technical evaluation, not defensiveness." },
+        { "id": "finishing-a-development-branch", "summary": "Merge, PR, or clean up completed branches." },
+        { "id": "using-git-worktrees", "summary": "Work multiple branches in isolated worktrees." },
+        { "id": "writing-skills", "summary": "Create, update, and improve agent skills." },
+        { "id": "superpowers-lab", "summary": "Lab/sandbox environment for the superpowers skill set." }
+      ]
     }
   ]
 }

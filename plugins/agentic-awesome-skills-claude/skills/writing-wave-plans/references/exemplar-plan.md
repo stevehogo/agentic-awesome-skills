@@ -2,7 +2,7 @@
 
 Condensed **and anonymized** from a shipped 55-row branding-migration plan (7 waves) so you can
 see the templates *filled in*. Illustrative only — structure is normative (`templates.md`); these
-values are not (names, hexes, and hashes are fictionalized; the incidents are real).
+values are not (names and hexes are fictionalized; the incidents are real).
 
 ---
 
@@ -14,8 +14,8 @@ values are not (names, hexes, and hashes are fictionalized; the incidents are re
 Status: not started
 Created: 2026-07-10 · Branch: `feature/adopt-new-branding` · Covers **all 55 rows** of the Estimation sheet in `docs/branding-migration-estimate.xlsx`.
 
-> **For Claude:** Execute task-by-task, one commit per task. Each wave is its own file in this
-> folder and **owns its task-level status tracking** — update the wave file's *Status tracking*
+> **For Claude:** Execute task-by-task; commit once per wave, at its gate. Each wave is its own
+> file in this folder and **owns its task-level status tracking** — update the *Status tracking*
 > section as you work, then roll the wave-level result up to the table below. Use the repo skills
 > named in each task. Keep these files in sync per `CLAUDE.md → ## Plans`.
 
@@ -40,9 +40,13 @@ The working tree is **fully legacy — a previous implementation round was rever
   tokens "exist"). Task **F0** reconciles it before any code changes.
 - **Toolchain:** Node 20, Yarn. **Vue pinned 3.4.38** — a floated 3.5 compiler crashes `yarn build`
   on valid templates; the pin is load-bearing for every gate.
-- **Verification capability (execution environment):** build ✓ · e2e/browsers ✗ (no Playwright
-  browsers) · dev server ✗ — gates run build + targeted greps + read-only auditor agents; visual
-  and keyboard checks route to the wave testing summaries as human checks.
+- **Verification capability (execution environment):** build ✓ · unit ✓ · e2e/browsers ✗ (no
+  Playwright browsers) · dev server ✗ — gates run build + the full unit suite + targeted greps +
+  read-only auditor agents; visual and keyboard checks route to the wave testing summaries as human
+  checks.
+- **Test scoping:** full suite `yarn test:unit` (128 tests, ~40 s) · select with
+  `yarn test:unit <path>` · component specs sit adjacent to their `.vue` files (`Button.spec.ts`
+  beside `Button.vue`); the SCSS token files have no covering tests at all.
 
 | Sheet cell | Sheet says (stale) | Actual spec (guide) |
 |---|---|---|
@@ -52,6 +56,12 @@ The working tree is **fully legacy — a previous implementation round was rever
 ## Shared conventions (excerpt)
 
 - **Spec first.** `docs/brand-guide.md`; on any conflict, the guide wins.
+- **Verification ladder:** per task = `yarn build` + `yarn test:unit <only this task's specs>`; per
+  gate = `yarn build` + the FULL `yarn test:unit` + the audits. Scoped greens don't compose — two
+  tasks can each be green on their own spec and still fight over a shared `Button` snapshot, which
+  only the whole-suite run sees.
+- **Commits:** one per wave, made at its gate — e.g. `style(brand): W0 — foundation SCSS tokens
+  (F0–F8)`, body one line per task ID. Tasks verify and tick the checklist; they don't commit.
 - **No invented identifiers.** Any class/token a task newly references is grep-proven to exist first
   — a swap to a `.button-secondary` that was never defined shipped unstyled CTAs; only the gate
   audit caught it.
@@ -98,7 +108,7 @@ Legend: `[ ]` not started · `[~]` in progress · `[x]` done · `[!]` blocked (n
 > **Next:** [Wave 1 — UI primitives](wave-1-ui-primitives.md)
 
 **Depends on:** nothing — base wave. **Unblocks:** every other wave.
-**Nothing visual changes until F2/F7** (F1/F3/F4 add unused tokens = zero-risk commits).
+**Nothing visual changes until F2/F7** (F1/F3/F4 add unused tokens = zero-risk additions).
 
 ## Status tracking — Wave 0
 
@@ -108,12 +118,16 @@ Status: not started
 - [ ] F1 — Core palette + semantic tokens
 - [ ] W0-GATE — Wave verification gate
 
-<!-- Ticked lines carry evidence (hash + delta + deviations/deferrals), e.g. how this looked done:
-- [x] F1 — Core palette + semantic tokens — `a1b2c3d`. Tokens added, no consumers yet; deviation:
+<!-- Ticked lines carry evidence (delta + deviations/deferrals — no hash on task lines: the wave
+     stays uncommitted until its gate), e.g. how this looked done:
+- [x] F1 — Core palette + semantic tokens. Tokens added, no consumers yet; deviation:
   scroll-elevation not wired (no scroll handler exists — shadow applied at rest, noted).
-- [x] W0-GATE — build exit 0 (Vue 3.4.38); e2e NOT run in-session (no browsers — degraded to
-  greps + auditor agents); audits 0 HIGH after remediation `e4f5a6b`; deferred to Q4: content-link
-  focus rings, small tap targets. Summary: docs/branding-migration-summary/wave-0-*.md
+- [x] W0-GATE — build exit 0 (Vue 3.4.38); unit 128/128 (full suite, not the tasks' scoped runs);
+  e2e NOT run in-session (no browsers — degraded to greps + auditor agents); audits 0 HIGH after
+  in-tree remediation (2 files: `_buttons.scss`, `_forms.scss`); deferred to Q4: content-link focus
+  rings, small tap targets; deferred to Q6: no unit coverage for the token layer. Wave committed as
+  `style(brand): W0 — foundation SCSS tokens (F0–F8)`.
+  Summary: docs/branding-migration-summary/wave-0-foundation-tokens.md
 -->
 
 ### Task F1 — Core palette + semantic tokens
@@ -122,22 +136,27 @@ Status: not started
 **Files:**
 - Modify: `assets/scss/src/_variables.scss` (insert after the legacy color block)
 
+**Tests:** none cover `_variables.scss` (style-only tokens, no consumers yet) — degraded to
+`yarn build` + the token grep in Step 2; coverage gap re-homed onto Wave-6 task Q6.
+
 **Step 1: Add the token block** (from guide §15, adapted with `!default` to match file style):
     $brand-green:  #166B54 !default; // --primary
     $green-deep:   #0D4437 !default; // D3 hover/active (#0D5A46 is a PDF typo — D12)
 **Step 2:** `yarn build` — exits 0. No visual change expected (tokens have no consumers yet).
-**Step 3:** Commit: `feat(brand): F1 — core palette tokens from brand-guide §15`.
+**Step 3:** Tick F1 in *Status tracking* with its delta — no commit; Wave 0 commits at W0-GATE.
 
 <!-- Compact form (small plans) — same invariants, one block: -->
 ### Task T1 — Color tokens to brand green
 **Covers:** T1 (S) · depends — · **Modify:** `src/styles/tokens.css`
-**Steps:** 1) Edit the `--primary` value. 2) Verify: `grep -c "#117755" src/styles/tokens.css` → `1`.
-3) Commit: `style(tokens): T1 — primary to brand green`.
+**Steps:** 1) Edit the `--primary` value. 2) Verify: `grep -c "#117755" src/styles/tokens.css` → `1`,
+then `yarn test:unit src/components/Button.spec.ts` → `6 passed` (its only spec'd consumer).
+3) Tick T1 with its delta (the wave's single commit comes at its gate).
 
 ### Task W0-GATE — Wave verification gate
 
 1. `yarn build` exits 0 (on the pinned Vue 3.4.38 — see Reality baseline).
-2. e2e/visual: ✗ in this environment (no browsers) — degraded form: targeted greps + the audits
+2. `yarn test:unit` — the **full** suite (all 128 green), not just the specs the tasks ran scoped.
+   e2e/visual: ✗ in this environment (no browsers) — degraded form: targeted greps + the audits
    below; record "e2e not verified in-session" in the status line.
 3. Fresh-context audit: **`verify-style-migration`** workflow (`coverage` dimension) — or the
    standalone read-only `style-conformance-auditor` agent when workflows need an unavailable
@@ -145,12 +164,15 @@ Status: not started
    found a global `outline:none !important` silently killing every focus ring the wave added).
 4. Triage: fix in-scope high/medium + cheap nits now; re-home each deferral onto a named Wave-6
    task (Q2/Q4/Q5) and record it in this file's gate status line.
-5. Commit remediation (if any): `fix(brand): W0 gate — remediate audit findings`.
+5. Remediate in the tree (no separate commit — the fixes ride in the wave commit); list each fix
+   in this file's gate status line.
 6. Testing summary: write `docs/branding-migration-summary/wave-0-foundation-tokens.md` — what
    changed · how to verify · intentionally NOT changed yet — + its index row.
-7. Update: this file's Status → all `[x]` with hashes/deviations; README rollup row (outcome ·
+7. Update: this file's Status → all `[x]` with deltas/deviations; README rollup row (outcome ·
    env caveats · deferrals).
-8. Commit: `docs(brand): W0 gate — foundation wave complete`.
+8. Commit the whole wave, once: `style(brand): W0 — foundation SCSS tokens (F0–F8)` — body lists
+   F0…F8 one per line; the commit contains the tasks, the remediation, the testing summary and
+   these status/rollup edits.
 9. **Context checkpoint:** stop — announce Wave 0 is complete and committed; safe point to
    `/compact` or `/clear` before Wave 1 (a fresh context resumes via README → wave-1 file).
 

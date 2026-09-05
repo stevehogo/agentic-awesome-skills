@@ -1,1 +1,1 @@
-AG_BASE_DIR=/home/steve/.claude-qa/ ./scripts/activate-skills.sh --clear "aas-qa-test-automation"
+AG_BASE_DIR=/home/steve/.claude-qa/ ./scripts/activate-skills.sh --clear "dj-test-automation"
