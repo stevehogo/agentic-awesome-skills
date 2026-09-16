@@ -31,7 +31,7 @@ AAS MCP does not scan the repository and does not decide which skills are best. 
 > **Release boundary:** AAS Core landed after release 14.6.0. Use an exact Core-capable release rather than an unreviewed moving tag.
 
 ```bash
-npm exec --yes --ignore-scripts --package=agentic-awesome-skills@16.7.0 -- aas mcp configure \
+npm exec --yes --ignore-scripts --package=agentic-awesome-skills@17.3.0 -- aas mcp configure \
   --host codex \
   --scope user \
   --config /absolute/path/to/codex/config.toml \
@@ -64,6 +64,14 @@ During preview, AAS checks the ownership of the configuration parent directory (
 ## Ask the agent to choose the stack
 
 ### Start from a catalog shortlist
+
+Use **Explore skills by outcome** in the catalog or Workbench to describe a task or choose a starting example. The browser suggests candidates from the public catalog and explains which terms match. Names and tags weigh more than descriptions; distinctive terms weigh more than common terms. This is descriptive relevance, not a quality score, semantic assessment, or effectiveness benchmark. Inspect the complete instructions and constraints before selecting anything. Core/MCP retrieval remains neutral and every canonical ID remains available.
+
+Use `without Supabase` or `senza Supabase` for an explicit single-term exclusion; repeat the phrase for additional terms. The interpreted exclusions are displayed. Other natural-language constraints still need agent review. Explicit compatibility aliases share one result card, with individually selectable matching alternative IDs.
+
+Each candidate exposes provenance, license, declared risk and setup information, including missing fields. These are author-supplied metadata, not reliability badges. Add candidates explicitly to the shared shortlist, compare them, and choose **Use discovery goal in brief** to carry the goal into the existing agent handoff. Nothing is selected automatically.
+
+Workbench downloads the public catalog only after you open discovery. Artifact review does not need that download and never sends imported artifacts or goals. The goal remains in page memory; only explicitly shortlisted IDs use the existing browser-local shortlist. There is no usage measurement, installation diary, or centralized collection.
 
 In the [hosted catalog](https://sickn33.github.io/agentic-awesome-skills/), add candidate skills to your shortlist. Open the comparison above the search results to inspect descriptions, declared risk, manual setup, plugin packaging, source, and license metadata. Missing metadata is shown explicitly; it does not make a skill unavailable to Core.
 
@@ -255,20 +263,29 @@ aas stack audit \
 Use an existing target directory. On `main`, missing paths, wrong file/directory
 types and denied access return bounded `AAS_CLI_*` filesystem errors; correct the
 path or its permissions and retry. Native exception messages and private paths are
-not copied into the result. This error-handling refinement is unreleased.
+not copied into the result. This error-handling refinement is available from 16.8.0.
 
-On `main`, `--target` is inferred only when the validated manifest has one target;
-otherwise supply, for example, `--target codex:project`. The runtime version comes
-from the manifest, and its verified catalog must match the manifest's catalog.
-The npm SRI is the `runtime.integrity` returned by the approved MCP configuration;
-cache location and target directory remain explicit. These refinements are unreleased:
-the published 16.7.0 CLI still requires the explicit `--target` shown above.
+From 16.8.0, `--target` is inferred only when the validated manifest has one target; otherwise supply, for example, `--target codex:project`. The runtime version comes from the manifest, and its verified catalog must match the manifest's catalog. Cache location and target directory remain explicit.
+
+On unreleased `main`, the CLI can resolve the runtime when exactly one fully verified cached runtime exists for the manifest version. It reads only the explicit cache, never downloads, and rejects ambiguity. Supply `--runtime-integrity` to select an exact runtime when needed; published 16.8.0 still requires it. The npm SRI is the `runtime.integrity` returned by the approved MCP configuration.
 
 `stack audit` is also read-only. It validates all three artifacts independently, resolves the manifest's pinned verified catalog, and reports whether their manifest digests, catalog identities, target, and selected skill IDs remain consistent. A structurally invalid or unverifiable artifact fails closed; a valid but differently bound artifact returns `status: "inconsistent"` with stable reason codes.
 
 Stop after reviewing the plan unless you are deliberately participating in controlled preview development. `stack apply` and `stack recover` remain experimental and require explicit opt-in.
 
 ## Use the reviewed selection
+
+On unreleased `main`, prepare the direct-installer preview from the agent's manifest without copying IDs manually:
+
+```bash
+aas stack install-preview \
+  --manifest /absolute/path/to/aas-stack.json \
+  --destination /absolute/path/to/project/.agents/skills
+```
+
+For PowerShell, add `--shell powershell`. `--destination` is the actual skill directory, not the project root. The command validates the manifest against its verified local catalog (use `--cache-root` for another cached catalog) and returns a shell-quoted command plus executable/argument fields. It reads no project source, chooses no skills, executes nothing, and always prepares `--dry-run`. Empty selections and unknown IDs fail. Destinations use the same filename restrictions as the installer, so characters such as `?` or reserved names such as `CON` are rejected before a command is prepared. It does not check release availability: an unpublished source catalog is not proof that the same bytes are available from npm. Run and review the direct installer's preview before authorizing installation. This handoff does not apply a Core plan or alter the experimental apply/recovery boundary.
+
+**Prepare installation preview** in shortlist comparison or Workbench generates a copyable direct-installer command. Enter the actual skill directory and choose bash/zsh or PowerShell. The command preserves the selected IDs and exact catalog release and always includes `--dry-run`. It stays in page memory and is never executed by the browser. Workbench hides preparation while supplied artifacts are invalid or inconsistent; browser checks still do not prove semantic suitability or catalog integrity.
 
 For supported installation, use the direct installer with the same exact IDs,
 release version and intended skill directory. Follow [From selection to use](../../README.md#from-selection-to-use):
@@ -321,3 +338,7 @@ Direct file search can find candidate prose, but it leaves the result in the con
 - [Plugins for Claude Code and Codex](plugins.md)
 - [Bundles](bundles.md)
 - [FAQ](faq.md)
+
+### MCP overload and notifications
+
+The stdio queue accepts at most 32 pending frames. A rejected call receives `AAS_MCP_QUEUE_FULL` with its bounded, strictly parsed request ID, so the client can finish that call and retry with fewer simultaneous requests. Notifications have no reply, including on overload; they must not be used for operations that require a confirmed result. Malformed JSON and invalid request envelopes are rejected without reflecting an invalid identifier. See the [JSON-RPC response and notification rules](https://www.jsonrpc.org/specification).

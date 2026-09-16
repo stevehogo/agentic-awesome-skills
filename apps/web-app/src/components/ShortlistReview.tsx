@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { InstallationHandoff } from './InstallationHandoff';
 import { Link } from 'react-router';
 import type { Skill } from '../types';
 import { SkillRequirements } from './SkillRequirements';
@@ -9,9 +10,10 @@ interface Props {
   skills: Skill[];
   onRemove: (id: string) => void;
   onClear: () => void;
+  suggestedGoal?: string;
 }
 
-export function ShortlistReview({ skills, onRemove, onClear }: Props): React.ReactElement {
+export function ShortlistReview({ skills, onRemove, onClear, suggestedGoal }: Props): React.ReactElement {
   const [goal, setGoal] = useState('');
   const [target, setTarget] = useState<BriefTarget>('codex:project');
   const [message, setMessage] = useState('');
@@ -65,10 +67,12 @@ export function ShortlistReview({ skills, onRemove, onClear }: Props): React.Rea
             </table>
           </div>
           <p className="shortlist-review__note">Metadata describes the catalog record. Plugin packaging does not determine whether an agent can select a skill; inspect its full instructions before use.</p>
+          <InstallationHandoff ids={ids} version={catalogVersion} />
           <div className="shortlist-review__brief">
             <label htmlFor="shortlist-goal">What do you want to accomplish?
               <textarea id="shortlist-goal" rows={3} value={goal} placeholder="Describe the outcome and constraints for your project" onChange={(event) => { setGoal(event.target.value); setMessage(''); }} />
             </label>
+            {suggestedGoal && suggestedGoal !== goal ? <button type="button" onClick={() => { setGoal(suggestedGoal); setMessage('Discovery goal added to the brief.'); }}>Use discovery goal in brief</button> : null}
             <label htmlFor="shortlist-target">Target
               <select id="shortlist-target" value={target} onChange={(event) => { setTarget(event.target.value as BriefTarget); setMessage(''); }}>
                 <option value="codex:project">Codex · this project</option>

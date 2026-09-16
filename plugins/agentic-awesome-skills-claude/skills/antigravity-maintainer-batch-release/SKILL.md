@@ -78,9 +78,37 @@ Before changing anything:
    - Verify its managed-only diff, required checks, merge result, and the resulting `origin/main`.
    - If an unmanaged repair remains, use a topic PR; never patch `main` directly.
 
+
+### Reviewed fork bundle exceptions
+
+`tools/config/reviewed-fork-skills.json` is a protected-base ledger for the two
+explicitly reviewed fork contributions #1337 and #1413. Each entry binds the
+base repository, fork repository, PR number, original full reviewed head and
+complete Git skill-tree object. It permits only Python files under that skill's
+`scripts/` subtree and its root `LICENSE`, with a read-only Git copy origin when
+needed. It does not allow workflows, arbitrary script types, generated-file
+mutations, unsafe modes, links, invalid paths/objects or oversized content.
+
+Both CI intake and `merge:batch` load the ledger from their trusted evaluator
+checkout, never the PR's repository directory. Any change anywhere in the skill
+subtree invalidates the exception. A base-only merge may reuse identical content,
+but the maintainer must inspect the new complete PR diff and attest its exact
+current head with `--reviewed-head`. Evidence, source-only checks, truthful skill
+review, immutable PR/workflow binding and strict branch protection all remain
+mandatory. Missing or malformed ledger data fails closed. Further exceptions or
+policy expansions need explicit maintainer authorization and protected review.
+
 ## Workflow Contract Change Gate
 
 When changing maintainer scripts, workflows, or policy, update the canonical skill, maintainer documentation, and regression tests in the same source PR. Add a negative test for every failure mode being fixed, run the relevant dry-run path, and reject any implementation/documentation mismatch. Source PRs must exclude generated registries and plugin mirrors; the protected canonical-sync PR owns that derived state, except for files intentionally staged by the scripted protected-release flow.
+
+## Repository documentation consistency
+
+When auditing repository documentation, compare operational guides and translations with exact-base scripts and workflow behavior. Check local links, heading anchors and documented npm commands with `tools/scripts/tests/test_documentation_consistency.py`; dated evidence and backup snapshots are historical, not current instructions. Keep canonical guides discoverable from `docs/README.md`, distinguish source merge from release availability, and report the scope of the audit without claiming that all skill procedures or external integrations ran.
+
+## Specialized Plugin Consistency
+
+Use `data/specialized-plugin-candidates.json` for specialized-plugin membership and `data/editorial-bundles.json` for the installable composition, descriptions, limits and starter prompts. Review changes against canonical `skills_index.json`; keep IDs stable unless a migration is explicitly requested. Derive the web catalog and prerender/live-verifier counts from these sources instead of maintaining copied lists or fixed counts. Verify full skill-list expansion, source-to-web parity and a negative stale-count case. The specialized-resource regression must reject missing prose-declared local support paths and verify their bytes in generated specialized bundles; fenced application examples remain a separate semantic review. Run the pure-example regressions when editing documented calculations or chunking behavior. Regenerate plugin artifacts as evidence, but leave their commit to the protected canonical-sync lane. A source refresh does not authorize release or deployment.
 
 ## Hosted Catalog and Legacy Redirect Bridge
 
@@ -113,9 +141,10 @@ For AAS CLI, MCP, stack, catalog-cache, or Workbench changes:
    - Explicit caller search filters may narrow retrieval; they never define skill eligibility. For search changes, verify backward-compatible broad matching, all-term matching, bounded filters, category aliases, stable pagination, complete-catalog reachability without filters, and preservation of supplied options through evidence export and inspection.
 4. Keep `aas-stack.json` free of Core selection policy. It pins catalog identity, targets, goals, and the exact IDs selected by the agent. `compose_stack` validates and records that selection; missing or cautionary metadata must never make a canonical skill unselectable or unusable.
 5. Keep the supported public path at manifest validation and immutable plan preview. Planning may write only the requested plan artifact; it must not materialize skill payloads or AAS managed state in the target.
+   - Verify manifest-to-installer command preparation preserves exact agent-selected IDs and catalog version, rejects empty or unknown selections, quotes shell arguments, and only emits a dry run. Runtime auto-resolution must stay offline and bounded, fully verify cached bytes, and reject multiple verified identities; never infer skill suitability from runtime or metadata checks. Exercise actual packed installation in a temporary destination, compare all selected file bytes, repeat it, preserve unmanaged files, and reject moved-release and symlink-target cases. Distinguish fixture publication resolution from a real published-release/client check; the aggregate must reject missing installation evidence. Require both Linux and Windows packed receipts. Execute the emitted PowerShell command with both PowerShell 7 and Windows PowerShell 5.1 on a disposable Windows runner, recording and checking both actual shell versions, including paths with spaces and apostrophes, full payload comparison, repeat/prune behavior and junction rejection. Local Git/publication fixtures are not proof of registry availability or a native client session.
    - Infer a target only for a validated single-target manifest; require an explicit choice otherwise. Verify that the cached runtime's catalog matches the manifest, and keep runtime integrity, cache location and destination explicit. Document the separate direct-installer handoff without implying it applies Core plans.
    - Workbench evidence imports must remain bounded and in memory. Verify artifact digests, project references, manifest/catalog/profile/selection bindings, conflict displays and replacement of stale results. Identify browser checks separately from full Core inspection and semantic judgment. Recorded examples need real inputs and observed checks; optional feedback may export only user-entered fields after an explicit action, without telemetry or imported project data.
-   - Verify large manifest and evidence round trips through real stdio, not just in-process handlers. Artifact arguments may use the existing 256 KiB frame ceiling; ordinary requests and unrelated metadata remain bounded at 4 KiB. Rejected, safely parsed requests must retain a bounded request ID; never reflect malformed or unbounded IDs.
+   - Verify large manifest and evidence round trips through real stdio, not just in-process handlers. Artifact arguments may use the existing 256 KiB frame ceiling; ordinary requests and unrelated metadata remain bounded at 4 KiB. Rejected, safely parsed requests must retain a bounded request ID; never reflect malformed or unbounded IDs. Keep overload errors correlated to bounded, strictly parsed request IDs; valid notifications receive no response, including when the queue is full or a handler fails. Reject invalid envelopes without reflecting invalid IDs, and test the burst path through real stdio.
 6. Treat apply and recovery as experimental opt-ins outside the supported preview claim. Do not add apply/recovery, benchmark, fuzz, crash/race, or synthetic verifier work unless the user explicitly places it in scope.
 7. When the task asks for end-to-end client proof, use a real supported client that discovers and invokes the local AAS MCP tools; direct stdio probes and automated tests do not substitute for that evidence.
 8. Do not tag, publish npm, deploy Pages, or write real user MCP configuration without the separately required publication approval.

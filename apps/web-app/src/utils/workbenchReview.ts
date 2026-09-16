@@ -384,6 +384,26 @@ function utf8ByteLength(value: string): number {
   return new TextEncoder().encode(value).byteLength;
 }
 
+// JSON.parse validates syntax but discards duplicate keys. Inspect tokens from
+// valid JSON before projecting fields so a review never hides overwritten data.
+function rejectDuplicateJsonProperties(input: string): void {
+  const scopes: Array<{ keys: Set<string>; expectingKey: boolean } | null> = [];
+  const tokens = input.matchAll(/"(?:[^"\\]|\\.)*"|[{}[\],:]/g);
+  for (const [token] of tokens) {
+    const current = scopes[scopes.length - 1];
+    if (token === '{') scopes.push({ keys: new Set(), expectingKey: true });
+    else if (token === '[') scopes.push(null);
+    else if (token === '}' || token === ']') scopes.pop();
+    else if (token === ',' && current) current.expectingKey = true;
+    else if (token === ':' && current) current.expectingKey = false;
+    else if (token.startsWith('"') && current?.expectingKey) {
+      const key = JSON.parse(token) as string;
+      if (current.keys.has(key)) fail('Artifact contains a duplicate JSON property.');
+      current.keys.add(key);
+    }
+  }
+}
+
 export function parseWorkbenchArtifact(input: string, expectedKind: WorkbenchArtifactKind): ParsedWorkbenchArtifact {
   const byteLength = utf8ByteLength(input);
   if (byteLength === 0) fail('Paste or select a JSON artifact first.');
@@ -395,6 +415,7 @@ export function parseWorkbenchArtifact(input: string, expectedKind: WorkbenchArt
   } catch {
     fail('Artifact is not valid JSON.');
   }
+  rejectDuplicateJsonProperties(input);
   checkDepth(parsed);
   if (expectedKind === 'evidence') {
     if (!validateEvidenceShape(parsed)) fail('Evidence does not match the supported selection-evidence schema.');
@@ -439,7 +460,8 @@ export async function verifySelectionEvidence(evidence: SelectionEvidenceReview)
   const fileMap = new Map<string, string>();
   for (const file of files) {
     if (file.path !== file.path.normalize('NFC') || /^[A-Za-z]:/.test(file.path)
-      || /[\\%\u0000-\u001f\u007f]/.test(file.path)
+      || /[\\%]/.test(file.path)
+      || [...file.path].some((character) => character.charCodeAt(0) <= 0x1f || character.charCodeAt(0) === 0x7f)
       || file.path.split('/').some((part) => !part || part === '.' || part === '..')) fail('Evidence contains an unsafe repository-relative path.');
     if (fileMap.has(file.path) || !Number.isSafeInteger(file.size)) fail('Evidence project files contain duplicate paths or an unsafe size.');
     fileMap.set(file.path, file.sha256);

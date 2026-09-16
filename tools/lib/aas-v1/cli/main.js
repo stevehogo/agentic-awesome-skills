@@ -15,6 +15,7 @@ const { createSkillTargetAdapter, ADAPTER_VERSION } = require("../target-adapter
 const { fsyncDirectorySync } = require("../durability");
 const { inspectLayout, resolveDestination } = require("../transaction/safety");
 const { validateInstance } = require("../schema-validator");
+const { installationHandoff } = require("./installation-handoff");
 
 const EXIT = Object.freeze({ success: 0, invalid: 2, blocked: 3, recovery: 4, execution: 5 });
 const PACKAGE_ROOT = path.resolve(__dirname, "../../../..");
@@ -60,6 +61,7 @@ const COMMAND_OPTIONS = Object.freeze({
   "stack create": new Set(["selection", "evidence", "artifact-dir", "require-evidence", "catalog-digest", "cache-root", "out", "preview-windows-output", "help"]),
   "stack audit": new Set(["manifest", "evidence", "plan", "cache-root", "help"]),
   "stack validate": new Set(["manifest", "help"]),
+  "stack install-preview": new Set(["manifest", "destination", "shell", "cache-root", "help"]),
   "stack plan": new Set(["manifest", "target", "target-root", "cache-root", "runtime-version", "runtime-integrity", "out", "override-managed-drift", "preview-windows-output", "help"]),
   "stack apply": new Set(["plan", "target-root", "cache-root", "approve", "experimental-apply", "help"]),
   "stack doctor": new Set(["plan", "target-root", "cache-root", "help"]),
@@ -104,13 +106,42 @@ function boundedInteger(value, field, minimum, maximum, fallback) {
 
 function readJsonFile(filePath, maximumBytes = 4 * 1024 * 1024) {
   const absolute = path.resolve(filePath);
-  const stat = fs.lstatSync(absolute);
-  if (!stat.isFile() || stat.isSymbolicLink() || stat.nlink !== 1 || stat.size > maximumBytes) {
-    throw cliError("AAS_CLI_JSON_FILE_UNSAFE", "invalidInput", {});
+  const unsafe = () => cliError("AAS_CLI_JSON_FILE_UNSAFE", "invalidInput", {});
+  const prior = fs.lstatSync(absolute);
+  if (!prior.isFile() || prior.isSymbolicLink() || prior.nlink !== 1 || prior.size > maximumBytes) {
+    throw unsafe();
   }
-  const text = fs.readFileSync(absolute, "utf8");
-  scanJson(text, 64);
-  return JSON.parse(text);
+  let descriptor;
+  try {
+    // Nonblocking open prevents a raced FIFO from stalling before fstat can reject it.
+    const flags = fs.constants.O_RDONLY | (fs.constants.O_NOFOLLOW || 0) | (fs.constants.O_NONBLOCK || 0);
+    descriptor = fs.openSync(absolute, flags);
+    const before = fs.fstatSync(descriptor);
+    if (!before.isFile() || before.nlink !== 1 || before.dev !== prior.dev || before.ino !== prior.ino
+      || before.size !== prior.size || before.size > maximumBytes) throw unsafe();
+    const bytes = Buffer.alloc(before.size);
+    let offset = 0;
+    while (offset < bytes.length) {
+      const count = fs.readSync(descriptor, bytes, offset, bytes.length - offset, offset);
+      if (!count) throw unsafe();
+      offset += count;
+    }
+    const after = fs.fstatSync(descriptor);
+    const current = fs.lstatSync(absolute);
+    if (!after.isFile() || after.nlink !== 1 || after.dev !== before.dev
+      || after.ino !== before.ino || after.size !== before.size
+      || after.mtimeMs !== before.mtimeMs || after.ctimeMs !== before.ctimeMs
+      || !current.isFile() || current.isSymbolicLink() || current.nlink !== 1
+      || current.dev !== before.dev || current.ino !== before.ino || current.size !== before.size) throw unsafe();
+    const text = bytes.toString("utf8");
+    scanJson(text, 64);
+    return JSON.parse(text);
+  } catch (error) {
+    if (error.code === "ELOOP" || (descriptor !== undefined && error.code === "ENOENT")) throw unsafe();
+    throw error;
+  } finally {
+    if (descriptor !== undefined) fs.closeSync(descriptor);
+  }
 }
 
 function writeNewJson(filePath, value, { previewWindowsOutput = false } = {}) {
@@ -280,14 +311,14 @@ async function verifiedRuntimeFor(options, expected, dependencies = {}) {
   if (typeof dependencies.resolveVerifiedRuntime === "function") return dependencies.resolveVerifiedRuntime({ options, expected });
   const cacheRoot = requireAbsoluteOption(options, "cache-root");
   const version = expected?.version || requireOption(options, "runtime-version");
-  const integrity = expected?.integrity || requireOption(options, "runtime-integrity");
-  const status = await core.cache.runtimeStatus({
+  const integrity = expected?.integrity || options["runtime-integrity"];
+  const status = integrity ? await core.cache.runtimeStatus({
     cacheRoot,
     packageVersion: version,
     integrity,
     ...(expected?.closureDigest ? { closureDigest: expected.closureDigest } : {}),
-  });
-  if (status.status !== "verified") throw cliError("AAS_RUNTIME_NOT_VERIFIED", "integrity", { status: status.status });
+  }) : await core.cache.resolveUniqueRuntime({ cacheRoot, packageVersion: version });
+  if (status?.status !== "verified") throw cliError("AAS_RUNTIME_NOT_VERIFIED", "integrity", { status: status?.status || "missing" });
   return { identity: status.runtimeIdentity, sourceRoot: path.join(status.targetPath, "package") };
 }
 
@@ -470,6 +501,24 @@ async function stackPlan(options, dependencies = {}) {
   };
 }
 
+async function stackInstallPreview(options) {
+  const manifest = readJsonFile(requireOption(options, "manifest"));
+  const validation = core.stack.validateManifest(manifest);
+  if (!validation.ok) throw cliError(validation.code, validation.category, validation.details);
+  const catalog = await catalogFor(options, manifest.catalog.integrity);
+  if (manifest.catalog.package !== catalog.package || manifest.catalog.version !== catalog.version
+    || manifest.catalog.integrity !== catalog.digest) throw cliError("AAS_PLAN_CATALOG_MISMATCH", "integrity");
+  for (const skill of manifest.skills) core.getSkill(catalog, skill.id);
+  const preview = installationHandoff(manifest, requireOption(options, "destination"), options.shell);
+  return {
+    ok: true, status: "installationPreviewPrepared", selectionSource: "agent",
+    manifestDigest: validation.manifestDigest, selectedSkillIds: manifest.skills.map((skill) => skill.id),
+    catalog: manifest.catalog, destination: options.destination, shell: options.shell || "posix",
+    executes: false, appliesCorePlan: false, preview,
+    message: "Run the direct-installer preview, review its changes, then remove --dry-run only when installation is authorized. Release availability and installed bytes are checked by the installer; this command does not verify a published release.",
+  };
+}
+
 async function stackAudit(options) {
   const manifest = readJsonFile(requireOption(options, "manifest"));
   const manifestValidation = core.stack.validateManifest(manifest);
@@ -538,9 +587,10 @@ function help() {
       "stack create --selection <json> --evidence <json> --artifact-dir <new-dir> --require-evidence [--catalog-digest <sha256> --cache-root <absolute>]",
       "stack audit --manifest <aas-stack.json> --evidence <aas-selection-evidence.json> --plan <plan.json> [--cache-root <absolute>]",
       "stack validate --manifest <aas-stack.json>",
-      "stack plan --manifest <file> --target-root <dir> --cache-root <absolute> --runtime-integrity <npm-sri> --out <file> [--target <host:scope>] [--preview-windows-output] (target inferred only when the manifest has one)",
+      "stack plan --manifest <file> --target-root <dir> --cache-root <absolute> [--runtime-integrity <npm-sri>] --out <file> [--target <host:scope>] [--preview-windows-output] (target inferred only when the manifest has one)",
       "stack apply --experimental-apply --plan <file> --target-root <dir> --cache-root <absolute> --approve <plan-digest> (EXPERIMENTAL; NOT CERTIFIED)",
       "stack doctor --plan <file> --target-root <dir> --cache-root <absolute>",
+      "stack install-preview --manifest <file> --destination <skill-directory> [--shell posix|powershell] [--cache-root <absolute>] (prepares a direct-installer dry-run command; does not execute)",
       "stack recover --experimental-recovery --plan <file> --target-root <dir> --cache-root <absolute> --id <id> --action rollback|cleanup [--approve <digest>] (EXPERIMENTAL; NOT CERTIFIED)",
     ],
   };
@@ -710,6 +760,7 @@ async function execute(argv, dependencies = {}) {
     return validation;
   }
   if (command === "plan") return stackPlan(options, dependencies);
+  if (command === "install-preview") return stackInstallPreview(options);
   if (["apply", "doctor", "recover"].includes(command)) {
     const plan = readJsonFile(requireOption(options, "plan"));
     core.stack.validatePlanEnvelope(plan);
@@ -804,6 +855,19 @@ async function main(argv = process.argv.slice(2), io = {}) {
       category: structured ? (error.category || "execution") : (nativeCode ? "filesystem" : "execution"),
       details: structured ? (error.details || {}) : {},
     };
+    const guidance = {
+      AAS_RUNTIME_NOT_VERIFIED: "Use a verified runtime in the explicit cache directory. If it is not cached, preview aas mcp configure for the exact version; do not approve host changes merely to make planning succeed.",
+      AAS_RUNTIME_RESOLVER_AMBIGUOUS: "Several verified runtimes match this version. Supply --runtime-integrity from the intended verified runtime; no runtime was chosen.",
+      AAS_RUNTIME_RESOLVER_LIMIT: "Supply --runtime-integrity to address the intended runtime directly; automatic lookup is limited to 64 cache entries.",
+      AAS_CLI_TARGET_REQUIRED: "Choose one of the manifest targets and supply --target host:scope.",
+      AAS_CLI_OUTPUT_EXISTS: "Choose a new --out or --artifact-dir path. Existing artifacts are never overwritten.",
+      AAS_CLI_SELECTION_EMPTY: "The agent must choose exact skill IDs and create a non-empty manifest before preparing installation.",
+      AAS_CLI_INSTALL_DESTINATION_INVALID: "Supply the actual skill directory with --destination. Expand ~ and remove control characters; PowerShell destinations must also avoid npm.cmd shell metacharacters.",
+      AAS_CLI_PATH_NOT_FOUND: "Check that the input file, target directory and output parent exist, then retry. No path is created automatically.",
+      AAS_PLAN_CATALOG_MISMATCH: "Use the exact catalog recorded in the manifest, or ask the agent to review and compose a new selection against the intended catalog.",
+      AAS_PLAN_RUNTIME_CATALOG_MISMATCH: "Use a verified runtime whose catalog matches the manifest. A matching version number alone is insufficient.",
+    };
+    if (Object.hasOwn(guidance, payload.code)) payload.remediation = [{ action: "review-input", args: {}, text: guidance[payload.code] }];
     validateInstance("result-envelope.schema.json", payload, "AAS_CLI_ERROR_SCHEMA_INVALID", "internal");
     stderr.write(`${core.canonicalJson(payload)}\n`);
     return exitCodeFor(payload);
