@@ -39,8 +39,25 @@ Use **plain `superpowers:writing-plans`** (a single file) for one feature or fix
 | **Optional per-feature `design-<feature>.md`** — overview, components & interfaces, data models, correctness properties; for a feature whose *how* must be settled before its tasks | 3 |
 | **Post-write verification pass**, so the plan ships pre-checked | 4 |
 | **Isolated worktree per execution** — every execution mode opens the plan's worktree with `superpowers:using-git-worktrees` first; parallel tracks get one each | 2, 3, Handoff |
+| **B2 English throughout** — the plan is written for readers who are not native speakers, and stays B2 through every later edit | all |
 
 **Save to:** `docs/plans/YYYY-MM-DD-<effort>/` in the target repo (or the repo's own plan-folder convention if its CLAUDE.md declares one).
+
+## Language rule — write at B2 English level
+
+**Every word this skill writes into the plan folder is B2 (CEFR upper-intermediate) English.** This covers the README, the wave files, `ARCHITECTURE.md`, any `design-<feature>.md`, the testing summaries, status notes, and commit subjects and bodies. It applies to the first draft and to every later edit, including edits made during execution. Many readers of a plan are not native English speakers, and a plan that is hard to read is a plan that gets misread.
+
+How to write at B2:
+
+- **One idea per sentence.** Aim for 20 words or fewer. Split a long sentence instead of joining clauses with dashes and semicolons.
+- **Use common words.** Write *use*, not *leverage*. *Start*, not *commence*. *About*, not *regarding*. *So*, not *thus* or *hence*. *Next*, not *subsequently*.
+- **Use the active voice and name the actor.** Write "The gate runs the full test suite", not "The full suite is to be run at gate time".
+- **No idioms, jokes, or word play.** If a term of art is standard in the project (for example *smoke test*, *blast radius*), keep it and explain it once in brackets.
+- **Explain each project term once**, at its first use. After that, use it plainly.
+- **Spell out Latin short forms:** *for example* (not *e.g.*), *that is* (not *i.e.*), *and so on* (not *etc.*).
+- **Prefer lists and tables to long paragraphs.** Three conditions in one paragraph become three bullets.
+
+**What the rule does not touch.** Code blocks, commands, test selectors, file paths, task IDs, version numbers, diagram labels, and text quoted from the spec stay exactly as they are. Simple language never means a simplified command or a rounded value. Where the spec's own wording is above B2, quote it exactly and add a short plain-English gloss after the quote.
 
 ## Step 1 — Survey reality first (never trust docs)
 
@@ -76,6 +93,8 @@ The plan is only as good as its facts. Before writing a single task:
 
 **Start from the skeletons in [`references/templates.md`](references/templates.md)** — copy and fill; don't re-derive the markup. The section lists below are the rationale and review checklist for what the templates already contain.
 
+**Write the filled-in text at B2 level** (see the language rule above). The templates give the structure; the words you put in them are yours, so keep the sentences short and the vocabulary common.
+
 **Scale the blocks to the effort.** Small plans may compact a task block — Covers/Files merged onto one line, Steps inlined — as long as the invariants survive: the `### Task <ID> — ` heading, exact file paths, and an exact verify command (including the scoped test selector, inlined into the Steps, wherever tests cover the surface). Task blocks carry **no commit line** — the wave's one commit is made at its gate. If the target repo has no audit skills/workflows for gates, degrade gates to build + tests + targeted greps and write "none exist — follow Steps directly" in those template slots rather than leaving placeholders.
 
 **README.md (orchestrator) — required sections:**
@@ -85,7 +104,7 @@ The plan is only as good as its facts. Before writing a single task:
 4. **Reality baseline** + stale-docs corrections table (from Step 1).
 5. **Wave files table** (wave · file link · theme · backlog rows).
 6. **Dependency graph** (ASCII) + recommended execution order incl. parallel tracks.
-7. **Shared conventions** — the DRY home for rules every task obeys (spec authority; **workspace** — the effort's isolated worktree, set up with `superpowers:using-git-worktrees` *before Wave 0* (existing `.worktrees/` → CLAUDE.md preference → ask; the directory must be git-ignored; then project setup + a clean baseline test run, so a later gate's failures are attributable to the wave and not inherited), one worktree per parallel track, retired with `superpowers:finishing-a-development-branch` after Final verification — record the worktree path and branch here once created, since every wave commit and every gate command is relative to it; verification ladder *matched to the capability baseline*; **one commit per wave** — subject `<type>(<scope>): W<N> — <theme> (<ID range>)`, body one line per task ID so IDs stay greppable in history, plus the interrupted-wave escape hatch (hand off the uncommitted tree with the Status checklist as the boundary; only if the handoff needs a clean tree, commit `wip(<scope>): W<N> — partial (<IDs> done)` and squash it into the wave commit at the gate); do-not-touch list; and the field-proven regression guards: **no invented identifiers** — any class/token/util/symbol a task newly references is grep-proven to exist before its task is ticked; **shared surfaces extend additively** — new keys in shared maps/enums/barrels are safe, re-valuing an existing key needs a consumer sweep by a task that owns it; **dead code stays dead** — don't migrate commented-out/unused blocks, note them for the cleanup task; **tests are scoped per task, whole at the gate** — a task runs only the tests covering the files it touched (exact selector, non-zero collection asserted; a task on a shared/generated file inherits its *consumers'* tests, since blast radius sets scope, not file adjacency), and the gate runs the full suite because task-scoped greens don't compose; **per-wave testing summary** — see the gate). Wave files never repeat these.
+7. **Shared conventions** — the DRY home for rules every task obeys (spec authority; **plain English (B2)** — the whole folder stays at B2 level, in the first draft and in every status note, summary and commit message written during execution; **workspace** — the effort's isolated worktree, set up with `superpowers:using-git-worktrees` *before Wave 0* (existing `.worktrees/` → CLAUDE.md preference → ask; the directory must be git-ignored; then project setup + a clean baseline test run, so a later gate's failures are attributable to the wave and not inherited), one worktree per parallel track, retired with `superpowers:finishing-a-development-branch` after Final verification — record the worktree path and branch here once created, since every wave commit and every gate command is relative to it; verification ladder *matched to the capability baseline*; **one commit per wave** — subject `<type>(<scope>): W<N> — <theme> (<ID range>)`, body one line per task ID so IDs stay greppable in history, plus the interrupted-wave escape hatch (hand off the uncommitted tree with the Status checklist as the boundary; only if the handoff needs a clean tree, commit `wip(<scope>): W<N> — partial (<IDs> done)` and squash it into the wave commit at the gate); do-not-touch list; and the field-proven regression guards: **no invented identifiers** — any class/token/util/symbol a task newly references is grep-proven to exist before its task is ticked; **shared surfaces extend additively** — new keys in shared maps/enums/barrels are safe, re-valuing an existing key needs a consumer sweep by a task that owns it; **dead code stays dead** — don't migrate commented-out/unused blocks, note them for the cleanup task; **tests are scoped per task, whole at the gate** — a task runs only the tests covering the files it touched (exact selector, non-zero collection asserted; a task on a shared/generated file inherits its *consumers'* tests, since blast radius sets scope, not file adjacency), and the gate runs the full suite because task-scoped greens don't compose; **per-wave testing summary** — see the gate). Wave files never repeat these.
 8. **Status tracking (wave rollup)** — one row per wave + Final verification. Legend: `[ ]` not started · `[~]` in progress · `[x]` done · `[!]` blocked (note why). Task-level state does NOT live here.
 9. **Final verification** checklist + **References** (spec, backlog, archived plans, tooling).
 
@@ -137,7 +156,8 @@ Ship the plan pre-verified; fix defects in the plan files (this is authoring, no
 6. **Command dry-run:** any verification command whose *exact output* the plan asserts — run it (in a scratch copy with the change hand-applied, if it needs the change). Classic traps: `grep -c` counts LINES, not occurrences; multi-file grep output order isn't stable across runs/tools (ugrep vs GNU grep); locale-dependent sorting.
 7. **Batch graphs (per wave file):** every `## Dependency graph` fence renders with its columns aligned — read it printed, not diffed — and every arrow in it corresponds to a real edge (a horizontal connector between two siblings invents one). Each wave's ⚠ list is non-empty or the pass did not read the Steps; see [`references/batching.md`](references/batching.md) §Step 2.
 8. **Diagram compatibility (if an `ARCHITECTURE.md` or any `design*.md` exists):** every ` ```mermaid ` block obeys [`references/mermaid.md`](references/mermaid.md) — `graph TD`/`graph LR`/`sequenceDiagram` only (no `stateDiagram-v2`, no `(( ))` nodes), no hex `style` declarations, and node/edge/message labels use only the safe characters in that file's table. Paste one into a renderer if unsure it parses.
-9. **Record the outcome:** append `> Plan verified: <date> — verify-plan.mjs PASS; manual checks 2–8 done (<one-line notes>)` at the bottom of the plan README — "verified" must be a recorded state, not a memory.
+9. **Language check (B2):** read every plan file back once for language only. Fix any sentence over ~20 words, any rare word with a common alternative, any idiom, and any `e.g.`/`i.e.`/`etc.` Leave commands, paths, IDs and quoted spec text untouched. A sentence you have to re-read is a defect in the plan, the same as a wrong path.
+10. **Record the outcome:** append `> Plan verified: <date> — verify-plan.mjs PASS; manual checks 2–9 done (<one-line notes>)` at the bottom of the plan README — "verified" must be a recorded state, not a memory.
 
 ## Backlog drift — when the source moves after the plan is written
 

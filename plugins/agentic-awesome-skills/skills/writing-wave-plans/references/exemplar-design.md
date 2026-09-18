@@ -3,7 +3,9 @@
 Condensed **and anonymized** from a shipped feature design (system-wide usage monitoring on an
 external API service, delivered as one wave of a larger plan) so you can see Template 4 *filled
 in*. Illustrative only — the structure in `templates.md` is normative, these technologies/values
-are not (vendor names fictionalized; the mechanism is real).
+are not (vendor names fictionalized; the mechanism is real). The prose here predates the B2 language
+rule, so copy its *shape*, not its sentence length — write your own design document in shorter,
+plainer sentences.
 
 This design was large enough to **split into three files** (the common Kiro shape): a `design.md`
 spine plus `design-<feature>-components.md` and `design-<feature>-correctness.md`. Small features

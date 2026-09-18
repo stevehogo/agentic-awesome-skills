@@ -1,6 +1,8 @@
 # Templates: multi-wave plan folder
 
 Copy these skeletons and fill every `<placeholder>`. Delete guidance comments (`<!-- … -->`).
+Write the text you fill in at **B2 English level** (see the language rule in SKILL.md): short
+sentences, common words, active voice. Commands, paths, IDs and quoted spec values stay exact.
 Structure is normative — `scripts/verify-plan.mjs` checks for the marked sections. Add sections
 freely; don't remove the required ones. Number waves from 0 (wave 0 = the foundation wave).
 Small plans may compact task blocks (Covers/Files merged, Steps inlined) — the invariants are
@@ -18,20 +20,28 @@ line: each wave lands as ONE commit, made at its gate.
 Status: not started
 Created: <YYYY-MM-DD> · Branch: `<branch>` · Worktree: `<path, filled in when created — e.g. .worktrees/<branch>>` · Covers **all <N> rows** of <backlog source, e.g. the Estimation sheet in docs/<file>.xlsx>.
 
-> **For Claude:** **Before Wave 0, set up the worktree with `superpowers:using-git-worktrees`** and
-> record its path above — every task, gate command and wave commit runs *there*, on `<branch>`, not
-> on the branch this plan was written from.<Parallel tracks get one worktree each — see the
-> dependency graph.> Then execute task-by-task; commit **once per wave**, at its gate — never per task.
-> Each wave is its own file in this folder and **owns its task-level status tracking** — update the
-> wave file's *Status tracking* section as you work (a ticked task carries its delta, not a hash —
-> the wave is uncommitted until its gate), then roll the wave-level result up to the
-> [Status tracking](#status-tracking-wave-rollup) table below. Use the skills named in each task. Keep these files in sync with reality as work
-> progresses<, and per the project's CLAUDE.md plan conventions if it has them>. **This plan is a
-> living doc:** when execution uncovers a recurring gotcha, promote it into *Shared conventions*
-> right away; when work moves between tasks/waves or a step is deferred, record it in **both**
-> affected status sections — later waves inherit lessons instead of rediscovering them. Stop at each
-> wave gate's **context checkpoint** (the gate's last step): announce the wave is done and let the
-> user `/compact` or `/clear` — or hand the next wave to a fresh session — before continuing.
+> **For Claude:** **Set up the worktree with `superpowers:using-git-worktrees` before Wave 0.**
+> Record its path above. Every task, every gate command and every wave commit runs there, on
+> `<branch>`. Do not work on the branch where this plan was written. <Each parallel track gets its
+> own worktree. See the dependency graph.>
+>
+> Then work task by task. Commit **once per wave**, at that wave's gate. Never commit per task.
+>
+> Each wave has its own file in this folder, and that file **owns the task-level status tracking**.
+> Update the wave file's *Status tracking* section as you work. A ticked task records what changed,
+> not a commit hash, because the wave stays uncommitted until its gate. Then copy the wave-level
+> result into the [Status tracking](#status-tracking-wave-rollup) table below.
+>
+> Use the skills named in each task. Keep these files in step with reality as the work goes on<, and
+> follow the plan rules in the project's CLAUDE.md>.
+>
+> **This plan is a living document.** When you meet a problem that will come back, add it to
+> *Shared conventions* at once. When work moves between tasks or waves, or you defer a step, write it
+> in **both** status sections. Later waves should inherit what you learned.
+>
+> Stop at each wave gate's **context checkpoint**, which is the gate's last step. Say that the wave
+> is done. Let the user run `/compact` or `/clear`, or hand the next wave to a fresh session, before
+> you go on.
 
 **Goal:** <one sentence — what this delivers when done>
 
@@ -94,7 +104,17 @@ WAVE 2 — <A>   WAVE 3 — <B>       │  <which tracks are parallel and why (n
 
 <!-- REQUIRED. The DRY home for every-task rules. Wave files must NOT repeat these. Typical entries: -->
 - **Spec first.** <authority doc>; when anything disagrees with it, <authority> wins.
-- **Workspace: one worktree for this effort.** Created with `superpowers:using-git-worktrees` before Wave 0 — `<path>` on `<branch>`, directory git-ignored, project setup run, baseline suite green (`<command>` — <N> passing) so a gate's failures belong to its wave and not to inherited breakage. All task edits, gate commands and wave commits happen inside it; never execute on <the branch the plan was authored from>. <Parallel tracks: one worktree each off the same base commit — `<track A path/branch>`, `<track B path/branch>` — reconverging at Wave <m>.> When Final verification passes, retire the worktree(s) with `superpowers:finishing-a-development-branch`.
+- **Plain English (B2).** Write every line in this folder at B2 level. That covers tasks, status
+  notes, testing summaries and commit messages. One idea per sentence, about 20 words or fewer.
+  Common words, active voice, no idioms. Write *for example*, not *e.g.* This rule also covers the
+  notes you add while you work. Commands, file paths, task IDs and quoted spec values stay exact.
+- **Workspace: one worktree for this effort.** `superpowers:using-git-worktrees` created `<path>` on
+  `<branch>` before Wave 0. The directory is git-ignored, project setup ran, and the baseline suite
+  was green (`<command>` — <N> passing). That green baseline matters: it means a later gate failure
+  belongs to its wave, not to breakage the tree already had. All task edits, gate commands and wave
+  commits happen inside this worktree. <Each parallel track has its own worktree off the same base
+  commit: `<track A path/branch>` and `<track B path/branch>`. They rejoin at Wave <m>.> When Final
+  verification passes, close the worktree with `superpowers:finishing-a-development-branch`.
 - **Verification ladder:** per task = <cheap check the environment can run> **+ only the tests covering that task's files** (`<selector>`); per wave gate = <build + the FULL runnable test suites + fresh-context audits> (degraded forms per the Reality baseline's capability line). Task-scoped greens don't compose — the gate's full run is what authorizes the wave commit, never the sum of the task ticks.
 - **Test scope per task.** Each task block names its selector and the result it expects; the selector must collect ≥1 test (a zero-match filter can exit 0 and buy a green rung that tests nothing). A task touching a **shared or generated** file inherits its *consumers'* tests — blast radius sets the scope, not file adjacency; when the fan-out is wide, that task's rung is the full suite. If nothing covers the surface, write `**Tests:** none cover this surface — <degraded check>` and re-home the coverage gap onto a named QA-wave task.
 - **Commits:** ONE per wave, on `<branch>`, made at that wave's gate — subject `<type>(<scope>): W<N> — <theme> (<ID range>)`, body one line per task ID (`<ID> — <what changed>`) so IDs stay greppable (`git log --grep "<ID> —"`). Tasks do not commit: they verify, then tick the wave checklist, leaving the change in the tree. Concurrent wave tracks run in their own worktrees (see *Workspace*) so each wave's commit stays one whole diff. Do not push unless asked.

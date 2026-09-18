@@ -2,7 +2,9 @@
 
 Condensed **and anonymized** from a shipped 55-row branding-migration plan (7 waves) so you can
 see the templates *filled in*. Illustrative only — structure is normative (`templates.md`); these
-values are not (names and hexes are fictionalized; the incidents are real).
+values are not (names and hexes are fictionalized; the incidents are real). The prose here predates
+the B2 language rule, so copy its *shape*, not its sentence length — write your own plan in shorter,
+plainer sentences.
 
 ---
 

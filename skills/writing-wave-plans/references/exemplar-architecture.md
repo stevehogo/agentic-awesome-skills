@@ -3,7 +3,9 @@
 Condensed **and anonymized** from a shipped architecture design (a TanStack Start + Postgres +
 Snowflake internal app, built as a 7-wave plan) so you can see Template 3 *filled in*.
 Illustrative only — the structure in `templates.md` is normative, these technologies/values are
-not (names fictionalized; the decisions are real).
+not (names fictionalized; the decisions are real). The prose here predates the B2 language rule, so
+copy its *shape*, not its sentence length — write your own ARCHITECTURE.md in shorter, plainer
+sentences.
 
 Diagrams (§3, §7) are **Mermaid**, written to the cross-renderer compatibility rules in
 [`mermaid.md`](mermaid.md) — copy that style for every C4 view and runtime flow, and never fall
