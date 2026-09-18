@@ -2,8 +2,9 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router';
 import type { Skill } from '../types';
 import { useSkillShortlist } from '../hooks/useSkillShortlist';
-import { evidenceSignals, groupOutcomeMatches, isDiscoveryCatalog, OUTCOME_PRESETS, parseOutcomeGoal, rankForOutcome } from '../utils/outcomeDiscovery';
+import { evidenceSignals, groupOutcomeMatches, OUTCOME_PRESETS, parseOutcomeGoal, rankForOutcome } from '../utils/outcomeDiscovery';
 import { getSkillsIndexCandidateUrls } from '../utils/publicAssetUrls';
+import { isSkillsIndex } from '../utils/skillsIndex';
 import { ShortlistReview } from './ShortlistReview';
 
 interface Props { catalog?: Skill[]; onGoalChange?: (goal: string) => void }
@@ -36,7 +37,7 @@ function DiscoverySession({ catalog, onGoalChange }: Props): React.ReactElement 
             const text = await response.text();
             if (text.length > 15_000_000) continue;
             const parsed: unknown = JSON.parse(text);
-            if (isDiscoveryCatalog(parsed)) { found = parsed; break; }
+            if (isSkillsIndex(parsed)) { found = parsed; break; }
           } catch { if (controller.signal.aborted) return; }
         }
         if (!found) throw new Error('The catalog could not be loaded. Your imported artifacts have not changed.');

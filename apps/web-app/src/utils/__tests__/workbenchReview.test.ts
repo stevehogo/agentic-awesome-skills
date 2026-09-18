@@ -8,6 +8,7 @@ import {
   readWorkbenchFile,
   reviewWorkbenchPair,
 } from '../workbenchReview';
+import examplePlan from '../../../../../docs/examples/workflows/mcp-contract/plan.json';
 
 const D = `sha256-${'a'.repeat(64)}`;
 
@@ -69,7 +70,6 @@ describe('workbenchReview', () => {
     const withoutProjectType = validStack();
     const emptyProfile = withoutProjectType.profile as Record<string, unknown>;
     delete emptyProfile.projectType;
-    emptyProfile.goals = [];
     emptyProfile.languages = [];
     emptyProfile.frameworks = [];
     emptyProfile.constraints = [];
@@ -77,6 +77,24 @@ describe('workbenchReview', () => {
     const stack = validStack();
     stack.skills = [{ id: 'same' }, { id: 'same' }];
     expect(() => parseWorkbenchArtifact(JSON.stringify(stack), 'stack')).toThrow('duplicate IDs');
+  });
+
+  it('enforces the published profile limits for stack and plan artifacts', () => {
+    const emptyGoals = validStack();
+    (emptyGoals.profile as Record<string, unknown>).goals = [];
+    expect(() => parseWorkbenchArtifact(JSON.stringify(emptyGoals), 'stack')).toThrow('must contain 1 to 32 items');
+
+    const longGoal = validStack();
+    (longGoal.profile as Record<string, unknown>).goals = ['x'.repeat(129)];
+    expect(() => parseWorkbenchArtifact(JSON.stringify(longGoal), 'stack')).toThrow('at most 128 characters');
+
+    const longProjectType = validStack();
+    (longProjectType.profile as Record<string, unknown>).projectType = 'x'.repeat(257);
+    expect(() => parseWorkbenchArtifact(JSON.stringify(longProjectType), 'stack')).toThrow('at most 256 characters');
+
+    const plan = structuredClone(examplePlan) as unknown as { payload: { profile: { goals: string[] } } };
+    plan.payload.profile.goals = [];
+    expect(() => parseWorkbenchArtifact(JSON.stringify(plan), 'plan')).toThrow('must contain 1 to 32 items');
   });
 
   it('rejects duplicate JSON properties before their overwritten values disappear', () => {

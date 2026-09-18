@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T08:25:37.000Z",
+  "generatedAt": "2026-09-18T03:54:02.000Z",
   "bundles": {
     "core-dev": {
       "description": "Core development skills across languages, frameworks, and backend/frontend fundamentals.",
@@ -477,6 +477,7 @@
         "x402-express-wrapper",
         "xvary-stock-research",
         "youtube-full",
+        "youtube-transcript-skills",
         "zeroize-audit",
         "zod-validation-expert",
         "zustand-store-ts"
@@ -638,7 +639,6 @@
         "security/aws-secrets-rotation",
         "security/aws-security-audit",
         "semgrep-rule-creator",
-        "seo-aeo-content-quality-auditor",
         "seo-technical",
         "service-mesh-expert",
         "simplify-code",
@@ -695,6 +695,7 @@
         "azure-servicebus-dotnet",
         "azure-servicebus-py",
         "azure-servicebus-rust",
+        "beatra-ai-video-studio",
         "chrome-extension-developer",
         "cloud-devops",
         "cloud-k8s",
@@ -724,7 +725,6 @@
         "progressive-web-app",
         "pubmed-database",
         "remote-gpu-trainer",
-        "seo-aeo-landing-page-writer",
         "service-mesh-expert",
         "service-mesh-observability",
         "slo-implementation",
@@ -1071,6 +1071,7 @@
         "recsys-pipeline-architect",
         "risk-metrics-calculation",
         "screen-adverse-media",
+        "seo-aeo-orchestrator",
         "seo-drift",
         "seo-forensic-incident-response",
         "server-management",
@@ -1307,6 +1308,7 @@
         "sendblue/textme",
         "sendgrid-automation",
         "sentry-automation",
+        "seo-aeo-orchestrator",
         "seo-image-gen",
         "setup-matt-pocock-skills",
         "shopify-apps",
@@ -1716,6 +1718,7 @@
         "seo-aeo-keyword-research",
         "seo-aeo-landing-page-writer",
         "seo-aeo-meta-description-generator",
+        "seo-aeo-orchestrator",
         "seo-aeo-schema-generator",
         "seo-audit",
         "seo-authority-builder",

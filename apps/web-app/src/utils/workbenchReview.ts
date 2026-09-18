@@ -190,11 +190,13 @@ function id(value: unknown, path: string): string {
   return parsed;
 }
 
-function stringArray(value: unknown, path: string, options: { min?: number; max: number; ids?: boolean }): string[] {
+function stringArray(value: unknown, path: string, options: { min?: number; max: number; ids?: boolean; itemMaxLength?: number }): string[] {
   if (!Array.isArray(value) || value.length < (options.min ?? 0) || value.length > options.max) {
     fail(`${path} must contain ${options.min ?? 0} to ${options.max} items.`);
   }
-  const parsed = value.map((entry, index) => options.ids ? id(entry, `${path}[${index}]`) : text(entry, `${path}[${index}]`, 256));
+  const parsed = value.map((entry, index) => options.ids
+    ? id(entry, `${path}[${index}]`)
+    : text(entry, `${path}[${index}]`, options.itemMaxLength ?? 256));
   if (new Set(parsed).size !== parsed.length) fail(`${path} must not contain duplicates.`);
   return parsed;
 }
@@ -231,11 +233,11 @@ function parseProfile(value: unknown, path: string): ProjectProfile {
   const required = ['goals', 'languages', 'frameworks', 'constraints'];
   exactKeys(entry, allowed, required, path);
   return {
-    goals: stringArray(entry.goals, `${path}.goals`, { max: 32 }),
-    ...(entry.projectType === undefined ? {} : { projectType: text(entry.projectType, `${path}.projectType`, 2048) }),
-    languages: stringArray(entry.languages, `${path}.languages`, { max: 32 }),
-    frameworks: stringArray(entry.frameworks, `${path}.frameworks`, { max: 32 }),
-    constraints: stringArray(entry.constraints, `${path}.constraints`, { max: 32 }),
+    goals: stringArray(entry.goals, `${path}.goals`, { min: 1, max: 32, itemMaxLength: 128 }),
+    ...(entry.projectType === undefined ? {} : { projectType: text(entry.projectType, `${path}.projectType`, 256) }),
+    languages: stringArray(entry.languages, `${path}.languages`, { max: 32, itemMaxLength: 128 }),
+    frameworks: stringArray(entry.frameworks, `${path}.frameworks`, { max: 32, itemMaxLength: 128 }),
+    constraints: stringArray(entry.constraints, `${path}.constraints`, { max: 32, itemMaxLength: 128 }),
   };
 }
 
