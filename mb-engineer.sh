@@ -1,0 +1,1 @@
+AG_BASE_DIR=/home/steve/.claude-moneyball/ ./scripts/activate-skills.sh --clear mb-engineer

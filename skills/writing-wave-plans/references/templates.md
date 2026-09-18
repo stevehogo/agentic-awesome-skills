@@ -16,9 +16,12 @@ line: each wave lands as ONE commit, made at its gate.
 # <Effort Name> — Master Plan (multi-wave)
 
 Status: not started
-Created: <YYYY-MM-DD> · Branch: `<branch>` · Covers **all <N> rows** of <backlog source, e.g. the Estimation sheet in docs/<file>.xlsx>.
+Created: <YYYY-MM-DD> · Branch: `<branch>` · Worktree: `<path, filled in when created — e.g. .worktrees/<branch>>` · Covers **all <N> rows** of <backlog source, e.g. the Estimation sheet in docs/<file>.xlsx>.
 
-> **For Claude:** Execute task-by-task; commit **once per wave**, at its gate — never per task.
+> **For Claude:** **Before Wave 0, set up the worktree with `superpowers:using-git-worktrees`** and
+> record its path above — every task, gate command and wave commit runs *there*, on `<branch>`, not
+> on the branch this plan was written from.<Parallel tracks get one worktree each — see the
+> dependency graph.> Then execute task-by-task; commit **once per wave**, at its gate — never per task.
 > Each wave is its own file in this folder and **owns its task-level status tracking** — update the
 > wave file's *Status tracking* section as you work (a ticked task carries its delta, not a hash —
 > the wave is uncommitted until its gate), then roll the wave-level result up to the
@@ -91,9 +94,10 @@ WAVE 2 — <A>   WAVE 3 — <B>       │  <which tracks are parallel and why (n
 
 <!-- REQUIRED. The DRY home for every-task rules. Wave files must NOT repeat these. Typical entries: -->
 - **Spec first.** <authority doc>; when anything disagrees with it, <authority> wins.
+- **Workspace: one worktree for this effort.** Created with `superpowers:using-git-worktrees` before Wave 0 — `<path>` on `<branch>`, directory git-ignored, project setup run, baseline suite green (`<command>` — <N> passing) so a gate's failures belong to its wave and not to inherited breakage. All task edits, gate commands and wave commits happen inside it; never execute on <the branch the plan was authored from>. <Parallel tracks: one worktree each off the same base commit — `<track A path/branch>`, `<track B path/branch>` — reconverging at Wave <m>.> When Final verification passes, retire the worktree(s) with `superpowers:finishing-a-development-branch`.
 - **Verification ladder:** per task = <cheap check the environment can run> **+ only the tests covering that task's files** (`<selector>`); per wave gate = <build + the FULL runnable test suites + fresh-context audits> (degraded forms per the Reality baseline's capability line). Task-scoped greens don't compose — the gate's full run is what authorizes the wave commit, never the sum of the task ticks.
 - **Test scope per task.** Each task block names its selector and the result it expects; the selector must collect ≥1 test (a zero-match filter can exit 0 and buy a green rung that tests nothing). A task touching a **shared or generated** file inherits its *consumers'* tests — blast radius sets the scope, not file adjacency; when the fan-out is wide, that task's rung is the full suite. If nothing covers the surface, write `**Tests:** none cover this surface — <degraded check>` and re-home the coverage gap onto a named QA-wave task.
-- **Commits:** ONE per wave, on `<branch>`, made at that wave's gate — subject `<type>(<scope>): W<N> — <theme> (<ID range>)`, body one line per task ID (`<ID> — <what changed>`) so IDs stay greppable (`git log --grep "<ID> —"`). Tasks do not commit: they verify, then tick the wave checklist, leaving the change in the tree. Run any concurrent wave tracks in separate worktrees/branches so each wave's commit stays one whole diff. Do not push unless asked.
+- **Commits:** ONE per wave, on `<branch>`, made at that wave's gate — subject `<type>(<scope>): W<N> — <theme> (<ID range>)`, body one line per task ID (`<ID> — <what changed>`) so IDs stay greppable (`git log --grep "<ID> —"`). Tasks do not commit: they verify, then tick the wave checklist, leaving the change in the tree. Concurrent wave tracks run in their own worktrees (see *Workspace*) so each wave's commit stays one whole diff. Do not push unless asked.
 - **Interrupted wave.** If a wave must be handed off before its gate, the Status checklist is the boundary and the tree stays uncommitted; only if the handoff needs a clean tree, commit `wip(<scope>): W<N> — partial (<IDs> done)` and squash it into the wave commit at the gate.
 - **No invented identifiers.** Any class/token/util/symbol a task newly references must be grep-proven to exist (in its defining file) before that task is ticked — renames are the classic silent breakage.
 - **Shared surfaces extend additively.** Adding keys to shared maps/enums/barrels is safe; re-valuing an existing key requires a consumer sweep by a task that owns that key.
@@ -125,6 +129,7 @@ Task-level state lives in each wave file — this table is the wave-level rollup
 4. <all wave files [x]; external checklists ticked; manual passes recorded>
 5. <deferral ledger empty: every gate-deferred finding closed by its owner task — or explicitly accepted, with a note>
 6. <items the environment could never verify in-session have been human-verified via the testing summaries>
+7. <worktree retired with `superpowers:finishing-a-development-branch` — merged / PR opened / cleaned up, and any parallel-track worktrees reconverged first>
 
 ## References
 

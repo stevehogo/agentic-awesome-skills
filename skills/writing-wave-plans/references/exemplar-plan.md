@@ -12,9 +12,11 @@ values are not (names and hexes are fictionalized; the incidents are real).
 # Branding Migration — Master Plan (multi-wave)
 
 Status: not started
-Created: 2026-07-10 · Branch: `feature/adopt-new-branding` · Covers **all 55 rows** of the Estimation sheet in `docs/branding-migration-estimate.xlsx`.
+Created: 2026-07-10 · Branch: `feature/adopt-new-branding` · Worktree: `.worktrees/feature-adopt-new-branding` · Covers **all 55 rows** of the Estimation sheet in `docs/branding-migration-estimate.xlsx`.
 
-> **For Claude:** Execute task-by-task; commit once per wave, at its gate. Each wave is its own
+> **For Claude:** Set up the worktree with `superpowers:using-git-worktrees` before Wave 0 — all
+> work and every wave commit happen there. Then execute task-by-task; commit once per wave, at its
+> gate. Each wave is its own
 > file in this folder and **owns its task-level status tracking** — update the *Status tracking*
 > section as you work, then roll the wave-level result up to the table below. Use the repo skills
 > named in each task. Keep these files in sync per `CLAUDE.md → ## Plans`.
@@ -56,6 +58,10 @@ The working tree is **fully legacy — a previous implementation round was rever
 ## Shared conventions (excerpt)
 
 - **Spec first.** `docs/brand-guide.md`; on any conflict, the guide wins.
+- **Workspace.** `.worktrees/feature-adopt-new-branding` on `feature/adopt-new-branding`, created
+  with `superpowers:using-git-worktrees` (`.worktrees/` already git-ignored), `yarn install` run,
+  baseline `yarn test:unit` green (312 passing) before Wave 0 — so a gate failure is the wave's, not
+  inherited. Retire it with `superpowers:finishing-a-development-branch` after Final verification.
 - **Verification ladder:** per task = `yarn build` + `yarn test:unit <only this task's specs>`; per
   gate = `yarn build` + the FULL `yarn test:unit` + the audits. Scoped greens don't compose — two
   tasks can each be green on their own spec and still fight over a shared `Button` snapshot, which
