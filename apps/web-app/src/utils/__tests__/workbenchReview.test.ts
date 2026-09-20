@@ -97,6 +97,28 @@ describe('workbenchReview', () => {
     expect(() => parseWorkbenchArtifact(JSON.stringify(plan), 'plan')).toThrow('must contain 1 to 32 items');
   });
 
+  it('accepts plan identity strings allowed by the plan schema without relaxing stack rules', () => {
+    const plan = structuredClone(examplePlan) as unknown as {
+      payload: {
+        catalog: { package: string; version: string };
+        runtime: { package: string; version: string };
+        versions: { protocolVersion: string; coreVersion: string; catalogSchemaVersion: string };
+      };
+    };
+    plan.payload.catalog.package = 'catalog identity with spaces';
+    plan.payload.catalog.version = 'release/2026';
+    plan.payload.runtime.package = 'runtime identity with spaces';
+    plan.payload.runtime.version = 'channel/2026';
+    plan.payload.versions.protocolVersion = 'p'.repeat(65);
+    plan.payload.versions.coreVersion = 'c'.repeat(65);
+    plan.payload.versions.catalogSchemaVersion = 's'.repeat(65);
+    expect(parseWorkbenchArtifact(JSON.stringify(plan), 'plan').kind).toBe('plan');
+
+    const stack = validStack();
+    (stack.catalog as Record<string, unknown>).package = 'catalog identity with spaces';
+    expect(() => parseWorkbenchArtifact(JSON.stringify(stack), 'stack')).toThrow('valid package name');
+  });
+
   it('rejects duplicate JSON properties before their overwritten values disappear', () => {
     const input = JSON.stringify(validStack());
     for (const ambiguous of [
