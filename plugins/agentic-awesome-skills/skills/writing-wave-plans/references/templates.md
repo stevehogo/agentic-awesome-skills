@@ -18,7 +18,7 @@ line: each wave lands as ONE commit, made at its gate.
 # <Effort Name> — Master Plan (multi-wave)
 
 Status: not started
-Created: <YYYY-MM-DD> · Branch: `<branch>` · Worktree: `<path, filled in when created — e.g. .worktrees/<branch>>` · Covers **all <N> rows** of <backlog source, e.g. the Estimation sheet in docs/<file>.xlsx>.
+Created: <YYYY-MM-DD> · Branch: `<branch>` · Worktree: `<path, filled in when created — for example .worktrees/<branch>>` · Covers **all <N> rows** of <backlog source, for example the Estimation sheet in docs/<file>.xlsx>.
 
 > **For Claude:** **Set up the worktree with `superpowers:using-git-worktrees` before Wave 0.**
 > Record its path above. Every task, every gate command and every wave commit runs there, on
@@ -46,7 +46,7 @@ Created: <YYYY-MM-DD> · Branch: `<branch>` · Worktree: `<path, filled in when 
 **Goal:** <one sentence — what this delivers when done>
 
 **Architecture:** <2–4 sentences — the strategy: what goes first and why, how consumers migrate
-(e.g. two-step add → migrate → retire), what's staged and in what risk order>
+(for example two-step add → migrate → retire), what's staged and in what risk order>
 
 **Tech stack:** <frameworks, build system, test harness — what an executor with zero context needs to know exists>
 
@@ -65,7 +65,7 @@ Created: <YYYY-MM-DD> · Branch: `<branch>` · Worktree: `<path, filled in when 
   missing rung gets a named degraded form, and what can't be verified in-session routes to the wave
   testing summaries as human checks (recorded, never claimed).
 - **Test scoping:** full suite `<command>` (<N tests, duration>) · select a subset with
-  `<exact selector syntax, e.g. yarn vitest run <path> / pytest <path> -k <expr> / go test ./pkg/x/...>`
+  `<exact selector syntax, for example yarn vitest run <path> / pytest <path> -k <expr> / go test ./pkg/x/...>`
   · tests live <adjacent to their sources | in `<tree>`, mapped to sources by <convention>>.
   <If the full suite is fast (< ~1 min) or the runner cannot select: say so — then the per-task rung
   IS the full suite, and no task carries a selector.>
@@ -235,7 +235,7 @@ Task-level state lives in each wave file — this table is the wave-level rollup
 <!-- Stores + roles, tables/entities grouped by lifecycle, derived-not-stored rules, enum parity. -->
 
 ## 7. Runtime flows
-<!-- One numbered flow per critical path — e.g. a read path, a write/mutation path, login/auth,
+<!-- One numbered flow per critical path — for example a read path, a write/mutation path, login/auth,
      an external call, a job/pipeline run. Name the wave that delivers each flow. Draw each as a
      Mermaid `sequenceDiagram` (or `graph TD` for branch/state flow) obeying references/mermaid.md:
      messages use letters and spaces only — no `()`, `{}`, `,`, `_`, `-`, `/`, or `Note over`.
@@ -282,7 +282,7 @@ Task-level state lives in each wave file — this table is the wave-level rollup
 > **Prev:** [Wave <N-1>](wave-<N-1>-<theme>.md) · **Next:** [Wave <N+1>](wave-<N+1>-<theme>.md)
 
 **Depends on:** <waves/tasks>. **Unblocks:** <waves/tasks>.
-<!-- Optional: wave-wide warnings — blast radius, "nothing visual changes until task X", etc. -->
+<!-- Optional: wave-wide warnings — blast radius, "nothing visual changes until task X", and so on. -->
 
 ## Dependency graph
 
@@ -336,7 +336,7 @@ Status: not started
 - [ ] W<N>-GATE — Wave verification gate
 
 <!-- Tick with EVIDENCE, not bare [x]: append a one-line delta + any deviation from the plan. Task
-     lines carry NO hash — the wave's work is uncommitted until its gate, e.g.
+     lines carry NO hash — the wave's work is uncommitted until its gate, for example
        - [x] U1 — Buttons to spec. Primary/outline restyled; deviation: scroll-shadow
          not wired (no scroll handler exists — applied at rest, noted).
      The GATE line additionally records: the wave commit's subject, build / full-suite / audit
@@ -348,7 +348,7 @@ Status: not started
 
 1. **Inventory:** read the target + grep its usages/consumers.
 2. **Change:** <the wave's standard transformation, stated once>.
-3. **Verify:** <the wave's standard per-task check> + <the wave's scoped test command, e.g.
+3. **Verify:** <the wave's standard per-task check> + <the wave's scoped test command, for example
    `yarn vitest run <the tests covering the task's files>`> → <expected result>.
 4. **Tick:** mark the task `[x]` in *Status tracking* with its delta — leave the change uncommitted;
    the wave commits once, at its gate.
@@ -368,7 +368,7 @@ Per-task notes below are the *deltas* from this template.
 **Spec:** <exact values / state tables with source-section references; add a provenance note
 for any value the spec does NOT state explicitly>
 
-**Tests:** `<selector covering exactly this task's files>` → <expected, e.g. `12 passed`>
+**Tests:** `<selector covering exactly this task's files>` → <expected, for example `12 passed`>
 <!-- Only this task's tests — the gate runs the whole suite. Selector must collect ≥1 test (verified
      in Step 4). Shared/generated file? Use its CONSUMERS' tests, or the full suite when fan-out is
      wide. Nothing covers it? `none cover this surface — <degraded check>` + a named QA-wave task. -->

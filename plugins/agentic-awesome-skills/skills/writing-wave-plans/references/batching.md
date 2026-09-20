@@ -161,6 +161,9 @@ gets the graph, the critical path and a sentence saying so — not an invented s
 node <skill-base-dir>/scripts/verify-plan.mjs <plan-folder> --ids-from-readme
 ```
 
+`<skill-base-dir>` is the directory that holds [SKILL.md](../SKILL.md). The verifier needs Node
+18.3 or newer.
+
 Expect `links: OK` and `VERDICT: PASS`. Then check any new warning is yours: a bare path in prose
 (`design/status-tokens.ts`) is read as repo-relative and warns — qualify it (`<web>/src/…`) rather
 than leaving noise. **Re-read the fence rendered, not just diffed**, to catch alignment drift.

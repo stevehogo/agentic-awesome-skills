@@ -1,6 +1,6 @@
 ---
 name: writing-wave-plans
-description: "Write a multi-wave implementation plan: a folder with a README + one file per wave, each owning its status tracking. Use for a 'wave plan', per-wave state tracking, or a master plan over a backlog or estimation sheet (~10+ tasks, phases, parallel tracks). For one feature use writing-plans."
+description: "Write a multi-wave implementation plan: a README plus one file per wave, each owning its status tracking. Use for a 'wave plan', per-wave state tracking, or a master plan over a backlog or estimation sheet (~10+ tasks, phases, parallel tracks)."
 risk: safe
 source: self
 date_added: "2026-07-15"
@@ -142,6 +142,8 @@ Ship the plan pre-verified; fix defects in the plan files (this is authoring, no
    node <skill-base-dir>/scripts/verify-plan.mjs <plan-folder> --ids "F1-F8,U1-U11,E1-E2,…"
    ```
 
+   `<skill-base-dir>` is the directory that holds this `SKILL.md` — the folder you loaded this skill from. Resolve it once and use the same absolute path for every command below. The verifier needs Node 18.3 or newer, because it uses `parseArgs` from `node:util`. If the target repo has no Node, say so in the plan and run the manual checks 2 to 9 instead.
+
    **Flags.** `--ids` is mandatory — without it the run fails rather than silently skipping coverage. Ranges keep zero-padding (`F01-F03` → F01, F02, F03); a mixed-prefix range (`F1-U3`) is an error, not a silent expansion. `--ids-from-readme` derives the list from the README wave-files table and additionally checks each wave file holds the rows attributed to it. `--no-ids` skips coverage — only for a plan with genuinely no backlog source. `--strict` turns warnings into failures.
 
    **It fails on:** backlog IDs with missing or duplicate `### Task <ID> —` headings · broken internal links · a wave file lacking a `## Status tracking` section, `Status:` line, or gate task · a `wave-*.md` the README never references (orphan wave — dropped work) · a README with no rollup · an unwired `ARCHITECTURE.md` · any `design*.md` no non-design plan file links, directly or via its spine.
@@ -184,3 +186,13 @@ Three rules keep the ledger honest:
 Then offer the writing-plans choice: **1. Subagent-driven (this session)** — fresh subagent per task, review between tasks (reviewing the working tree — `git diff` since the previous wave commit, as tasks don't commit); **2. Wave-per-subagent (this session)** — a fresh subagent executes each wave and only gate results return to the orchestrator, so every wave starts with clean context (what compaction approximates, without needing it); or **3. Parallel session** — new session executes wave-by-wave with the gates as checkpoints (`superpowers:executing-plans`, or the environment's equivalent executing-plans skill, if available).
 
 Whichever mode: wave gates are the plan's designed compaction points — each gate ends with the context-checkpoint step (flush state to disk, stop, invite `/compact`/`/clear`), so long executions shed context at lossless boundaries instead of arbitrary mid-task auto-compaction.
+
+## Limitations
+
+- **Use a single-file plan for small work.** This format costs real effort to write and to keep in step. For one feature or one fix, use `superpowers:writing-plans` instead. The trigger list in *When to Use* is the test.
+- **The verifier needs Node 18.3 or newer.** `scripts/verify-plan.mjs` uses `parseArgs` from `node:util`. The plan folder itself is plain Markdown, so a repo in any language can hold one, but a repo with no Node cannot run Step 4's automated check. Record that gap in the plan and run manual checks 2 to 9 instead.
+- **The verifier checks structure, not judgment.** It proves that every backlog ID has one task heading, that links resolve, and that each wave file has a status section and a gate. It does not read your prose, judge whether the waves are cut well, confirm a cited line number, or run any command the plan names. It also does not check for the `## Dependency graph` section that Step 3 requires. A `VERDICT: PASS` means the plan is well formed, not that it is correct.
+- **Steps 4.2 to 4.9 stay manual.** Anchor checks, spec fidelity, tooling checks, blast-radius review, command dry-runs, batch graphs, diagram checks and the language pass are human or agent work. Skipping them is the common way a plan ships broken while showing a green verifier.
+- **Companion skills may be missing.** The skill leans on `superpowers:writing-plans`, `superpowers:using-git-worktrees`, `superpowers:finishing-a-development-branch` and `superpowers:executing-plans`. Each place that names one also names the manual fallback. Say in the README which fallback you used.
+- **This skill does not replace environment-specific validation, testing, or expert review.** It produces a plan. A person still reviews the wave cuts, the risk order, and the human-only tasks.
+- **Stop and ask when inputs are missing.** If there is no backlog source, no way to verify the current tree, or no permission to create a worktree, ask before writing. A plan built on unverified facts is the failure this format exists to prevent.
