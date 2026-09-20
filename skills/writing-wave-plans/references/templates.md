@@ -210,7 +210,7 @@ Task-level state lives in each wave file — this table is the wave-level rollup
 
 ## 5. Canonical module layout
 <!-- The one directory tree everything else references. **RULE — design this section with the
-     `clean-code` and `senior-architect` skills loaded**, and DEFAULT to a feature-first +
+     `architecture-patterns`, `clean-code` and `senior-architect` skills loaded**, and DEFAULT to a feature-first +
      layered-inside layout (layer-base × feature-base) unless the effort is too small to earn it.
      How you organise the tree is a real decision; record the chosen axis as an ADR (§11). Options,
      default first:
@@ -368,6 +368,11 @@ Per-task notes below are the *deltas* from this template.
 **Spec:** <exact values / state tables with source-section references; add a provenance note
 for any value the spec does NOT state explicitly>
 
+**Skills:** <skill ids this task loads, or `—`>
+<!-- Pick from the list recorded on the README's Reality baseline (Step 1.3 verified they exist).
+     Name only skills that change how THIS task is done; the wave header carries the wave-wide
+     ones. Mapping from spine stage to skill: see skill-selection.md. -->
+
 **Tests:** `<selector covering exactly this task's files>` → <expected, for example `12 passed`>
 <!-- Only this task's tests — the gate runs the whole suite. Selector must collect ≥1 test (verified
      in Step 4). Shared/generated file? Use its CONSUMERS' tests, or the full suite when fan-out is
@@ -497,3 +502,165 @@ for any value the spec does NOT state explicitly>
      and integration tests. This is the contract the wave's test task and gate implement — and the
      source of the selectors its task blocks scope their per-task runs to. -->
 ```
+
+---
+
+## Template 5 — `wave-N-restructure.md` (optional — a structural cleanup wave)
+
+Use this when several waves have landed and the tree is messy in **shape**: the module layout is
+wrong, shared files have become dumping grounds, or the dependency rule is broken.
+
+**Do not use it for accumulated detail.** Nits, dead code and leftover TODOs already have a home.
+Each wave gate re-homes them onto named tasks in the QA wave. That machinery needs no new wave.
+
+**When to insert it.** Count the waves that are still unbuilt.
+
+| Waves left that touch the messy trees | Do this |
+|---|---|
+| 3 or more | Insert this wave at the next gate boundary. Later waves then land in the right shape. |
+| 1 or 2 | Skip it. Fold the work into the QA wave instead. |
+
+This reverses the "riskiest work last" rule in Step 2 on purpose. That rule is about work that is
+hard to undo, such as payments or a table rewrite. A restructure changes no behaviour and is easy
+to undo. Its cost grows with every wave you delay it.
+
+**It needs an `ARCHITECTURE.md`.** Step 2 asks for one when an effort reshapes a system, and a new
+module layout is exactly that. If the plan has none, write it now from Template 3. If it has one,
+add a **dated note** to the affected ADR. Never rewrite an ADR in place.
+
+**Three rules keep the wave safe:**
+
+1. **No behaviour changes.** The full test suite must pass unchanged at the gate. The only edits
+   allowed in test files are import paths. A test that needs a real change is a behaviour change
+   hiding inside a move. Split it into its own task with its own spec.
+   This is also why the wave header below does **not** load `clean-code`. Use it when you *design*
+   the target layout, next to `architecture-patterns`. Do not load it for the move tasks, because
+   it drives the body edits this rule forbids. Rename and resplit functions in a later wave.
+2. **Exact paths only.** Never write `modify per findings` in a `Files:` line. That scope cannot be
+   proven disjoint from anything, so the whole wave collapses into one lane.
+3. **The new layout becomes a shared convention.** Add it to the README's *Shared conventions* at
+   this wave's gate, so every later task obeys it.
+
+```markdown
+# Wave <N> — Restructure: <what gets reshaped>
+
+> Part of the [<Effort Name> master plan](README.md). Read the [shared conventions](README.md#shared-conventions-read-once-applies-to-every-task) first.
+> Architecture: [ARCHITECTURE.md](ARCHITECTURE.md) — target layout and the ADR for this move.
+> Skills: **`orchestrate-batch-refactor`**, **`senior-architect`**, **`architecture-patterns`**, **`architecture-decision-records`**.
+> Previous: [wave-<N-1>-<theme>.md](wave-<N-1>-<theme>.md) · Next: [wave-<N+1>-<theme>.md](wave-<N+1>-<theme>.md)
+
+**Depends on:** Wave <N-1> gate (the tree must be committed and green before anything moves).
+**Unblocks:** Waves <N+1>..<last> — they are written against the new layout.
+
+**Behaviour parity is the contract of this wave.** Nothing a user or a caller can observe may
+change. The gate proves this by running the full suite with no test edits except import paths.
+
+## Why now
+
+<!-- 2-4 short sentences. What drifted, which waves caused it, and what it costs to wait.
+     Cite the wave Status sections or gate findings that recorded the drift. -->
+
+## Dependency graph
+
+<!-- Build this per references/batching.md, as for any wave. One extra rule applies here:
+     a move task and a task that edits the moved file cannot share a batch. Put the edit
+     in the batch after the move.
+     Many restructure waves are single-lane. Say so plainly rather than inventing a second
+     column. A second executor is only worth it when the trees are truly disjoint. -->
+
+## Status tracking — Wave <N>
+
+Status: not started
+
+<!-- Legend: [ ] not started · [~] in progress · [x] done · [!] blocked (say why) -->
+
+- [ ] **R1** — <name>
+- [ ] **R2** — <name>
+- [ ] **W<N>-GATE** — wave gate
+
+---
+
+### Task R0 — Inventory the mess
+
+**Covers:** R0 (S) · depends —
+
+**Files:**
+- Create: `docs/<effort>-summary/wave-<N>-inventory.md`
+
+**Skills:** `brooks-debt` or `codebase-cleanup-tech-debt` to classify, `production-code-audit` to
+deep-scan, `logic-lens` for anti-patterns a linter misses.
+
+**Spec:** List every structural problem. Give each one a row: file or tree · problem · which wave
+introduced it · estimated fan-out. Sort by fan-out. Everything below the cut line goes to the QA
+wave as a named task, not into this wave.
+
+**Tests:** `none cover this surface — the output is a document.` Degraded check: every row names a
+real path, proven with `ls` or `git ls-files`.
+
+**Steps:**
+1. Run the scoping skill over the trees named in *Why now*.
+2. Write the table. One row per problem.
+3. Draw the cut line. Name the QA-wave task that takes the rest.
+4. Tick `R0` in *Status tracking* with the row count — no commit.
+
+---
+
+### Task R1 — <the first move>
+
+**Covers:** R1 (<S/M/L>) · depends R0
+
+**Files:**
+- Move: `<exact/old/path>` → `<exact/new/path>`
+- Modify: `<exact/path>` (import update only)
+
+**Skills:** `orchestrate-batch-refactor` for the work packet, `typescript-expert` for import paths
+and module resolution, `systematic-debugging` when a move breaks something that is not obvious.
+
+**Spec:** Cite the ARCHITECTURE.md section that states the target layout. Name the dependency rule
+this move restores.
+
+**Tests:** `<selector covering the moved files and their consumers>` → <expected, for example
+`31 passed`>
+<!-- Blast radius sets the scope, not file adjacency. A moved shared file inherits its
+     CONSUMERS' tests. -->
+
+**Steps:**
+1. Inventory: list every importer of the file, with `grep` or the language server.
+2. Move the file. Do not edit its body in the same task.
+3. Update every importer found in step 1.
+4. Verify: `<build command>`, then the **Tests** selector above → <expected>.
+5. Tick `R1` in *Status tracking* with the file count — no commit.
+
+---
+
+### Task W<N>-GATE — Wave <N> gate
+
+1. **Build + the FULL test suites.** `<build>` then `<full suite>`.
+   **Parity check:** run `git diff --stat <prev wave commit>..HEAD -- '<test paths>'`. Every changed
+   line must be an import path. Any other change means behaviour moved. Stop and split it out.
+2. **Fresh-context audit.** Run `production-code-audit` and `logic-lens` over the moved trees and
+   every shared file this wave touched. The reviewer must not be the executor.
+3. **Triage.** Fix now, or re-home onto a named QA-wave task ID. Record both here.
+4. **Remediation.** Fix in the working tree. No separate commit.
+5. **Testing summary.** Write `docs/<effort>-summary/wave-<N>.md`: what moved · how to verify ·
+   what is intentionally NOT moved yet.
+6. **Promote the layout, then commit.**
+   - Add the new layout rule to the README's *Shared conventions*.
+   - Refresh the README's *Reality baseline* — the tree is not what Wave 0 saw.
+   - Update the README wave-files table and dependency graph, and `ARCHITECTURE.md`'s
+     build-sequence coverage table (the **Wave re-cut** row of the drift protocol).
+   - Record the re-cut in the Status section of every wave it affects, not only the README.
+   - Then commit once: `refactor(<scope>): W<N> — restructure <trees> (R0-R<n>)`.
+7. **Context checkpoint.** Stop. Invite the user to `/compact` or `/clear` before Wave <N+1>.
+
+---
+
+**Wave <N> done when** the full suite passes with no test edits except import paths, the new layout
+is in *Shared conventions*, and `ARCHITECTURE.md` records the move.
+→ Next: [wave-<N+1>-<theme>.md](wave-<N+1>-<theme>.md)
+```
+
+**Bookkeeping this wave must not skip.** New tasks get plan-only IDs (`R0`, `R1`, …) and go into the
+README row list. **IDs are append-only.** Never renumber, because wave commit bodies list task IDs.
+After the re-cut, run the verifier again with `--ids-from-readme`. That flag checks each wave file
+still holds the rows the README table gives it.

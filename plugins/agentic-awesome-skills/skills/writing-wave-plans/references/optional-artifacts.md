@@ -42,7 +42,7 @@ Records the *shape of the system and why it holds that shape*.
 
 ### Canonical module layout
 
-Design this section with the `clean-code` and `senior-architect` skills loaded if they exist in the
+Design this section with the `architecture-patterns`, `clean-code` and `senior-architect` skills loaded if they exist in the
 environment; if they don't, apply the defaults below directly.
 
 Default to a **feature-first + layered-inside** axis (feature folders on top, `ports/` kept apart
